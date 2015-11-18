@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet{
 		System.out.println("用户名：" + username);
 		System.out.println("密码：" + password);
 		
-		if(username.equals("ven") && password.equals("aa123")){
+		if(username.equals("admin") && password.equals("admin")){
 			/*
 			 * 选择使用页面的重定向方式，可以重定向到别的应用
 			 */

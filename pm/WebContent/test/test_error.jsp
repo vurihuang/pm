@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录成功</title>
+<title>登录失败</title>
 </head>
 <style>
 	body{
@@ -12,16 +12,26 @@
 		font-size: 14px;
 		margin: 20px auto;
 	}
-	#success{
-		text-align: center;
+	#error{
+		text-align:center;
 	}
 </style>
 <body>
-	<div id="success">
-		登录成功<br/>
+	<div id="error">
+		登录失败<br/>
+		<%
+			Object obj = request.getAttribute("msg");
+			if(obj != null){
+				out.println(obj.toString());
+			}
+			else{
+				out.println("其他错误");
+			}
+		%>
+		<br/>
 		用户名：<%= request.getParameter("username") %><br/>
 		密码：<%= request.getParameter("password") %><br/>
-		<a href="<%= request.getContextPath() %>/login/pm_login.jsp">返回登录页面</a>
+		<a href="<%= request.getContextPath() %>/test/test_login.jsp">返回登录页面</a>
 	</div>
 </body>
 </html>
