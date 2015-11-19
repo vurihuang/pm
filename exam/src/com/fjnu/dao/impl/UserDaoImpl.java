@@ -5,18 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.fjnu.dao.inter.UserDao;
-import com.fjnu.dto.User;
+import com.fjnu.entity.User;
 import com.mysql.jdbc.Connection;
 
 /**
- * 实现实体类User的方法
+ * 实现类UserDao的方法
  * 
  * @author vengeance
  *
  */
 public class UserDaoImpl implements UserDao {
 
-	/**
+	/*
 	 * 保存用户信息
 	 */
 	@Override
@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 		ps.execute();
 	}
 
-	/**
+	/*
 	 * 修改指定用户信息
 	 */
 	@Override
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 		ps.execute();
 	}
 
-	/**
+	/*
 	 * 删除指定用户
 	 */
 	@Override
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 		ps.execute();
 	}
 
-	/**
+	/*
 	 * 验证用户信息
 	 */
 	@Override

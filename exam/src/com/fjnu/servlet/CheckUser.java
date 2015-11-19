@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import com.fjnu.dao.impl.UserDaoImpl;
 import com.fjnu.dao.inter.UserDao;
-import com.fjnu.dto.User;
-import com.fjnu.jdbc.ConnectionFactory;
+import com.fjnu.entity.User;
+import com.fjnu.utils.ConnectionFactory;
 import com.mysql.jdbc.Connection;
 
 /**

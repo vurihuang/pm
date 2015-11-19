@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 提供测试使用
+ * 测试login/test_login.jsp是否能正常工作
+ * @author vengeance
+ *
+ */
 public class LoginServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;

@@ -3,7 +3,7 @@ package com.fjnu.dao.inter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.fjnu.dto.User;
+import com.fjnu.entity.User;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -14,16 +14,24 @@ import com.mysql.jdbc.Connection;
  */
 public interface UserDao {
 
-	// 验证用户信息
+	/*
+	 * 验证用户信息
+	 */
 	public ResultSet get(Connection conn, User user) throws SQLException;
 
-	// 保存用户信息
+	/*
+	 * 保存用户信息
+	 */
 	public void save(Connection conn, User user) throws SQLException;
 
-	// 更新指定用户信息
+	/*
+	 * 更新指定用户信息
+	 */
 	public void update(Connection conn, Long id, User user) throws SQLException;
 
-	// 删除指定用户
+	/*
+	 * 删除指定用户
+	 */
 	public void delete(Connection conn, User user) throws SQLException;
 
 }

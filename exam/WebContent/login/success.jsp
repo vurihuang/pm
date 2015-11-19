@@ -21,7 +21,7 @@
 		登录成功<br/>
 		用户名：<%= request.getParameter("username") %><br/>
 		密码：<%= request.getParameter("password") %><br/>
-		<a href="<%= request.getContextPath() %>/login/pm_login.jsp">返回登录页面</a>
+		<a href="<%= request.getContextPath() %>/login/login.jsp">返回登录页面</a>
 	</div>
 </body>
 </html>

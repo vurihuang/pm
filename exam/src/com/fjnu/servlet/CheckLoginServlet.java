@@ -8,23 +8,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fjnu.dto.User;
+import com.fjnu.entity.User;
 
+/**
+ * 将用户输入的用户名与密码通过CheckLoginServlet与数据库中的信息进行验证
+ * 如果验证成功，转发到success.jsp
+ * 如果验证失败，转发到error.jsp
+ * @author vengeance
+ *
+ */
 public class CheckLoginServlet extends HttpServlet{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public CheckUser cu = new CheckUser();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		super.doGet(req, resp);
 		doPost(req, resp);
 		resp.getWriter().append("服务对象").append(req.getContextPath());
 	}
-
+	/*
+	 * 验证用户名与密码
+	 * 如果验证成功，跳转到success.jsp
+	 * 如果验证失败，跳转到error.jsp
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		super.doPost(req, resp);
