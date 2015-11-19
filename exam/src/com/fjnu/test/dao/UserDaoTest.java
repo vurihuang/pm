@@ -1,7 +1,7 @@
-package com.fjnu.test;
+package com.fjnu.test.dao;
 
-import com.fjnu.dao.UserDao;
-import com.fjnu.dao.UserDaoImpl;
+import com.fjnu.dao.impl.UserDaoImpl;
+import com.fjnu.dao.inter.UserDao;
 import com.fjnu.dto.User;
 import com.fjnu.jdbc.ConnectionFactory;
 import com.mysql.jdbc.Connection;

@@ -1,4 +1,4 @@
-package com.fjnu.server;
+package com.fjnu.servlet;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.fjnu.test;
+package com.fjnu.test.jdbc;
 
 import java.sql.SQLException;
 import com.fjnu.jdbc.ConnectionFactory;

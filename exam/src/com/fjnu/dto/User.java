@@ -1,6 +1,6 @@
 package com.fjnu.dto;
 
-import com.fjnu.dto.IdEntity;;
+import com.fjnu.dto.IdEntity;
 
 /**
  * 实现User实体类

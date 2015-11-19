@@ -1,10 +1,10 @@
-package com.fjnu.server;
+package com.fjnu.servlet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.fjnu.dao.UserDao;
-import com.fjnu.dao.UserDaoImpl;
+import com.fjnu.dao.impl.UserDaoImpl;
+import com.fjnu.dao.inter.UserDao;
 import com.fjnu.dto.User;
 import com.fjnu.jdbc.ConnectionFactory;
 import com.mysql.jdbc.Connection;

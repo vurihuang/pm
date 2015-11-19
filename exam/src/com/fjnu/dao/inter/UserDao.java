@@ -1,4 +1,4 @@
-package com.fjnu.dao;
+package com.fjnu.dao.inter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

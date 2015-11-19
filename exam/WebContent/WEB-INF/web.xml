@@ -3,11 +3,11 @@
   <display-name>exam</display-name>
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>com.fjnu.server.LoginServlet</servlet-class>
+    <servlet-class>com.fjnu.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CheckLogin</servlet-name>
-    <servlet-class>com.fjnu.server.CheckLoginServlet</servlet-class>
+    <servlet-class>com.fjnu.servlet.CheckLoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
