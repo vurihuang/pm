@@ -11,13 +11,13 @@ public class IdEntity {
 	/*
 	 * 主键ID
 	 */
-	public int id;
+	public Long id;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 }

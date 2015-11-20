@@ -1,7 +1,5 @@
 package com.fjnu.entity;
 
-import com.fjnu.entity.IdEntity;
-
 /**
  * 实体类User
  * @author vengeance
