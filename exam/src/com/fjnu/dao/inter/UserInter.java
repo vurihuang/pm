@@ -12,7 +12,7 @@ import com.mysql.jdbc.Connection;
  * @author vengeance
  *
  */
-public interface UserDao {
+public interface UserInter {
 
 	/*
 	 * 验证用户信息

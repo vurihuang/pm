@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.fjnu.dao.inter.UserDao;
+import com.fjnu.dao.inter.UserInter;
 import com.fjnu.entity.User;
 import com.mysql.jdbc.Connection;
 
@@ -14,7 +14,7 @@ import com.mysql.jdbc.Connection;
  * @author vengeance
  *
  */
-public class UserDaoImpl implements UserDao {
+public class UserImpl implements UserInter {
 
 	/*
 	 * 保存用户信息

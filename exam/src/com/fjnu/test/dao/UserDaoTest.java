@@ -1,7 +1,7 @@
 package com.fjnu.test.dao;
 
-import com.fjnu.dao.impl.UserDaoImpl;
-import com.fjnu.dao.inter.UserDao;
+import com.fjnu.dao.impl.UserImpl;
+import com.fjnu.dao.inter.UserInter;
 import com.fjnu.entity.User;
 import com.fjnu.utils.ConnectionFactory;
 import com.mysql.jdbc.Connection;
@@ -19,7 +19,7 @@ public class UserDaoTest {
 			conn = ConnectionFactory.getInstance().getConnection();
 			conn.setAutoCommit(false);
 			
-			UserDao userDao = new UserDaoImpl();
+			UserInter userDao = new UserImpl();
 			User admin = new User();
 			//测试插入
 //			admin.setName("admin");
