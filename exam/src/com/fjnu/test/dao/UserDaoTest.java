@@ -1,7 +1,8 @@
 package com.fjnu.test.dao;
 
-import com.fjnu.dao.impl.UserImpl;
-import com.fjnu.dao.inter.UserInter;
+import java.sql.SQLException;
+
+import com.fjnu.dao.impl.UserDao;
 import com.fjnu.entity.User;
 import com.fjnu.utils.ConnectionFactory;
 import com.mysql.jdbc.Connection;
@@ -14,13 +15,13 @@ import com.mysql.jdbc.Connection;
 public class UserDaoTest {
 	
 	public static void main(String[] args) {
-		Connection conn = null;
-		try {
-			conn = ConnectionFactory.getInstance().getConnection();
-			conn.setAutoCommit(false);
+//		Connection conn = null;
+//		try {
+//			conn = ConnectionFactory.getInstance().getConnection();
+//			conn.setAutoCommit(false);
 			
-			UserInter userDao = new UserImpl();
-			User admin = new User();
+//			UserInter userDao = new UserImpl();
+//			User admin = new User();
 			//测试插入
 //			admin.setName("admin");
 //			admin.setPassword("aa123");
@@ -38,17 +39,43 @@ public class UserDaoTest {
 //			admin.setPassword("aa123");
 //			userDao.get(conn, admin);
 			//提交事务
-			conn.commit();
-		} catch (Exception e) {
-			try {
-				//事务回滚
-				conn.rollback();
-				System.out.println("===事务处理异常===");
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+//			User checkUser = new User();
+//			checkUser.setName("yasuo");
+//			checkUser.setPassword("aa123");
+//			UserImpl ui = new UserImpl();
+//			boolean isRight = ui.check(checkUser);
+//			
+//			if(isRight){
+//				System.out.println("登录成功");
+//			}else{
+//				System.out.println("登录失败");
+//			}
+//			conn.commit();
+//		} catch (Exception e) {
+//			try {
+//				//事务回滚
+//				conn.rollback();
+//				System.out.println("===事务处理异常===");
+//			} catch (Exception e2) {
+//				e2.printStackTrace();
+//			}
+//		}
 		
-		System.out.println("===事务处理完成===");
+//		System.out.println("===事务处理完成===");
+		
+		UserDao ud = new UserDao();
+		User checkUser = new User();
+		checkUser.setName("admin");
+		checkUser.setPassword("admin");
+		try {
+			boolean isRight = ud.checkInfo(checkUser);
+			if(isRight){
+				System.out.println("登录成功");
+			}else{
+				System.out.println("登录失败");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

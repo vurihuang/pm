@@ -67,7 +67,7 @@ public class SqlTool {
 	}
 	
 	/*
-	 * 执行更新语句
+	 * 执行更新语句，包括添加、修改、删除
 	 */
 	public void executeUpdate(){
 		try {
@@ -92,4 +92,23 @@ public class SqlTool {
 		 */
 		ConnectionDB.closeAll(ps, rs, conn);
 	}
+	
+	public ResultSet getInfo() {
+		try {
+			conn = ConnectionDB.getInstance().getConnection();
+			ps  = conn.prepareStatement(sql);
+			
+			if(params != null && params.size() >0 ){
+				this.fillSql();
+			}
+			
+			rs = ps.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	
+	
 }

@@ -1,6 +1,7 @@
 package com.fjnu.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,64 +9,65 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjnu.dao.impl.UserDao;
+import com.fjnu.entity.User;
+
 /**
- * 提供测试使用
- * 测试login/test_login.jsp是否能正常工作
+ * 将用户输入的用户名与密码通过CheckLoginServlet与数据库中的信息进行验证
+ * 如果验证成功，转发到success.jsp
+ * 如果验证失败，转发到error.jsp
  * @author vengeance
  *
  */
 public class LoginServlet extends HttpServlet{
-	
 	private static final long serialVersionUID = 1L;
+	public UserDao ud = new UserDao();
 
-	/**
-	 * 重写HttpServlet的get方法
-	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("使用GET方法");
 		doPost(req, resp);
+		resp.getWriter().append("服务对象").append(req.getContextPath());
 	}
-	
-	/**
-	 * 重写HttpServlet的post方法
+	/*
+	 * 验证用户名与密码
+	 * 如果验证成功，跳转到success.jsp
+	 * 如果验证失败，跳转到error.jsp
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("使用POST方法");
-		String username = req.getParameter("username");		//form提交的用户名
-		String password = req.getParameter("password");		//form提交的密码
-		String forward = null;								//声明转发变量提供页面转发使用
+//		super.doPost(req, resp);
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		String forward = null;
+		RequestDispatcher rd = null;
 		
-		System.out.println("用户名：" + username);
-		System.out.println("密码：" + password);
-		
-		if(username.equals("admin") && password.equals("admin")){
-			/*
-			 * 选择使用页面的重定向方式，可以重定向到别的应用
-			 */
-//			resp.sendRedirect(req.getContextPath() + "/login/success.jsp");
-			/*
-			 * 或者选择使用页面的转发方式，
-			 * 请求调度器，封装转发操作，封装客户端的请求并转发到指定的资源，
-			 * 转发只能在同一应用的组件下进行，不能转发给其他应用的组件
-			 */
-			forward = "test/test_success.jsp";
-			RequestDispatcher rd = req.getRequestDispatcher(forward);
+		if(username == null && password == null){
+			req.setAttribute("msg", "用户名或密码不能为空！");
+			rd = req.getRequestDispatcher("login/error.jsp");
 			rd.forward(req, resp);
 		}
 		else{
-			/*
-			 * 选择页面重定向
-			 */
-//			resp.sendRedirect(req.getContextPath() + "/login/error.jsp");
-			/*
-			 * 或者选择页面转发
-			 */
-			forward = "test/test_error.jsp";
-			RequestDispatcher rd = req.getRequestDispatcher(forward);
+			User user = new User();
+			user.setName(username);
+			user.setPassword(password);
+			
+			boolean isUserRight = false;
+			try {
+				isUserRight = ud.checkInfo(user);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			if(isUserRight){
+				forward = "login/success.jsp";
+			}
+			else{
+				req.setAttribute("msg", "用户名或密码不正确！");
+				forward = "login/error.jsp";
+			}
+			rd = req.getRequestDispatcher(forward);
 			rd.forward(req, resp);
 		}
 	}
-	
+
 }

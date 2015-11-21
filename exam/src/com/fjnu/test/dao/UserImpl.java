@@ -1,11 +1,14 @@
-package com.fjnu.dao.impl;
+package com.fjnu.test.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.fjnu.dao.inter.UserInter;
 import com.fjnu.entity.User;
+import com.fjnu.utils.ConnectionDB;
+import com.fjnu.utils.SqlTool;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -66,6 +69,28 @@ public class UserImpl implements UserInter {
 		ps.setString(2, user.getPassword());
 
 		return ps.executeQuery();
+	}
+	
+	public boolean check(User user){
+		SqlTool tool = new SqlTool();
+		String sql = "select * from t_user where name=? and password =?";
+		List<Object> params = new ArrayList<Object>();
+		params.add(user.getName());
+		params.add(user.getPassword());
+		tool.setSql(sql);
+		tool.setParams(params);
+		
+		try {
+			ResultSet rs = tool.getInfo();
+			
+			while(rs.next()){
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 }

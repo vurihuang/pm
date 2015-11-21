@@ -1,4 +1,4 @@
-package com.fjnu.dao.inter;
+package com.fjnu.test.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,5 +33,7 @@ public interface UserInter {
 	 * 删除指定用户
 	 */
 	public void delete(Connection conn, User user) throws SQLException;
+	
+	public boolean check(User user) throws SQLException;
 
 }

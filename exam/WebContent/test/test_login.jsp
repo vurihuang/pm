@@ -28,7 +28,7 @@
         <div class="container">
             <h1>Welcome</h1>
 
-            <form action="<%=request.getContextPath() %>/LoginServlet" method="post" name="loginform">
+            <form action="<%=request.getContextPath() %>/TestLoginServlet" method="post" name="loginform">
                 <input type="text" name="username" placeholder="账号"/>
                 <input type="password" name="password" placeholder="密码"/>
                 <button type="submit" id="login_button" onclick="return check(this);">登录</button>
