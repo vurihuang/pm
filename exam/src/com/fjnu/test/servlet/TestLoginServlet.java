@@ -50,7 +50,8 @@ public class TestLoginServlet extends HttpServlet{
 			 * 请求调度器，封装转发操作，封装客户端的请求并转发到指定的资源，
 			 * 转发只能在同一应用的组件下进行，不能转发给其他应用的组件
 			 */
-			forward = "test/test_success.jsp";
+//			forward = "test/test_success.jsp";
+			forward = "index/Main.html";
 			RequestDispatcher rd = req.getRequestDispatcher(forward);
 			rd.forward(req, resp);
 		}
