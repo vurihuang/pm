@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fjnu.dao.impl.UserDao;
+import com.fjnu.dao.impl.UserImpl;
 import com.fjnu.entity.User;
 
 /**
@@ -21,7 +21,7 @@ import com.fjnu.entity.User;
  */
 public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	public UserDao ud = new UserDao();
+	public UserImpl ud = new UserImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

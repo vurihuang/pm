@@ -8,6 +8,6 @@ package com.fjnu.service.impl;
  * @author vengeance
  *
  */
-public class ExamEffective {
+public class ExamEffectiveImpl {
 
 }

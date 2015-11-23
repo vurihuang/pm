@@ -7,6 +7,6 @@ package com.fjnu.service.impl;
  * @author vengeance
  *
  */
-public class ExamReliable {
+public class ExamReliableImpl {
 
 }

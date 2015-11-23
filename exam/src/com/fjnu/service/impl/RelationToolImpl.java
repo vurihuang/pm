@@ -13,7 +13,7 @@ import java.util.Map;
  * @author vengeance
  *
  */
-public class RelationTool {
+public class RelationToolImpl {
 	private static boolean endTag = false;	//结束标记
 	private static final double MIN_SUP = 0.5;	//最小支持度
 	private static final double MIN_CONF = 0.5;	//最小置信度

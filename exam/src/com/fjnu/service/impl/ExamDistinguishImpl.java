@@ -7,6 +7,6 @@ package com.fjnu.service.impl;
  * @author vengeance
  *
  */
-public class ExamDistinguish {
+public class ExamDistinguishImpl {
 
 }

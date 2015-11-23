@@ -13,7 +13,7 @@ import com.fjnu.utils.SqlTool;
  * @author vengeance
  *
  */
-public class UserDao extends SqlTool{
+public class UserImpl extends SqlTool{
 	public boolean checkInfo(User user) throws SQLException{
 		String sql = "select * from t_user where name=? and password = ?";
 		List<Object> params = new ArrayList<Object>();

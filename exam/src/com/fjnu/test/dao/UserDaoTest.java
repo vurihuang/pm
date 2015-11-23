@@ -2,7 +2,7 @@ package com.fjnu.test.dao;
 
 import java.sql.SQLException;
 
-import com.fjnu.dao.impl.UserDao;
+import com.fjnu.dao.impl.UserImpl;
 import com.fjnu.entity.User;
 import com.fjnu.utils.ConnectionFactory;
 import com.mysql.jdbc.Connection;
@@ -63,7 +63,7 @@ public class UserDaoTest {
 		
 //		System.out.println("===事务处理完成===");
 		
-		UserDao ud = new UserDao();
+		UserImpl ud = new UserImpl();
 		User checkUser = new User();
 		checkUser.setName("admin");
 		checkUser.setPassword("admin");

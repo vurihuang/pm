@@ -12,7 +12,7 @@ import com.fjnu.utils.SqlTool;
  * @author vengeance
  *
  */
-public class ExamAnalyse {
+public class ExamAnalyseImpl {
 	private float averageScore = 0;
 	private int stuNum = 0;
 	private float maxScore = 0;
@@ -172,7 +172,8 @@ public class ExamAnalyse {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -210,4 +211,5 @@ public class ExamAnalyse {
 		
 		return distributeScore;
 	}
+	
 }

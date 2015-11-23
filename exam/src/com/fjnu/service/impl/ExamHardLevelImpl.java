@@ -6,6 +6,6 @@ package com.fjnu.service.impl;
  * @author vengeance
  *
  */
-public class ExamHardLevel {
+public class ExamHardLevelImpl {
 
 }
