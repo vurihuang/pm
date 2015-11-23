@@ -51,7 +51,7 @@ public class TestLoginServlet extends HttpServlet{
 			 * 转发只能在同一应用的组件下进行，不能转发给其他应用的组件
 			 */
 //			forward = "test/test_success.jsp";
-			forward = "index/Main.html";
+			forward = "index/main.html";
 			RequestDispatcher rd = req.getRequestDispatcher(forward);
 			rd.forward(req, resp);
 		}

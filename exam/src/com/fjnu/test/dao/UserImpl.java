@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fjnu.entity.User;
-import com.fjnu.utils.ConnectionDB;
 import com.fjnu.utils.SqlTool;
 import com.mysql.jdbc.Connection;
 
@@ -81,7 +80,7 @@ public class UserImpl implements UserInter {
 		tool.setParams(params);
 		
 		try {
-			ResultSet rs = tool.getInfo();
+			ResultSet rs = tool.executeQuery();
 			
 			while(rs.next()){
 				return true;

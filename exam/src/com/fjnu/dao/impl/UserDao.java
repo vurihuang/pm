@@ -26,7 +26,7 @@ public class UserDao extends SqlTool{
 		setSql(sql);
 		setParams(params);
 		
-		ResultSet rs = getInfo();
+		ResultSet rs = executeQuery();
 		
 		while(rs.next()){
 			return true;

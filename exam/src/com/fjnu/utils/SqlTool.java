@@ -93,22 +93,4 @@ public class SqlTool {
 		ConnectionDB.closeAll(ps, rs, conn);
 	}
 	
-	public ResultSet getInfo() {
-		try {
-			conn = ConnectionDB.getInstance().getConnection();
-			ps  = conn.prepareStatement(sql);
-			
-			if(params != null && params.size() >0 ){
-				this.fillSql();
-			}
-			
-			rs = ps.executeQuery();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return rs;
-	}
-	
-	
 }

@@ -17,19 +17,17 @@ public class RelationTool {
 	private static boolean endTag = false;	//结束标记
 	private static final double MIN_SUP = 0.5;	//最小支持度
 	private static final double MIN_CONF = 0.5;	//最小置信度
-//	private static int label = 1;	//记录当前为第几级项集
 	
 	private static List<List<String>> record = new ArrayList<List<String>>();	//数据记录表
-//	private static List<Double> confCount = new ArrayList<Double>();	//保存List中的置信度
 	private static List<List<String>> confItemset = new ArrayList<List<String>>();	//保存满足支持度的项集
 	private static Map<Integer, Integer> dCountMap = new HashMap<Integer, Integer>();	//K-1级项集C元素出现次数统计
 	private static Map<Integer, Integer> dkCountMap = new HashMap<Integer, Integer>();	//K级项集C元素出现次数统计
 	
 	/**
-	 * 从数据源得到一级项集C
+	 * 从array[][]型数据源得到一级项集C
 	 * @param array
 	 */
-	public static void getRecord(String[][] array){
+	public void getRecord(String[][] array){
 		for(int i=0; i<array.length; i++){
 			List<String> tempList = new ArrayList<String>();
 			for(int j=0; j<array[i].length; j++){
@@ -39,11 +37,12 @@ public class RelationTool {
 			record.add(tempList);
 		}
 	}
+	
 	/**
-	 * 从数据源得到一级项集C
+	 * 从List<List<Object>>型数据源得到一级项集C
 	 * @param targetList
 	 */
-	public static void getRecord(List<List<String>> targetList){
+	public void getRecord(List<List<String>> targetList){
 		for(int i=0; i<targetList.size(); i++){
 			List<String> tempList = new ArrayList<String>();
 			for(int j=0; j<targetList.get(i).size(); j++){
@@ -53,65 +52,16 @@ public class RelationTool {
 			record.add(tempList);
 		}
 	}
-	
-//	public void relationTool(String[][] targetList){
-//		getRecord(targetList);
-//		List<List<String>> cItemset = findFirstCandidate();	//获取第一个备选项集C
-//		List<List<String>> lItemset = getSupportItemset(cItemset);	//获取第一个C项集满足最小支持度的项集L
-//		
-//		while(endTag != true){	//如果当前K级频繁项集L只有一个项集时循环结束
-//			List<List<String>> cKItemset = getNextCandidate(lItemset);	
-//			List<List<String>> lKItemset = getSupportItemset(cKItemset);
-//			
-//			getConfidencedItemset(lKItemset, lItemset, dkCountMap, dCountMap);	//得到满足最小置信度的项集
-//			
-//			if(confItemset.size() != 0){
-//				printConfItemset(confItemset);
-//			}
-//			
-//			confItemset.clear();
-//			cItemset = cKItemset;
-//			lItemset = lKItemset;
-//			dCountMap.clear();
-//			dCountMap.putAll(dkCountMap);	//保存当前频繁项集次数，为下一级项集做基础
-//		}
-//	}
-//	public void relationTool(List<List<String>> targetList){
-//		getRecord(targetList);
-//		List<List<String>> cItemset = findFirstCandidate();	//获取第一个备选项集C
-//		List<List<String>> lItemset = getSupportItemset(cItemset);	//获取第一个C项集满足最小支持度的项集L
-//		
-//		while(endTag != true){	//如果当前K级频繁项集L只有一个项集时循环结束
-//			List<List<String>> cKItemset = getNextCandidate(lItemset);	
-//			List<List<String>> lKItemset = getSupportItemset(cKItemset);
-//			
-//			getConfidencedItemset(lKItemset, lItemset, dkCountMap, dCountMap);	//得到满足最小置信度的项集
-//			
-//			if(confItemset.size() != 0){
-//				printConfItemset(confItemset);
-//			}
-//			
-//			confItemset.clear();
-//			cItemset = cKItemset;
-//			lItemset = lKItemset;
-//			dCountMap.clear();
-//			dCountMap.putAll(dkCountMap);	//保存当前频繁项集次数，为下一级项集做基础
-//		}
-//	}
-	
-	public static void main(String[] args) {
-//		for(int i=0; i<array.length; i++){
-//			List<String> temp = new ArrayList<String>();
-//			for(int j=0; j<array[i].length; j++){
-//				temp.add(array[i][j]);
-//			}
-//			record.add(temp);
-//		}
-		getRecord(array);
+	/**
+	 * 输入二维数组，得到关系
+	 * @param targetList
+	 */
+	public void relationTool(String[][] targetList){
+		getRecord(targetList);
 		List<List<String>> cItemset = findFirstCandidate();	//获取第一个备选项集C
 		List<List<String>> lItemset = getSupportItemset(cItemset);	//获取第一个C项集满足最小支持度的项集L
 		
-		while(endTag != true){	//当找不到满足最小支持度的项集时，结束
+		while(endTag != true){	//如果当前K级频繁项集L只有一个项集时循环结束
 			List<List<String>> cKItemset = getNextCandidate(lItemset);	
 			List<List<String>> lKItemset = getSupportItemset(cKItemset);
 			
@@ -129,29 +79,38 @@ public class RelationTool {
 		}
 	}
 	
-	public static String[][] array = {
-//			{"I1","I2","I5"},
-//			{"I2","I4"},
-//			{"I2","I3"},
-//			{"I1","I2","I4"},
-//			{"I1","I3"},
-//			{"I2","I3"},
-//			{"I1","I3"},
-//			{"I1","I2","I3","I5"},
-//			{"I1","I2","I3"}
-			{"ID","A","B","C","D","E"},
-			{"1","A","C","D"},
-			{"2","B","C","E"},
-			{"3","A","B","C","E"},
-			{"4","B","E"}
-	};
-	
+	/**
+	 * 输入二维List，得到关系
+	 * @param targetList
+	 */
+	public void relationTool(List<List<String>> targetList){
+		getRecord(targetList);
+		List<List<String>> cItemset = findFirstCandidate();	//获取第一个备选项集C
+		List<List<String>> lItemset = getSupportItemset(cItemset);	//获取第一个C项集满足最小支持度的项集L
+		
+		while(endTag != true){	//如果当前K级频繁项集L只有一个项集时循环结束
+			List<List<String>> cKItemset = getNextCandidate(lItemset);	
+			List<List<String>> lKItemset = getSupportItemset(cKItemset);
+			
+			getConfidencedItemset(lKItemset, lItemset, dkCountMap, dCountMap);	//得到满足最小置信度的项集
+			
+			if(confItemset.size() != 0){
+				printConfItemset(confItemset);
+			}
+			
+			confItemset.clear();
+			cItemset = cKItemset;
+			lItemset = lKItemset;
+			dCountMap.clear();
+			dCountMap.putAll(dkCountMap);	//保存当前频繁项集次数，为下一级项集做基础
+		}
+	}
 	
 	/**
 	 * 从指定的数据源获取第一级项集Candidate
 	 * @return 一项集
 	 */
-	public static List<List<String>> findFirstCandidate(){
+	public List<List<String>> findFirstCandidate(){
 		List<List<String>> firstList = new ArrayList<List<String>>();	//第一项集，项集存储所有出现过的知识点
 		List<String> lineList = new ArrayList<String>();	//添加出现过的知识点
 		int size = 0;
@@ -194,7 +153,7 @@ public class RelationTool {
 	 * @param cItemset 某一级的C项集
 	 * @return C项集中满足最小置信度的L项集
 	 */
-	public static List<List<String>> getSupportItemset(List<List<String>> cItemset){
+	public List<List<String>> getSupportItemset(List<List<String>> cItemset){
 		boolean isEnd = true;
 		List<List<String>> supportedItem = new ArrayList<List<String>>();	//满足最小支持度的项集L
 		int k = 0;
@@ -218,7 +177,7 @@ public class RelationTool {
 		
 	}
 	
-	public static int countFrequent(List<String> list){
+	public int countFrequent(List<String> list){
 		int count = 0;	//某知识点A出现的次数
 		
 		for(int i=1; i<record.size(); i++){	//1-n题
@@ -257,7 +216,7 @@ public class RelationTool {
 	 * @return	如果满足，在confItemset中添加满足条件项集
 	 * 			否则返回null
 	 */
-	public static List<List<String>> getConfidencedItemset(List<List<String>> lkItemset, List<List<String>> lItemset,
+	public List<List<String>> getConfidencedItemset(List<List<String>> lkItemset, List<List<String>> lItemset,
 			Map<Integer, Integer> dkCountMap2, Map<Integer, Integer> dCountMap2){
 		for(int i=0; i<lkItemset.size(); i++){
 			getConfItem(lkItemset.get(i), lItemset, dkCountMap2.get(i), dCountMap2);
@@ -276,7 +235,7 @@ public class RelationTool {
 	 * @param dCountMap2
 	 * @return
 	 */
-	public static List<String> getConfItem(List<String> list, List<List<String>> lItemset, 
+	public List<String> getConfItem(List<String> list, List<List<String>> lItemset, 
 			Integer count, Map<Integer, Integer> dCountMap2){
 		for(int i=0; i<list.size(); i++){
 			List<String> tempList = new ArrayList<String>();
@@ -307,7 +266,7 @@ public class RelationTool {
 	 * @return	存在该内容，返回下标
 	 * 			否则，返回-1
 	 */
-	public static int findConf(List<String> tempList, List<List<String>> lItemset){
+	public int findConf(List<String> tempList, List<List<String>> lItemset){
 		for(int i=0; i<lItemset.size(); i++){
 			boolean notHaveTag = false;
 			
@@ -333,7 +292,7 @@ public class RelationTool {
 	 * @return 存在，返回true
 	 * 		   否则，返回false
 	 */
-	public static boolean haveThisItem(String string, List<String> list){
+	public boolean haveThisItem(String string, List<String> list){
 		for(int i=0; i<list.size(); i++){
 			if(string.equals(list.get(i))){
 				return true;
@@ -349,7 +308,7 @@ public class RelationTool {
 	 * @param cItemset
 	 * @return
 	 */
-	public static List<List<String>> getNextCandidate(List<List<String>> cItemset){
+	public List<List<String>> getNextCandidate(List<List<String>> cItemset){
 		List<List<String>> nextItemset = new ArrayList<List<String>>();	//存储下一级的C项集
 		
 		for(int i=0; i<cItemset.size(); i++){
@@ -388,7 +347,7 @@ public class RelationTool {
 	 * @param cItemset
 	 * @return
 	 */
-	public static boolean isSubsetInC(List<String> tempList, List<List<String>> cItemset){
+	public boolean isSubsetInC(List<String> tempList, List<List<String>> cItemset){
 		boolean haveTag = false;
 		
 		for(int i=0; i<tempList.size(); i++){	//集合tempList的子集是否都存在于K-1级项集L中
@@ -421,7 +380,7 @@ public class RelationTool {
 	 * @param nextItemset
 	 * @return
 	 */
-	public static boolean isHave(List<String> copyValueHelpList, List<List<String>> nextItemset){
+	public boolean isHave(List<String> copyValueHelpList, List<List<String>> nextItemset){
 		for(int i=0; i<nextItemset.size(); i++){
 			if(copyValueHelpList.equals(nextItemset.get(i))){
 				return false;
@@ -431,7 +390,7 @@ public class RelationTool {
 		return true;
 	}
 	
-	public static void printConfItemset(List<List<String>> confItemset2){
+	public void printConfItemset(List<List<String>> confItemset2){
 		System.out.println("关联分析结果：");
 		
 		for(int i=0; i<confItemset2.size(); i++){

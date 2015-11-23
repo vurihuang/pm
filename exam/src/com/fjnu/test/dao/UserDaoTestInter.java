@@ -1,6 +1,8 @@
 package com.fjnu.test.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fjnu.service.impl.RelationTool;
 
@@ -19,7 +21,23 @@ public class UserDaoTestInter {
 				{"3","A","B","C","E"},
 				{"4","B","E"}
 		};
-		RelationTool.getRecord(array);
+//		RelationTool.getRecord(array);
+//		rt.relationTool(array);
+		List<List<String>> tempList = new ArrayList<List<String>>();
+		for(int i=0; i<array.length; i++){
+			List<String> temp = new ArrayList<String>();
+			for(int j=0; j<array[i].length; j++){
+				temp.add(array[i][j]);
+			}
+			tempList.add(temp);
+		}
+		rt.relationTool(tempList);
+//		for(int i=0; i<tempList.size(); i++){
+//			for(int j=0; j<tempList.get(i).size(); j++){
+//				System.out.print(tempList.get(i).get(j));
+//			}
+//			System.out.println();
+//		}
 //		List<String> list = new ArrayList<String>();
 //		List<List<String>> list = new ArrayList<List<String>>();
 //		List<String> temp = new ArrayList<String>();
