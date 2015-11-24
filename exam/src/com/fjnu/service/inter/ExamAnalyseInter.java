@@ -16,32 +16,32 @@ public interface ExamAnalyseInter {
 	/*
 	 * 获取平均分
 	 */
-	public float getAverageScore(List<Object> params);
+	public double getAverageScore(List<Object> params);
 	
 	/*
 	 * 获取最高分
 	 */
-	public float getMaxScore(List<Object> params);
+	public double getMaxScore(List<Object> params);
 	
 	/*
 	 * 获取最低分
 	 */
-	public float getMinScore(List<Object> params);
+	public double getMinScore(List<Object> params);
 	
 	/*
 	 * 获取及格率
 	 */
-	public float getPassRate(List<Object> params);
+	public double getPassRate(List<Object> params);
 	
 	/*
 	 * 获取优秀率
 	 */
-	public float getExcellentRate(List<Object> params);
+	public double getExcellentRate(List<Object> params);
 	
 	/*
 	 * 获取标准差
 	 */
-	public float getStandardScore(List<Object> params);
+	public double getStandardScore(List<Object> params);
 	
 	/*
 	 * 获取学生成绩分布情况

@@ -7,5 +7,13 @@ package com.fjnu.service.impl;
  *
  */
 public class ExamHardLevelImpl {
-
+	private double k = 100;
+	/**
+	 * 计算试卷难度
+	 * @param d
+	 * @return 试卷难度
+	 */
+	public double getHardLevel(double d){
+		return (1-d/k);
+	}
 }

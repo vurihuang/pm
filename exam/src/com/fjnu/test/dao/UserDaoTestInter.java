@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fjnu.service.impl.RelationToolImpl;
+import com.fjnu.service.inter.RelationToolClass;
 
 /**
  * 测试SqlTool、ConnectionDB、ReadProp类是否正常运作
@@ -13,7 +13,7 @@ import com.fjnu.service.impl.RelationToolImpl;
  */
 public class UserDaoTestInter {
 	public static void main(String[] args) throws SQLException {
-		RelationToolImpl rt = new RelationToolImpl();
+		RelationToolClass rt = new RelationToolClass();
 		String[][] array = {
 				{"ID","A","B","C","D","E"},
 				{"1","A","C","D"},

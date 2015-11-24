@@ -12,16 +12,15 @@ import com.fjnu.service.inter.ExamAnalyseClass;
  *
  */
 public class ExamAnalyseImpl extends ExamAnalyseClass {
-	private List<Object> tempList = new ArrayList<Object>();	//存储范围
+	private List<Object> tempList;	//存储范围
 	String choose = null;	//范围
 	
 	/**
 	 * 初始化范围
 	 * @param choose
 	 */
-	public ExamAnalyseImpl(String choose){
-		this.choose = choose;
-		tempList.add(choose);
+	public ExamAnalyseImpl(List<Object> choose){
+		tempList = new ArrayList<Object>(choose);
 	}
 
 	/**
@@ -36,7 +35,7 @@ public class ExamAnalyseImpl extends ExamAnalyseClass {
 	 * 
 	 * @return 返回平均分
 	 */
-	public float getAvg(){
+	public double getAvg(){
 		return getAverageScore(tempList);
 	}
 	
@@ -44,7 +43,7 @@ public class ExamAnalyseImpl extends ExamAnalyseClass {
 	 *
 	 * @return 返回最高分
 	 */
-	public float getMax(){
+	public double getMax(){
 		return getMaxScore(tempList);
 	}
 	
@@ -52,7 +51,7 @@ public class ExamAnalyseImpl extends ExamAnalyseClass {
 	 * 
 	 * @return 返回最低分
 	 */
-	public float getMin(){
+	public double getMin(){
 		return getMinScore(tempList);
 	}
 	
@@ -60,14 +59,14 @@ public class ExamAnalyseImpl extends ExamAnalyseClass {
 	 * 
 	 * @return 返回及格率
 	 */
-	public float getPass(){
+	public double getPass(){
 		return getPassRate(tempList);
 	}
 	/**
 	 * 
 	 * @return 返回优秀率
 	 */
-	public float getExcellent(){
+	public double getExcellent(){
 		return getExcellentRate(tempList);
 	}
 	
@@ -83,7 +82,7 @@ public class ExamAnalyseImpl extends ExamAnalyseClass {
 	 * 
 	 * @return 返回成绩标准差
 	 */
-	public float getStandard(){
+	public double getStandard(){
 		return getStandardScore(tempList);
 	}
 }

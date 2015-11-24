@@ -13,13 +13,13 @@ import com.fjnu.utils.SqlTool;
  *
  */
 public class ExamAnalyseClass implements ExamAnalyseInter{
-	private float averageScore = 0;
+	private double averageScore = 0;
 	private int stuNum = 0;
-	private float maxScore = 0;
-	private float minScore = 0;
-	private float passRate = 0;
-	private float excellentRate = 0;
-	private float standardDeviation = 0;
+	private double maxScore = 0;
+	private double minScore = 0;
+	private double passRate = 0;
+	private double excellentRate = 0;
+	private double standardDeviation = 0;
 	private List<Integer> distributeScore = new ArrayList<Integer>(); 
 	/**
 	 * 获取学生测试人数
@@ -58,7 +58,8 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	public int getStuNum(List<Object> params) {
 		String sql = "select count(pk_test_main_id)as test_student_num from t_testmain "
 				+ "where grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -85,7 +86,7 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return 平均分
 	 */
-	public float getAverageScore(String sql){
+	public double getAverageScore(String sql){
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		ResultSet rs;
@@ -115,10 +116,11 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * 
 	 */
 	@Override
-	public float getAverageScore(List<Object> params) {
+	public double getAverageScore(List<Object> params) {
 		String sql = "select AVG(realscore) from t_testmain "
 				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -147,7 +149,7 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return 最高分
 	 */
-	public float getMaxScore(String sql){
+	public double getMaxScore(String sql){
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		ResultSet rs = tool.executeQuery();
@@ -175,10 +177,11 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @return 最高分
 	 */
 	@Override
-	public float getMaxScore(List<Object> params) {
+	public double getMaxScore(List<Object> params) {
 		String sql = "select MAX(realscore) from t_testmain "
 				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -206,7 +209,7 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return 最低分
 	 */
-	public float getMinScore(String sql){
+	public double getMinScore(String sql){
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		ResultSet rs = tool.executeQuery();
@@ -234,10 +237,11 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @return 最低分 
 	 */
 	@Override
-	public float getMinScore(List<Object> params) {
+	public double getMinScore(List<Object> params) {
 		String sql = "select MIN(realscore) from t_testmain "
 				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -265,7 +269,7 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return 及格率
 	 */
-	public float getPassRate(String sql){
+	public double getPassRate(String sql){
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		ResultSet rs = tool.executeQuery();
@@ -293,10 +297,11 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @return 及格率
 	 */
 	@Override
-	public float getPassRate(List<Object> params) {
+	public double getPassRate(List<Object> params) {
 		String sql = "select sum(case when t_testmain.realscore>=60 then 1 else 0 end)/Count(*) from  t_testmain  "
 				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -324,7 +329,7 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return	优秀率
 	 */
-	public float getExcellentRate(String sql){
+	public double getExcellentRate(String sql){
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		ResultSet rs = tool.executeQuery();
@@ -353,10 +358,11 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @return 优秀率
 	 */
 	@Override
-	public float getExcellentRate(List<Object> params) {
+	public double getExcellentRate(List<Object> params) {
 		String sql = "select sum(case when t_testmain.realscore>=80 then 1 else 0 end)/Count(*) from  t_testmain  "
 				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?));";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))"
+				+ "and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  );";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -425,7 +431,8 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	public List<Integer> getDistributeScore(List<Object> params){
 		String sql = "select realscore from t_testmain "
 				+ "where grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
-				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?)) and realscore != 0";
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?)) and realscore != 0"
+				+ " and grandient_grandientId in(select grandientId from t_grandient where grandientsecequenceno=  ?  )";
 		SqlTool tool = new SqlTool();
 		tool.setSql(sql);
 		tool.setParams(params);
@@ -461,8 +468,19 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @param sql
 	 * @return 成绩标准差 
 	 */
-	public float getStandardScore(String sql){
-		return standardDeviation;
+	public double getStandardScore(String sql){
+		SqlTool tool = new SqlTool();
+		tool.setSql(sql);
+		ResultSet rs = tool.executeQuery();
+		
+		try {
+			while(rs.next()){
+				standardDeviation = rs.getDouble(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Math.sqrt(standardDeviation);
 	}
 	
 	/**
@@ -471,7 +489,25 @@ public class ExamAnalyseClass implements ExamAnalyseInter{
 	 * @return 成绩标准差 
 	 */
 	@Override
-	public float getStandardScore(List<Object> params) {
-		return 0;
+	public double getStandardScore(List<Object> params) {
+//		String sql = "select std(realScore) from t_testmain where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like ?))";
+		String sql = "select std(realScore) from t_testmain "
+				+ "where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope "
+				+ "where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope "
+				+ "where name like ?)) and grandient_grandientId in(select grandientId from t_grandient "
+				+ "where grandientsecequenceno=  ?  )";
+		SqlTool tool = new SqlTool();
+		tool.setSql(sql);
+		tool.setParams(params);
+		ResultSet rs = tool.executeQuery();
+		
+		try {
+			while(rs.next()){
+				standardDeviation = rs.getDouble(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Math.sqrt(standardDeviation);
 	}
 }

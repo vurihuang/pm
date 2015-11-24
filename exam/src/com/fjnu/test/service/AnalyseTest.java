@@ -3,7 +3,7 @@ package com.fjnu.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fjnu.service.impl.ExamAnalyseImpl;
+import com.fjnu.service.inter.RelationToolClass;
 
 public class AnalyseTest {
 	public static void main(String[] args) {
@@ -107,16 +107,139 @@ public class AnalyseTest {
 //		ExamAnalyseImpl ea = new ExamAnalyseImpl();
 //		System.out.println(ea.getNum(choose));
 		
-		String choose = "人教版";
-		ExamAnalyseImpl ea = new ExamAnalyseImpl(choose);
-		System.out.println(ea.getNum());
-		System.out.println(ea.getMax());
-		System.out.println(ea.getMin());
-		System.out.println(ea.getAvg());
-		System.out.println(ea.getPass());
-		System.out.println(ea.getExcellent());
-		List<Integer> temp = new ArrayList<Integer>(ea.getDistribute());
+//		String choose = "人教版";
+//		ExamAnalyseImpl ea = new ExamAnalyseImpl(choose);
+//		System.out.println(ea.getNum());
+//		System.out.println(ea.getMax());
+//		System.out.println(ea.getMin());
+//		System.out.println(ea.getAvg());
+//		System.out.println(ea.getPass());
+//		System.out.println(ea.getExcellent());
+//		List<Integer> temp = new ArrayList<Integer>(ea.getDistribute());
+//		
+//		System.out.println(temp);
 		
-		System.out.println(temp);
+//		2015/11/24 21:50 标准差测试
+//		String sql = "select std(realScore) from t_testmain where  grandient_grandientId in (select grandient_grandientId from t_grandient_t_scope where scopes_pk_scope_id in(SELECT pk_scope_id from t_scope where name like '人教版'))";
+//		SqlTool tool = new SqlTool();
+//		tool.setSql(sql);
+//		ResultSet rs = tool.executeQuery();
+//		
+//		try {
+//			while(rs.next()){
+//				System.out.println(Math.sqrt(rs.getDouble(1)));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		
+//		2015/11/24 22:45 测试标准差包装方法
+//		List<Object> scopeList = new ArrayList<Object>();
+//		String scope = "人教版";
+//		scopeList.add(scope);
+//		ExamAnalyseImpl ea = new ExamAnalyseImpl(scopeList);
+//		System.out.println(ea.getStandard());
+		
+//		2015/11/25 0:44 测试限制范围的标准差包装方法
+//		List<Object> scopeList = new ArrayList<Object>();
+//		String scope = "人教版";
+//		String grandient = "1";
+//		scopeList.add(scope);
+//		scopeList.add(grandient);
+//		ExamAnalyseImpl ea = new ExamAnalyseImpl(scopeList);
+//		System.out.println(ea.getNum());
+//		System.out.println(ea.getAvg());
+//		System.out.println(ea.getMax());
+//		System.out.println(ea.getMin());
+//		System.out.println(ea.getExcellent());
+//		System.out.println(ea.getPass());
+//		System.out.println(ea.getDistribute());
+//		System.out.println(ea.getStandard());
+		
+//		2015/11/25 12:58 测试简易版List知识关联分析
+//		{"ID","A","B","C","D","E"},
+//		{"1","A","C","D"},
+//		{"2","B","C","E"},
+//		{"3","A","B","C","E"},
+//		{"4","B","E"}
+//		List<String> keyword1 = new ArrayList<String>();
+//		List<String> keyword2 = new ArrayList<String>();
+//		List<String> keyword3 = new ArrayList<String>();
+//		List<String> keyword4 = new ArrayList<String>();
+//		List<String> keyword5 = new ArrayList<String>();
+//		List<List<String>> grandient = new ArrayList<List<String>>();
+//		String a = "A";
+//		String b = "B";
+//		String c = "C";
+//		String d = "D";
+//		String e = "E";
+//		String id = "id";
+//		
+//		keyword5.add(id);
+//		keyword5.add(a);
+//		keyword5.add(b);
+//		keyword5.add(c);
+//		keyword5.add(d);
+//		keyword5.add(e);
+//		grandient.add(keyword5);
+//		
+//		keyword1.add("11");
+//		keyword1.add(a);
+//		keyword1.add(c);
+//		keyword1.add(d);
+//		grandient.add(keyword1);
+//		
+//		keyword2.add("23");
+//		keyword2.add(b);
+//		keyword2.add(c);
+//		keyword2.add(e);
+//		grandient.add(keyword2);
+//		
+//		keyword3.add("31");
+//		keyword3.add(a);
+//		keyword3.add(b);
+//		keyword3.add(c);
+//		keyword3.add(e);
+//		grandient.add(keyword3);
+//		
+//		keyword4.add("46");
+//		keyword4.add(b);
+//		keyword4.add(e);
+//		grandient.add(keyword4);
+//		
+//		
+//		System.out.println(keyword5);
+//		System.out.println(keyword1);
+//		System.out.println(keyword2);
+//		System.out.println(keyword3);
+//		System.out.println(keyword4);
+//		System.out.println(grandient);
+//		
+//		RelationToolImpl relationtool = new RelationToolImpl();
+//		relationtool.relationTool(grandient);
+//		List<List<String>> list = relationtool.getList();
+////		System.out.println(list);
+//		for(int i=0; i<list.size(); i++){
+//			System.out.println(list.get(i));
+//		}
+		
+//		String[][] array = {
+//		{"ID","A","B","C","D","E"},
+//		{"1","A","C","D"},
+//		{"2","B","C","E"},
+//		{"3","A","B","C","E"},
+//		{"4","B","E"}
+//		};
+//		RelationToolImpl tool = new RelationToolImpl();
+//		tool.getRecord(array);
+//		System.out.println(tool.turnRecord());
+		
+//		2015/11/25	2:07 测试插入数据到list开头
+		
+//		List<String> list = new ArrayList<String>();
+//		list.add("aaa");
+//		list.add("bbb");
+//		list.add(0, "ccc");
+//		System.out.println(list);
 	}
 }

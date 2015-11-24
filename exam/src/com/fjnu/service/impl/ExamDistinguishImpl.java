@@ -8,5 +8,33 @@ package com.fjnu.service.impl;
  *
  */
 public class ExamDistinguishImpl {
-
+	private double first = 0;
+	private double last = 0;
+	private double percent = 0.25;	//选取百分前25和后25的学生
+	
+	/**
+	 * 计算区分度
+	 * @param max 卷面最高分
+	 * @param min 卷面最低分
+	 * @return 区分度
+	 */
+	public double getDistinguish(double max, double min){
+		return ((first - last)/(max - min)) * percent;
+	}
+	
+	/**
+	 * 
+	 * @return 获得前(percent*100)%学生的总分 
+	 */
+	private double topScore(){
+		return first;
+	}
+	
+	/**
+	 * 
+	 * @return 获得后(percent*100)%学生的总分
+	 */
+	private double underScore(){
+		return last;
+	}
 }
