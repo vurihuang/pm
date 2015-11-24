@@ -26,7 +26,7 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <h1>Welcome</h1>
+            <h1>试卷管理系统</h1>
 
             <form action="<%= request.getContextPath()%>/LoginServlet" method="post" name="loginform">
                 <input type="text" name="username" placeholder="账号"/>

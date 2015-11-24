@@ -21,17 +21,23 @@ public class UserDaoTestInter {
 				{"3","A","B","C","E"},
 				{"4","B","E"}
 		};
+//		2015/11/24 20:00 测试知识点包装是否能正常返回一个List
+		rt.relationTool(array);
+		List<List<String>> list = rt.getList();
+		System.out.println(list);
+		
+		
 //		RelationTool.getRecord(array);
 //		rt.relationTool(array);
-		List<List<String>> tempList = new ArrayList<List<String>>();
-		for(int i=0; i<array.length; i++){
-			List<String> temp = new ArrayList<String>();
-			for(int j=0; j<array[i].length; j++){
-				temp.add(array[i][j]);
-			}
-			tempList.add(temp);
-		}
-		rt.relationTool(tempList);
+//		List<List<String>> tempList = new ArrayList<List<String>>();
+//		for(int i=0; i<array.length; i++){
+//			List<String> temp = new ArrayList<String>();
+//			for(int j=0; j<array[i].length; j++){
+//				temp.add(array[i][j]);
+//			}
+//			tempList.add(temp);
+//		}
+		
 //		for(int i=0; i<tempList.size(); i++){
 //			for(int j=0; j<tempList.get(i).size(); j++){
 //				System.out.print(tempList.get(i).get(j));

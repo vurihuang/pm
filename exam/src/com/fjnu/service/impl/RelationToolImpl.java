@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fjnu.service.inter.RelationToolInter;
+
 /**
  * 判断知识点之间的关系
  * 判断依据为设定的最小支持度和最小置信度
@@ -13,7 +15,7 @@ import java.util.Map;
  * @author vengeance
  *
  */
-public class RelationToolImpl {
+public class RelationToolImpl implements RelationToolInter{
 	private static boolean endTag = false;	//结束标记
 	private static final double MIN_SUP = 0.5;	//最小支持度
 	private static final double MIN_CONF = 0.5;	//最小置信度
@@ -22,6 +24,7 @@ public class RelationToolImpl {
 	private static List<List<String>> confItemset = new ArrayList<List<String>>();	//保存满足支持度的项集
 	private static Map<Integer, Integer> dCountMap = new HashMap<Integer, Integer>();	//K-1级项集C元素出现次数统计
 	private static Map<Integer, Integer> dkCountMap = new HashMap<Integer, Integer>();	//K级项集C元素出现次数统计
+	private static List<List<String>> relationList = new ArrayList<List<String>>();	//知识点关系列表
 	
 	/**
 	 * 从array[][]型数据源得到一级项集C
@@ -68,7 +71,8 @@ public class RelationToolImpl {
 			getConfidencedItemset(lKItemset, lItemset, dkCountMap, dCountMap);	//得到满足最小置信度的项集
 			
 			if(confItemset.size() != 0){
-				printConfItemset(confItemset);
+//				printConfItemset(confItemset);
+				getRelationList(confItemset);
 			}
 			
 			confItemset.clear();
@@ -95,7 +99,8 @@ public class RelationToolImpl {
 			getConfidencedItemset(lKItemset, lItemset, dkCountMap, dCountMap);	//得到满足最小置信度的项集
 			
 			if(confItemset.size() != 0){
-				printConfItemset(confItemset);
+//				printConfItemset(confItemset);
+				getRelationList(confItemset);
 			}
 			
 			confItemset.clear();
@@ -177,6 +182,11 @@ public class RelationToolImpl {
 		
 	}
 	
+	/**
+	 * 计算某知识点出现的次数
+	 * @param list
+	 * @return 出现次数
+	 */
 	public int countFrequent(List<String> list){
 		int count = 0;	//某知识点A出现的次数
 		
@@ -233,7 +243,7 @@ public class RelationToolImpl {
 	 * @param lItemset
 	 * @param count
 	 * @param dCountMap2
-	 * @return
+	 * @return 频繁项集L
 	 */
 	public List<String> getConfItem(List<String> list, List<List<String>> lItemset, 
 			Integer count, Map<Integer, Integer> dCountMap2){
@@ -306,7 +316,7 @@ public class RelationToolImpl {
 	 * 根据cItemset求出下一级的备选项集C，得到的C项集中的每个集合元素个数都比cItemset中的集合元素大1
 	 * 也就是连接操作，从Lk-1频繁项集中得到Ck项集
 	 * @param cItemset
-	 * @return
+	 * @return 项集C
 	 */
 	public List<List<String>> getNextCandidate(List<List<String>> cItemset){
 		List<List<String>> nextItemset = new ArrayList<List<String>>();	//存储下一级的C项集
@@ -345,7 +355,8 @@ public class RelationToolImpl {
 	 * 检测tempList是否是cItemset的子集
 	 * @param tempList
 	 * @param cItemset
-	 * @return
+	 * @return true : 是它的子集
+	 * 		   false : 不是它的子集
 	 */
 	public boolean isSubsetInC(List<String> tempList, List<List<String>> cItemset){
 		boolean haveTag = false;
@@ -378,7 +389,8 @@ public class RelationToolImpl {
 	 * 检测nextItemset中是否包含集合copyValueHelpList
 	 * @param copyValueHelpList
 	 * @param nextItemset
-	 * @return
+	 * @return true : 包含
+	 * 		   false : 不包含
 	 */
 	public boolean isHave(List<String> copyValueHelpList, List<List<String>> nextItemset){
 		for(int i=0; i<nextItemset.size(); i++){
@@ -390,6 +402,10 @@ public class RelationToolImpl {
 		return true;
 	}
 	
+	/**
+	 * 打印输出知识点之间的关系
+	 * @param confItemset2
+	 */
 	public void printConfItemset(List<List<String>> confItemset2){
 		System.out.println("关联分析结果：");
 		
@@ -404,6 +420,25 @@ public class RelationToolImpl {
 			System.out.print("相对支持度：" +  confItemset2.get(i).get(j++));
 			System.out.print("置信度：" +  confItemset2.get(i).get(j++) + "\n");
 		}
+	}
+	
+	/**
+	 * 将得到的关系列表保存到待获取的列表中
+	 * @param confItemset2
+	 */
+	public void getRelationList(List<List<String>> confItemset2){
+		for(int i=0; i<confItemset2.size(); i++){
+			List<String> temp = new ArrayList<String>(confItemset2.get(i));
+			relationList.add(temp);
+		}
+			
+	}
+	
+	/**
+	 * @return 返回关系列表
+	 */
+	public List<List<String>> getList(){
+		return relationList;
 	}
 }
 
