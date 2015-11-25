@@ -15,7 +15,7 @@ public class ExamInfo {
 	public static void main(String[] args) {
 //		2015/11/24 21:40 测试试卷难度
 		ExamHardLevelImpl hardLevel = new ExamHardLevelImpl();
-		String scope = "人教版";
+		String scope = "语文";
 		String grandient = "1";
 		List<Object> tempList = new ArrayList<Object>();
 		tempList.add(scope);

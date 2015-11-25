@@ -130,7 +130,7 @@ public class RelationToolImplTest {
 //		2015/11/25 3:48 对知识点关联包装进行测试
 		List<Object> params = new ArrayList<Object>();
 		String scope = "语文";
-		String id = "3";
+		String id = "7";
 		params.add(scope);
 		params.add(id);
 		RelationToolImpl rt = new RelationToolImpl();

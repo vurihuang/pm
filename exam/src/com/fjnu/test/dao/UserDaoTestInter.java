@@ -13,18 +13,18 @@ import com.fjnu.service.inter.RelationToolClass;
  */
 public class UserDaoTestInter {
 	public static void main(String[] args) throws SQLException {
-		RelationToolClass rt = new RelationToolClass();
-		String[][] array = {
-				{"ID","A","B","C","D","E"},
-				{"1","A","C","D"},
-				{"2","B","C","E"},
-				{"3","A","B","C","E"},
-				{"4","B","E"}
-		};
-//		2015/11/24 20:00 测试知识点包装是否能正常返回一个List
-		rt.relationTool(array);
-		List<List<String>> list = rt.getList();
-		System.out.println(list);
+//		RelationToolClass rt = new RelationToolClass();
+//		String[][] array = {
+//				{"ID","A","B","C","D","E"},
+//				{"1","A","C","D"},
+//				{"2","B","C","E"},
+//				{"3","A","B","C","E"},
+//				{"4","B","E"}
+//		};
+////		2015/11/24 20:00 测试知识点包装是否能正常返回一个List
+//		rt.relationTool(array);
+//		List<List<String>> list = rt.getList();
+//		System.out.println(list);
 		
 		
 //		RelationTool.getRecord(array);
@@ -95,7 +95,14 @@ public class UserDaoTestInter {
 //		}else{
 //			System.out.println("登录失败");
 //		}
+		
+		double[][] doubleArr = {
+				{10,20},
+				{30,40}
+				};
+		for(int i=0; i<doubleArr.length; i++){
+			System.out.println(doubleArr[i].toString());
+		}
 	}	
-	
-	
+		
 }

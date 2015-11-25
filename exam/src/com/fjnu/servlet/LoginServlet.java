@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 			}
 			
 			if(isUserRight){
-				forward = "index/main.html";
+				forward = "index/index.html";
 			}
 			else{
 				req.setAttribute("msg", "用户名或密码不正确！");

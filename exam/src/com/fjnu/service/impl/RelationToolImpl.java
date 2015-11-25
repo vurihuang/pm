@@ -28,7 +28,7 @@ public class RelationToolImpl extends RelationToolClass {
 				+ "where grandientsecequenceno=  ?   ) limit 100";
 		String keywordSql = "select distinct keyword from t_question "
 				+ "where fk_question_id in(Select question_fk_question_id from t_test_detail "
-				+ "where testmain_pk_test_main_id=?)";
+				+ "where testmain_pk_test_main_id=?) and keyword  <>'' ";
 		SqlTool tool = new SqlTool();
 		List<String> keywordAll = new ArrayList<String>();		//保存所有出现过的知识点
 		List<List<String>> grandientList = new ArrayList<List<String>>();	//保存题目/试卷列表
@@ -44,7 +44,6 @@ public class RelationToolImpl extends RelationToolClass {
 				tool.setParams(paramsList);
 				ResultSet keywordRS = tool.executeQuery();
 				List<String> keywordList = new ArrayList<String>();	//保存知识点列表
-				
 				while(keywordRS.next()){
 					List<String> tempList = new ArrayList<String>();
 					

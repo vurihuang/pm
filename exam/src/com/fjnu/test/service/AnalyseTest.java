@@ -3,7 +3,7 @@ package com.fjnu.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fjnu.service.inter.RelationToolClass;
+import com.fjnu.service.impl.ExamAnalyseImpl;
 
 public class AnalyseTest {
 	public static void main(String[] args) {
@@ -141,20 +141,20 @@ public class AnalyseTest {
 //		System.out.println(ea.getStandard());
 		
 //		2015/11/25 0:44 测试限制范围的标准差包装方法
-//		List<Object> scopeList = new ArrayList<Object>();
-//		String scope = "人教版";
-//		String grandient = "1";
-//		scopeList.add(scope);
-//		scopeList.add(grandient);
-//		ExamAnalyseImpl ea = new ExamAnalyseImpl(scopeList);
-//		System.out.println(ea.getNum());
-//		System.out.println(ea.getAvg());
-//		System.out.println(ea.getMax());
-//		System.out.println(ea.getMin());
-//		System.out.println(ea.getExcellent());
-//		System.out.println(ea.getPass());
-//		System.out.println(ea.getDistribute());
-//		System.out.println(ea.getStandard());
+		List<Object> scopeList = new ArrayList<Object>();
+		String scope = "英文";
+		String grandient = "1";
+		scopeList.add(scope);
+		scopeList.add(grandient);
+		ExamAnalyseImpl ea = new ExamAnalyseImpl(scopeList);
+		System.out.println("学生人数：" + ea.getNum());
+		System.out.println("平均分：" + ea.getAvg());
+		System.out.println("最高分：" + ea.getMax());
+		System.out.println("最低分：" + ea.getMin());
+		System.out.println("优秀率：" + ea.getExcellent());
+		System.out.println("及格率：" + ea.getPass());
+		System.out.println("成绩分布：" + ea.getDistribute());
+		System.out.println("标准差：" + ea.getStandard());
 		
 //		2015/11/25 12:58 测试简易版List知识关联分析
 //		{"ID","A","B","C","D","E"},

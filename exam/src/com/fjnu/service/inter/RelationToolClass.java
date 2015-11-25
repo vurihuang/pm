@@ -16,7 +16,7 @@ import java.util.Map;
 public class RelationToolClass implements RelationToolInter{
 	private static boolean endTag = false;	//结束标记
 	private static final double MIN_SUP = 0.1;	//最小支持度
-	private static final double MIN_CONF = 0.1;	//最小置信度
+	private static final double MIN_CONF = 0.5;	//最小置信度
 	
 	private static List<List<String>> record = new ArrayList<List<String>>();	//数据记录表
 	private static List<List<String>> confItemset = new ArrayList<List<String>>();	//保存满足支持度的项集
