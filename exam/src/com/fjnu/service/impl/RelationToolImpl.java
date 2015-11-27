@@ -86,4 +86,29 @@ public class RelationToolImpl extends RelationToolClass {
 		
 		return list;
 	}
+	
+	public List<List<String>> changeList(List<List<String>> oldList){
+		List<List<String>> newList = new ArrayList<List<String>>();
+		for (List<String> oldListSon : oldList) {
+			int i = oldListSon.size();
+			List<String> newListSon = new ArrayList<String>();
+			String newString = "";
+			for (String string : oldListSon) {
+				if(i > 3){
+					newString += string;
+					newString += "_";
+					i--;
+					if(i == 3){
+						//添加到newListSon
+						newListSon.add(newString);
+					}
+				}else{
+					//添加到newListSon
+					newListSon.add(string);
+				}
+			}
+			newList.add(newListSon);
+		}
+		return newList;
+	}
 }

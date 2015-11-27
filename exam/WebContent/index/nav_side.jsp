@@ -1,5 +1,21 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<head>
+  <head>
+    
+    <title>nav_side</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 		<style type="text/css">
 			//body{background-color:#efefef;}
 			.main{
@@ -111,12 +127,13 @@
 			}
 		</style>
 	</head>
+	
 	<body>
 		<div class="main">
 			<div class="top"></div>
 			<div class="nav">Navigation</div>
 			<div class="link link-miss">
-				<a href="base_info.html" target="mainframe" class="button">
+				<a href="base_info.jsp" target="mainframe" class="button">
 					<span class="line line-top"></span>
 					<span class="line line-right"></span>
 					<span class="line line-bottom"></span>
@@ -125,7 +142,7 @@
 				</a>
 			</div>		
 			<div class="link link-play">
-				<a href="<c:url value='/fuckServlet?method=fuck&fuck=chinese'/>" target="mainframe" class="button">
+				<a href="<c:url value='/fuckServlet?method=fuck&subject=chinese'/>" target="mainframe" class="button">
 					<span class="line line-top"></span>
 					<span class="line line-right"></span>
 					<span class="line line-bottom"></span>
@@ -134,7 +151,7 @@
 				</a>
 			</div>		
 			<div class="link link-touch">
-				<a href="https://www.baidu.com/" target="mainframe" class="button">
+				<a href="julei.jsp" target="mainframe" class="button">
 					<span class="line line-top"></span>
 					<span class="line line-right"></span>
 					<span class="line line-bottom"></span>
@@ -143,9 +160,10 @@
 				</a>
 			</div>
 			<div class="exitd">
-				<p class="info">张智勇</p>
+				<p class="info">学生：林泽一</p>
 				<a href="#" class="exita"><center>退出</center></a>
 			</div>
 		</div>
 	</body>
+ 
 </html>

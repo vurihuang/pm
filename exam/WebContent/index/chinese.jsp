@@ -1,5 +1,21 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<head>
+  <head>
+    <title>My JSP 'chinese.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
 		<style type="text/css">
 			.top{
 				width:1200px;
@@ -55,7 +71,8 @@
 				word-wrap:break-word ;
 			}
 		</style>
-	</head>
+  </head>
+  
 	<body>
 		<div class="top">
 			<div class="div div-rank"><p class="p">优秀率:</p><p id="p-rank" class="p p-num">${excellent}</p></div>
