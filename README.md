@@ -15,3 +15,7 @@
 - c3p0-0.9.2-pre1.jar	jdbc连接池包
 - mchange-commons-0.2.jar	c3p0连接池依赖包
 - commons-dbutils-1.4.jar	JDBC操作封装包
+
+###注意事项
+- 数据库配置文件在src/c3p0-config.xml  
+  修改jdbcUrl，driverClass，user，password即可。
