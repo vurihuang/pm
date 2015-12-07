@@ -1,6 +1,7 @@
 package edu.fjnu.domain;
 
 /**
+ * 数据库对象
  * t_user表
  * @author vengeance
  *
@@ -8,7 +9,6 @@ package edu.fjnu.domain;
 public class User {
 	private String username;
 	private String password;
-	
 	public String getUsername() {
 		return username;
 	}
@@ -21,7 +21,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + "]";

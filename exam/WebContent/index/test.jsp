@@ -8,5 +8,11 @@
 </head>
 <body>
 	<h1>hello</h1>
+	<form action="<%=request.getContextPath() %>/UserServlet" method="post">
+		<input type="hidden" name="method" value="query"/>
+		<!-- <input type="text" name="username"/>
+		<input type="password" name="password"/> -->
+		<input type="submit" />
+	</form>
 </body>
 </html>

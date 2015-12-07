@@ -5,41 +5,35 @@ import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.User;
-import edu.fjnu.utils.JdbcUtils;
 
-/**
- * User实体类的修改和查询
- * @author vengeance
- *
- */
-public class UserDaoImpl implements UserDao {
-
-	@Override
-	public void update() {
-		QueryRunner qr = new QueryRunner(JdbcUtils.getDataSource());
-		String sql = "insert into t_user values(?,?)";
-		Object[] params = {"test","test"};
-		
+public class UserDaoImpl implements UserDao{
+	private QueryRunner qr = new TxQueryRunner();//带事务的数据库操作方法对象
+	
+	/**
+	 * 添加用户
+	 * @param user
+	 */
+	public void add(User user){
 		try {
-			qr.update(sql, params);//执行update操作
+			String sql = "insert into t_user value(?,?)";
+			Object[] params = {user.getUsername(), user.getPassword()};
+			
+			qr.update(sql, params);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new RuntimeException();
 		}
 	}
-
-	@Override
-	public void query() {
-		QueryRunner qr = new QueryRunner(JdbcUtils.getDataSource());
-		String sql = "select * from t_user";
-		List<User> userList = null;
+	
+	public List<User> queryAll(){
 		try {
-			userList = qr.query(sql, new BeanListHandler<User>(User.class));//返回数据库结果集
-		} catch (SQLException e) {
-			e.printStackTrace();
+			String sql = "select * from t_user";
+			return qr.query(sql, new BeanListHandler<User>(User.class));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		
-		System.out.println(userList);
 	}
-
+	
 }

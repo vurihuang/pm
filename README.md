@@ -15,6 +15,9 @@
 - c3p0-0.9.2-pre1.jar	jdbc连接池包
 - mchange-commons-0.2.jar	c3p0连接池依赖包
 - commons-dbutils-1.4.jar	JDBC操作封装包
+- commons-beanutils-1.8.3.jar	提供Java反射和自省API的包装包
+- commons-logging-1.1.1.jar	应用程序日志记录包
+- itcast-tools-1.4.2.jar	jdbc小工具包
 
 ###注意事项
 - 数据库配置文件在src/c3p0-config.xml  
