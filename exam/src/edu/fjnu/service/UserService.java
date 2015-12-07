@@ -2,7 +2,7 @@ package edu.fjnu.service;
 
 import java.util.List;
 
-import edu.fjnu.dao.UserDaoImpl;
+import edu.fjnu.dao.impl.UserDaoImpl;
 import edu.fjnu.domain.User;
 
 /**

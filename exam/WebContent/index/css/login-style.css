@@ -1,0 +1,144 @@
+/*@import url(http://fonts.useso.com/css?family=Source+Sans+Pro:200,300);*/
+
+body{
+    font-family: '微软雅黑', sans-serif;
+    color: #a9a9a9;
+    font-weight: 300;
+	//background-image:radial-gradient(#28bbe6,white);
+}
+body ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #a9a9a9;
+    font-weight: 300;
+}
+body :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #a9a9a9;
+    opacity: 1;
+    font-weight: 300;
+}
+body ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #a9a9a9;
+    opacity: 1;
+    font-weight: 300;
+}
+body :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #a9a9a9;
+    font-weight: 300;
+}
+.top{
+	height:120px;
+	//background-image:linear-gradient(to top,#23b3db,#ffffff);
+}
+.top p{
+    color:#848484;
+    font-family: 微软雅黑;
+    font-size: 22px;
+}
+.middle{
+	//height:402px;
+	//background-color:#23b3db;
+}
+.glyphicon{
+	font-size:100px;
+	position:relative;
+	top:20px;
+	left:0px;
+	width:800px;
+	width:400px;
+	color:black;
+}
+.welcome{
+	position:relative;
+	left:0px;
+	top:50px;
+	font-size:20px;
+	color:black;
+	//text-align:center;
+}
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.rdiv{
+	width:320px;
+	height:290px;
+	border-radius:20px;
+	position:relative;
+	left:20px;
+	top:35px;
+}
+.main{
+	margin-top:30px;
+}
+.img{
+	margin-top:40px;
+}
+.border{
+	border:1px solid rgba(169, 169, 169,1);
+	margin-top:-30px;
+	width:400px;
+	height:360px;
+	box-shadow:2px 2px 6px #333333;
+}
+form{
+    padding: 40px 0;
+    position: relative;
+    z-index: 2;
+}
+form .input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearence:none;
+    outline: 0;
+    border: 1px solid rgba(169, 169, 169, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 250px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 30px auto 20px auto;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #28bbe6;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+    font-weight: 300;
+}
+form .input:hover{
+    background-color: rgba(223, 223, 223, 0.4);
+}
+form .input:focus{
+    background-color: white;
+    width: 300px;
+    color: #3498DB;
+}
+
+form button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    background-color: #28bbe6;
+    border: 0;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 20px;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+    width: 250px;
+	margin-left:74px;
+	margin-top:20px;
+}
+form button:hover{
+    background-color: #f5f7f9;
+	color:#28bbe6;
+}

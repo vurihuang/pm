@@ -1,4 +1,4 @@
-package edu.fjnu.dao;
+package edu.fjnu.dao.impl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
+import edu.fjnu.dao.UserDao;
 import edu.fjnu.domain.User;
 
 public class UserDaoImpl implements UserDao{
