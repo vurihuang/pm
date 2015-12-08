@@ -22,3 +22,4 @@
 ###注意事项
 - 数据库配置文件在src/c3p0-config.xml  
   修改jdbcUrl，driverClass，user，password即可。
+  
