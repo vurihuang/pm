@@ -34,11 +34,16 @@ public class TestService {
 	@Test
 	public void checkInfo(){
 		Student stu = new Student();
-		stu.setStudentID("1");
+		stu.setStudentID("2");
 		stu.setSpassword("student");
-		StudentDaoImpl stuImpl = new StudentDaoImpl();
-		System.out.println(stuImpl.checkInfo(stu));
-		
+//		StudentDaoImpl stuImpl = new StudentDaoImpl();
+//		System.out.println(stuImpl.checkInfo(stu));
+		StudentService stuService = new StudentService();
+		if(stuService.checkInfo(stu)){
+			System.out.println("成功");
+		}else{
+			System.out.println("失败");
+		}
 //		if(stuImpl.checkInfo(stu) == null){
 //			System.out.println("登录失败");
 //		}else{

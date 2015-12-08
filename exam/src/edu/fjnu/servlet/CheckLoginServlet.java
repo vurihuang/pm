@@ -20,24 +20,36 @@ import edu.fjnu.service.TeacherService;
 @WebServlet("/CheckLoginServlet")
 public class CheckLoginServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	private TeacherService teaService = new TeacherService();
-	private StudentService stuService = new StudentService();
 	
 	public String checkInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String loginID = request.getParameter("userID");
 		
-		if(loginID.substring(0, 1).equals("1")){
-			Student student = CommonUtils.toBean(request.getParameterMap(), Student.class);
+		if(loginID.startsWith("2")){
+			TeacherService teaService = new TeacherService();
+//			Teacher teacher = CommonUtils.toBean(request.getParameterMap(), Teacher.class);
 			
-			if(stuService.checkInfo(student) == true){
-				return "f:index/p_chinese_t.jsp";
-			}
-		}else if(loginID.substring(0, 1) == "2"){
-			Teacher teacher = CommonUtils.toBean(request.getParameterMap(), Teacher.class);
+			Teacher teacher = new Teacher();
+			teacher.setTeacherID(request.getParameter("userID"));
+			teacher.setTpassword(request.getParameter("password"));
+			
 			if(teaService.checkInfo(teacher) == true){
 				return "f:index/s_grade_t.jsp";
 			}
+			
 		}
-		return "f:index/test.jsp";
+		else if(loginID.startsWith("1")){
+			StudentService stuService = new StudentService();
+//			Student student = CommonUtils.toBean(request.getParameterMap(), Student.class);
+			
+			Student student = new Student();
+			student.setStudentID(request.getParameter("userID"));
+			student.setSpassword(request.getParameter("password"));
+			
+			if(stuService.checkInfo(student) == true){
+				return "f:index/s_grade_t.jsp";
+			}
+			
+		}
+			return "f:index/test.jsp";
 	}
 }

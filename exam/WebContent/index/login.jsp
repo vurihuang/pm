@@ -46,7 +46,7 @@
 						<input type="hidden" name="method" value="checkInfo"/>
 						<input class="input" type="text" name="userID" placeholder="账号"/>
 						<input class="input" type="password" name="password" placeholder="密码"/>
-						<button type="submit" id="login_button" onclick="return check(this);">登录<tton>
+						<button type="submit" id="login_button" onclick="return check(this);">登录</button>
                     </form>
 					</div>
 				</div>

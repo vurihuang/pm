@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -14,22 +15,22 @@
     <title>试卷管理分析系统(教师端)</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<c:url value='bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="<c:url value='bower_components/metisMenu/dist/metisMenu.min.css'/>" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="dist/css/timeline.css" rel="stylesheet">
+    <link href="<c:url value='dist/css/timeline.css'/>" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<c:url value='dist/css/sb-admin-2.css'/>" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="<c:url value='bower_components/morrisjs/morris.css'/>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<c:url value='bower_components/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,10 +39,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="<c:url value='bower_components/jquery/dist/jquery.min.js'/>"></script>
 	<link rel="stylesheet" href="css/drop-down.css" />
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/select-widget-min.js"></script>
+	<script src="<c:url value='js/jquery-ui.min.js'/>"></script>
+	<script src="<c:url value='js/select-widget-min.js'/>"></script>
 	<style>
 		#page-wrapper{
 			//border:1px solid #e7e7e7;
@@ -157,16 +158,16 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li>
-                                    <a href="s_grade_t.html">综合</a>
+                                    <a href="s_grade_t.jsp">综合</a>
                                 </li>
                                 <li>
-                                    <a href="s_chinese_t.html">语文</a>
+                                    <a href="s_chinese_t.jsp">语文</a>
                                 </li>
 								<li>
-                                    <a href="s_math_t.html">数学</a>
+                                    <a href="s_math_t.jsp">数学</a>
                                 </li>
                                 <li>
-                                    <a href="s_english_t.html">英语</a>
+                                    <a href="s_english_t.jsp">英语</a>
                                 </li>
                             </ul>
                         </li>
@@ -174,13 +175,13 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 试卷分析<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="p_chinese_t.html">语文</a>
+                                    <a href="p_chinese_t.jsp">语文</a>
                                 </li>
 								<li>
-                                    <a href="p_math_t.html">数学</a>
+                                    <a href="p_math_t.jsp">数学</a>
                                 </li>
                                 <li>
-                                    <a href="p_english_t.html">英语</a>
+                                    <a href="p_english_t.jsp">英语</a>
                                 </li>
                             </ul>
                         </li>                                                
@@ -300,17 +301,17 @@
     <!-- /#wrapper -->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<c:url value='bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="<c:url value='bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="bower_components/raphael/raphael-min.js"></script>
-    <script src="bower_components/morrisjs/morris.min.js"></script>
+    <script src="<c:url value='bower_components/raphael/raphael-min.js'/>"></script>
+    <script src="<c:url value='bower_components/morrisjs/morris.min.js'/>"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="<c:url value='dist/js/sb-admin-2.js'/>"></script>
 
 </body>
 

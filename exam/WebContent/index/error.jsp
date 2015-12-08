@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>测试页面</title>
+<title>Error Page</title>
 </head>
 <body>
-	<h1>这里是测试</h1>
+	<h1>Error</h1>
 </body>
 </html>
