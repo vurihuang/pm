@@ -5,7 +5,7 @@ import java.util.List;
 import edu.fjnu.domain.Student;
 
 /**
- * 操作数据库的学生student表
+ * 操作数据库的学生student表的接口
  * @author vengeance
  *
  */
@@ -20,5 +20,5 @@ public interface StudentDao {
 	 * 验证学生登录信息
 	 * @param stu
 	 */
-	Object checkInfo(Student stu);
+	Student checkInfo(Student stu);
 }

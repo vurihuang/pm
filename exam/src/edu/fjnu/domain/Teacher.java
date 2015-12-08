@@ -5,10 +5,10 @@ package edu.fjnu.domain;
  *
  */
 public class Teacher {
-	private String teacherID;
-	private String tname;
-	private String tsex;
-	private String tpassword;
+	private String teacherID;//老师ID
+	private String tname;//老师名
+	private String tsex;//老师性别
+	private String tpassword;//老师密码
 	public String getTeacherID() {
 		return teacherID;
 	}

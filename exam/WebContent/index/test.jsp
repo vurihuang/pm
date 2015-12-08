@@ -9,7 +9,7 @@
 <body>
 	<h1>hello</h1>
 	<form action="<%=request.getContextPath() %>/UserServlet" method="post">
-		<input type="hidden" name="method" value="query"/>
+		<input type="hidden" name="method" value="checkInfo"/>
 		<!-- <input type="text" name="username"/>
 		<input type="password" name="password"/> -->
 		<input type="submit" />

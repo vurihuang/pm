@@ -13,7 +13,7 @@ import edu.fjnu.domain.Student;
 
 /**
  * 实现StudentDao接口
- * 操作数据库
+ * 操作数据库的学生表
  * @author vengeance
  *
  */
@@ -31,10 +31,13 @@ public class StudentDaoImpl implements StudentDao{
 		}
 	}
 	
+	/**
+	 * 验证登陆页面输入的学生信息是否正确
+	 */
 	public Student checkInfo(Student student){
 		try {
-			String sql = "select * from student where sname=? and spassword =?";
-			Object[] params = {student.getSname(), student.getSpassword()};
+			String sql = "select * from student where studentID=? and spassword =?";
+			Object[] params = {student.getStudentID(), student.getSpassword()};
 			
 			return qr.query(sql, new BeanHandler<Student>(Student.class), params);
 		} catch (SQLException e) {

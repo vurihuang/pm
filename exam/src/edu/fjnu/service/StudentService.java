@@ -4,16 +4,22 @@ import edu.fjnu.dao.impl.StudentDaoImpl;
 import edu.fjnu.domain.Student;
 
 /**
- * 对得到的学生数据进行操作
+ * 处理学生业务信息
  * @author vengeance
  *
  */
 public class StudentService {
 	private StudentDaoImpl studentImpl = new StudentDaoImpl(); 
 	
-	public void checkInfo(Student student){
-		System.out.println(studentImpl.checkInfo(student).getClass().getName());
+	/**
+	 * 判断学生登录信息是否正确
+	 * @param student
+	 * @return
+	 */
+	public boolean checkInfo(Student student){
+		if(studentImpl.checkInfo(student) != null){
+			return true;
+		}
+		return false;
 	}
-	
-	
 }

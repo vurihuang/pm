@@ -6,10 +6,10 @@ package edu.fjnu.domain;
  *
  */
 public class Student {
-	private String studentID;
-	private String sname;
-	private String ssex;
-	private String spassword;
+	private String studentID;//学生ID
+	private String sname;//学生名
+	private String ssex;//学生性别
+	private String spassword;//学生密码
 	public String getStudentID() {
 		return studentID;
 	}
