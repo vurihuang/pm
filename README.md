@@ -18,6 +18,8 @@
 - commons-beanutils-1.8.3.jar	提供Java反射和自省API的包装包
 - commons-logging-1.1.1.jar	应用程序日志记录包
 - itcast-tools-1.4.2.jar	jdbc小工具包
+- jstl-4.7.jar	jsp的c标签支持包
+- standard.jar	jstl包的依赖包
 
 ###注意事项
 - 数据库配置文件在src/c3p0-config.xml  
