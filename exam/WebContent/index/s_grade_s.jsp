@@ -17,22 +17,22 @@
     <title>试卷管理分析系统(学生端)</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<c:url value='bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="<c:url value='bower_components/metisMenu/dist/metisMenu.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='index/bower_components/metisMenu/dist/metisMenu.min.css'/>" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="<c:url value='dist/css/timeline.css'/>" rel="stylesheet">
+    <link href="<c:url value='index/dist/css/timeline.css'/>" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<c:url value='dist/css/sb-admin-2.css'/>" rel="stylesheet">
+    <link href="<c:url value='index/dist/css/sb-admin-2.css'/>" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="<c:url value='bower_components/morrisjs/morris.css'/>" rel="stylesheet">
+    <link href="<c:url value='index/bower_components/morrisjs/morris.css'/>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<c:url value='bower_components/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value='index/bower_components/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -192,7 +192,7 @@
         
 
     </div>	
-	<script src="<c:url value='js/Chart.js'/>"></script>
+	<script src="<c:url value='index/js/Chart.js'/>"></script>
 	<script>
 		var barChartData = {
 		labels : ["2015-10-15","2015-10-21","2015-10-27","2015-11-2","2015-11-8","2015-11-14","2015-11-20"],
@@ -257,21 +257,21 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="<c:url value='bower_components/jquery/dist/jquery.min.js'/>"></script>
+    <script src="<c:url value='index/bower_components/jquery/dist/jquery.min.js'/>"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<c:url value='bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
+    <script src="<c:url value='index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="<c:url value='bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>
+    <script src="<c:url value='index/bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="<c:url value='bower_components/raphael/raphael-min.js'/>"></script>
-    <script src="<c:url value='bower_components/morrisjs/morris.min.js'/>"></script>
+    <script src="<c:url value='index/bower_components/raphael/raphael-min.js'/>"></script>
+    <script src="<c:url value='index/bower_components/morrisjs/morris.min.js'/>"></script>
 
 
     <!-- Custom Theme JavaScript -->
-    <script src="<c:url value='dist/js/sb-admin-2.js'/>"></script>
+    <script src="<c:url value='index/dist/js/sb-admin-2.js'/>"></script>
 
 </body>
 
