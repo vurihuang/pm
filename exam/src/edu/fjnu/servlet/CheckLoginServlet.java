@@ -23,9 +23,9 @@ public class CheckLoginServlet extends BaseServlet {
 		
 		if(permission.equals("student")){
 			
-			return "f:index/s_grade_s.jsp";
+			return "f:/s_grade_s.jsp";
 		}else if(permission.equals("teacher")){
-			return "f:index/s_grade_t.jsp";
+			return "f:/s_chinese_t.jsp";
 		}
 		
 		return "f:index/error.jsp";
