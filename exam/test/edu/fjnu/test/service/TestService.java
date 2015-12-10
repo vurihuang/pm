@@ -1,8 +1,16 @@
 package edu.fjnu.test.service;
 
+import java.util.Map;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapHandler;
 import org.junit.Test;
 
+import cn.itcast.commons.CommonUtils;
+import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.dao.impl.TeacherDaoImpl;
+import edu.fjnu.domain.Scourse;
+import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.StudentService;
@@ -64,5 +72,29 @@ public class TestService {
 		String course = teacher.getCourse();
 		String tsex = teacher.getTsex();
 		System.out.println(tname + course + tsex);
+	}
+	@Test
+//	测试查询学生成绩
+	public void getScoreInfo(){
+		String sql = "select * from student,scourse,sscore where "
+				+ "student.studentID=sscore.studentID "
+				+ "and scourse.courseID=sscore.courseID "
+				+ "and student.studentID=?";
+		QueryRunner qr = new TxQueryRunner();
+		
+		try {
+			Map map = qr.query(sql, new MapHandler(), "201401001");
+			Student student = CommonUtils.toBean(map, Student.class);
+			Scourse scourse = CommonUtils.toBean(map, Scourse.class);
+			Sscore sscore = CommonUtils.toBean(map, Sscore.class);
+			
+			student.setSscore(sscore);//学生表关联成绩表
+			student.setScourse(scourse);//学生表关联课程表
+			
+			scourse = student.getScourse();
+			System.out.println(scourse);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

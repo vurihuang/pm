@@ -1,9 +1,12 @@
 package edu.fjnu.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Teacher;
@@ -48,4 +51,5 @@ public class TeacherDaoImpl implements TeacherDao{
 			throw new RuntimeException();
 		}
 	}
+	
 }

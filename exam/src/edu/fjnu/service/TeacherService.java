@@ -22,7 +22,11 @@ public class TeacherService {
 		}
 		return false;
 	}
-	
+	/**
+	 * 获取老师基本信息
+	 * @param teacher
+	 * @return 老师基本信息
+	 */
 	public Teacher teacherInfo(Teacher teacher){
 		return teacherImpl.teacherInfo(teacher);
 	}
