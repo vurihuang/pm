@@ -39,7 +39,7 @@ public class StudentDaoImpl implements StudentDao{
 			String sql = "select * from student where studentID=? and spassword =?";
 			Object[] params = {student.getStudentID(), student.getSpassword()};
 			
-			return qr.query(sql, new BeanHandler<Student>(Student.class), params);
+			return qr.query(sql, new BeanHandler<Student>(Student.class), params);//验证信息
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -52,16 +52,13 @@ public class StudentDaoImpl implements StudentDao{
 	 */
 	public Student studentInfo(Student student) {
 		try {
-			String sql = "select sname, sclass, ssex from student where studentID=? and spassword=?";
-			Object[] params = {student.getStudentID(), student.getSpassword()};
+			String sql = "select sname, sclass, ssex from student where studentID=?";
+			Object[] params = {student.getStudentID()};
 			
-			return qr.query(sql, new BeanHandler<Student>(Student.class), params);
+			return qr.query(sql, new BeanHandler<Student>(Student.class), params);//执行查询方法
 		} catch (Exception e) {
 			System.err.println("查询学生表信息异常");
 			throw new RuntimeException();
 		}	
-		
 	}
-	
-
 }

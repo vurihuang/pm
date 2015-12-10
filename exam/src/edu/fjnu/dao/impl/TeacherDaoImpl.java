@@ -4,8 +4,6 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Teacher;
@@ -27,7 +25,7 @@ public class TeacherDaoImpl implements TeacherDao{
 			String sql = "select * from teacher where teacherID =? and tpassword=?";
 			Object[] params = {teacher.getTeacherID(), teacher.getTpassword()};
 			
-			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);
+			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//验证信息
 		} catch (SQLException e) {
 			System.err.println("验证老师表信息异常");
 			throw new RuntimeException(e);
@@ -41,10 +39,10 @@ public class TeacherDaoImpl implements TeacherDao{
 	 */
 	public Teacher teacherInfo(Teacher teacher){
 		try {
-			String sql = "select tname, course, tsex from teacher where teacherID=? and tpassword=?";
-			Object[] params = {teacher.getTeacherID(),teacher.getTpassword()};
+			String sql = "select tname, course, tsex from teacher where teacherID=?";
+			Object[] params = {teacher.getTeacherID()};
 			
-			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);
+			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//执行查询方法
 		} catch (SQLException e) {
 			System.err.println("查询老师表信息异常");
 			throw new RuntimeException();

@@ -25,8 +25,6 @@ public class TeacherServlet extends BaseServlet {
 		Teacher teacher = new Teacher();
 		
 		teacher.setTeacherID((String)session.getAttribute("userID"));
-		teacher.setTpassword((String)session.getAttribute("password"));
-		
 		teacher = teacherService.teacherInfo(teacher);
 		
 		String teacherName = teacher.getTname();
@@ -38,7 +36,5 @@ public class TeacherServlet extends BaseServlet {
 		request.setAttribute("sex", tSex);
 		
 		return "f:/s_grade_t.jsp";
-//		return "f:/index/test.jsp";
-//		request.getRequestDispatcher("/index/test.jsp").forward(request, response);
 	}
 }
