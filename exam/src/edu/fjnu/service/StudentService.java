@@ -22,4 +22,13 @@ public class StudentService {
 		}
 		return false;
 	}
+	
+	/**
+	 * 得到学生基本信息
+	 * @param student
+	 * @return 学生基本信息
+	 */
+	public Student studentInfo(Student student) {
+		return studentImpl.studentInfo(student);
+	}
 }

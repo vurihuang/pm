@@ -34,6 +34,11 @@ public class TeacherDaoImpl implements TeacherDao{
 		}
 	}
 	
+	/**
+	 * 根据老师登录的ID查询老师的基本信息，并返回给service
+	 * @param teacher
+	 * @return 老师信息
+	 */
 	public Teacher teacherInfo(Teacher teacher){
 		try {
 			String sql = "select tname, course, tsex from teacher where teacherID=? and tpassword=?";

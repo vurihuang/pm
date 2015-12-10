@@ -119,10 +119,10 @@
 						<!-- 个人信息 -->
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <p class="text-center">学生信息：</p>
-								<p class="text-center">姓名：<span></span></p>
-								<p class="text-center">年级：<span></span></p>
-								<p class="text-center">班级：<span></span></p>
+                                <p class="text-left">学生信息：</p>
+								<p class="text-left">姓名：<span>${name }</span></p>
+								<p class="text-left">年级：<span>${course }</span></p>
+								<p class="text-left">班级：<span>${sex }</span></p>
                             </div>
                             <!-- /功能 -->
                         </li>

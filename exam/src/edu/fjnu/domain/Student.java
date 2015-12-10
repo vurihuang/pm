@@ -10,6 +10,13 @@ public class Student {
 	private String sname;//学生名
 	private String ssex;//学生性别
 	private String spassword;//学生密码
+	private String sclass;//学生班级
+	public String getSclass() {
+		return sclass;
+	}
+	public void setSclass(String sclass) {
+		this.sclass = sclass;
+	}
 	public String getStudentID() {
 		return studentID;
 	}
@@ -37,7 +44,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studentID=" + studentID + ", sname=" + sname + ", ssex=" + ssex + ", spassword=" + spassword
-				+ "]";
+				+ ", sclass=" + sclass + "]";
 	}
 	
 }

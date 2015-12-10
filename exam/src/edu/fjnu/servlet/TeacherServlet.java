@@ -38,6 +38,7 @@ public class TeacherServlet extends BaseServlet {
 		request.setAttribute("sex", tSex);
 		
 		return "f:/s_grade_t.jsp";
+//		return "f:/index/test.jsp";
 //		request.getRequestDispatcher("/index/test.jsp").forward(request, response);
 	}
 }

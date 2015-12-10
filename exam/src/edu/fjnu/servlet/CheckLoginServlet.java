@@ -38,9 +38,9 @@ public class CheckLoginServlet extends BaseServlet {
 				session.setAttribute("userID", student.getStudentID());
 				session.setAttribute("password", student.getSpassword());
 				
+				request.getRequestDispatcher("/StudentServlet?method=stuInfo")
+				.forward(request, response);
 			}
-				
-//			return "f:/s_grade_s.jsp";
 		}else if(permission.equals("teacher")){
 			Teacher teacher = new Teacher();
 			TeacherService teaService = new TeacherService();
@@ -49,17 +49,9 @@ public class CheckLoginServlet extends BaseServlet {
 			teacher.setTpassword(password);
 			
 			if(teaService.checkInfo(teacher)){
-//				teacher = teaService.teacherInfo(teacher);
-//				
-//				String teacherName = teacher.getTname();
-//				String tCourese = teacher.getCourse();
-//				String tSex = teacher.getTsex();
-//				
-//				request.setAttribute("name", teacherName);
-//				request.setAttribute("course", tCourese);
-//				request.setAttribute("sex", tSex);
 				session.setAttribute("userID", userID);
 				session.setAttribute("password", password);
+				
 				request.getRequestDispatcher("/TeacherServlet?method=teaInfo")
 				.forward(request, response);
 			}else{

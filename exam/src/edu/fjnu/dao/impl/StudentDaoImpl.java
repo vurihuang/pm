@@ -18,7 +18,7 @@ import edu.fjnu.domain.Student;
  *
  */
 public class StudentDaoImpl implements StudentDao{
-	private QueryRunner qr = new TxQueryRunner();
+	private QueryRunner qr = new TxQueryRunner();//执行数据库操作并存储返回的结果
 	
 	public List<Student> query(Student student){
 		try {
@@ -45,7 +45,23 @@ public class StudentDaoImpl implements StudentDao{
 		}
 	}
 	
-//	public Student studentInfo(Student student){
-//		
-//	}
+	/**
+	 * 根据学生登录的ID查询学生的基本信息，并返回给service
+	 * @param student
+	 * @return 学生信息
+	 */
+	public Student studentInfo(Student student) {
+		try {
+			String sql = "select sname, sclass, ssex from student where studentID=? and spassword=?";
+			Object[] params = {student.getStudentID(), student.getSpassword()};
+			
+			return qr.query(sql, new BeanHandler<Student>(Student.class), params);
+		} catch (Exception e) {
+			System.err.println("查询学生表信息异常");
+			throw new RuntimeException();
+		}	
+		
+	}
+	
+
 }

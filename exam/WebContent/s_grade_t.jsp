@@ -190,7 +190,7 @@
                                 <p class="text-left">老师信息：</p>
 								<p class="text-left">姓名：<span>${name }</span></p>
 								<p class="text-left">年级：<span>${course }</span></p>
-								<p class="text-left">年级：<span>${sex }</span></p>
+								<p class="text-left">学科：<span>${sex }</span></p>
                             </div>
                             <!-- /功能 -->
                         </li>
@@ -264,10 +264,10 @@
 				<!-- 下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select">
-						<option value="1">张智勇</option>
+						<option value="1" selected >张智勇</option>
 						<option value="2">杨晨曦</option>
 						<option value="3">周琪伟</option>
-						<option selected value="4">黄徐震</option>
+						<option value="4">黄徐震</option>
 						<option value="5">黄海波</option>
 						<option value="6">黎芷研</option>
 						<option value="7">陈江东</option>
