@@ -13,8 +13,8 @@ public class Student {
 	public String getStudentID() {
 		return studentID;
 	}
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
+	public void setStudentID(String string) {
+		this.studentID = string;
 	}
 	public String getSname() {
 		return sname;

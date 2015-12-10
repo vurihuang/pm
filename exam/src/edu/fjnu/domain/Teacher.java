@@ -8,7 +8,15 @@ public class Teacher {
 	private String teacherID;//老师ID
 	private String tname;//老师名
 	private String tsex;//老师性别
+	private String course;//老师课程
 	private String tpassword;//老师密码
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
+	}
+	
 	public String getTeacherID() {
 		return teacherID;
 	}
@@ -35,8 +43,8 @@ public class Teacher {
 	}
 	@Override
 	public String toString() {
-		return "Teacher [teacherID=" + teacherID + ", tname=" + tname + ", tsex=" + tsex + ", tpassword=" + tpassword
-				+ "]";
+		return "Teacher [teacherID=" + teacherID + ", tname=" + tname + ", tsex=" + tsex + ", course=" + course
+				+ ", tpassword=" + tpassword + "]";
 	}
 	
 }

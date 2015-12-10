@@ -2,8 +2,9 @@ package edu.fjnu.test.service;
 
 import org.junit.Test;
 
-import edu.fjnu.dao.impl.StudentDaoImpl;
+import edu.fjnu.dao.impl.TeacherDaoImpl;
 import edu.fjnu.domain.Student;
+import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.StudentService;
 
 public class TestService {
@@ -49,5 +50,19 @@ public class TestService {
 //		}else{
 //			System.out.println("登录成功");
 //		}
+	}
+	
+	@Test
+	public void searchTeaInfo(){
+		Teacher teacher = new Teacher();
+		teacher.setTeacherID("01");
+		teacher.setTpassword("123");
+		
+		TeacherDaoImpl teaImpl = new TeacherDaoImpl();
+		teacher = teaImpl.teacherInfo(teacher);
+		String tname = teacher.getTname();
+		String course = teacher.getCourse();
+		String tsex = teacher.getTsex();
+		System.out.println(tname + course + tsex);
 	}
 }

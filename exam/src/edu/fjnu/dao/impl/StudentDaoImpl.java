@@ -44,4 +44,8 @@ public class StudentDaoImpl implements StudentDao{
 			throw new RuntimeException(e);
 		}
 	}
+	
+//	public Student studentInfo(Student student){
+//		
+//	}
 }

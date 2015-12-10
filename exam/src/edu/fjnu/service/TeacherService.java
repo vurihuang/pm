@@ -22,4 +22,8 @@ public class TeacherService {
 		}
 		return false;
 	}
+	
+	public Teacher teacherInfo(Teacher teacher){
+		return teacherImpl.teacherInfo(teacher);
+	}
 }
