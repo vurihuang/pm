@@ -1,6 +1,9 @@
 package edu.fjnu.service;
 
+import java.util.List;
+
 import edu.fjnu.dao.impl.TeacherDaoImpl;
+import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 
 /**
@@ -29,5 +32,14 @@ public class TeacherService {
 	 */
 	public Teacher teacherInfo(Teacher teacher){
 		return teacherImpl.teacherInfo(teacher);
+	}
+	
+	/**
+	 * 得到学生列表
+	 * @param teacher
+	 * @return 这个老师所教的学生
+	 */
+	public List<Student> getStuList(Teacher teacher){
+		return teacherImpl.getStuList(teacher);
 	}
 }

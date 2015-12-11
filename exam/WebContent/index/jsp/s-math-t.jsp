@@ -40,8 +40,8 @@
     <![endif]-->
 	<!-- jQuery -->
     <script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
-	<link rel="stylesheet" href="../css/drop-down.css" />
-	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
+	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>"/>
+	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script> 
 	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
 	<style>
 		#page-wrapper{
@@ -163,13 +163,13 @@
 			<div class="chart">
 				<div class="pass">
 					<!-- <span class="glyphicon glyphicon-user"></span> -->
-					<img class="img" src="../image/user.png"/>
+					<img class="img" src="<c:url value='/index/image/user.png'/>"/>
 					<p class="p">及格率</p>
 					<p class="p">86%</p>			
 				</div>
 				<div class="best">
 					<!-- <span class="glyphicon glyphicon-user"></span> -->
-					<img class="img" src="../image/user.png"/>
+					<img class="img" src="<c:url value='/index/image/user.png'/>"/>
 					<p class="p">优秀率</p>
 					<p class="p">28%</p>			
 				</div>
@@ -207,7 +207,7 @@
 	<script src="<c:url value='/index/js/Chart.js'/>"></script>
 	<script>
 	var lineChartData = {
-			labels : ["2015-10-15","2015-10-21","2015-10-27","2015-11-2","2015-11-8","2015-11-14","2015-11-20"],
+			labels : ["第一单元","第二单元","第三单元","第四单元","期中考","第五单元","第六单元","第七单元","第八单元","期末考"],
 			datasets : [				
 				{
 					label: "Max",

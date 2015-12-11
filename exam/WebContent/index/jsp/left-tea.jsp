@@ -56,10 +56,10 @@
 				<li class="sidebar-search">
 					<div class="input-group custom-search-form">
 						<p class="text-left">老师信息</p>
-						<p class="text-left">姓名：<span>${teachername }</span></p>
-						<p class="text-left">年级：<span>${classyear }</span></p>
+						<p class="text-left">姓名：<span>${tname}</span></p>
+						<p class="text-left">年级：<span>${classyear}</span></p>
 						<p class="text-left">班级：<span>${tclass }</span></p>
-						<p class="text-left">学科：<span>${course }</span></p>
+						<p class="text-left">学科：<span>${course}</span></p>
                     </div>
                 <!-- /功能 -->
                 </li>
@@ -67,16 +67,16 @@
 					<a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="s-grade-t.jsp" target="main">综合</a>
+							<a href="<c:url value='/GradeServlet?method=allInfo'/>" target="main">综合</a>
                         </li>
                         <li>
-                            <a href="s-chinese-t.jsp" target="main">语文</a>
+                            <a href="<c:url value='/GradeServlet?method=chineseInfo'/>" target="main">语文</a>
                         </li>
 						<li>
-							<a href="s-math-t.jsp" target="main">数学</a>
+							<a href="<c:url value='/GradeServlet?method=mathInfo'/>" target="main">数学</a>
                         </li>
                         <li>
-                            <a href="s-english-t.jsp" target="main">英语</a>
+                            <a href="<c:url value='/GradeServlet?method=englishInfo'/>" target="main">英语</a>
                         </li>
                     </ul>
                 </li>

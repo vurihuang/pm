@@ -5,10 +5,10 @@
 <html> 
 	<head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+		<link href="<c:url value='/index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
 		<link rel="stylesheet" href="<c:url value='/index/css/login-style.css'/>"/>
-		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
+		<script src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 		<title>登录</title> 
 		<style type="text/css"> 
 			

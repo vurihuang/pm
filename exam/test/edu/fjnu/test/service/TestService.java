@@ -1,13 +1,17 @@
 package edu.fjnu.test.service;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
 import org.junit.Test;
 
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
+import edu.fjnu.dao.impl.GradeDaoImpl;
 import edu.fjnu.dao.impl.TeacherDaoImpl;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
@@ -15,8 +19,14 @@ import edu.fjnu.domain.Stcourse;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.StudentService;
+import edu.fjnu.service.TeacherService;
 
 public class TestService {
+	QueryRunner qr = new TxQueryRunner();
+	Teacher teacher = new Teacher();
+	Student student = new Student();
+	
+	TeacherService teacherService = new TeacherService();
 	
 	@Test
 	public void testStudentService(){
@@ -116,16 +126,21 @@ public class TestService {
 	}
 	@Test
 	public void teaInfo(){
-		TeacherDaoImpl teaImpl = new TeacherDaoImpl();
+//		TeacherDaoImpl teaImpl = new TeacherDaoImpl();
+//		Teacher teacher = new Teacher();
+//		teacher.setTeacherID("01");
+//		teacher = teaImpl.teacherInfo(teacher);
+//		Scourse scourse = teacher.getScourse();
+//		String classyear = scourse.getClassyear();
+//		String teachername = teacher.getTname();
+//		String course = teacher.getCourse();
+//		String tclass = teacher.getTclass();
+//		System.out.println(teachername + course + tclass + classyear);
+		
 		Teacher teacher = new Teacher();
 		teacher.setTeacherID("01");
-		teacher = teaImpl.teacherInfo(teacher);
-		Scourse scourse = teacher.getScourse();
-		String classyear = scourse.getClassyear();
-		String teachername = teacher.getTname();
-		String course = teacher.getCourse();
-		String tclass = teacher.getTclass();
-		System.out.println(teachername + course + tclass + classyear);
+		TeacherService teacherService = new TeacherService();
+		System.out.println(teacherService.teacherInfo(teacher));
 	}
 	@Test
 	public void teaInfo2(){
@@ -157,5 +172,78 @@ public class TestService {
 		Stcourse stcourse = teacher.getStcourse();
 		System.out.println(scourse);
 		System.out.println(stcourse);
+	}
+	@Test
+	public void teaStuList() throws SQLException{
+		Teacher teacher = new Teacher();
+		String[] studentList = null;
+		String sql = "select distinct sname from student ,teacher,stcourse where student.studentID=stcourse.studentID " 
+				+ "and teacher.teacherID=stcourse.teacherID and teacher.teacherID= '01'";
+		List stuList = qr.query(sql, new BeanListHandler<Student>(Student.class));
+		for(int i=0; i<stuList.size(); i++){
+			Student student = (Student) stuList.get(i);
+//			System.out.println(student.getSname());
+			System.out.println(stuList.get(i));
+		}
+	}
+	
+	@Test
+	public void getScore() throws SQLException{
+		String sql = "select * from student, scourse, sscore where"
+				+" student.studentID = sscore.studentID "
+				+" and scourse.courseID = sscore.courseID "
+				+" and student.studentID='201401001'";
+		Map map = qr.query(sql, new MapHandler());
+		Sscore score = CommonUtils.toBean(map, Sscore.class);
+		System.out.println(score);
+	}
+	@Test
+	public void stuScore() throws SQLException{
+//		String sql = "select max(score) ,testID from sscore where courseid ='30101'  group by testid";
+//		Map map = qr.query(sql, new MapHandler());
+//		String sql = "select testid,max(score) from sscore group by testid";
+//		String sql1 = "select score,testid from sscore order by score desc";
+//		List<Map<String, Object>> map = qr.query(sql, new MapListHandler());
+//		Sscore score = qr.query(sql, new BeanHandler<Sscore>(Sscore.class));
+//		Sscore score = CommonUtils.toBean(map, Sscore.class);
+//		List<Sscore> scoreList = qr.query(sql1, new BeanListHandler<Sscore>(Sscore.class));
+//		for(int i=0; i<scoreList.size(); i++){
+//			System.out.println(scoreList.get(i));
+//		}
+//		String sql1 = "select distinct testid from sscore order by testid";
+//		List<Sscore> testidList = qr.query(sql1, new BeanListHandler<Sscore>(Sscore.class));
+//		
+//		for(int i=0; i<testidList.size(); i++){
+//			String testid = testidList.get(i).getTestID();
+//			String sql2 = "select score from sscore  where testid = ? order by score desc";
+//			
+//		}
+		String sql = "select max(score) as score,testid from sscore group by testid";
+		List<Sscore> list = qr.query(sql, new BeanListHandler<Sscore>(Sscore.class));
+		
+		for(int i=0; i<list.size(); i++){
+			Sscore sscore = new Sscore();
+			sscore  = list.get(i);
+			System.out.println(sscore.getScore() + " \t" + sscore.getTestID());
+		}
+	}
+	
+	@Test
+	public void getMaxList(){
+		GradeDaoImpl daoImpl = new GradeDaoImpl();
+		Scourse scourse = new Scourse();
+		scourse.setCourseID("30101");
+		System.out.println(daoImpl.getMaxScoreList(scourse));
+	}
+	@Test
+	public void stuInfo(){
+		teacher.setTeacherID("01");
+		System.out.println(teacherService.getStuList(teacher));;
+		
+	}
+	@Test
+	public void teaInfo1(){
+		teacher.setTeacherID("01");
+		System.out.println(teacherService.teacherInfo(teacher));
 	}
 }

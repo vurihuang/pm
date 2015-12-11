@@ -170,39 +170,33 @@
 				<div class="col-lg-12 div2">
 					<div>
 						<div class="lab1"></div>
-						<span class="stu">学生</span>
+						<span class="stu">平均分</span>
 						<div class="lab2"></div>
 						<span class="max">最高分</span>
 						<div class="lab3"></div>
 						<span class="min">最低分</span>
-						<div class="lab4"></div>
-						<span class="avg">平均分</span>
+						<!-- <div class="lab4"></div>
+						<span class="avg">平均分</span> -->
 					</div>	
 					<canvas id="canvas2" height="250" width="600"></canvas>				
 				</div>
 				
 			</div>
-			<div class="sec">
+			<%-- <div class="sec">
 				<!-- 下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select">
-						<option value="1">张智勇</option>
-						<option value="2">杨晨曦</option>
-						<option value="3">周琪伟</option>
-						<option selected value="4">黄徐震</option>
-						<option value="5">黄海波</option>
-						<option value="6">黎芷研</option>
-						<option value="7">陈江东</option>
-						<option value="8">林灵凡</option>
-						<option value="9">沈丽标</option>
+						<c:forEach items="${stuList }" var="stu">
+						<option value="${stu.studentID }">${stu.sname }</option>
+						</c:forEach>
 					</select>
 				</form>
-			</div>   
+			</div>   --%> 
 
 	<script src="<c:url value='/index/js/Chart.js'/>"></script>
 	<script>
 	var barChartData = {
-		labels : ["300~270","270~240","240~210","210~180","< 180"],
+		labels : ["< 180","180~210","210~240","240~270","270~300"],
 		datasets : [
 			{
 				fillColor : "rgba(151,187,205,0.5)",
@@ -215,7 +209,7 @@
 
 	}
 	var lineChartData = {
-			labels : ["2015-10-15","2015-10-21","2015-10-27","2015-11-2","2015-11-8","2015-11-14","2015-11-20"],
+			labels : ["第一单元","第二单元","第三单元","第四单元","期中考","第五单元","第六单元","第七单元","第八单元","期末考"],
 			datasets : [				
 				{
 					label: "Max",
@@ -247,7 +241,7 @@
 					pointHighlightStroke : "rgba(128,255,0,1)",
 					data : [206,213,201,203,209,210,215]
 				},
-				{
+				/* {
 					label: "Stu",
 					fillColor : "rgba(255,30,30,0)",
 					strokeColor : "rgba(255,0,30,1)",
@@ -256,7 +250,7 @@
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(255,30,30,1)",
 					data : [212,226,218,211,221,224,220]
-				}
+				} */
 			]
 
 		}
@@ -273,7 +267,7 @@
 		});
 	}
 	//下拉选择框
-	$(document).ready(function(){		
+	/* $(document).ready(function(){		
 		$(".ui-select").selectWidget({
 			change       : function (changes) {
 				return changes;
@@ -284,7 +278,7 @@
 			scrollHeight : 250
 		});
 		
-	});	
+	});	 */
 	</script>
 
 
