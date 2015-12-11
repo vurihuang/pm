@@ -32,7 +32,7 @@ public class CheckLoginServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	public void checkInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String permission = (String)request.getParameter("user");
+		String permission = request.getParameter("user");
 		HttpSession session = request.getSession();
 		String userID = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -49,7 +49,7 @@ public class CheckLoginServlet extends BaseServlet {
 				request.getRequestDispatcher("/StudentServlet?method=stuInfo")
 				.forward(request, response);//调用处理学生信息的servlet显示学生主页面
 			}else{//如果登录失败
-				request.getRequestDispatcher("/index/error.jsp").forward(request, response);;
+				request.getRequestDispatcher("/error.jsp").forward(request, response);;
 			}
 		}else if(permission.equals("teacher")){//如果是老师
 			Teacher teacher = new Teacher();
@@ -63,7 +63,8 @@ public class CheckLoginServlet extends BaseServlet {
 				request.getRequestDispatcher("/TeacherServlet?method=teaInfo")
 				.forward(request, response);//调用处理老师信息的servlet显示老师主页面
 			}else{//如果登录失败
-				request.getRequestDispatcher("/index/error.jsp").forward(request, response);;
+				request.getRequestDispatcher("/error.jsp").forward(request, response);;
+				System.out.println("处理失败没转发");
 			}
 		}
 	}

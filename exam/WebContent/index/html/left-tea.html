@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content=""> -->
+
+    <title>试卷管理分析系统(教师端)</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<c:url value='/index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.css'/>" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="<c:url value='/index/dist/css/timeline.css'/>" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<c:url value='/index/dist/css/sb-admin-2.css'/>" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="<c:url value='/index/bower_components/morrisjs/morris.css'/>" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<c:url value='/index/bower_components/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<!-- jQuery -->
+    <script src="c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
+	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
+	<script src="c:url value='/index/js/jquery-ui.min.js'/>"></script>
+	<script src="c:url value='/index/js/select-widget-min.js'/>"></script>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div class="sidebar left" role="navigation">
+		<div class="sidebar-nav">
+			<ul class="nav" id="side-menu">
+				<!-- 个人信息 -->
+				<li class="sidebar-search">
+					<div class="input-group custom-search-form">
+						<p class="text-center">老师信息</p>
+						<p class="text-center">姓名：<span></span></p>
+						<p class="text-center">年级：<span></span></p>
+						<p class="text-center">班级：<span></span></p>
+                    </div>
+                <!-- /功能 -->
+                </li>
+                <li>
+					<a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="s-grade-t.jsp" target="main">综合</a>
+                        </li>
+                        <li>
+                            <a href="s-chinese-t.jsp" target="main">语文</a>
+                        </li>
+						<li>
+							<a href="s-math-t.jsp" target="main">数学</a>
+                        </li>
+                        <li>
+                            <a href="s-english-t.jsp" target="main">英语</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+					<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 试卷分析<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="p-chinese-t.jsp" target="main">语文</a>
+                            </li>
+							<li>
+                                <a href="p-math-t.jsp" target="main">数学</a>
+                            </li>
+                            <li>
+                                <a href="p-english-t.jsp" target="main">英语</a>
+                            </li>
+                        </ul>
+                </li>                                                
+                <li>
+					<a href="#"><i class="fa fa-sitemap fa-fw"></i> 知识点分析</a>
+                </li>
+                <li>
+					<a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析</a>
+                </li>
+            </ul>
+		</div>
+	</div>
+        
+
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="c:url value='/index/bower_components/raphael/raphael-min.js'/>"></script>
+    <script src="c:url value='/index/bower_components/morrisjs/morris.min.js'/>"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="c:url value='/index/dist/js/sb-admin-2.js'/>"></script>
+
+</body>
+
+</html>

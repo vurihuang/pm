@@ -34,12 +34,18 @@ public class TeacherServlet extends BaseServlet {
 		String tclass = teacher.getTclass();
 		scourse = teacher.getScourse();
 		String classyear = scourse.getClassyear();
+		System.out.println(teacherName + course + tclass + classyear);
+//		request.setAttribute("teachername", teacherName);
+//		request.setAttribute("classyear", classyear);
+//		request.setAttribute("course", course);
+//		request.setAttribute("tclass", tclass);
 		
-		request.setAttribute("teachername", teacherName);
-		request.setAttribute("classyear", classyear);
-		request.setAttribute("course", course);
-		request.setAttribute("tclass", tclass);
+		session.setAttribute("teachername", teacherName);
+		session.setAttribute("classyear", classyear);
+		session.setAttribute("course", course);
+		session.setAttribute("tclass", tclass);
+		return "f:/index/jsp/index-tea.jsp";
 		
-		return "f:/s_grade_t.jsp";
+//		request.getRequestDispatcher("/index/jsp/index-tea.jsp").forward(request, response);
 	}
 }
