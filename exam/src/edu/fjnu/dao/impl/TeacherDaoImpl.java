@@ -1,14 +1,17 @@
 package edu.fjnu.dao.impl;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
 
+import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.dao.TeacherDao;
+import edu.fjnu.domain.Scourse;
+import edu.fjnu.domain.Stcourse;
 import edu.fjnu.domain.Teacher;
 
 /**
@@ -42,10 +45,24 @@ public class TeacherDaoImpl implements TeacherDao{
 	 */
 	public Teacher teacherInfo(Teacher teacher){
 		try {
-			String sql = "select tname, course, tsex from teacher where teacherID=?";
+			String sql = "SELECT distinct tname, classyear, tclass,course "
+					+ "FROM teacher,scourse,stcourse where  "
+					+ "teacher.teacherID=stcourse.teacherID AND "
+					+ "stcourse.courseID=scourse.courseID AND  "
+					+ "teacher.teacherID=?";
 			Object[] params = {teacher.getTeacherID()};
 			
-			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//执行查询方法
+//			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//执行查询方法
+			Scourse scourse = new Scourse();
+			Stcourse stcourse = new Stcourse();
+			Map map = qr.query(sql, new MapHandler(), params);
+			teacher = CommonUtils.toBean(map, Teacher.class);
+			scourse = CommonUtils.toBean(map, Scourse.class);
+			stcourse = CommonUtils.toBean(map, Stcourse.class);
+			teacher.setScourse(scourse);
+			teacher.setStcourse(stcourse);
+			
+			return teacher;
 		} catch (SQLException e) {
 			System.err.println("查询老师表信息异常");
 			throw new RuntimeException();

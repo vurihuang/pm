@@ -188,9 +188,10 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <p class="text-left">老师信息：</p>
-								<p class="text-left">姓名：<span>${name }</span></p>
-								<p class="text-left">年级：<span>${course }</span></p>
-								<p class="text-left">学科：<span>${sex }</span></p>
+								<p class="text-left">姓名：<span>${teachername }</span></p>
+								<p class="text-left">年级：<span>${classyear }</span></p>
+								<p class="text-left">学科：<span>${course }</span></p>
+								<p class="text-left">班级：<span>${tclass }</span></p>
                             </div>
                             <!-- /功能 -->
                         </li>

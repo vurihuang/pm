@@ -10,8 +10,29 @@ public class Teacher {
 	private String tsex;//老师性别
 	private String course;//老师课程
 	private String tpassword;//老师密码
+	private String tclass;//老师班级
+	private Scourse scourse;//老师学生课程关联
+	private Stcourse stcourse;//老师课程关联
+	public Scourse getScourse() {
+		return scourse;
+	}
+	public void setScourse(Scourse scourse) {
+		this.scourse = scourse;
+	}
+	public Stcourse getStcourse() {
+		return stcourse;
+	}
+	public void setStcourse(Stcourse stcourse) {
+		this.stcourse = stcourse;
+	}
 	public String getCourse() {
 		return course;
+	}
+	public String getTclass() {
+		return tclass;
+	}
+	public void setTclass(String tclass) {
+		this.tclass = tclass;
 	}
 	public void setCourse(String course) {
 		this.course = course;
@@ -44,7 +65,8 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [teacherID=" + teacherID + ", tname=" + tname + ", tsex=" + tsex + ", course=" + course
-				+ ", tpassword=" + tpassword + "]";
+				+ ", tpassword=" + tpassword + ", tclass=" + tclass + ", scourse=" + scourse + ", stcourse=" + stcourse
+				+ "]";
 	}
 	
 }

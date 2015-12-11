@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.itcast.servlet.BaseServlet;
+import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.TeacherService;
 
@@ -23,17 +24,21 @@ public class TeacherServlet extends BaseServlet {
 	public String teaInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Teacher teacher = new Teacher();
+		Scourse scourse = new Scourse();
 		
 		teacher.setTeacherID((String)session.getAttribute("userID"));
 		teacher = teacherService.teacherInfo(teacher);
 		
 		String teacherName = teacher.getTname();
-		String tCourese = teacher.getCourse();
-		String tSex = teacher.getTsex();
+		String course = teacher.getCourse();
+		String tclass = teacher.getTclass();
+		scourse = teacher.getScourse();
+		String classyear = scourse.getClassyear();
 		
-		request.setAttribute("name", teacherName);
-		request.setAttribute("course", tCourese);
-		request.setAttribute("sex", tSex);
+		request.setAttribute("teachername", teacherName);
+		request.setAttribute("classyear", classyear);
+		request.setAttribute("course", course);
+		request.setAttribute("tclass", tclass);
 		
 		return "f:/s_grade_t.jsp";
 	}

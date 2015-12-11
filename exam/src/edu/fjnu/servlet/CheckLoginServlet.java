@@ -46,8 +46,6 @@ public class CheckLoginServlet extends BaseServlet {
 			
 			if(stuService.checkInfo(student)){//验证学生登录信息是否正确，如果正确，将登录信息保存在session中
 				session.setAttribute("userID", student.getStudentID());
-				session.setAttribute("password", student.getSpassword());
-				
 				request.getRequestDispatcher("/StudentServlet?method=stuInfo")
 				.forward(request, response);//调用处理学生信息的servlet显示学生主页面
 			}else{//如果登录失败
@@ -62,8 +60,6 @@ public class CheckLoginServlet extends BaseServlet {
 			
 			if(teaService.checkInfo(teacher)){//验证老师登录信息是否正确，如果正确，将登录信息保存在session中
 				session.setAttribute("userID", userID);
-				session.setAttribute("password", password);
-				
 				request.getRequestDispatcher("/TeacherServlet?method=teaInfo")
 				.forward(request, response);//调用处理老师信息的servlet显示老师主页面
 			}else{//如果登录失败
