@@ -11,7 +11,7 @@
 		<frame src="<c:url value='/index/jsp/top.jsp'/>" noresize="noresize" name="topFrame" scrolling="No" id="topFrame" title="topFrame">
 		<frameset cols="250,*">
 			<frame src="<c:url value='/index/jsp/left-tea.jsp'/>" noresize="noresize" name="leftFrame" scrolling="No" id="leftFrame" title="leftFrame">
-			<frame src="<c:url value='/index/jsp/s-grade-t.jsp'/>" name="main">
+			<frame src="<c:url value='/index/html/firstpage.html'/>" name="main">
 		</frameset>
 	</frameset>
 </html>

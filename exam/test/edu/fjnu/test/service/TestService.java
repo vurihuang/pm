@@ -20,6 +20,7 @@ import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.StudentService;
 import edu.fjnu.service.TeacherService;
+import edu.fjnu.test.domain.Score;
 
 public class TestService {
 	QueryRunner qr = new TxQueryRunner();
@@ -27,6 +28,7 @@ public class TestService {
 	Student student = new Student();
 	
 	TeacherService teacherService = new TeacherService();
+	GradeDaoImpl gradeImpl = new GradeDaoImpl();
 	
 	@Test
 	public void testStudentService(){
@@ -246,4 +248,14 @@ public class TestService {
 		teacher.setTeacherID("01");
 		System.out.println(teacherService.teacherInfo(teacher));
 	}
+	
+//	@Test
+//	public void chinesePR(){
+//		Student student = new Student();
+//		student.setStudentID("201401001");
+//		Scourse scourse = new Scourse();
+//		scourse.setSubject("语文");
+//		List<Score> list = gradeImpl.getChinesePR(student, scourse);
+//		System.out.println(list);
+//	}
 }

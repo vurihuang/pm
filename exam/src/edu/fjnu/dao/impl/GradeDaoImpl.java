@@ -9,6 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
+import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.test.domain.Score;
 
@@ -103,4 +104,20 @@ public class GradeDaoImpl {
 	public List<Score> getExcellRate(Teacher teacher, String course){
 		return null;
 	}
+	
+//	public List<Score> getChinesePR(Student student, Scourse scourse){
+//		String sql = "select PR from student,scourse,sscore where student.studentID=sscore.studentID "
+//				+ " and scourse.courseID=sscore.courseID "
+//				+ " and subject = '?'"
+//				+ " and student.studentID=?";
+//		Object[] params = {scourse.getSubject(), student.getStudentID()};
+//		List<Score> list = null;
+//		try {
+//			list = qr.query(sql, new BeanListHandler<Score>(Score.class), params);
+//			System.out.println("sql" + list);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
 }

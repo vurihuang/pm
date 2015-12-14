@@ -52,4 +52,6 @@ public class StudentServlet extends BaseServlet {
 	public void courseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
+	
+	
 }
