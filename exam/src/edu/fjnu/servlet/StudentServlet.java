@@ -24,20 +24,6 @@ public class StudentServlet extends BaseServlet {
 	public StudentService studentService = new StudentService();//实例化学生service方法
 	
 	/**
-	 * 学生查询方法
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Student student = CommonUtils.toBean(request.getParameterMap(), Student.class);
-		studentService.checkInfo(student);
-		return "f:/index/test.jsp";
-	}
-	
-	/**
 	 * 获取学生的基本信息并显示
 	 * @param request
 	 * @param response
@@ -52,14 +38,18 @@ public class StudentServlet extends BaseServlet {
 		student.setStudentID((String)session.getAttribute("userID"));
 		student = studentService.studentInfo(student);//调用学生的service方法查询信息
 		
-		String studentName = student.getSname();
-		String sClass = student.getSclass();
-		String sSex = student.getSsex();
-		
-		request.setAttribute("name", studentName);
-		request.setAttribute("course", sClass);
-		request.setAttribute("sex", sSex);
+		request.getSession().setAttribute("sID", student.getStudentID());
+		request.getSession().setAttribute("sname", student.getSname());
+		request.getSession().setAttribute("sclass", student.getSclass());
 		
 		return "f:/index/jsp/index-stu.jsp";
+	}
+	
+	public void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	public void courseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 }

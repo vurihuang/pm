@@ -191,12 +191,13 @@
 				<!-- 下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select" id="sel">
+							<option>选择学生</option>
 					<c:forEach items="${studentList}" var="student">
     						<option value="${student.studentID}" 
     							<c:if test="${student.studentID eq studentID}" >
   								selected='selected'
-  							</c:if> 
-  						>${student.sname}</option>
+  								</c:if>>
+  						${student.sname}</option>
     					</c:forEach>	
 					</select>
 				</form>

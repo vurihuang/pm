@@ -37,9 +37,7 @@ public class TeacherServlet extends BaseServlet {
 		String courseID = teacherService.getCourseIDByTeacherID(teacher.getTeacherID());//通过teacherID得到courseID
 		teacherInfo(request, response, teacher);
 		setCourseID(request, response, courseID);//通过一个courseID将其他学科courseID都设置到session域，供调用传入值
-		request.setAttribute("sumcounts", teacherService.sumcountByteacherID(teacher.getTeacherID()));//得到柱状图数据
-//		chooseCourseByName(request, response, 
-//				request.getParameter("studentID"), teacher.getTeacherID());
+		
 		request.getRequestDispatcher("/index/jsp/index-tea.jsp").forward(request, response);
 	}
 	
@@ -145,7 +143,7 @@ public class TeacherServlet extends BaseServlet {
 		String studentID = request.getParameter("studentID");
 		loadStuList(request, response, teacherID);
 		
-		request.setAttribute("studentID", request.getParameter(studentID));//选择完下拉框返回的值给走势图使用
+		request.setAttribute("studentID", studentID);//选择完下拉框返回的值给走势图使用
 		request.setAttribute("studentName", request.getParameter("studentName"));//选择完下拉框返回的值供下拉框显示当前选中显示
 		chooseCourseByName(request, response, studentID, teacherID);
 	}

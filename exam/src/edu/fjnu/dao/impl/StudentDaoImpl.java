@@ -52,7 +52,7 @@ public class StudentDaoImpl implements StudentDao{
 	 */
 	public Student studentInfo(Student student) {
 		try {
-			String sql = "select sname, sclass, ssex from student where studentID=?";
+			String sql = "select * from student where studentID=?";
 			Object[] params = {student.getStudentID()};
 			
 			return qr.query(sql, new BeanHandler<Student>(Student.class), params);//执行查询方法

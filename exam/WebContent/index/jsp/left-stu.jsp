@@ -55,10 +55,10 @@
 				<!-- 个人信息 -->
 				<li class="sidebar-search">
 					<div class="input-group custom-search-form">
-						<p class="text-center">学生信息</p>
-						<p class="text-center">姓名：<span></span></p>
-						<p class="text-center">年级：<span></span></p>
-						<p class="text-center">班级：<span></span></p>
+						<p class="text-left">学生信息</p>
+						<p class="text-left">姓名：<span>${sessionScope.sname }</span></p>
+						<p class="text-left">学号：<span>${sessionScope.sID }</span></p>
+						<p class="text-left">班级：<span>${sessionScope.sclass }</span></p>
                     </div>
                 <!-- /功能 -->
                 </li>
@@ -66,16 +66,16 @@
 					<a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="s-grade-s.jsp" target="main">综合</a>
+							<a href="<c:url value='/StudentServlet?method=allInfo&courseName=sum'/>" target="main">综合</a>
                         </li>
                         <li>
-                            <a href="s-chinese-s.jsp" target="main">语文</a>
+                            <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=chinese'/>" target="main">语文</a>
                         </li>
 						<li>
-							<a href="s-math-s.jsp" target="main">数学</a>
+							<a href="<c:url value='/StudentServlet?method=courseInfo&courseName=math'/>" target="main">数学</a>
                         </li>
                         <li>
-                            <a href="s-english-s.jsp" target="main">英语</a>
+                            <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=english'/>" target="main">英语</a>
                         </li>
                     </ul>
                 </li>
