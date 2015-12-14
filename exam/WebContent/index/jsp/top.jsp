@@ -50,7 +50,7 @@
             <!-- /.退出 -->
             <ul class="nav navbar-top-links navbar-right">                
                 <li class="">                  
-                        <a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="<%=request.getContextPath() %>/LogoutServlet" target="_top"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
 		</nav>

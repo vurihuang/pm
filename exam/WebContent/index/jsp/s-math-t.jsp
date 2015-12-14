@@ -291,7 +291,7 @@
 				studentID = $("#sel").val();
 				studentName = $("#sel option:checked").text();
 				
-				location.href= "<c:url value='/TeacherServlet?method=courseInfo&course=math&studentID='/>" +studentID+"&studentName="+studentName;
+				location.href= "<c:url value='/TeacherServlet?method=courseInfo&courseName=math&studentID='/>" +studentID+"&studentName="+studentName;
 			},
 			effect       : "slide",
 			keyControl   : true,
