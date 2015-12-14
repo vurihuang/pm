@@ -8,10 +8,10 @@
 		<title>试卷管理系统(学生端)</title>
 	</head>
 	<frameset rows="50,*" framespacing="2" frameborder="yes" border="1" bordercolor="#e7e7e7">
-		<frame src="top.jsp" noresize="noresize" name="topFrame" scrolling="No" id="topFrame" title="topFrame">
+		<frame src="<c:url value='/index/jsp/top.jsp'/>" noresize="noresize" name="topFrame" scrolling="No" id="topFrame" title="topFrame">
 		<frameset cols="250,*">
-			<frame src="left-stu.jsp" noresize="noresize" name="leftFrame" scrolling="No" id="leftFrame" title="leftFrame">
-			<frame src="s-grade-s.jsp" name="main">
+			<frame src="<c:url value='/index/jsp/left-stu.jsp'/>" noresize="noresize" name="leftFrame" scrolling="No" id="leftFrame" title="leftFrame">
+			<frame src="<c:url value='/index/jsp/s-grade-s.jsp'/>" name="main">
 		</frameset>
 	</frameset>
 </html>

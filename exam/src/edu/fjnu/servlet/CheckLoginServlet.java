@@ -57,15 +57,14 @@ public class CheckLoginServlet extends BaseServlet {
 			
 			teacher.setTeacherID(userID);
 			teacher.setTpassword(password);
-			System.out.println("here ok1");
+			
 			if(teaService.checkInfo(teacher)){//验证老师登录信息是否正确，如果正确，将登录信息保存在session中
 				session.setAttribute("userID", userID);
-				System.out.println("here ok2");
+			
 				request.getRequestDispatcher("/TeacherServlet?method=teaLoadInfo")
 				.forward(request, response);//调用处理老师信息的servlet显示老师主页面
 			}else{//如果登录失败
-				request.getRequestDispatcher("/error.jsp").forward(request, response);;
-				System.out.println("处理失败没转发");
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
 			}
 		}
 	}

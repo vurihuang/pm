@@ -238,7 +238,7 @@ public class TestService {
 	@Test
 	public void stuInfo(){
 		teacher.setTeacherID("01");
-		System.out.println(teacherService.getStuList(teacher));;
+		System.out.println(teacherService.getStuList(teacher.getTeacherID()));;
 		
 	}
 	@Test

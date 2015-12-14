@@ -60,6 +60,6 @@ public class StudentServlet extends BaseServlet {
 		request.setAttribute("course", sClass);
 		request.setAttribute("sex", sSex);
 		
-		return "f:/s_grade_s.jsp";
+		return "f:/index/jsp/index-stu.jsp";
 	}
 }

@@ -165,13 +165,13 @@
 					<!-- <span class="glyphicon glyphicon-user"></span> -->
 					<img class="img" src="<c:url value='/index/image/user.png'/>"/>
 					<p class="p">及格率</p>
-					<p class="p">86%</p>			
+					<p class="p">${passRate}%</p>			
 				</div>
 				<div class="best">
 					<!-- <span class="glyphicon glyphicon-user"></span> -->
 					<img class="img" src="<c:url value='/index/image/user.png'/>"/>
 					<p class="p">优秀率</p>
-					<p class="p">28%</p>			
+					<p class="p">${ excellentRate}%</p>		
 				</div>
 				<div class="">
 				<div>
@@ -190,16 +190,14 @@
 			<div class="sec">
 				<!-- 下拉选择框 -->
 				<form action="" method="get" class="form">
-					<select name="drop1" class="ui-select">
-						<option value="1">张智勇</option>
-						<option value="2">杨晨曦</option>
-						<option value="3">周琪伟</option>
-						<option selected value="4">黄徐震</option>
-						<option value="5">黄海波</option>
-						<option value="6">黎芷研</option>
-						<option value="7">陈江东</option>
-						<option value="8">林灵凡</option>
-						<option value="9">沈丽标</option>
+					<select name="drop1" class="ui-select" id="sel">
+					<c:forEach items="${studentList}" var="student">
+    						<option value="${student.studentID}" 
+    							<c:if test="${student.studentID eq studentID}" >
+  								selected='selected'
+  							</c:if> 
+  						>${student.sname}</option>
+    					</c:forEach>	
 					</select>
 				</form>
 			</div>
@@ -253,6 +251,33 @@
 
 		}
 
+	<%-->设置折线图数据	--%>
+	var value0 = [];
+	var value1 = [];
+	var value2 = [];
+	var value3 = [];
+	var value4 = [];
+	 <c:forEach items="${maxScoreList}" var="maxScore">
+	    value0.push("${maxScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${minScoreList}" var="minScore">
+	    value1.push("${minScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${avgScoreList}" var="avgScore">
+	    value2.push("${avgScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${stuScoreList}" var="stuScore">
+	    value3.push("${stuScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${avgScoreList}" var="avgScore">
+	    value4.push("${avgScore.testID}"); 
+	 </c:forEach>
+	lineChartData['datasets'][0]['data'] = value0;
+	lineChartData['datasets'][1]['data'] = value1;
+	lineChartData['datasets'][2]['data'] = value2;
+	lineChartData['datasets'][3]['data'] = value3;
+	lineChartData['labels'] = value4;
+	
 	window.onload = function(){
 		var ctx = document.getElementById("canvas").getContext("2d");
 		window.myLine = new Chart(ctx).Line(lineChartData, {
@@ -263,15 +288,18 @@
 	$(document).ready(function(){		
 		$(".ui-select").selectWidget({
 			change       : function (changes) {
-				return changes;
+				studentID = $("#sel").val();
+				studentName = $("#sel option:checked").text();
+				
+				location.href= "<c:url value='/TeacherServlet?method=courseInfo&course=english&studentID='/>" +studentID+"&studentName="+studentName;
 			},
 			effect       : "slide",
 			keyControl   : true,
 			speed        : 200,
-			scrollHeight : 250
+			scrollHeight : 300
 		});
 		
-	});	
+	});		
 	</script>
 
 

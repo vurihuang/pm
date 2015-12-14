@@ -25,29 +25,5 @@ public class GradeServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private GradeService gradeService = new GradeService();//获取数据对象
 	
-	/**
-	 * 处理老师端语文成绩查询请求
-	 */
-	public String chineseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return "f:/index/jsp/s-chinese-t.jsp";
-	}
-	/**
-	 * 处理老师端数学成绩查询请求
-	 */
-	public String mathInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return "f:/index/jsp/s-chinese-t.jsp";
-	}
-	/**
-	 * 处理老师端英语成绩查询请求
-	 */
-	public String englishInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return "f:/index/jsp/s-chinese-t.jsp";
-	}
 	
-	/**
-	 * 处理老师端综合成绩查询请求
-	 */
-	public String allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return "f:/index/jsp/s-grade-t.jsp";
-	}
 }

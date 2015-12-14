@@ -47,6 +47,8 @@ public class TeacherDaoImpl implements TeacherDao{
 	 * @return 老师信息
 	 */
 	public Teacher teacherInfo(Teacher teacher){
+		Scourse scourse = new Scourse();
+		Stcourse stcourse = new Stcourse();
 		try {
 			String sql = "SELECT distinct tname, classyear, tclass,course ,scourse.courseid "
 					+ "FROM teacher,scourse,stcourse where  "
@@ -55,19 +57,18 @@ public class TeacherDaoImpl implements TeacherDao{
 					+ "teacher.teacherID=?";
 			Object[] params = {teacher.getTeacherID()};
 			String teacherID = teacher.getTeacherID();
-			
-//			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//执行查询方法
-			Scourse scourse = new Scourse();
-			Stcourse stcourse = new Stcourse();
 			Map map = qr.query(sql, new MapHandler(), params);
+			
 			teacher = CommonUtils.toBean(map, Teacher.class);
 			scourse = CommonUtils.toBean(map, Scourse.class);
 			stcourse = CommonUtils.toBean(map, Stcourse.class);
+			
 			teacher.setScourse(scourse);
 			teacher.setStcourse(stcourse);
 			teacher.setTeacherID(teacherID);
 			
 			return teacher;
+//			return qr.query(sql, new BeanHandler<Teacher>(Teacher.class), params);//执行查询方法
 		} catch (SQLException e) {
 			System.err.println("查询老师表信息异常");
 			throw new RuntimeException();
@@ -75,14 +76,14 @@ public class TeacherDaoImpl implements TeacherDao{
 	}
 	
 	/**
-	 * 查询老师所教的学生列表
+	 * 根据老师ID查询老师所教的学生列表
 	 * @param teacher
 	 * @return
 	 */
-	public List<Student> getStuList(Teacher teacher){
+	public List<Student> getStuList(String teacherID){
 		String sql = "select distinct sname,student.studentid from student ,teacher,stcourse where student.studentID=stcourse.studentID " 
 				+ "and teacher.teacherID=stcourse.teacherID and teacher.teacherID= ?";
-		Object[] params = {teacher.getTeacherID()};
+		Object params = teacherID;
 		List<Student> stuList = null;
 		
 		try {

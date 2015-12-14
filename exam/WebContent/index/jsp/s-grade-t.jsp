@@ -96,7 +96,7 @@
 			left:340px;
 			position:relative;
 		}
-		.lab1{
+		/*.lab1{
 			width:10px;
 			height:10px;
 			background-color:rgba(255,30,30,1);
@@ -107,12 +107,12 @@
 		.stu{
 			left:80px;
 			position:relative;
-		}
+		}*/
 		.lab2{
 			width:10px;
 			height:10px;
 			background-color:rgba(70,161,248,1);
-			left:273px;		
+			left:240px;		
 			top:5px;
 			position:absolute;
 		}
@@ -124,7 +124,7 @@
 			width:10px;
 			height:10px;
 			background-color:rgba(251,223,30,1);
-			left:463px;		
+			left:430px;		
 			top:5px;
 			position:absolute;
 		}
@@ -136,7 +136,7 @@
 			width:10px;
 			height:10px;
 			background-color:rgba(128,255,0,1);
-			left:643px;		
+			left:610px;		
 			top:5px;
 			position:absolute;
 		}
@@ -169,14 +169,14 @@
 				</div>
 				<div class="col-lg-12 div2">
 					<div>
-						<div class="lab1"></div>
-						<span class="stu">平均分</span>
+						<!-- <div class="lab1"></div>
+						<span class="stu">平均分</span> -->
 						<div class="lab2"></div>
 						<span class="max">最高分</span>
 						<div class="lab3"></div>
 						<span class="min">最低分</span>
-						<!-- <div class="lab4"></div>
-						<span class="avg">平均分</span> -->
+						<div class="lab4"></div>
+						<span class="avg">平均分</span>
 					</div>	
 					<canvas id="canvas2" height="250" width="600"></canvas>				
 				</div>
@@ -241,19 +241,44 @@
 					pointHighlightStroke : "rgba(128,255,0,1)",
 					data : [206,213,201,203,209,210,215]
 				},
-				/* {
-					label: "Stu",
-					fillColor : "rgba(255,30,30,0)",
-					strokeColor : "rgba(255,0,30,1)",
-					pointColor : "rgba(255,30,30,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(255,30,30,1)",
-					data : [212,226,218,211,221,224,220]
-				} */
 			]
 
 		}
+	<%-->设置柱状图数据	--%>
+	var barValue = [];
+	<c:forEach items="${sumcounts}" var="sumcount">
+    barValue.push("${sumcount}"); 
+ 	</c:forEach>
+ 	barChartData['datasets'][0]['data'] = barValue;
+	
+	<%-->设置折线图数据	--%>
+	var value0 = [];
+	var value1 = [];
+	var value2 = [];
+	var value3 = [];
+	var value4 = [];
+	 <c:forEach items="${sumMaxScoreList}" var="sumMaxScore">
+	    value0.push("${sumMaxScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${sumMinScoreList}" var="sumMinScore">
+	    value1.push("${sumMinScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${sumAvgScoreList}" var="sumAvgScore">
+	    value2.push("${sumAvgScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${sumStuScoreList}" var="sumStuScore">
+	    value3.push("${sumStuScore.score}"); 
+	 </c:forEach>
+	 <c:forEach items="${sumStuScoreList}" var="sumStuScore">
+	    value4.push("${sumStuScore.testID}"); 
+	 </c:forEach>
+	lineChartData['datasets'][0]['data'] = value0;
+	lineChartData['datasets'][1]['data'] = value1;
+	lineChartData['datasets'][2]['data'] = value2;
+	lineChartData['datasets'][3]['data'] = value3;
+	lineChartData['labels'] = value4;
+	
+	
 	function fun1(){
 		var ctx = document.getElementById("canvas").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barChartData, {
@@ -266,19 +291,6 @@
 			responsive: true
 		});
 	}
-	//下拉选择框
-	/* $(document).ready(function(){		
-		$(".ui-select").selectWidget({
-			change       : function (changes) {
-				return changes;
-			},
-			effect       : "slide",
-			keyControl   : true,
-			speed        : 200,
-			scrollHeight : 250
-		});
-		
-	});	 */
 	</script>
 
 
