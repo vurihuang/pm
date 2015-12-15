@@ -1,4 +1,4 @@
-package edu.fjnu.test.domain;
+package edu.fjnu.test.dao;
 
 public class Score {
 	private String sname;

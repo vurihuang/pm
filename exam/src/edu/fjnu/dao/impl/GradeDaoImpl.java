@@ -11,7 +11,7 @@ import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
-import edu.fjnu.test.domain.Score;
+import edu.fjnu.test.dao.Score;
 
 /**
  * 处理成绩分析模块

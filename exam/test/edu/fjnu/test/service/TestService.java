@@ -20,7 +20,7 @@ import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.service.StudentService;
 import edu.fjnu.service.TeacherService;
-import edu.fjnu.test.domain.Score;
+import edu.fjnu.test.dao.Score;
 
 public class TestService {
 	QueryRunner qr = new TxQueryRunner();

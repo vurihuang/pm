@@ -43,6 +43,7 @@
 	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
 	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
 	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+	<script src="<c:url value='/index/js/highcharts.js'/> "></script>
 	<style>
 		#page-wrapper{
 			//border:1px solid #e7e7e7;
@@ -106,7 +107,7 @@
 			color:black;
 		}
 		tr:hover{
-			background-color:#99ffff;
+			background-color:#eeeeee;
 		}
 		.table{
 			word-break:break-all; 
@@ -116,20 +117,35 @@
 			text-align:center;
 		}
 		.info{
-			float:left;
 			width:750px;
 			margin-left:50px;
 		}
 		.sec{
 			position:absolute;
 			left:820px;
-			top:280px;
+			top:680px;
 		}
+		.dropdown-menu{
+			width:630px;
+			//text-align:center;
+			
+		}
+		.d{
+			word-break:break-all; 
+			word-wrap:break-all;
+		}
+		.uli:hover{
+			background-color:#eeeeee
+		}
+		#container{
+			width: 850px; 
+		}
+	</style>
 	</style>
 </head>
 
-<body>
-			<div class="">
+<body style="background-color:white">
+			<div class="wai">
 				<div class="div diff">
 					<div class="col-xs-3">
 						<i class="glyphicon glyphicon-edit p pp"></i>
@@ -167,6 +183,7 @@
 					</div>			
 				</div>
 			</div>
+			<div id="container"></div>
 			<div class="info">
 				<!-- 试卷信息 -->
 				<table class="table table-bordered">
@@ -179,7 +196,29 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</td>
+							<td>
+								<li class="dropdown">
+									<p class="dropdown-toggle" data-toggle="dropdown" href="#">
+										知识点A <span class="caret"></span>
+									</p>
+									<ul class="dropdown-menu">
+										<li class="uli"><div class="d">题目1题目1题目1题目1题目1题目1题目1题目1题目1</div></li>
+										<li class="uli"><div class="d">题目2题目2题目2题目2题目2题目2题目2题目2题目2</div></li>
+										<li class="uli"><div class="d">题目3题目3题目3题目3题目3题目3题目3题目3题目3</div></li>
+										<li class="divider"></li>
+										<li class="uli"><div class="d"">分离的链接</div></li>
+										<li class="uli"><div class="d">Swingasssssssssssasaaasassasasssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddd</div></li>
+										<li class="uli"><div class="d">jMeter</div></li>
+										<li class="uli"><div class="d">EJB</div></li>
+										<li class="divider"></li>
+										<li class="uli"><div class="d"">分离的链接</div></li>
+										<li class="uli"><div class="d">jMeter</div></li>
+										<li class="uli"><div class="d">EJB</div></li>
+										<li class="divider"></li>
+										<li class="uli"><div class="d"">分离的链接</div></li>
+									</ul>
+								</li>
+							</td>
 							<td>68%</td>
 						</tr>
 						<tr>
@@ -224,6 +263,74 @@
 		});
 		
 	});	
+	//错误率图
+	$(document).ready(function() {  
+   var chart = {
+      type: 'bar'
+   };
+   var title = {
+      text: '知识点错误率'   
+   };
+   var xAxis = {
+      categories: ['知识点A', '知识点B', '知识点C', '知识点D', '知识点E'],
+      title: {
+         text: null
+      }
+   };
+   var yAxis = {
+      min: 0,
+      title: {
+         text: '',
+         align: 'high'
+      },
+      labels: {
+         overflow: 'justify'
+      }
+   };
+   var tooltip = {
+      valueSuffix: '%'
+   };
+   var plotOptions = {
+      bar: {
+         dataLabels: {
+            enabled: true
+         }
+      }
+   };
+   var legend = {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'top',
+      x: -40,
+      y: 0,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+      shadow: true
+   };
+   var credits = {
+      enabled: false
+   };
+   
+   var series= [{
+         name: '错误率',
+            data: [89, 81, 70, 68, 63]
+        }
+   ];     
+      
+   var json = {};   
+   json.chart = chart; 
+   json.title = title;    
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;  
+   json.series = series;
+   json.plotOptions = plotOptions;
+   json.legend = legend;
+   json.credits = credits;
+   $('#container').highcharts(json);
+  
+});
 	</script>
 
 
