@@ -284,7 +284,7 @@
 	lineChartData['datasets'][1]['data'] = value1;
 	lineChartData['datasets'][2]['data'] = value2;
 	lineChartData['datasets'][3]['data'] = value3;
-	lineChartData['labels'] = value4;
+	<%-- lineChartData['labels'] = value4; --%>
 	//下拉选择框
 	$(document).ready(function(){		
 		$(".ui-select").selectWidget({

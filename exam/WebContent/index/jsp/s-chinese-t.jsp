@@ -277,7 +277,7 @@
 	lineChartData['datasets'][1]['data'] = value1;
 	lineChartData['datasets'][2]['data'] = value2;
 	lineChartData['datasets'][3]['data'] = value3;
-	lineChartData['labels'] = value4;
+	<%-- lineChartData['labels'] = value4; --%>
 	
 	window.onload = function(){
 		var ctx = document.getElementById("canvas").getContext("2d");

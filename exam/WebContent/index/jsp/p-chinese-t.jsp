@@ -118,15 +118,17 @@
 		}
 		.info{
 			width:750px;
-			margin-left:50px;
+			margin-left:100px;
+			margin-top:40px;
+			margin-bottom:250px;
 		}
 		.sec{
 			position:absolute;
 			left:820px;
-			top:680px;
+			top:280px;
 		}
 		.dropdown-menu{
-			width:630px;
+			width:730px;
 			//text-align:center;
 			
 		}
@@ -138,7 +140,7 @@
 			background-color:#eeeeee
 		}
 		#container{
-			width: 850px; 
+			width: 750px; 
 		}
 	</style>
 	</style>
@@ -187,7 +189,7 @@
 			<div class="info">
 				<!-- 试卷信息 -->
 				<table class="table table-bordered">
-					<caption class="text-center title">试卷1</caption>
+					<caption class="text-center title">易错知识点与题目</caption>
 					<thead>
 						<tr>
 							<th class="text-center">试卷题目</th>
@@ -203,16 +205,17 @@
 									</p>
 									<ul class="dropdown-menu">
 										<li class="uli"><div class="d">题目1题目1题目1题目1题目1题目1题目1题目1题目1</div></li>
+										<li class="divider"></li>
 										<li class="uli"><div class="d">题目2题目2题目2题目2题目2题目2题目2题目2题目2</div></li>
+										<li class="divider"></li>
 										<li class="uli"><div class="d">题目3题目3题目3题目3题目3题目3题目3题目3题目3</div></li>
 										<li class="divider"></li>
 										<li class="uli"><div class="d"">分离的链接</div></li>
-										<li class="uli"><div class="d">Swingasssssssssssasaaasassasasssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddd</div></li>
-										<li class="uli"><div class="d">jMeter</div></li>
-										<li class="uli"><div class="d">EJB</div></li>
 										<li class="divider"></li>
-										<li class="uli"><div class="d"">分离的链接</div></li>
+										<li class="uli"><div class="d">Swingasssssssssssasaaasassasasssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddd</div></li>
+										<li class="divider"></li>
 										<li class="uli"><div class="d">jMeter</div></li>
+										<li class="divider"></li>
 										<li class="uli"><div class="d">EJB</div></li>
 										<li class="divider"></li>
 										<li class="uli"><div class="d"">分离的链接</div></li>

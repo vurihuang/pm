@@ -58,7 +58,7 @@
 						<p class="text-left">老师信息</p>
 						<p class="text-left">姓名：<span>${sessionScope.name }</span></p>
 						<p class="text-left">学科：<span>${sessionScope.course }</span></p>
-						<p class="text-left">班级：<span>${sessionScope.tclass }</span></p>
+						<%-- <p class="text-left">班级：<span>${sessionScope.tclass }</span></p> --%>
                     </div>
                 <!-- /功能 -->
                 </li>

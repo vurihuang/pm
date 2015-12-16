@@ -58,7 +58,7 @@
 						<p class="text-left">学生信息</p>
 						<p class="text-left">姓名：<span>${sessionScope.sname }</span></p>
 						<p class="text-left">学号：<span>${sessionScope.sID }</span></p>
-						<p class="text-left">班级：<span>${sessionScope.sclass }</span></p>
+						<%-- <p class="text-left">班级：<span>${sessionScope.sclass }</span></p> --%>
                     </div>
                 <!-- /功能 -->
                 </li>
