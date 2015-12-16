@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 题库表
  * @author vengeance
  *
  */
-public class Question {
+public class VQuestion {
 	private int fk_question_ID;//主键ID
 	private String answer;//答案
 	private String choiceA;//选项A

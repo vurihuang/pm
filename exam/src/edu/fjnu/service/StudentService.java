@@ -1,6 +1,6 @@
 package edu.fjnu.service;
 
-import edu.fjnu.dao.impl.StudentDaoImpl;
+import edu.fjnu.dao.StudentDao;
 import edu.fjnu.domain.Student;
 
 /**
@@ -9,7 +9,7 @@ import edu.fjnu.domain.Student;
  *
  */
 public class StudentService {
-	private StudentDaoImpl studentImpl = new StudentDaoImpl(); 
+	private StudentDao studentDao = new StudentDao(); 
 	
 	/**
 	 * 判断学生登录信息是否正确
@@ -17,7 +17,7 @@ public class StudentService {
 	 * @return
 	 */
 	public boolean checkInfo(Student student){
-		if(studentImpl.checkInfo(student) != null){
+		if(studentDao.checkInfo(student) != null){
 			return true;
 		}
 		return false;
@@ -29,6 +29,6 @@ public class StudentService {
 	 * @return 学生基本信息
 	 */
 	public Student studentInfo(Student student) {
-		return studentImpl.studentInfo(student);
+		return studentDao.studentInfo(student);
 	}
 }

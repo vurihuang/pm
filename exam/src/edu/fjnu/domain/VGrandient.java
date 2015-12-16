@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 梯度表
  * @author vengeance
  *
  */
-public class Grandient {
+public class VGrandient {
 	private int grandientID;//梯度ID
 	private int grandientSecequenceNO;//该梯度为第几梯度
 	private int course_courseID;//该梯度所属课程ID

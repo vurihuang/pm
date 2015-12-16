@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 梯度范围关联表
  * @author vengeance
  *
  */
-public class GrandientScope {
+public class VGrandientScope {
 	private int t_grandient_grandientID;//梯度ID
 	private int scopes_pk_scope_ID;//范围ID
 	public int getT_grandient_grandientid() {

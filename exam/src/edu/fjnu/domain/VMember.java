@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 用户表
  * @author vengeance
  *
  */
-public class Member {
+public class VMember {
 	private int memberID;//用户ID
 	private String name;//用户姓名
 	

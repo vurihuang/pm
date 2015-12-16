@@ -117,7 +117,7 @@
 			text-align:center;
 		}
 		.info{
-			width:750px;
+			width:900px;
 			margin-left:100px;
 			margin-top:40px;
 			margin-bottom:250px;
@@ -192,44 +192,33 @@
 					<caption class="text-center title">易错知识点与题目</caption>
 					<thead>
 						<tr>
-							<th class="text-center">试卷题目</th>
-							<th width="100px" class="text-center">错误率</th>
+							<th class="text-center">编号</th>
+							<th width="490px" class="text-center">试卷题目</th>
+							<th class="text-center">做题人数</th>
+							<th class="text-center">正确人数</th>
+							<th class="text-center">错误率</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								<li class="dropdown">
-									<p class="dropdown-toggle" data-toggle="dropdown" href="#">
-										知识点A <span class="caret"></span>
-									</p>
-									<ul class="dropdown-menu">
-										<li class="uli"><div class="d">题目1题目1题目1题目1题目1题目1题目1题目1题目1</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d">题目2题目2题目2题目2题目2题目2题目2题目2题目2</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d">题目3题目3题目3题目3题目3题目3题目3题目3题目3</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d"">分离的链接</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d">Swingasssssssssssasaaasassasasssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddd</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d">jMeter</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d">EJB</div></li>
-										<li class="divider"></li>
-										<li class="uli"><div class="d"">分离的链接</div></li>
-									</ul>
-								</li>
-							</td>
+							<td>001</td>
+							<td>题目1</td>
+							<td>100</td>
+							<td>32</td>
 							<td>68%</td>
 						</tr>
-						<tr>
-							<td>XXXX</td>
+						<tr>							
+							<td>002</td>
+							<td>题目2</td>
+							<td>100</td>
+							<td>14</td>
 							<td>86%</td>
 						</tr>
 						<tr>
-							<td>X</td>
+							<td>003</td>
+							<td>题目3</td>
+							<td>100</td>
+							<td>50</td>
 							<td>50%</td>
 						</tr>
 					</tbody>
@@ -248,6 +237,7 @@
 						<option value="7">试卷7</option>
 						<option value="8">试卷8</option>
 						<option value="9">试卷9</option>
+						<option value="10">试卷10</option>
 					</select>
 				</form>
 			</div>

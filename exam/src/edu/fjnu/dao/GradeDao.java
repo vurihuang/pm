@@ -1,4 +1,4 @@
-package edu.fjnu.dao.impl;
+package edu.fjnu.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +18,7 @@ import edu.fjnu.test.dao.Score;
  * @author vengeance
  *
  */
-public class GradeDaoImpl {
+public class GradeDao {
 	QueryRunner qr = new TxQueryRunner();
 	
 	/**

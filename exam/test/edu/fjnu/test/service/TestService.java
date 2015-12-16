@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
-import edu.fjnu.dao.impl.GradeDaoImpl;
-import edu.fjnu.dao.impl.TeacherDaoImpl;
+import edu.fjnu.dao.GradeDao;
+import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Stcourse;
@@ -28,7 +28,7 @@ public class TestService {
 	Student student = new Student();
 	
 	TeacherService teacherService = new TeacherService();
-	GradeDaoImpl gradeImpl = new GradeDaoImpl();
+	GradeDao gradeImpl = new GradeDao();
 	
 	@Test
 	public void testStudentService(){
@@ -79,7 +79,7 @@ public class TestService {
 		teacher.setTeacherID("01");
 		teacher.setTpassword("123");
 		
-		TeacherDaoImpl teaImpl = new TeacherDaoImpl();
+		TeacherDao teaImpl = new TeacherDao();
 		teacher = teaImpl.teacherInfo(teacher);
 		String tname = teacher.getTname();
 		String course = teacher.getCourse();
@@ -168,7 +168,7 @@ public class TestService {
 	public void teaInfo3(){
 		Teacher teacher = new Teacher();
 		teacher.setTeacherID("01");
-		TeacherDaoImpl tdao = new TeacherDaoImpl();
+		TeacherDao tdao = new TeacherDao();
 		teacher = tdao.teacherInfo(teacher);
 		Scourse scourse = teacher.getScourse();
 		Stcourse stcourse = teacher.getStcourse();
@@ -232,7 +232,7 @@ public class TestService {
 	
 	@Test
 	public void getMaxList(){
-		GradeDaoImpl daoImpl = new GradeDaoImpl();
+		GradeDao daoImpl = new GradeDao();
 		Scourse scourse = new Scourse();
 		scourse.setCourseID("30101");
 		System.out.println(daoImpl.getMaxScoreList(scourse));

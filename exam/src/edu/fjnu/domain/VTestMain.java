@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 测试主表
  * @author vengeance
  *
  */
-public class TestMain {
+public class VTestMain {
 	private int pk_test_main_ID;//测试主表ID
 	private String scope;//测试范围名
 	private String subject;//学科

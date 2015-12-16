@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.catalina.tribes.util.Arrays;
 
-import edu.fjnu.dao.impl.SscoreDaoImpl;
-import edu.fjnu.dao.impl.TeacherDaoImpl;
+import edu.fjnu.dao.SscoreDao;
+import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
@@ -17,8 +17,8 @@ import edu.fjnu.domain.Teacher;
  *
  */
 public class TeacherService {
-	private TeacherDaoImpl teacherImpl = new TeacherDaoImpl();
-	private SscoreDaoImpl sscoreImpl = new SscoreDaoImpl();
+	private TeacherDao teacherDao = new TeacherDao();
+	private SscoreDao sscoreDao = new SscoreDao();
 	
 	/**
 	 * 判断老师登录信息是否正确
@@ -26,7 +26,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public boolean checkInfo(Teacher teacher){
-		if(teacherImpl.checkInfo(teacher) != null){
+		if(teacherDao.checkInfo(teacher) != null){
 			return true;
 		}
 		return false;
@@ -37,7 +37,7 @@ public class TeacherService {
 	 * @return 老师基本信息
 	 */
 	public Teacher teacherInfo(Teacher teacher){
-		return teacherImpl.teacherInfo(teacher);
+		return teacherDao.teacherInfo(teacher);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public String getCourseIDByTeacherID(String teacherID){
-		return sscoreImpl.getCourseIDByTeacherID(teacherID);
+		return sscoreDao.getCourseIDByTeacherID(teacherID);
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class TeacherService {
 	 * @return 这个老师所教的学生
 	 */
 	public List<Student> getStuList(String teacherID){
-		return teacherImpl.getStuList(teacherID);
+		return teacherDao.getStuList(teacherID);
 	}
 	
 	/**
@@ -64,11 +64,11 @@ public class TeacherService {
 	 * @return
 	 */
 	public int[] sumcountByteacherID(String teacherID){
-		List<Student> studentList = teacherImpl.getStuList(teacherID);
+		List<Student> studentList = teacherDao.getStuList(teacherID);
 		int a=0,b=0,c=0,d=0,e=0;
 		for(int i = 0;i < studentList.size();i++){
 			Student student = studentList.get(i);
-			Sscore sscore = sscoreImpl.findSumOfStudent(student.getStudentID());
+			Sscore sscore = sscoreDao.findSumOfStudent(student.getStudentID());
 			double sum = sscore.getScore();
 			if(sum<180){
 				a++;
@@ -92,7 +92,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public double getPassRate(String courseID) {
-		List<Sscore> sscoreList = sscoreImpl.lastScores(courseID);
+		List<Sscore> sscoreList = sscoreDao.lastScores(courseID);
 		int passCount = 0;
 		
 		for(int i=0; i<sscoreList.size(); i++){
@@ -113,7 +113,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public double getExcellentRate(String courseID){
-		List<Sscore> sscoreList = sscoreImpl.lastScores(courseID);
+		List<Sscore> sscoreList = sscoreDao.lastScores(courseID);
 		int excellentCount = 0;
 		for(int i = 0;i<sscoreList.size();i++){
 			Sscore sscore  = sscoreList.get(i);
@@ -147,7 +147,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<Sscore> maxScores(String courseID) {
-		return sscoreImpl.maxScores(courseID);
+		return sscoreDao.maxScores(courseID);
 	}
 	
 	/**
@@ -156,7 +156,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<Sscore> minScores(String courseID) {
-		return sscoreImpl.minScores(courseID);
+		return sscoreDao.minScores(courseID);
 	}
 	
 	/**
@@ -165,7 +165,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<Sscore> avgScores(String courseID) {
-		return sscoreImpl.avgScores(courseID);
+		return sscoreDao.avgScores(courseID);
 	}
 	
 	/**
@@ -175,7 +175,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<Sscore> stuScores(String courseID, String studentID) {
-		return sscoreImpl.stuScores(courseID, studentID);
+		return sscoreDao.stuScores(courseID, studentID);
 	}
 	
 	/**

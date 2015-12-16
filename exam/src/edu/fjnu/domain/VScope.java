@@ -1,11 +1,11 @@
-package com.upeoe.domain;
+package edu.fjnu.domain;
 
 /**
  * 分类范围表
  * @author vengeance
  *
  */
-public class Scope {
+public class VScope {
 	private int pk_scope_ID;//分类范围ID
 	private int level;//层次
 	private String name;//分类范围名称

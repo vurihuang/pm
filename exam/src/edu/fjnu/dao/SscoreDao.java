@@ -1,4 +1,4 @@
-package edu.fjnu.dao.impl;
+package edu.fjnu.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Sscore;
 
-public class SscoreDaoImpl {
+public class SscoreDao {
 	private QueryRunner qr = new TxQueryRunner();//执行数据库操作并存储返回的结果
 	
 	/**
