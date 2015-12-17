@@ -4,8 +4,12 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.junit.Test;
 
+import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Testmain;
 import edu.fjnu.domain.VGrandientScope;
@@ -62,7 +66,12 @@ public class TestUpeoeDao {
 	@Test
 	public void searchTestDetail() throws SQLException {
 		sql = "select * from t_test_detail where pk_test_id = '1'";
-		testdetail = qr.query(sql, new BeanHandler<VTestDetail>(VTestDetail.class));
+//		testdetail = qr.query(sql, new BeanHandler<VTestDetail>(VTestDetail.class));//查询某个表，单行多列记录
+//		Map map= qr.query(sql, new BeanListHandler<VTestMain>(VTestMain.class));//查询某个表，多行多列记录
+//		qr.query(sql, new MapHandler());//学生+老师+课程表 查出单行多列记录
+//		qr.query(sql, new MapListHandler());//学生+老师+课程表 查出多行多列记录
+//		CommonUtils.toBean(map, VTestMain.class);
+		
 		System.out.println(testdetail);
 	}
 }

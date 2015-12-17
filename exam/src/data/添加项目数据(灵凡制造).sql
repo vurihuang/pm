@@ -324,7 +324,7 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` VALUES ('02', '陈森淼', '数学', 'm', '123', '一班');
 INSERT INTO `teacher` VALUES ('04', '陈学', '语文', 'm', '123', '一班');
 INSERT INTO `teacher` VALUES ('05', '谢东源', '英语', 'm', '123', '一班');
-INSERT INTO `teacher` VALUES ('06', '王月茹', '英语', 'w', '123', '一班');
+INSERT INTO `teacher` VALUES ('2784', '王月茹', '英语', 'w', '123', '一班');
 INSERT INTO `teacher` VALUES ('07', '谢英', '语文', 'w', '123', '一班');
 INSERT INTO `teacher` VALUES ('08', '庄小桦', '英语', 'w', '123', '一班');
 INSERT INTO `teacher` VALUES ('09', '郑尧', '数学', 'w', '123', '一班');
