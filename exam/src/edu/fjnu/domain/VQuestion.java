@@ -18,6 +18,7 @@ public class VQuestion {
 	private int num;//做过次数
 	private int successNum;//做对的次数
 	private String subject;//题干
+	private double wrong;  //知识点错误率
 	public String getAnswer() {
 		return answer;
 	}
@@ -91,6 +92,13 @@ public class VQuestion {
 		this.successNum = successNum;
 	}
 	
+	
+	public double getWrong() {
+		return wrong;
+	}
+	public void setWrong(double wrong) {
+		this.wrong = wrong;
+	}
 	@Override
 	public String toString() {
 		return "Question [fk_question_ID=" + fk_question_ID + ", answer=" + answer + ", choiceA=" + choiceA

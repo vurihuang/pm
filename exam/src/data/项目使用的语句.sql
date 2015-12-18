@@ -1,3 +1,28 @@
+-- 查询某个老师所教的所有学生ID
+select DISTINCT students_memberId from t_member_t_member where 
+t_member_memberId="2586"
+ORDER BY students_memberId ASC
+
+-- 查询某老师所教的所有年级
+select DISTINCT t_scope.name from t_scope,t_course,t_coursetype where 
+ t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and  t_course.coachID="2586"
+
+-- 查询某个老师教的这些学生限定某个年级里的某个科目的学生ID
+
+select DISTINCT t_member_t_member.students_memberId
+from t_member_t_member,t_testmain,t_scope,t_coursetype,t_course,t_course_t_member
+where t_testmain.student_memberId=t_member_t_member.students_memberId
+and t_course.courseId=t_course_t_member.courses_courseId
+and t_course_t_member.members_memberId=t_member_t_member.students_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and t_member_t_member.t_member_memberId="2586"
+and t_testmain.`subject`="数学"
+ and t_scope.`name`="三年级（下）"
+ORDER BY t_member_t_member.students_memberId ASC
+
 -- 某个学生做过的某个年级的语文试卷范围
 select distinct  scope from  t_testmain where 
 subject like '语文' 
