@@ -86,10 +86,10 @@
 								<a href="p-chinese-t.jsp" target="main">语文</a>
                             </li>
 							<li>
-                                <a href="p-math-t.jsp" target="main">数学</a>
+                                <a href="p-chinese-t.jsp" target="main">数学</a>
                             </li>
                             <li>
-                                <a href="p-english-t.jsp" target="main">英语</a>
+                                <a href="p-chinese-t.jsp" target="main">英语</a>
                             </li>
                         </ul>
                 </li>                                                

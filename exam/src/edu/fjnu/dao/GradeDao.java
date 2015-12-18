@@ -9,7 +9,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
-import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 import edu.fjnu.test.dao.Score;
 

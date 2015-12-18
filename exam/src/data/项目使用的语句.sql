@@ -1,3 +1,53 @@
+-- 查询所有有用试卷的难度率和分数
+select t_testmain.pk_test_main_id,sum((t_question.num-t_question.successNum)/t_question.num), t_testmain.realScore 
+from t_question,t_testmain,t_test_detail
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id=t_question.fk_question_id
+and t_testmain.realScore!="0"
+and t_testmain.useTime>="5"
+GROUP BY t_testmain.pk_test_main_id
+
+
+-- 每一道题的错误率
+select (t_question.num-t_question.successNum)/t_question.num as wrong from t_question,t_testmain,t_test_detail
+ where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id=t_question.fk_question_id
+and t_testmain.pk_test_main_id="02"
+
+-- 某份试卷的某个题型（难中易）错误率总和，注释：1是简单3是中5是难
+select sum((t_question.num-t_question.successNum)/t_question.num) from t_question,t_testmain,t_test_detail
+ where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id=t_question.fk_question_id
+and t_testmain.pk_test_main_id="02"
+and t_question.difficultyLevel="1"
+-- 通过学生ID查找他所在年级(现阶段所在年级）
+select max(DISTINCT t_scope.name) from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member where 
+t_course_t_member.courses_courseId=t_course.courseId
+and t_member_t_member.students_memberId=t_course_t_member.members_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and t_member_t_member.students_memberId="1128"
+
+-- 通过学生ID查找他所在年级
+select DISTINCT t_scope.name from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member where 
+t_course_t_member.courses_courseId=t_course.courseId
+and t_member_t_member.students_memberId=t_course_t_member.members_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and t_member_t_member.students_memberId="1092"
+
+-- 根据试卷ID得到该试卷难度
+select sum((t_question.num-t_question.successNum)/t_question.num) as wrong from t_question,t_testmain,t_test_detail
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id 
+and t_test_detail.question_fk_question_id=t_question.fk_question_id 
+and t_testmain.pk_test_main_id='02'
+
+-- 根据题目ID得到该题平均得分
+select ((sum(t_test_detail.score))/count(*)) as score 
+from t_test_detail,t_testmain
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id="1" and stuAnswer <>""
+
 -- 查询某个老师所教的所有学生ID
 select DISTINCT students_memberId from t_member_t_member where 
 t_member_memberId="2586"

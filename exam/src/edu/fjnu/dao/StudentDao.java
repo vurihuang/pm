@@ -6,10 +6,6 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.VScope;

@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
-
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestMain;
@@ -69,7 +66,6 @@ public class StudentTestDao {
 							+"	order by pk_test_id";
 			 return  qr.query(sql, new BeanListHandler<VQuestion>(VQuestion.class),params);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
 		
@@ -95,7 +91,6 @@ public List<VQuestion> searchWrongRate(String scope){
 			return qr.query(sql, new BeanListHandler<VQuestion>(VQuestion.class),params);
 			 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
 		
