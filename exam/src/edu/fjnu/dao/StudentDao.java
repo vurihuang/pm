@@ -6,9 +6,13 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.Student;
+import edu.fjnu.domain.VScope;
 
 /**
  * 实现StudentDao接口
@@ -60,4 +64,19 @@ public class StudentDao {
 			throw new RuntimeException();
 		}	
 	}
+	public List<VScope> getStudentGrade(int studentId){
+		try{
+			String sql = "select DISTINCT t_scope.name from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member where" 
+						+"	t_course_t_member.courses_courseId=t_course.courseId"
+						+"	and t_member_t_member.students_memberId=t_course_t_member.members_memberId"
+						+"	and t_coursetype.courseTypeId=t_course.courseTypeID"
+						+"	and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id"
+						+"	and t_member_t_member.students_memberId=?";
+			Object[] params = {studentId};
+			return  qr.query(sql, new BeanListHandler<VScope>(VScope.class),params);
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
 }

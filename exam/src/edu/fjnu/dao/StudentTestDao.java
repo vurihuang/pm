@@ -50,7 +50,7 @@ public class StudentTestDao {
 		}
 	}
 	/**
-	 * 传入试卷的id 得到 这张试卷所有的题目表VQuestion的list
+	 * 传入试卷的id 得到 这张试卷所有的题目表中的subject ,successnum,num，rate stustatus
 	 * @param testMainId
 	 * @return List<VQuestion>
 	 */
@@ -59,9 +59,14 @@ public class StudentTestDao {
 		try {
 			
 			 Object[] params = {testMainId};
-			 String sql = "select * from t_question "
-				          +"   where fk_question_id in (select pk_test_id from t_test_detail "
-						  +"   where testmain_pk_test_main_id=?)";
+			 String sql = "select   subject ,successnum,num , (num-successnum)/num as rate, "
+							+"	case when stuanswer != t_test_detail.answer then '×' else '√ ' end as stustatus "
+							+"	from t_question,t_test_detail "
+							+"	where  t_test_detail.question_fk_question_id=t_question.fk_question_id " 
+							+"	and fk_question_id in "
+							+"	(select distinct question_fk_question_id from t_test_detail " 
+							+"	 where   testmain_pk_test_main_id=?) "
+							+"	order by pk_test_id";
 			 return  qr.query(sql, new BeanListHandler<VQuestion>(VQuestion.class),params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +75,7 @@ public class StudentTestDao {
 		
 	}
 	/**
-	 * 输入知识点范围 scope 得到  知识点keyword 和该知识点的错误率
+	 * 输入知识点范围 scope 得到  知识点keyword 和该知识点的错误率wrong
 	 * @param scope
 	 * @return keyword wrong
 	 */

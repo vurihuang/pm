@@ -19,6 +19,8 @@ public class VQuestion {
 	private int successNum;//做对的次数
 	private String subject;//题干
 	private double wrong;  //知识点错误率
+	private String stustatus; //学生状态
+	private double rate;  //学生题目错误率
 	public String getAnswer() {
 		return answer;
 	}
@@ -98,6 +100,20 @@ public class VQuestion {
 	}
 	public void setWrong(double wrong) {
 		this.wrong = wrong;
+	}
+	
+	public String getStustatus() {
+		return stustatus;
+	}
+	public void setStustatus(String stustatus) {
+		this.stustatus = stustatus;
+	}
+	
+	public double getRate() {
+		return rate;
+	}
+	public void setRate(double rate) {
+		this.rate = rate;
 	}
 	@Override
 	public String toString() {
