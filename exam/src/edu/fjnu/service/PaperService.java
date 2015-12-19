@@ -7,6 +7,7 @@ import java.util.List;
 import edu.fjnu.dao.QuestionDao;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestDetail;
+import edu.fjnu.domain.VTestMain;
 
 /**
  * 处理试卷分析四个度的业务
@@ -52,8 +53,8 @@ public class PaperService {
 	 * @return 一道题目的标准差
 	 * @throws SQLException
 	 */
-	public double getStdDevisionById() throws SQLException {
-		List<VTestDetail> list = questionDao.getStdDeviation();
+	public double getStdDevisionById(Long questionID) throws SQLException {
+		List<VTestDetail> list = questionDao.getStdDeviation(questionID);
 		return calStdDevision(list);
 	}
 	
@@ -68,15 +69,32 @@ public class PaperService {
 		double avg = 0;
 		double cnt = 0;
 		
+		if(length == 0) return 0;
 		for(int i=0; i<length; i++){
 			sum += list.get(i).getScore();
 		}
 		avg = sum/length;
 		
 		for(int i=0; i<length; i++){
-			cnt += (list.get(i).getScore() - avg) * (list.get(i).getScore() - avg);
+			cnt += Math.abs((list.get(i).getScore() - avg) * (list.get(i).getScore() - avg));
 		}
 		
 		return Math.sqrt(cnt/length);
+	}
+	
+	public double getStdByTestId(VTestMain testmain){
+		double cnt = 0;
+		try {
+			List<VTestDetail> list = new ArrayList(questionDao.getQstListById(testmain));
+			
+			for(int i=0; i<list.size(); i++){
+				cnt += getStdDevisionById(list.get(i).getQuestion_fk_question_id());
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
 	}
 }

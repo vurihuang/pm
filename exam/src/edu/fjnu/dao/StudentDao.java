@@ -60,6 +60,11 @@ public class StudentDao {
 			throw new RuntimeException();
 		}	
 	}
+	/**
+	 * 根据学生ID查询该学生所做过试卷的所有年级
+	 * @param studentId
+	 * @return
+	 */
 	public List<VScope> getStudentGrade(int studentId){
 		try{
 			String sql = "select DISTINCT t_scope.name from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member where" 
@@ -74,5 +79,6 @@ public class StudentDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	
 }

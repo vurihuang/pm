@@ -1,3 +1,17 @@
+-- 查询所有过滤过的试卷ID
+select t_testmain.pk_test_main_id
+from t_question,t_testmain,t_test_detail
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id=t_question.fk_question_id
+and t_testmain.realScore!="0"
+and t_testmain.useTime>="5"
+GROUP BY t_testmain.pk_test_main_id
+-- 根据试卷ID查这份试卷的题目列表
+select t_test_detail.question_fk_question_id from t_testmain,t_test_detail
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_testmain.pk_test_main_id="02"
+ORDER BY t_test_detail.sequence ASC
+
 -- 查询所有有用试卷的难度率和分数
 select t_testmain.pk_test_main_id,sum((t_question.num-t_question.successNum)/t_question.num), t_testmain.realScore 
 from t_question,t_testmain,t_test_detail

@@ -29,18 +29,19 @@ public class StudentTestService {
 	 * @param gradeName
 	 * @return
 	 */
-	public List<VTestMain> getTestMainsList(String subject,String studentName,String gradeName){
+	public List<VTestMain> getTestMainsList(String subject,int studentId,String gradeName){
 		
-		return std.findTestMainId(subject, studentName, gradeName);
+		return std.findTestMainId(subject, studentId, gradeName);
 	}
 	/**
-	 * 输入学生id 查询学生年级
+	 * 输入学生id 查询学生做过试卷的所有年级
 	 * @param studentId
 	 * @return
 	 */
 	public List<VScope> getStudentGradeList(int studentId){
 		return studentDao.getStudentGrade(studentId);
 	}
+
 	/**
 	 * 传入试卷的id 得到 这张试卷所有的题目表vQuestion中的subject(题目内容) ,successnum(答对人数),num（总人数
 	 * ），rate（错误率） stustatus（学生对错）
@@ -63,8 +64,16 @@ public class StudentTestService {
 		return std.searchWrongRate(scope);
 	}
 	
+	/**
+	 * 输入试卷id 得到改试卷的scope（测试范围）
+	 * @param testId
+	 * @return
+	 */
+	public String getScope(int testId){
+		return std.getScope(testId);
+	}
 	
-	
+
 	
 	
 	 

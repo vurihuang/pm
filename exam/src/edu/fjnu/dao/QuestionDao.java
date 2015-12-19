@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import cn.itcast.jdbc.TxQueryRunner;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestDetail;
+import edu.fjnu.domain.VTestMain;
 
 /**
  * 对题目的操作
@@ -83,17 +84,52 @@ public class QuestionDao {
 	
 	/**
 	 * 获取指定ID题目的得分情况，用来计算该题标准差
+	 * @param questionID 
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<VTestDetail> getStdDeviation() throws SQLException {
+	public List<VTestDetail> getStdDeviation(Long questionID) throws SQLException {
 		String sql = "select  t_testmain.student_memberId,t_test_detail.answer,t_test_detail.stuAnswer,t_test_detail.score" 
 				+" from t_test_detail,t_testmain"
 				+" where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id"
-				+" and t_test_detail.question_fk_question_id='51719'"
+				+" and t_test_detail.question_fk_question_id=?"
 				+" and t_test_detail.stuAnswer !=''";
+		Object[] params = {questionID};
+		List list = qr.query(sql, new BeanListHandler<VTestDetail>(VTestDetail.class), params);
 		
-		List list = qr.query(sql, new BeanListHandler<VTestDetail>(VTestDetail.class));
+		return list;
+	}
+	
+	/**
+	 * 根据试卷ID得到题目ID列表
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<VTestDetail> getQstListById(VTestMain testmain) throws SQLException {
+		String sql = "select t_test_detail.question_fk_question_id from t_testmain,t_test_detail "
+				+ " where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id"
+				+ " and t_testmain.pk_test_main_id=?"
+				+ " ORDER BY t_test_detail.sequence ASC";
+		Object[] params = {testmain.getPk_test_main_ID()};
+		List list = qr.query(sql, new BeanListHandler<VTestDetail>(VTestDetail.class), params);
+		
+		return list;
+	}
+	
+	/**
+	 * 得到所有过滤过的试卷ID
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<VTestMain> getAllTestId() throws SQLException {
+		String sql = "select t_testmain.pk_test_main_id "
+				+ "from t_question,t_testmain,t_test_detail "
+				+ "where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id "
+				+ "and t_test_detail.question_fk_question_id=t_question.fk_question_id "
+				+ "and t_testmain.realScore!='0' "
+				+ "and t_testmain.useTime>='5'"
+				+ "GROUP BY t_testmain.pk_test_main_id";
+		List<VTestMain> list = qr.query(sql, new BeanListHandler<VTestMain>(VTestMain.class));
 		
 		return list;
 	}

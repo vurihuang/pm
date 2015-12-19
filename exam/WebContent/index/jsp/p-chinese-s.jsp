@@ -67,10 +67,20 @@
 			margin-left:100px;
 			margin-bottom:100px;
 		}
-		.sec{
+		.divp{
+			text-align:left;
+			font-size:20px;
+			margin-bottom:10px;
+		}
+		.sec1{
 			position:absolute;
-			left:820px;
-			top:50px;
+			left:770px;
+			top:40px;
+		}
+		.sec2{
+			position:absolute;
+			left:950px;
+			top:40px;
 		}
 		.dropdown-menu{
 			width:730px;
@@ -95,7 +105,7 @@
 			<div class="info">
 				<!-- 试卷信息 -->
 				<table class="table table-bordered">
-					<caption class="text-center title">易错知识点</caption>
+					<caption class="text-center title">错题分析</caption>
 					<thead>
 						<tr>
 							<th class="text-center">编号</th>
@@ -107,48 +117,55 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>001</td>
-							<td>题目1</td>
-							<td>100</td>
-							<td>32</td>
-							<td>68%</td>
-							<td>对</td>
-						</tr>
-						<tr>
-							<td>002</td>
-							<td>题目2</td>
-							<td>100</td>
-							<td>14</td>
-							<td>86%</td>
-							<td>错</td>
-						</tr>
-						<tr>
-							<td>003</td>
-							<td>题目3</td>
-							<td>100</td>
-							<td>50</td>
-							<td>50%</td>
-							<td>对</td>
-						</tr>
+						<c:forEach items="${vQuestionList}" var="vQuestion">
+							<tr>
+								<td>${vQuestion.sequence}</td>
+								<td>
+									${vQuestion.subject}</br>
+									(A): ${vQuestion.choiceA}</br>
+									(B): ${vQuestion.choiceB}</br>
+									(C): ${vQuestion.choiceC}</br>
+									(D): ${vQuestion.choiceD}</br>
+								</td>
+								<td>${vQuestion.num}</td>
+								<td>${vQuestion.successNum}</td>
+								<td>${vQuestion.rate}</td>
+								<td>${vQuestion.stustatus}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="sec">
-			<!-- 下拉选择框 -->
+			
+			<div class="sec1">
+				<div class="divp">选择年级</div>
+			<!-- 年级下拉选择框 -->
 				<form action="" method="get" class="form">
-					<select name="drop1" class="ui-select">
-						<option value="0">试卷1</option>
-						<option value="1">试卷2</option>
-						<option value="2">试卷3</option>
-						<option value="3">试卷4</option>
-						<option value="4">试卷5</option>
-						<option value="5">试卷6</option>
-						<option value="6">试卷7</option>
-						<option value="7">试卷8</option>
-						<option value="8">试卷9</option>
-						<option value="9">试卷10</option>
-						<option value="10">试卷11</option>
+					<select name="drop" class="ui-select" id="grade-select">
+						<c:forEach items="${vScopeList}" var="vScope">
+    							<option value="${vScope.name}"
+    								<c:if test="${vScope.name eq selectGrade}" >
+  									selected='selected'
+  								</c:if>
+    							> ${vScope.name}</option>
+    						</c:forEach>	
+					</select>
+				</form>
+			</div>
+	
+			
+			<div class="sec2">
+				<div class="divp">选择试卷</div>
+			<!-- 试卷下拉选择框 -->
+				<form action="" method="get" class="form">
+					<select name="drop" class="ui-select" id="test-select">
+						<c:forEach items="${vTestMainList}" var="vTestMain">
+    							<option value="${vTestMain.pk_test_main_ID}"
+    								<c:if test="${vTestMain.pk_test_main_ID eq selectTest}" >
+  									selected='selected'
+  								</c:if>
+    							> ${vTestMain.pk_test_main_ID}</option>
+    						</c:forEach>	
 					</select>
 				</form>
 			</div>
@@ -156,9 +173,24 @@
 	<script>
 	//下拉选择框
 	$(document).ready(function(){		
-		$(".ui-select").selectWidget({
+		$("#grade-select").selectWidget({
 			change       : function (changes) {
-				return changes;
+				subject = "${selectSubject}";
+				grade = $("#grade-select").val();		
+				location.href= "<c:url value='/StudentTestServlet?method=loadGrade&grade='/>" +grade+"&subject="+subject;
+			},
+			effect       : "slide",
+			keyControl   : true,
+			speed        : 200,
+			scrollHeight : 250
+		});
+		
+		$("#test-select").selectWidget({
+			change       : function (changes) {
+				subject = "${selectSubject}";
+				testID = $("#test-select").val();
+				grade = $("#grade-select").val();	
+				location.href= "<c:url value='/StudentTestServlet?method=loadGrade&testID='/>" +testID+"&grade="+grade+"&subject="+subject;
 			},
 			effect       : "slide",
 			keyControl   : true,
@@ -217,11 +249,30 @@
    };
    
    var series= [{
-         name: '错误率',
-            data: [89, 88, 83, 80, 76]
+	   name: '错误率',
+	   	data: [0.9,0.8,0.7,0.6,0.5]
+
         }
-   ];     
-      
+   ];    
+   //取出后端返回数据给知识点错误率图表赋值
+   var xAxisData = [];
+	<c:forEach items="${vQuestionKeywordList}" var="vQuestion">
+	xAxisData.push("${vQuestion.keyword}"); 
+	</c:forEach>
+	//有值才赋值，没值就展现初始值
+	if(xAxisData.length > 1){
+		xAxis['categories'] = xAxisData;
+	}
+   var seriesData = [];
+  	<c:forEach items="${vQuestionKeywordList}" var="vQuestion">
+  		//此处将字符串转化为float类型，否则图画不出来
+		seriesData.push(parseFloat("${vQuestion.wrong}")); 
+	</c:forEach> 
+	//有值才赋值，没值就展现初始值
+	if(seriesData.length > 1){
+		series[0]['data'] = seriesData;	
+	}
+	
    var json = {};   
    json.chart = chart; 
    json.title = title;    

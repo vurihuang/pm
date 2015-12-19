@@ -12,7 +12,7 @@ div.select-main {
 	font-size: 1.7em;
 	height: 40px;
 	position: relative;
-	width: 200px;
+	width: 160px;
 	
 	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
     -moz-user-select: none; /* mozilla browsers */
@@ -83,7 +83,7 @@ div.select-block {
     line-height: 20px;
     position: absolute;
     top: 40px;
-    width: 200px;
+    width: 160px;
 }
 
 ul.select-list {

@@ -65,7 +65,7 @@ public class TeacherTestDao {
 	 * 查询某个老师教的这些学生限定某个年级里的某个科目的学生ID
 	 * @param teacherId
 	 * @param courseName
-	 * @param subjuect
+	 * @param subjuect  //年级
 	 * @return
 	 */
 	public List<VTeaacherStudent> searchStuId(int teacherId,String courseName,String subjuect) {

@@ -83,13 +83,13 @@
 					<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 试卷分析<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="p-chinese-s.jsp" target="main">语文</a>
+								<a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=语文'/>" target="main">语文</a>
                             </li>
 							<li>
-                                <a href="p-chinese-s.jsp" target="main">数学</a>
+                                <a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=数学'/>" target="main">数学</a>
                             </li>
                             <li>
-                                <a href="p-chinese-s.jsp" target="main">英语</a>
+                                <a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=英语'/>" target="main">英语</a>
                             </li>
                         </ul>
                 </li>                                                

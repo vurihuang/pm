@@ -7,22 +7,31 @@ package edu.fjnu.domain;
  *
  */
 public class VQuestion {
-	private int fk_question_ID;// 主键ID
-	private String answer;// 答案
-	private String choiceA;// 选项A
-	private String choiceB;// 选项B
-	private String choiceC;// 选项C
-	private String choiceD;// 选项D
-	private String choiceE;// 选项E
-	private int difficultyLevel;// 难度
-	private String keyword;// 关键词
-	private int num;// 做过次数
-	private int successNum;// 做对的次数
-	private String subject;// 题干
-	private double wrong; // 知识点错误率
-	private String stustatus; // 学生状态
-	private double rate; // 学生题目错误率
 
+	private int fk_question_ID;//主键ID
+	private String sequence;//题号
+	private String answer;//答案
+	private String choiceA;//选项A
+	private String choiceB;//选项B
+	private String choiceC;//选项C
+	private String choiceD;//选项D
+	private String choiceE;//选项E
+	private int difficultyLevel;//难度
+	private String keyword;//关键词
+	private int num;//做过次数
+	private int successNum;//做对的次数
+	private String subject;//题干
+	private double wrong;  //知识点错误率
+	private String stustatus; //学生状态
+	private double rate;  //学生题目错误率
+
+	
+	public String getSequence() {
+		return sequence;
+	}
+	public void setSequence(String sequence) {
+		this.sequence = sequence;
+	}
 	public String getAnswer() {
 		return answer;
 	}
@@ -145,11 +154,17 @@ public class VQuestion {
 
 	@Override
 	public String toString() {
-		return "VQuestion [fk_question_ID=" + fk_question_ID + ", answer=" + answer + ", choiceA=" + choiceA
-				+ ", choiceB=" + choiceB + ", choiceC=" + choiceC + ", choiceD=" + choiceD + ", choiceE=" + choiceE
-				+ ", difficultyLevel=" + difficultyLevel + ", keyword=" + keyword + ", num=" + num + ", successNum="
-				+ successNum + ", subject=" + subject + ", wrong=" + wrong + ", stustatus=" + stustatus + ", rate="
-				+ rate + "]";
+
+		return "VQuestion [fk_question_ID=" + fk_question_ID + ", sequence="
+				+ sequence + ", answer=" + answer + ", choiceA=" + choiceA
+				+ ", choiceB=" + choiceB + ", choiceC=" + choiceC
+				+ ", choiceD=" + choiceD + ", choiceE=" + choiceE
+				+ ", difficultyLevel=" + difficultyLevel + ", keyword="
+				+ keyword + ", num=" + num + ", successNum=" + successNum
+				+ ", subject=" + subject + ", wrong=" + wrong + ", stustatus="
+				+ stustatus + ", rate=" + rate + "]";
+
 	}
 
+	
 }

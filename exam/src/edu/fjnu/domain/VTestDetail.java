@@ -12,8 +12,17 @@ public class VTestDetail {
 	private double score;// 分数
 	private int sequence;// 顺序
 	private String stuAnswer;// 学生答案
-	private double realScore;//学生试卷得分
-	
+	private double realScore;// 学生试卷得分
+	private Long question_fk_question_id;// 试卷的题目ID
+
+	public Long getQuestion_fk_question_id() {
+		return question_fk_question_id;
+	}
+
+	public void setQuestion_fk_question_id(Long question_fk_question_id) {
+		this.question_fk_question_id = question_fk_question_id;
+	}
+
 	public double getRealScore() {
 		return realScore;
 	}
@@ -65,7 +74,8 @@ public class VTestDetail {
 	@Override
 	public String toString() {
 		return "VTestDetail [pk_test_ID=" + pk_test_ID + ", answer=" + answer + ", score=" + score + ", sequence="
-				+ sequence + ", stuAnswer=" + stuAnswer + ", realScore=" + realScore + "]";
+				+ sequence + ", stuAnswer=" + stuAnswer + ", realScore=" + realScore + ", question_fk_question_id="
+				+ question_fk_question_id + "]";
 	}
 
 }

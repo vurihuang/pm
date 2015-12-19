@@ -10,6 +10,7 @@ import org.junit.Test;
 import edu.fjnu.dao.QuestionDao;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestDetail;
+import edu.fjnu.domain.VTestMain;
 import edu.fjnu.service.PaperService;
 
 public class TestVQuestion {
@@ -46,7 +47,8 @@ public class TestVQuestion {
 	}
 	@Test
 	public void getStdDevisionById() throws SQLException {
-		List<VTestDetail> list = questionDao.getStdDeviation();
+		Long questionID = 2L;
+		List<VTestDetail> list = questionDao.getStdDeviation(questionID);
 		double length = list.size();
 		double sum = 0;
 		double cnt = 0;
@@ -66,6 +68,29 @@ public class TestVQuestion {
 	
 	@Test
 	public void getStdDevision() throws SQLException {
-		System.out.println(pservice.getStdDevisionById());
+		System.out.println(pservice.getStdDevisionById((long) 2));
+	}
+	
+	@Test
+	/**
+	 * 根据试卷ID得信度
+	 * @throws SQLException
+	 */
+	public void getPaperStd() throws SQLException {
+		PaperService pservice = new PaperService();
+		
+		VTestMain testmain = new VTestMain();
+		testmain.setPk_test_main_ID(2);
+		System.out.println(pservice.getStdByTestId(testmain));
+	}
+	
+	@Test
+	public void getAllTesIdtList() throws SQLException {
+		List<VTestMain> list = questionDao.getAllTestId();
+		VTestMain testmain = new VTestMain();
+		for (int i=0; i<list.size(); i++){
+			testmain.setPk_test_main_ID(list.get(i).getPk_test_main_ID());
+			System.out.print(pservice.getStdByTestId(testmain) + ",");;
+		}
 	}
 }
