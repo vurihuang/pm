@@ -3,9 +3,11 @@
  */
 package edu.fjnu.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fjnu.dao.QuestionDao;
 import edu.fjnu.dao.StudentTestDao;
 import edu.fjnu.dao.TeacherTestDao;
 import edu.fjnu.domain.VQuestion;
@@ -21,6 +23,7 @@ import edu.fjnu.domain.VTestMain;
 public class TeacherTestService {
 	private StudentTestDao studentTestDao=new StudentTestDao();
 	private TeacherTestDao teacherTestDao= new TeacherTestDao();
+	private QuestionDao questionDao = new QuestionDao();
 	
 	/**
 	 * 通过教师id得到年级列表
@@ -98,12 +101,12 @@ public class TeacherTestService {
 		return studentTestDao.searchQuestionList(testMainId);
 	}
 	
-
-
-	
-	
-	
-	
-	
-
+	/**
+	 * 根据指定ID得到试卷难度
+	 * @return
+	 * @throws SQLException
+	 */
+	public VQuestion getHardRateById(int testID) throws SQLException{
+		return questionDao.getHard(testID);
+	}
 }

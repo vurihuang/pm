@@ -163,8 +163,8 @@
 						<i class="glyphicon glyphicon-edit p pp"></i>
                     </div>
 					<div class="col-xs-9 text-right">
-						<div class="huge p">难度：<p>0.65</p></div>
-						<div class="p">难度中等</div>
+						<div class="huge p">难度：<p>${hardrate}</p></div>
+						<div class="p">难度较难</div>
 					</div>
 				</div>
 				<div class="div vali">
@@ -172,8 +172,8 @@
 						<i class="glyphicon glyphicon-tags p pp"></i>
                     </div>
 					<div class="col-xs-9 text-right">
-						<div class="huge p">效度：<p>0.65</p></div>
-						<div class="p">试卷质量高</div>
+						<div class="huge p">信度：<p>0</p></div>
+						<div class="p">未匹配合适试卷</div>
 					</div>			
 				</div>
 				<div class="div reli">
@@ -181,8 +181,8 @@
 						<i class="glyphicon glyphicon-eye-open p pp"></i>
                     </div>
 					<div class="col-xs-9 text-right">
-						<div class="huge p">信度：<p>0.65</p></div>
-						<div class="p">试卷可靠程度一般</div>
+						<div class="huge p">效度：<p>${believerate}</p></div>
+						<div class="p">真实反映学生水平</div>
 					</div>			
 				</div>
 				<div class="div dist">
@@ -190,8 +190,8 @@
 						<i class="glyphicon glyphicon-send p pp"></i>
                     </div>
 					<div class="col-xs-9 text-right">
-						<div class="huge p">区分：<p>0.65</p></div>
-						<div class="p">区分程度优秀</div>
+						<div class="huge p">区分：<p>0</p></div>
+						<div class="p">未匹配合适试卷</div>
 					</div>			
 				</div>
 			</div>

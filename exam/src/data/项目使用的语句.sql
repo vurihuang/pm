@@ -1,3 +1,54 @@
+-- 根据学生ID查这个学生在本年级本科目的平均分
+select t_testmain.pk_test_main_id,avg(t_testmain.realScore)as avescore 
+from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member,t_testmain 
+where t_course_t_member.courses_courseId=t_course.courseId
+and t_member_t_member.students_memberId=t_course_t_member.members_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and t_testmain.student_memberId=t_member_t_member.students_memberId
+ and t_member_t_member.students_memberId="1048"
+and t_scope.name="初一（下）"
+and t_testmain.`subject`="语文"
+group by t_testmain.pk_test_main_id
+
+-- 根据指定试卷题目ID得到学生这个范围的平均成绩
+select t_member_t_member.students_memberId,avg(t_testmain.realScore) as realscore
+from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member,t_testmain t_testmain
+where t_course_t_member.courses_courseId=t_course.courseId
+and t_member_t_member.students_memberId=t_course_t_member.members_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and  t_member_t_member.students_memberId=t_testmain.student_memberId
+and t_member_t_member.students_memberId in (select DISTINCT t_testmain.student_memberId from t_testmain,t_test_detail
+ where  t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id="02"
+and t_test_detail.stuAnswer !="" )
+and t_scope.name="初二（上）"
+and t_testmain.`subject`="语文"
+and t_testmain.realScore!="0"
+GROUP BY t_member_t_member.students_memberId
+
+-- 指定学生ID求这个学生这个范围的平均成绩
+select  avg(t_testmain.realScore)as avescore 
+from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member,t_testmain 
+where t_course_t_member.courses_courseId=t_course.courseId
+and t_member_t_member.students_memberId=t_course_t_member.members_memberId
+and t_coursetype.courseTypeId=t_course.courseTypeID
+and t_coursetype.grade_pk_scope_id=t_scope.pk_scope_id
+and t_testmain.student_memberId=t_member_t_member.students_memberId
+ and t_member_t_member.students_memberId="1048"
+and t_scope.name="初一（下）"
+and t_testmain.`subject`="语文"
+and t_testmain.realScore!="0"
+
+-- 指定题目ID得到所有做过这道题的学生情况
+select  t_testmain.student_memberId,t_test_detail.answer,t_test_detail.stuAnswer,
+case when t_test_detail.stuanswer != t_test_detail.answer  then t_test_detail.score="0" else t_test_detail.score end AS realscore 
+from t_test_detail,t_testmain 
+where  t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_test_detail.question_fk_question_id="21394"
+and t_test_detail.stuAnswer !=""
+ORDER BY student_memberId 
 -- 查询所有过滤过的试卷ID
 select t_testmain.pk_test_main_id
 from t_question,t_testmain,t_test_detail

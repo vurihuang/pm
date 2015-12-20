@@ -14,6 +14,15 @@ public class VTestDetail {
 	private String stuAnswer;// 学生答案
 	private double realScore;// 学生试卷得分
 	private Long question_fk_question_id;// 试卷的题目ID
+	private double avgscore;// 范围历次平均分
+
+	public double getAvgscore() {
+		return avgscore;
+	}
+
+	public void setAvgscore(double avgscore) {
+		this.avgscore = avgscore;
+	}
 
 	public Long getQuestion_fk_question_id() {
 		return question_fk_question_id;
@@ -75,7 +84,7 @@ public class VTestDetail {
 	public String toString() {
 		return "VTestDetail [pk_test_ID=" + pk_test_ID + ", answer=" + answer + ", score=" + score + ", sequence="
 				+ sequence + ", stuAnswer=" + stuAnswer + ", realScore=" + realScore + ", question_fk_question_id="
-				+ question_fk_question_id + "]";
+				+ question_fk_question_id + ", avgscore=" + avgscore + "]";
 	}
 
 }

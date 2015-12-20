@@ -27,8 +27,8 @@ public class Rtool
 			
 			rconn.assign("x1", arr1);
 			rconn.assign("x2", arr2);
-			rconn.eval("png('/test221.png',width = 2048, height = 2048)");
-			rconn.eval("source('/testRScript.R')");
+			rconn.eval("png('/Users/vengeance/Desktop/test221.png',width = 2048, height = 2048)");
+			rconn.eval("source('/Users/vengeance/Desktop/testRScript.R')");
 			rconn.eval("DoubleArrayScatterPlot(x1,x2)");
 			rconn.eval("dev.off()");
 		} catch (RserveException e) {

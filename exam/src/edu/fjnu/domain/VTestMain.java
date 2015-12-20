@@ -11,6 +11,24 @@ public class VTestMain {
 	private String scope;// 测试范围名
 	private String subject;// 学科
 	private int student_memberId;// 学生ID
+	private VTestDetail testdetail;// 测试详细表
+	private double realscore;// 试卷得分
+	
+	public double getRealscore() {
+		return realscore;
+	}
+
+	public void setRealscore(double realscore) {
+		this.realscore = realscore;
+	}
+
+	public VTestDetail getTestdetail() {
+		return testdetail;
+	}
+
+	public void setTestdetail(VTestDetail testdetail) {
+		this.testdetail = testdetail;
+	}
 
 	public int getStudent_memberId() {
 		return student_memberId;
@@ -47,7 +65,8 @@ public class VTestMain {
 	@Override
 	public String toString() {
 		return "VTestMain [pk_test_main_ID=" + pk_test_main_ID + ", scope=" + scope + ", subject=" + subject
-				+ ", student_memberId=" + student_memberId + "]";
+				+ ", student_memberId=" + student_memberId + ", testdetail=" + testdetail + ", realscore=" + realscore
+				+ "]";
 	}
 
 }

@@ -1,6 +1,7 @@
 package edu.fjnu.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,12 +13,14 @@ import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTestMain;
+import edu.fjnu.service.PaperService;
 import edu.fjnu.service.TeacherTestService;
 @WebServlet("/TeacherTestServlet")
 public class TeacherTestServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 	private TeacherTestService tts = new TeacherTestService();
+	private PaperService pservice = new PaperService();
 	
 	/**
 	 * 加载教师端试卷分析模块所有信息（由于一切从选择年级下拉框开始，所以函数名叫加载年级）
@@ -26,9 +29,10 @@ public class TeacherTestServlet extends BaseServlet {
 	 * @return
 	 * @throws ServletException
 	 * @throws IOException
+	 * @throws SQLException 
 	 */
 	public String loadGrade(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		
 		String teacherID = (String)request.getSession().getAttribute("userID");
 		//通过教师ID得到他所有的年级列表
@@ -56,8 +60,19 @@ public class TeacherTestServlet extends BaseServlet {
 			request.setAttribute("vQuestionList", vQuestionList);
 			//通过试卷ID得到知识点和相应的错误率list并设置回去
 			List<VQuestion> vQuestionKeywordList = tts.getWrongRate(Integer.parseInt(selectTest));
+//			java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+//			String hardString = "";
+			double hardrate = (tts.getHardRateById(Integer.parseInt(selectTest)).getWrong())/24;
+			double believerate = 1-(pservice.getStdByTestId(Integer.parseInt(selectTest)))/60;
+//			if(hardrate > 0.7){
+//				hardString = "较难";
+//			}
+//			request.setAttribute("hardString", hardString);
 			request.setAttribute("vQuestionKeywordList", vQuestionKeywordList);
+			request.setAttribute("hardrate", hardrate);
+			request.setAttribute("believerate", believerate);
 		}
+		
 		//将年级List设置回去供下拉框显示
 		request.setAttribute("gradeList", gradeList);
 		//将年级下拉框中选中得年级设置回去，供下拉框显示选中哪个

@@ -82,10 +82,15 @@ public class PaperService {
 		return Math.sqrt(cnt/length);
 	}
 	
-	public double getStdByTestId(VTestMain testmain){
+	/**
+	 * 根据试卷ID得到信度
+	 * @param testID
+	 * @return
+	 */
+	public double getStdByTestId(int testID){
 		double cnt = 0;
 		try {
-			List<VTestDetail> list = new ArrayList(questionDao.getQstListById(testmain));
+			List<VTestDetail> list = new ArrayList<VTestDetail>(questionDao.getQstListById(testID));
 			
 			for(int i=0; i<list.size(); i++){
 				cnt += getStdDevisionById(list.get(i).getQuestion_fk_question_id());
