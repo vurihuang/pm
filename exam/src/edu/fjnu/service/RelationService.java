@@ -41,17 +41,75 @@ public class RelationService {
 	}
 	
 	/**
-	 * 返回一个二维数组，每个一维数组的元素为source,target,value
+	 * 返回一个二维数组，存放知识点关联的关联值value
 	 * @return
 	 */
-//	public int[][] stvArray(){
-//		int len = keywordArr.length;
-//		int[][] value = new int[len][len];
-//		
-//	}
-//	public void print(){
-//		System.out.println(" print!!!" + keywordArr.length);
-//	}
+	public void stvArray(){
+		int cnt = 0;
+		for(int i=0; i<keywordList.size(); i++){
+			if(keywordList.get(i).size() != 4)
+				break;
+			else{
+				cnt++;
+			}
+		}
+		
+		String[][] stvArray = new String[cnt][keywordList.get(0).size()];
+		
+		System.out.println(keywordList.size());
+		
+		List<List<String>> stvList = new ArrayList<List<String>>();
+		for(int i=0; i<keywordList.size(); i++){
+			if(keywordList.get(i).size() >4){
+				break;
+			}else{
+					List<String> temp = new ArrayList<String>();
+					temp.add(keywordList.get(i).get(0));
+					temp.add(keywordList.get(i).get(1));
+					temp.add(keywordList.get(i).get(3));
+					stvList.add(temp);
+			}
+		}
+		
+		//把list转换成array
+		for(int i=0; i<stvList.size(); i++){
+			if(stvList.get(i).size() <5){
+				String[] tempArr = stvList.get(i).toArray(new String[stvList.get(i).size()]);
+				stvArray[i] = tempArr;
+			}
+		}
+		
+		int[][] value = new int[stvList.size()][stvList.get(0).size()];//存放source,target,value
+		for(int i=0; i<value.length; i++){
+			for(int j=0; j<value[i].length; j++){
+				value[i][j] = 0;
+			}
+		}
+		//测试打印stvArray
+		for(int i=0; i<stvArray.length; i++){
+			for(int j=0; j<stvArray[i].length; j++){
+				System.out.print(stvArray[i][j]);
+			}
+			System.out.println();
+		}
+		for(int i=0; i<keywordArr.length; i++){
+			for(int j=0; j<stvArray.length; j++){
+				for(int k=0; k<2; k++){
+					if(stvArray[j][k].equals(keywordArr[i])){
+						value[j][k] = i;
+					}
+				}
+			}
+		}
+
+		//测试打印value
+		for(int i=0; i<value.length; i++){
+			for(int j=0; j<value[i].length; j++){
+				System.out.print(value[i][j]);
+			}
+			System.out.println();
+		}
+	}
 	
 	/**
 	 * 数组元素去重

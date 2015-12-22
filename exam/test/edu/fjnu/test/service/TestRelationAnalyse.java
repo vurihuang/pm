@@ -1,6 +1,6 @@
 package edu.fjnu.test.service;
 
-import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,7 +9,6 @@ import edu.fjnu.dao.QuestionDao;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestMain;
 import edu.fjnu.service.RelationService;
-import edu.fjnu.util.RelationAnalyse;
 
 public class TestRelationAnalyse {
 	QuestionDao qDao = new QuestionDao();
@@ -49,7 +48,8 @@ public class TestRelationAnalyse {
 //		rs.doRelationByScope("语文", "初一%");
 		String[] s = rs.keywordArray("语文", "初一%");
 //		System.out.println(s.toString());
-		System.out.println(s.length);
+//		System.out.println(s.length);
+		rs.stvArray();
 //		rs.print();
 //		for(int i=0; i<s.length; i++){
 //			System.out.println(s[i]);
