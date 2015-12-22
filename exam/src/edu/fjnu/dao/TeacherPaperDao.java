@@ -18,7 +18,7 @@ import edu.fjnu.domain.*;
  * @author Administrator
  *
  */
-public class TeacherTestDao {
+public class TeacherPaperDao {
 	private QueryRunner qr = new TxQueryRunner();//执行数据库操作并存储返回的结果
 	
 	

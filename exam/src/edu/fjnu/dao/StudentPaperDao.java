@@ -20,7 +20,7 @@ import edu.fjnu.domain.VTestMain;
  * @author Administrator
  *
  */
-public class StudentTestDao {
+public class StudentPaperDao {
 	private QueryRunner qr = new TxQueryRunner();//执行数据库操作并存储返回的结果
 	/**
 	 * 传入学生名字，年级，科目查询该学生的所有试卷信息list

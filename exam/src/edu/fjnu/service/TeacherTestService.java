@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.fjnu.dao.QuestionDao;
-import edu.fjnu.dao.StudentTestDao;
-import edu.fjnu.dao.TeacherTestDao;
+import edu.fjnu.dao.StudentPaperDao;
+import edu.fjnu.dao.TeacherPaperDao;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTeaacherStudent;
@@ -21,8 +21,8 @@ import edu.fjnu.domain.VTestMain;
  *
  */
 public class TeacherTestService {
-	private StudentTestDao studentTestDao=new StudentTestDao();
-	private TeacherTestDao teacherTestDao= new TeacherTestDao();
+	private StudentPaperDao studentTestDao=new StudentPaperDao();
+	private TeacherPaperDao teacherTestDao= new TeacherPaperDao();
 	private QuestionDao questionDao = new QuestionDao();
 	
 	/**

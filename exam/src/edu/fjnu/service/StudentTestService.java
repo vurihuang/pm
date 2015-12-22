@@ -8,7 +8,7 @@ import java.util.List;
 import com.mchange.v1.xml.StdErrErrorHandler;
 
 import edu.fjnu.dao.StudentDao;
-import edu.fjnu.dao.StudentTestDao;
+import edu.fjnu.dao.StudentPaperDao;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTestMain;
@@ -20,7 +20,7 @@ import edu.fjnu.domain.VTestMain;
  */
 public class StudentTestService {
 
-	private StudentTestDao std=new StudentTestDao();
+	private StudentPaperDao std=new StudentPaperDao();
 	private StudentDao studentDao=new StudentDao();
 	/**
 	 * 根据 学科 姓名 年级 得到 学生考卷的list

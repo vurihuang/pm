@@ -1,3 +1,39 @@
+--  ----------------------------下面是关联分析模块-------------------------------------------------------
+-- 根据试卷ID获取这份试卷所有知识点
+select t_test_detail.question_fk_question_id from t_testmain,t_test_detail
+where t_testmain.pk_test_main_id=t_test_detail.testMain_pk_test_main_id
+and t_testmain.pk_test_main_id="02"
+ORDER BY t_test_detail.sequence ASC
+-- 指定课程、年级查询这个范围内的所有知识点
+select distinct  keyword
+from t_question 
+where fk_question_id in 
+    (select question_fk_question_id from t_test_detail           
+where testmain_pk_test_main_id in
+	(select pk_test_main_id from t_testmain  
+         where  subject like '语文'and grandient_grandientId in
+(select DISTINCT t_grandient.grandientId as `grandientId`
+from t_grandient,t_grandient_t_scope,t_scope as `chapter`,t_scope as `unit`,t_scope as `grade`
+where  t_grandient.grandientId=t_grandient_t_scope.t_grandient_grandientId
+and t_grandient_t_scope.scopes_pk_scope_id=chapter.pk_scope_id
+and chapter.fk_parent_id=unit.pk_scope_id
+and unit.fk_parent_id=grade.pk_scope_id
+and grade.name like "初一%"
+)))
+
+-- 指定课程、年级查询这个范围内的所有试卷ID
+select distinct pk_test_main_id  from  t_testmain where 
+subject like '语文' 
+and  grandient_grandientId in(select DISTINCT t_grandient.grandientId as `grandientId`
+from t_grandient,t_grandient_t_scope,t_scope as `chapter`,t_scope as `unit`,t_scope as `grade`
+where  t_grandient.grandientId=t_grandient_t_scope.t_grandient_grandientId
+and t_grandient_t_scope.scopes_pk_scope_id=chapter.pk_scope_id
+and chapter.fk_parent_id=unit.pk_scope_id
+and unit.fk_parent_id=grade.pk_scope_id
+and grade.name like "初二(上)%"
+)
+
+--  ----------------------------下面是试卷分析模块-------------------------------------------------------
 -- 根据学生ID查这个学生在本年级本科目的平均分
 select t_testmain.pk_test_main_id,avg(t_testmain.realScore)as avescore 
 from t_scope,t_course,t_coursetype ,t_member_t_member ,t_course_t_member,t_testmain 
