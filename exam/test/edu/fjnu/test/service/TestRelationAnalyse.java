@@ -82,4 +82,6 @@ public class TestRelationAnalyse {
 		String value = "0.9888";
 		System.out.println(value.substring(0, 4));
 	}
+	
+	
 }
