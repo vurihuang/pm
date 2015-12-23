@@ -1,5 +1,6 @@
 package edu.fjnu.test.service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +47,20 @@ public class TestRelationAnalyse {
 	public void testRa(){
 		RelationService rs = new RelationService();
 //		rs.doRelationByScope("语文", "初一%");
-		String[] s = rs.keywordArray("语文", "初一%");
+		String[] s = rs.keywordArray("语文", "三年级%");
 //		System.out.println(s.toString());
 //		System.out.println(s.length);
-		rs.stvArray();
+		Object[][] value = rs.stvArray();
+		if(value == null){
+			System.out.println("为空");
+		}else{
+			for(int i=0; i<value.length; i++){
+				for(int j=0; j<value[i].length; j++){
+					System.out.print(value[i][j]);
+				}
+				System.out.println();
+			}
+		}
 //		rs.print();
 //		for(int i=0; i<s.length; i++){
 //			System.out.println(s[i]);
@@ -64,5 +75,11 @@ public class TestRelationAnalyse {
 //		Constructor<?> constructor = RelationService.class.getDeclaredConstructor();
 //		System.out.println(constructor);
 
+	}
+	//测试
+	@Test
+	public void fun(){
+		String value = "0.9888";
+		System.out.println(value.substring(0, 4));
 	}
 }
