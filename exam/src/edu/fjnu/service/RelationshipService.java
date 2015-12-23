@@ -59,5 +59,12 @@ public class RelationshipService
 		
 		//关联分析后得到的关联数组，格式为[source,target,value]，前端绘制线的数组
 		Object[][] stvArr = rs.stvArray();
+		
+		//判断结果是否为空
+		if(stvArr == null){
+			//如果为空，没有连线
+		}else{
+			//把它们连起来
+		}
 	}
 }
