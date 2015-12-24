@@ -47,21 +47,37 @@ public class TestRelationAnalyse {
 	@Test
 	public void testRa() {
 		RelationService rs = new RelationService();
-		//
-		String[] s = rs.keywordArray("语文", "三年级%");
-		Object[][] value = rs.stvArray();
-
-		if (value == null) {
-			System.out.println("为空");
-		} else {
-			for (int i = 0; i < value.length; i++) {
-				for (int j = 0; j < value[i].length; j++) {
-					System.out.print(value[i][j]);
-				}
-				System.out.println();
+//		//
+//		String[] s = rs.keywordArray("语文", "三年级%");
+//		Object[][] value = rs.stvArray();
+//
+//		if (value == null) {
+//			System.out.println("为空");
+//		} else {
+//			for (int i = 0; i < value.length; i++) {
+//				for (int j = 0; j < value[i].length; j++) {
+//					System.out.print(value[i][j]);
+//				}
+//				System.out.println();[][]
+//			}
+//		}
+//		System.out.println(rs.getRelationListForRtool("语文", "三年级%"));
+		List<List<String>> temp = rs.getRelationListForRtool("语文", "三年%");
+		String[][] tempArr = rs.getRelationArray("语文", "三年%");
+//		System.out.println("temp");
+		for(int i=0; i<tempArr.length; i++){
+			for(int j=0; j<tempArr[i].length; j++){
+				System.out.print(tempArr[i][j]);
 			}
+			System.out.println();
 		}
-		System.out.println(rs.getRelationListForRtool("语文", "三年级%"));
+//		System.out.println(temp);
+//		for(int i=0; i<temp.size(); i++){
+//			for(int j=0; j<temp.get(i).size(); j++){
+//				System.out.print(temp.get(i).get(j));
+//			}
+//		}
+//		System.out.println(tempArr);
 		// rs.print();
 		// for(int i=0; i<s.length; i++){
 		// System.out.println(s[i]);
@@ -83,10 +99,10 @@ public class TestRelationAnalyse {
 	// 测试
 	@Test
 	public void fun() {
-//		String value = "0.9888";
-//		System.out.println(value.substring(0, 4));
+		// String value = "0.9888";
+		// System.out.println(value.substring(0, 4));
 		String string = "语文";
-		string  += "%";
+		string += "%";
 		System.out.println(string);
 	}
 

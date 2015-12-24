@@ -79,6 +79,6 @@ public class CheckLoginServlet extends BaseServlet {
 	 */
 	public String quitLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		return "f:/index/jsp/login.jsp";
+		return "f:/index.jsp";
 	}
 }

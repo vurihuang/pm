@@ -52,8 +52,6 @@ public class RelationService {
 		return tempKeywordList;
 	}
 
-	
-
 	/**
 	 * 获得关联分析后的有关联的所有知识点
 	 * 
@@ -153,7 +151,23 @@ public class RelationService {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	/**
+	 * 把关联分析得出的一级项集结果集list转换成String数组
+	 * @param courseName
+	 * @param year
+	 * @return String数组
+	 */
+	public String[][] getRelationArray(String courseName, String year){
+		List<List<String>> relationList = getRelationListForRtool(courseName, year);
+		String[][] relationArr = new String[relationList.size()][relationList.get(0).size()];
+		
+		for(int i=0; i<relationList.size(); i++){
+				String[] tempArr = relationList.get(i).toArray(new String[relationList.get(0).size()]);
+				relationArr[i] = tempArr;
+		}
+		
+		return relationArr;
+	}
 	/**
 	 * 得到没有关联分析过的知识点列表
 	 * 
@@ -161,7 +175,7 @@ public class RelationService {
 	 * @param year
 	 * @return 未关联的知识点列表
 	 */
-	private List<List<String>> getRelationList(String courseName, String year) {
+	public List<List<String>> getRelationList(String courseName, String year) {
 		List<VTestMain> paperList = getPaperIdByYear(courseName, year);// 试卷ID结果集
 		List<List<String>> waitRelationList = new ArrayList<List<String>>();// 知识点结果集
 
