@@ -182,7 +182,7 @@
 				</div>
 				
 			</div>
-			<%-- <div class="sec">
+			 <div class="sec">
 				<!-- 下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select">
@@ -191,7 +191,7 @@
 						</c:forEach>
 					</select>
 				</form>
-			</div>   --%> 
+			</div>   
 
 	<script src="<c:url value='/index/js/Chart.js'/>"></script>
 	<script>

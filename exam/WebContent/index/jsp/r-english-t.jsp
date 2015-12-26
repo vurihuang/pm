@@ -291,11 +291,7 @@ img {
 			value : 200
 		} ];
 		
-		var keyword = [];
-		<c:forEach items="${keywordList}" var="keyword">
-		keyword.push("${keywordList.keyword}");
-		</c:forEach>
-		nodes['name'] = keyword;
+
 
 		var width = 1000;
 		var height = 680;

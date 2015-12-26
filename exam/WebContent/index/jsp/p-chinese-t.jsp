@@ -48,6 +48,129 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+	<!-- jQuery -->
+    <script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
+	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
+	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
+	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+	<script src="<c:url value='/index/js/highcharts.js'/> "></script>
+	<style>
+		#page-wrapper{
+			//border:1px solid #e7e7e7;
+		}
+		.diff{
+			background-color:#337ab7;
+			width:240px;
+			height:150px;
+			border-radius:10px;
+			margin-left:50px;
+			margin-top:50px;
+			margin-bottom:50px;
+			opacity:0.5;
+			float:left;
+		}
+		.vali{
+			background-color:#5cb85c;
+			width:240px;
+			height:150px;
+			border-radius:10px;
+			margin-left:10px;
+			margin-top:50px;
+			margin-bottom:50px;
+			opacity:0.5;
+			float:left;
+		}
+		.reli{
+			background-color:#f0ad4e;
+			width:240px;
+			height:150px;
+			border-radius:10px;
+			margin-left:10px;
+			margin-top:50px;
+			margin-bottom:50px;
+			opacity:0.5;
+			float:left;
+		}
+		.dist{
+			background-color:#d9534f;
+			width:240px;
+			height:150px;
+			border-radius:10px;
+			margin-left:10px;
+			margin-top:50px;
+			margin-bottom:50px;
+			opacity:0.5;
+			float:left;
+		}
+		.div:hover{
+			opacity:1;
+		}
+		.p{
+			color:white;
+		}
+		.pp{
+			margin-top:30px;
+			font-size:80px;
+		}
+		.title{
+			font-size:30px;
+			color:black;
+		}
+		tr:hover{
+			background-color:#eeeeee;
+		}
+		.table{
+			word-break:break-all; 
+			word-wrap:break-all;
+		}
+		td{
+			text-align:center;
+		}
+		.tdp{
+			text-align:left;
+		}
+		.td3{
+			font-size:25px;
+		}
+		.info{
+			width:1130px;
+			margin-left:30px;
+			margin-top:40px;
+			margin-bottom:250px;
+		}
+		.divp{
+			text-align:left;
+			font-size:20px;
+			margin-bottom:10px;
+		}
+		.sec1{
+			position:absolute;
+			left:770px;
+			top:260px;
+		}
+		.sec2{
+			position:absolute;
+			left:950px;
+			top:260px;
+		}
+		.dropdown-menu{
+			width:730px;
+			//text-align:center;
+			
+		}
+		.d{
+			word-break:break-all; 
+			word-wrap:break-all;
+		}
+		.uli:hover{
+			background-color:#eeeeee
+		}
+		#container{
+			width: 750px; 
+		}
+	</style>
+	</style>
 <!-- jQuery -->
 <script
 	src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
@@ -240,6 +363,38 @@ td {
 				</div>
 				<div class="p">真实反映学生水平</div>
 			</div>
+			<div id="container"></div>
+			<div class="info">
+				<!-- 试卷信息 -->
+				<table class="table table-bordered">
+					<caption class="text-center title">错题分析</caption>
+					<thead>
+						<tr>
+							<th class="text-center">编号</th>
+							<th width="750px" class="text-center">试卷题目</th>
+							<th class="text-center">做题人数</th>
+							<th class="text-center">正确人数</th>
+							<th class="text-center">错误率</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${vQuestionList}" var="vQuestion">
+							<tr>
+								<td class="td3">${vQuestion.sequence}</td>
+								<td class="tdp">
+									${vQuestion.subject}</br></br>
+									(A): ${vQuestion.choiceA}</br>
+									(B): ${vQuestion.choiceB}</br>
+									(C): ${vQuestion.choiceC}</br>
+									(D): ${vQuestion.choiceD}</br>
+								</td>
+								<td class="td3">${vQuestion.num}</td>
+								<td class="td3">${vQuestion.successNum}</td>
+								<td class="td3">${vQuestion.rate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 		</div>
 		<div class="div dist">
 			<div class="col-xs-3">

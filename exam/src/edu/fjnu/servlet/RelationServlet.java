@@ -44,7 +44,7 @@ public class RelationServlet extends BaseServlet {
 		String course = (String) request.getParameter("course");//获得选择的课程
 		List<String> gradeList = tts.getGradeList(Integer.parseInt(teacherID));//得到教师的学生列表
 		
-		courseName = request.getParameter("subject");
+		courseName = request.getParameter("course");
 		year = request.getParameter("grade");//得到下拉框选择的年级
 		year += "%";
 

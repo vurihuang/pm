@@ -175,37 +175,37 @@ img {
 	</div>
 	
 	<script>
-		var nodes = [ /* {
-			name : "文言文两则"
-		}, {
-			name : "顶碗少年"
-		}, {
-			name : "北京的春节"
-		}, {
-			name : "藏戏"
-		}, {
-			name : "匆匆"
-		}, {
-			name : "和田的维吾尔"
-		}, {
-			name : "十六年前的回忆"
-		}, {
-			name : "灯光"
-		}, {
-			name : "手指"
-		}, {
-			name : "为人民服务"
-		}, {
-			name : "桃花心木"
-		}, {
-			name : "凡卡"
-		}, {
-			name : "卖火柴的小女孩"
-		}, {
-			name : "一夜的工作"
-		}  */];
-		
-		var edges = [ /* {
+	var nodes = [  {
+	  			name : "文言文两则"
+	  		}, {
+	  			name : "顶碗少年"
+	  		}, {
+	  			name : "北京的春节"
+	  		}, {
+	  			name : "藏戏"
+	  		}, {
+	  			name : "匆匆"
+	  		}, {
+	  			name : "和田的维吾尔"
+	  		}, {
+	  			name : "十六年前的回忆"
+	  		}, {
+	  			name : "灯光"
+	  		}, {
+	  			name : "手指"
+	  		}, {
+	  			name : "为人民服务"
+	  		}, {
+	  			name : "桃花心木"
+	  		}, {
+	  			name : "凡卡"
+	  		}, {
+	  			name : "卖火柴的小女孩"
+	  		}, {
+	  			name : "一夜的工作"
+	  		}  ];
+
+		var edges = [ {
 			source : 0,
 			target : 1,
 			value : 100
@@ -289,29 +289,10 @@ img {
 			source : 11,
 			target : 7,
 			value : 200
-		} */ ];
-		/*  从后端获得知识点列表 */
+		} ];
 		
-		<c:forEach items="${keywordList}" var="keyword">
-			/* var jason = {name : "${keyword}"};
-			alert("keyword:" + jason);
-			nodes.push(jason); */
-			alert("key");
-		</c:forEach>
-		/* alert("nodes:" + nodes); */
-		
-		<c:forEach items="${d3arr}" var="d3">
-			/* var jason = {
-					source : "${d3[0]}",
-					target : "${d3[1]}",
-					value : "${d3[2]}"
-				}
-			edges.push(jason);
-			alert("jason: " + jason); */
-			alert("d3");
-		</c:forEach>
-		/* a */lert("edges:" + edges);
-		
+
+
 		var width = 1000;
 		var height = 680;
 

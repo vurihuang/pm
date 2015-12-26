@@ -9,6 +9,8 @@ public class VScope {
 	private int pk_scope_ID;//分类范围ID
 	private int level;//层次
 	private String name;//分类范围名称
+	private int keywordCount;//知识点次数（错误或正确）
+	
 	public int getPk_scope_ID() {
 		return pk_scope_ID;
 	}
@@ -28,9 +30,19 @@ public class VScope {
 		this.name = name;
 	}
 	
+	
+	public int getKeywordCount() {
+		return keywordCount;
+	}
+	public void setKeywordCount(int keywordCount) {
+		this.keywordCount = keywordCount;
+	}
 	@Override
 	public String toString() {
-		return "Scope [pk_scope_ID=" + pk_scope_ID + ", level=" + level + ", name=" + name + "]";
+		return "VScope [pk_scope_ID=" + pk_scope_ID + ", level=" + level
+				+ ", name=" + name + ", keywordCount=" + keywordCount + "]";
 	}
+	
+	
 	
 }
