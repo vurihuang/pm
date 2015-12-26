@@ -49,72 +49,86 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<!-- jQuery -->
-    <script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
-	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
-	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
-	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
-	<script src="<c:url value='/index/js/highcharts.js'/>"></script>
-	<style>
-		#page-wrapper{
-			//border:1px solid #e7e7e7;
-		}
-		.title{
-			font-size:30px;
-			color:black;
-		}
-		tr:hover{
-			background-color:#eeeeee;
-		}
-		.table{
-			word-break:break-all; 
-			word-wrap:break-all;
-		}
-		td{
-			text-align:center;
-		}
-		.tdp{
-			text-align:left;
-		}
-		.td3{
-			font-size:25px;
-		}
-		.info{
-			width:1130px;
-			margin-left:30px;
-			margin-bottom:100px;
-		}
-		.divp{
-			text-align:left;
-			font-size:20px;
-			margin-bottom:10px;
-		}
-		.sec1{
-			position:absolute;
-			left:770px;
-			top:40px;
-		}
-		.sec2{
-			position:absolute;
-			left:950px;
-			top:40px;
-		}
-		.dropdown-menu{
-			width:730px;
-			//text-align:center;
-			
-		}
-		.d{
-			word-break:break-all; 
-			word-wrap:break-all;
-		}
-		.uli:hover{
-			background-color:#eeeeee
-		}
-		#container{
-			width: 750px; 
-		}
-	</style>
+<!-- jQuery -->
+<script
+	src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
+<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
+<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+<script src="<c:url value='/index/js/highcharts.js'/>"></script>
+<style>
+#page-wrapper { //
+	border: 1px solid #e7e7e7;
+}
+
+.title {
+	font-size: 30px;
+	color: black;
+}
+
+tr:hover {
+	background-color: #eeeeee;
+}
+
+.table {
+	word-break: break-all;
+	word-wrap: break-all;
+}
+
+td {
+	text-align: center;
+}
+
+.tdp {
+	text-align: left;
+}
+
+.td3 {
+	font-size: 25px;
+}
+
+.info {
+	width: 1130px;
+	margin-left: 30px;
+	margin-bottom: 100px;
+}
+
+.divp {
+	text-align: left;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.sec1 {
+	position: absolute;
+	left: 770px;
+	top: 40px;
+}
+
+.sec2 {
+	position: absolute;
+	left: 950px;
+	top: 40px;
+}
+
+.dropdown-menu {
+	width: 730px; //
+	text-align: center;
+}
+
+.d {
+	word-break: break-all;
+	word-wrap: break-all;
+}
+
+.uli:hover {
+	background-color: #eeeeee
+}
+
+#container {
+	width: 750px;
+}
+</style>
 
 <!-- jQuery -->
 <script
@@ -192,51 +206,48 @@ td {
 </head>
 
 
-<body style="background-color:white">
-			<div id="container"></div>
-			<div class="info">
-				<!-- 试卷信息 -->
-				<table class="table table-bordered">
-					<caption class="text-center title">错题分析</caption>
-					<thead>
-						<tr>
-							<th class="text-center">编号</th>
-							<th width="750px" class="text-center">试卷题目</th>
-							<th class="text-center">做题人数</th>
-							<th class="text-center">正确人数</th>
-							<th class="text-center">错误率</th>
-							<th class="text-center">学生状态</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${vQuestionList}" var="vQuestion">
-							<tr>
-								<td class="td3">${vQuestion.sequence}</td>
-								<td class="tdp">
-									${vQuestion.subject}</br></br>
-									(A): ${vQuestion.choiceA}</br>
-									(B): ${vQuestion.choiceB}</br>
-									(C): ${vQuestion.choiceC}</br>
-									(D): ${vQuestion.choiceD}</br>
-								</td>
-								<td class="td3">${vQuestion.num}</td>
-								<td class="td3">${vQuestion.successNum}</td>
-								<td class="td3">${vQuestion.rate}</td>
-								<td class="td3">${vQuestion.stustatus}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			
-			<div class="sec1">
-				<div class="divp">选择年级</div>
-			<!-- 年级下拉选择框 -->
-				<form action="" method="get" class="form">
-					<select name="drop" class="ui-select" id="grade-select">
-						<c:forEach items="${vScopeList}" var="vScope">
-    							<option value="${vScope.name}"
-    								<c:if test="${vScope.name eq selectGrade}" >
+<body style="background-color: white">
+	<div id="container"></div>
+	<div class="info">
+		<!-- 试卷信息 -->
+		<table class="table table-bordered">
+			<caption class="text-center title">错题分析</caption>
+			<thead>
+				<tr>
+					<th class="text-center">编号</th>
+					<th width="750px" class="text-center">试卷题目</th>
+					<th class="text-center">做题人数</th>
+					<th class="text-center">正确人数</th>
+					<th class="text-center">错误率</th>
+					<th class="text-center">学生状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${vQuestionList}" var="vQuestion">
+					<tr>
+						<td class="td3">${vQuestion.sequence}</td>
+						<td class="tdp">${vQuestion.subject}</br>
+						</br> (A): ${vQuestion.choiceA}</br> (B): ${vQuestion.choiceB}</br> (C):
+							${vQuestion.choiceC}</br> (D): ${vQuestion.choiceD}</br>
+						</td>
+						<td class="td3">${vQuestion.num}</td>
+						<td class="td3">${vQuestion.successNum}</td>
+						<td class="td3">${vQuestion.rate}</td>
+						<td class="td3">${vQuestion.stustatus}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="sec1">
+		<div class="divp">选择年级</div>
+		<!-- 年级下拉选择框 -->
+		<form action="" method="get" class="form">
+			<select name="drop" class="ui-select" id="grade-select">
+				<c:forEach items="${vScopeList}" var="vScope">
+					<option value="${vScope.name}"
+						<c:if test="${vScope.name eq selectGrade}" >
 
 <body style="background-color: white">
 	<div id="container"></div>
@@ -283,7 +294,7 @@ td {
 						<c:if test="${vScope.name eq selectGrade}" >
 
   									selected='selected'
-  								</c:if>>
+  								</c:if>
 						${vScope.name}</option>
 				</c:forEach>
 			</select>

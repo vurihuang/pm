@@ -3,7 +3,11 @@
 	<!-- 默认配置，当使用ComboPooledDataSource无参构造器时，使用的就是这个配置 -->
 	<default-config>
 		<!-- 基本配置 -->
+<<<<<<< .mine
 		<property name="jdbcUrl">jdbc:mysql://localhost:3306/pmtest?characterEncoding=gb2312</property>
+=======
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/mydb1</property>
+>>>>>>> .r106
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 		<property name="user">root</property>
 		<property name="password">root</property>
