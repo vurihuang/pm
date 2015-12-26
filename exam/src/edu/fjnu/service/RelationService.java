@@ -31,7 +31,7 @@ public class RelationService {
 		List<List<String>> resultList = null;
 
 		resultList = ra.calRelation(getRelationList(courseName, year));// 存储关联分析过的结果集
-		System.out.println("RelationService:" + resultList);// TEST
+//		System.out.println("RelationService:" + resultList);// TEST
 
 		return resultList;
 	}
@@ -81,12 +81,12 @@ public class RelationService {
 		int cnt = 0;// 用以计算要返回的stvArray的大小
 
 		// 测试输出keywordList
-		System.out.println("知识点列表keywordList：");
-		for (int i = 0; i < keywordList.size(); i++) {
-			for (int j = 0; j < keywordList.get(i).size(); j++) {
-				System.out.print(keywordList.get(i).get(j));
-			}
-		}
+//		System.out.println("知识点列表keywordList：");
+//		for (int i = 0; i < keywordList.size(); i++) {
+//			for (int j = 0; j < keywordList.get(i).size(); j++) {
+//				System.out.print(keywordList.get(i).get(j));
+//			}
+//		}
 		// 得到A、B、sup、conf格式的一个二维数组
 		for (int i = 0; i < keywordList.size(); i++) {
 			if (keywordList.get(i).size() != 4)
@@ -184,7 +184,7 @@ public class RelationService {
 		for (int i = 0; i < paperList.size(); i++) {
 			waitRelationList.add(getQuestionObjListByPaperId(paperList.get(i)));// 根据试卷ID得到每一份试卷的知识点
 		}
-		System.out.println("getRelationList:" + waitRelationList);// TEST
+//		System.out.println("getRelationList:" + waitRelationList);// TEST
 
 		return waitRelationList;
 	}

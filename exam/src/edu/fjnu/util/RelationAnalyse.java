@@ -29,7 +29,7 @@ public class RelationAnalyse {
 	 */
 	private void getRecord(List<List<String>> targetList) {
 		record = new ArrayList<List<String>>(targetList);
-		System.out.println("原始数据：" + record);
+//		System.out.println("原始数据：" + record);
 	}
 
 	/**

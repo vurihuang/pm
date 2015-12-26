@@ -148,8 +148,7 @@ td {
 						</td>
 						<td>${vQuestion.num}</td>
 						<td>${vQuestion.successNum}</td>
-						<td>${vQuestion.rate * 100}%</td>
-						<!--  错误率扩大100倍-->
+						<td>${vQuestion.rate * 100}%</td><!--  错误率扩大100倍-->
 						<td>${vQuestion.stustatus}</td>
 					</tr>
 				</c:forEach>
@@ -305,8 +304,7 @@ td {
 							var seriesData = [];
 							<c:forEach items="${vQuestionKeywordList}" var="vQuestion">
 							//此处将字符串转化为float类型，否则图画不出来
-							seriesData
-									.push(parseFloat("${vQuestion.wrong * 100}"));/*  错误率扩大100倍*/
+							seriesData.push(parseFloat("${vQuestion.wrong * 100}"));/*  错误率扩大100倍*/
 							</c:forEach>
 							//有值才赋值，没值就展现初始值
 							if (seriesData.length > 1) {

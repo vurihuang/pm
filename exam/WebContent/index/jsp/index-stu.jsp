@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<title>试卷管理系统(学生端)</title>
 	</head>
-	<frameset rows="50,*" framespacing="2" frameborder="yes" border="1" bordercolor="#e7e7e7">
+	<frameset rows="40,*" framespacing="2" frameborder="yes" border="1" bordercolor="#e7e7e7">
 		<frame src="<c:url value='/index/jsp/top.jsp'/>" noresize="noresize" name="topFrame" scrolling="No" id="topFrame" title="topFrame">
 		<frameset cols="250,*">
 			<frame src="<c:url value='/index/jsp/left-stu.jsp'/>" noresize="noresize" name="leftFrame" scrolling="No" id="leftFrame" title="leftFrame">
