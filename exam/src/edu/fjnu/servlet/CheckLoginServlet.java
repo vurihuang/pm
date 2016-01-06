@@ -68,17 +68,4 @@ public class CheckLoginServlet extends BaseServlet {
 			}
 		}
 	}
-	
-	/**
-	 * 登出
-	 * @param request
-	 * @param response
-	 * @return 退出登陆跳到登陆页面
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String quitLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
-		return "f:/index.jsp";
-	}
 }
