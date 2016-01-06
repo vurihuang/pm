@@ -32,14 +32,6 @@ body :-ms-input-placeholder {
     color: #a9a9a9;
     font-weight: 300;
 }
-.top{
-	height:120px;
-	//background-image:linear-gradient(to top,#23b3db,#ffffff);
-}
-.middle{
-	//height:402px;
-	//background-color:#23b3db;
-}
 .glyphicon{
 	font-size:100px;
 	position:relative;
@@ -50,32 +42,30 @@ body :-ms-input-placeholder {
 	color:black;
 }
 .welcome{
-	position:relative;
-	left:0px;
-	top:50px;
-	font-size:20px;
+	top:10px;
+	font-size:35px;
 	color:black;
-	//text-align:center;
 }
 .rdiv{
-	width:320px;
-	height:290px;
+	//width:320px;
+	//height:290px;
 	border-radius:20px;
-	position:relative;
-	left:20px;
-	top:35px;
+	//position:relative;
+	//left:20px;
+	//top:35px;
 }
 .main{
-	margin-top:30px;
+	margin:30px auto;
 }
 .img{
-	margin-top:40px;
+	margin-top:30px;
 }
 .border{
 	border:1px solid rgba(169, 169, 169,1);
-	margin-top:-30px;
-	width:400px;
-	height:360px;
+	margin-top:20px;
+	margin-right:139px;
+	//width:400px;
+	//height:360px;
 	box-shadow:2px 2px 6px #333333;
 }
 form{
@@ -90,7 +80,7 @@ form .input{
     outline: 0;
     border: 1px solid rgba(169, 169, 169, 0.4);
     background-color: rgba(255, 255, 255, 0.2);
-    width: 250px;
+    width: 65%;
     border-radius: 3px;
     padding: 10px 15px;
     margin: 20px auto 20px auto;
@@ -125,29 +115,27 @@ form button{
     font-size: 20px;
     -webkit-transition-duration: 0.25s;
             transition-duration: 0.25s;
-    width: 250px;
-	margin-left:74px;
-	margin-top:-10px;
+    width: 65%;
+    margin: 20px auto 20px auto;
+    display: block;
+    text-align: center;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
 }
 form button:hover{
     background-color: #f5f7f9;
 	color:#28bbe6;
 }
-.tear{
-	position:relative;
-	left:130px;
-}
-.stur{
-	position:relative;
-	left:170px;
-}
-.stup{
-	position:relative;
-	top:-23px;
-	left:240px;
-}
-.teap{
-	position:relative;
-	top:-3px;
-	left:138px;
+form .radio{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearence:none;
+    outline: 0;
+    width: 65%;
+    padding: 10px 15px;
+    margin: 20px auto 20px auto;
+    display: block;
+    text-align: center;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
 }
