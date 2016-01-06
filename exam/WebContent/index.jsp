@@ -31,32 +31,35 @@
     </script>
 	</head> 
 	<body> 
-		<div class="top">
-			<div class="col-lg-3 text-right">
-				<div class="glyphicon glyphicon-new-window"></div>
-			</div>
-			<div class="col-lg-7 text-left welcome"><p>欢迎使用</p><p>试卷管理系统</p></div>
-		</div>
-		<div class="middle">		
-			<div class="main">
-				<div class="col-lg-6 text-right">
-					<img src="<c:url value='/index/image/logo.jpg'/>" class="img-rounded img" width="500px" height="300px">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3">
 				</div>
-				<div class="col-lg-6 rdiv text-left">
+				<div class="col-xs-7 text-left welcome"><p>欢迎使用</p><p>试卷管理系统</p></div>
+			</div>				
+			<div class="row main">
+				<div class="col-xs-6 text-right">
+					<div><img src="<c:url value='/index/image/logo.jpg'/>" class="img-rounded img" width="100%" height="100%"></div>
+				</div>
+				<div class="col-xs-6 rdiv text-left">
 					<div class="border">
-					<form action="<%=request.getContextPath() %>/CheckLoginServlet" method="post" name="loginform" class="form">
-						<input class="input" type="text" name="username" placeholder="账号"/>
-						<input class="input" type="password" name="password" placeholder="密码"/>
-						<input type="hidden" name="method" value="checkInfo"/>
-						<input type="radio" name="user" class="tear" value="teacher" checked><span class="teap">教师</span>
-						<input type="radio" name="user" class="stur" value="student"><p class="stup">学生</p>
-						
-						<button type="submit" id="login_button" onclick="return check(this);">登录</button>
-                    </form>
+						<form action="<%=request.getContextPath() %>/CheckLoginServlet" method="post" name="loginform" class="form">
+							<input class="input" type="text" name="username" placeholder="账号"/>
+							<input class="input" type="password" name="password" placeholder="密码"/>
+							<input type="hidden" name="method" value="checkInfo"/>
+							<div class="radio row">
+								<div class="col-xs-6"><input type="radio" name="user" value="teacher" checked="checked">
+									<span>教师</span>
+								</div>
+								<div class="col-xs-6"><input type="radio" name="user" value="student">
+								<span>学生</span>
+								</div>
+							</div>
+							<button type="submit" id="login_button" onclick="return check(this);">登录</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="bottom"></div>
 	</body> 
 </html> 
