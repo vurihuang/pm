@@ -58,7 +58,7 @@ public class TeacherServlet extends BaseServlet {
 		request.setAttribute("sumcounts", teacherService.sumcountByteacherID(teacherID));//得到柱状图数据
 		
 		chooseCourseByName(request, response, studentID, teacherID);
-		request.getRequestDispatcher("/index/jsp/s-grade-t.jsp").forward(request, response);
+		request.getRequestDispatcher("/index/jsp/grade/s-grade-t.jsp").forward(request, response);
 	}
 	
 	/**
@@ -74,13 +74,13 @@ public class TeacherServlet extends BaseServlet {
 		String course = (String)request.getParameter("courseName");
 		String url = "";
 		if("chinese".equals(course)){
-			url = "/index/jsp/s-chinese-t.jsp";
+			url = "/index/jsp/grade/s-chinese-t.jsp";
 		}else if("math".equals(course)){
-			url = "/index/jsp/s-math-t.jsp";
+			url = "/index/jsp/grade/s-math-t.jsp";
 		}else if("english".equals(course)){
-			url = "/index/jsp/s-english-t.jsp";
+			url = "/index/jsp/grade/s-english-t.jsp";
 		}else{
-			url = "/index/jsp/s-grade-t.jsp";
+			url = "/index/jsp/grade/s-grade-t.jsp";
 		}
 		
 		request.getRequestDispatcher(url).forward(request, response);

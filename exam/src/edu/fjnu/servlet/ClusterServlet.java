@@ -21,6 +21,11 @@ import edu.fjnu.service.ClusterService;
 @WebServlet("/ClusterServlet")
 public class ClusterServlet extends BaseServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private ClusterService clusterService = new ClusterService(); 
 	
 	public String load(HttpServletRequest request, HttpServletResponse response)
@@ -37,6 +42,6 @@ public class ClusterServlet extends BaseServlet {
 		request.setAttribute("middle_goodList", middle_goodList);
 		request.setAttribute("middle_badList", middle_badList);
 		
-		return "f:/index/jsp/cluster.jsp";
+		return "f:/index/jsp/class/cluster.jsp";
 	}
 }

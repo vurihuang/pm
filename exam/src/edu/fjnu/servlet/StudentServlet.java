@@ -63,13 +63,13 @@ public class StudentServlet extends BaseServlet {
 		String course = (String)request.getParameter("courseName");
 		String url = "";
 		if ("chinese".equals(course)) {
-			url = "/index/jsp/s-chinese-s.jsp";
+			url = "/index/jsp/grade/s-chinese-s.jsp";
 		}else if ("math".equals(course)) {
-			url = "/index/jsp/s-math-s.jsp";
+			url = "/index/jsp/grade/s-math-s.jsp";
 		}else if ("english".equals(course)) {
-			url = "/index/jsp/s-english-s.jsp";
+			url = "/index/jsp/grade/s-english-s.jsp";
 		}else {
-		    url = "/index/jsp/s-grade-s.jsp";
+		    url = "/index/jsp/grade/s-grade-s.jsp";
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

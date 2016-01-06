@@ -71,7 +71,7 @@ public class RelationServlet extends BaseServlet {
 		request.setAttribute("d3arr", stvArr);
 		request.setAttribute("gradeList", gradeList);
 
-		return "f:/index/jsp/r-" + course + "-t.jsp";
+		return "f:/index/jsp/relation/r-" + course + "-t.jsp";
 	}
 	
 	public String loadInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,7 +81,7 @@ public class RelationServlet extends BaseServlet {
 		List<String> gradeList = tts.getGradeList(Integer.parseInt(teacherID));//得到教师的学生列表
 		request.setAttribute("gradeList", gradeList);
 		
-		return "f:/index/jsp/r-" + course + "-t.jsp";
+		return "f:/index/jsp/relation/r-" + course + "-t.jsp";
 	}
 
 }

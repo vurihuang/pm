@@ -82,6 +82,6 @@ public class TeacherTestServlet extends BaseServlet {
 		request.setAttribute("vTestMainList", vTestMainList);
 
 		// 转发到p-chinese-s.jsp页面，不论选择语数英均在该页面显示，只是数据变了
-		return "f:/index/jsp/p-chinese-t.jsp";
+		return "f:/index/jsp/paper/p-chinese-t.jsp";
 	}
 }
