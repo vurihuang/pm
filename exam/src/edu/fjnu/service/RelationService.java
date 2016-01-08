@@ -51,14 +51,16 @@ public class RelationService {
 
 	/**
 	 * 根据课程名、年级得到知识点关联列表
+	 * 
 	 * @param courseName
 	 * @param year
 	 * @return
 	 */
-	public List<List<String>> getKeywordList(String courseName, String year){
-//		keywordList = doRelationByScope(courseName, year);
+	public List<List<String>> getKeywordList(String courseName, String year) {
+		// keywordList = doRelationByScope(courseName, year);
 		return doRelationByScope(courseName, year);
 	}
+
 	/**
 	 * 获得关联分析后的有关联的所有知识点
 	 * 
@@ -86,8 +88,8 @@ public class RelationService {
 	 */
 	public Object[][] stvArray() {
 		int cnt = 0;// 用以计算要返回的stvArray的大小
-		
-//		List<List<String>> tmpKeywordList = getKeywordList(courseName, year);
+
+		// List<List<String>> tmpKeywordList = getKeywordList(courseName, year);
 		// 得到A、B、sup、conf格式的一个二维数组
 		for (int i = 0; i < keywordList.size(); i++) {
 			if (keywordList.get(i).size() != 4)
@@ -134,8 +136,8 @@ public class RelationService {
 					}
 				}
 			}
-			
-//			String[] tmpKeywordArr = keywordArray(courseName, year);
+
+			// String[] tmpKeywordArr = keywordArray(courseName, year);
 
 			// 给source、target做标记，找到点之间的关系
 			for (int i = 0; i < keywordArr.length; i++) {
@@ -154,23 +156,26 @@ public class RelationService {
 			throw new RuntimeException(e);
 		}
 	}
+
 	/**
 	 * 把关联分析得出的一级项集结果集list转换成String数组
+	 * 
 	 * @param courseName
 	 * @param year
 	 * @return String数组
 	 */
-	public String[][] getRelationArray(String courseName, String year){
+	public String[][] getRelationArray(String courseName, String year) {
 		List<List<String>> relationList = getRelationListForRtool(courseName, year);
 		String[][] relationArr = new String[relationList.size()][relationList.get(0).size()];
-		
-		for(int i=0; i<relationList.size(); i++){
-				String[] tempArr = relationList.get(i).toArray(new String[relationList.get(0).size()]);
-				relationArr[i] = tempArr;
+
+		for (int i = 0; i < relationList.size(); i++) {
+			String[] tempArr = relationList.get(i).toArray(new String[relationList.get(0).size()]);
+			relationArr[i] = tempArr;
 		}
 		
 		return relationArr;
 	}
+
 	/**
 	 * 得到没有关联分析过的知识点列表
 	 * 
@@ -187,7 +192,7 @@ public class RelationService {
 		for (int i = 0; i < paperList.size(); i++) {
 			waitRelationList.add(getQuestionObjListByPaperId(paperList.get(i)));// 根据试卷ID得到每一份试卷的知识点
 		}
-//		System.out.println("getRelationList:" + waitRelationList);// TEST
+		// System.out.println("getRelationList:" + waitRelationList);// TEST
 
 		return waitRelationList;
 	}
@@ -261,5 +266,5 @@ public class RelationService {
 	private List<String> getQuestionObjListByPaperId(VTestMain testmain) {
 		return getKeywordList(qDao.getKeywordByPaperId(testmain));
 	}
-	
+
 }

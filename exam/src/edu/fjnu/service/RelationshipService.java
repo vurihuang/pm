@@ -122,7 +122,8 @@ public class RelationshipService {
 
 		String path = "/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/"; // 在这里改文件路径
 		FileTools filetool = new FileTools();
-//		filetool.createFolder(path); //此处有问题需要修复
+//		filetool.createFolder(path); //此处需要修改有问题
+		
 		CSVUtil csvtool = new CSVUtil();
 		List<String> relationlist = dealRelationList(courseName, year);
 		File file = new File(path + "temp.csv");// 读取数据文件的路径
