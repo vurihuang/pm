@@ -127,9 +127,6 @@ body {
 	border-radius: 20px;
 }
 
-/* img {
-	display: none;
-} */
 </style>
 
 <script src="<c:url value='/index/js/d3.js '/>" charset="utf-8"></script>
@@ -331,12 +328,7 @@ body {
 			scrollHeight: 250
 		});
 	});
-	/* //显示图片
-	$(document).ready(function() {
-		$('.sec').click(function() {
-			$('.img').show(1000);
-		});
-	});  */
+	
 	</script>
 	
 	<!-- /#wrapper -->
