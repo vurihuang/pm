@@ -377,6 +377,7 @@ public class RelationAnalyse {
 	 * @param confItemset2
 	 */
 	private void getRelationList(List<List<String>> confItemset2){
+		relationList.clear();
 		for(int i=0; i<confItemset2.size(); i++){
 			List<String> temp = new ArrayList<String>(confItemset2.get(i));
 			relationList.add(temp);
