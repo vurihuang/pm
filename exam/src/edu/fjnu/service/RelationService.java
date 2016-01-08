@@ -29,9 +29,7 @@ public class RelationService {
 	 */
 	public List<List<String>> doRelationByScope(String courseName, String year) {
 		List<List<String>> resultList = null;
-
 		resultList = ra.calRelation(getRelationList(courseName, year));// 存储关联分析过的结果集
-//		System.out.println("RelationService:" + resultList);// TEST
 
 		return resultList;
 	}
@@ -45,7 +43,6 @@ public class RelationService {
 	 */
 	public List<List<String>> getRelationListForRtool(String courseName, String year) {
 		List<List<String>> tempKeywordList = null;
-
 		tempKeywordList = getRelationList(courseName, year);// 得到未处理的知识点列表
 		tempKeywordList.remove(0);// 移除列表中的第一个元素，其中存放的是所有出现过的知识点
 
@@ -59,8 +56,8 @@ public class RelationService {
 	 * @return
 	 */
 	public List<List<String>> getKeywordList(String courseName, String year){
-		keywordList = doRelationByScope(courseName, year);
-		return keywordList;
+//		keywordList = doRelationByScope(courseName, year);
+		return doRelationByScope(courseName, year);
 	}
 	/**
 	 * 获得关联分析后的有关联的所有知识点
@@ -79,7 +76,7 @@ public class RelationService {
 
 		keywordArr = removeExistItem(tempList.toArray(new String[tempList.size()]));// 知识点去重
 
-		return keywordArr;
+		return removeExistItem(tempList.toArray(new String[tempList.size()]));// 知识点去重
 	}
 
 	/**
@@ -90,13 +87,7 @@ public class RelationService {
 	public Object[][] stvArray() {
 		int cnt = 0;// 用以计算要返回的stvArray的大小
 		
-		// 测试输出keywordList
-//		System.out.println("知识点列表keywordList：");
-//		for (int i = 0; i < keywordList.size(); i++) {
-//			for (int j = 0; j < keywordList.get(i).size(); j++) {
-//				System.out.print(keywordList.get(i).get(j));
-//			}
-//		}
+//		List<List<String>> tmpKeywordList = getKeywordList(courseName, year);
 		// 得到A、B、sup、conf格式的一个二维数组
 		for (int i = 0; i < keywordList.size(); i++) {
 			if (keywordList.get(i).size() != 4)
@@ -143,6 +134,8 @@ public class RelationService {
 					}
 				}
 			}
+			
+//			String[] tmpKeywordArr = keywordArray(courseName, year);
 
 			// 给source、target做标记，找到点之间的关系
 			for (int i = 0; i < keywordArr.length; i++) {
