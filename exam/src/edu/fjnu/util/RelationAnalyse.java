@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class RelationAnalyse {
 	private static boolean endTag = false;// 判断结束的标志
-	private static final double MIN_SUP = 0.1;// 设定最小支持度，表示两类知识点同时出现的概率
-	private static final double MIN_CONF = 0.4;// 设定最小置信度，表示前一类知识点对后一类知识点的影响
+	private static final double MIN_SUP = 0.001;// 设定最小支持度，表示两类知识点同时出现的概率
+	private static final double MIN_CONF = 0.005;// 设定最小置信度，表示前一类知识点对后一类知识点的影响
 
 	private static List<List<String>> record; // 数据记录表
 	private static List<List<String>> confItemset = new ArrayList<List<String>>(); // 保存满足支持度的项集

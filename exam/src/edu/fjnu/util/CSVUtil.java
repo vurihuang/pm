@@ -1,9 +1,15 @@
 package edu.fjnu.util;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +28,7 @@ public class CSVUtil
      * @param dataList 数据
      * @return
      */
-    public boolean exportCsv(File file, List<String> dataList)
+    public static boolean exportCsv(File file, List<String> dataList)
     {
         boolean isSucess=false;
         
@@ -71,27 +77,54 @@ public class CSVUtil
         return isSucess;
     }
     
-    public static void main( String[] args)
+    /**
+     * 导入
+     * 
+     * @param filename csv文件(路径+文件)
+     * @return
+     * @throws FileNotFoundException 
+     */
+    public static List<String[]> importCsv(String filename) throws FileNotFoundException
     {
-		List<String> test = new ArrayList<String>();
-		
-		test.add("a");
-		test.add("es");
-		test.add("ed");
-		test.add("ef");
-		test.add("eg");
-		test.add("eh");
-		
-		String str = test.toString();
-		
-		str = str.replace("[", "");
-		str = str.replaceAll("]", "");
-		
-		
-		
-		String t = "dddd        dddd          44444    555";
-		t = t.replaceAll("\\s{1,}", " ");
-		
-		System.out.println(t);
+    	File file = new File(filename);
+    	DataInputStream in = new DataInputStream(new FileInputStream(file));
+    	List<String[]> lineList = new ArrayList<String[]>();
+    	BufferedReader br = null;
+        try { 
+        	br= new BufferedReader(new InputStreamReader(in,"GBK"));
+            String line = "";
+            String csvSplitBy = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
+            while ((line = br.readLine()) != null) { 
+//            	String [] major = line.split(csvSplitBy);  
+                lineList.add(line.split(csvSplitBy));
+//            	System.out.println("major"+major[5]);   
+                
+            }
+        }catch (Exception e) {
+        }finally{
+            if(br!=null){
+                try {
+                    br.close();
+                    br=null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+ 
+        return lineList;
+    }
+    
+    
+    public static void main( String[] args) throws FileNotFoundException
+    {
+		List<String[]> list = CSVUtil.importCsv("D:/R/temp/Relation/rules.csv");
+		for( int i=0; i<list.size(); i++)
+		{
+			for( int j=0; j<list.get(i).length; j++)
+			{
+				System.out.println(list.get(i)[j]);
+			}
+		}
     }
 }
