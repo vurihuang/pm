@@ -1,70 +1,100 @@
 aprioriForJava<-function()
 {
+  #µ¼Èë¹ØÁª·ÖÎöËùĞèÒªµÄ°ü
   library(Matrix)
   library(grid)
   library(arules)
   library(arulesViz)
   library(RColorBrewer)
   
+  # ½â¾ö¿çÆ½Ì¨ÂÒÂëÎÊÌâ
+  system("defaults write org.R-project.R force.LANG en_US.UTF-8")
   
-  #å¯¼å…¥æ•°æ®
-  groceries <- read.transactions('/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/temp.csv', 
-                                 format='basket', 
-                                 sep=',', 
-                                 encoding = 'UTF-8');
-  
-  #çŸ¥è¯†å…³è”å¤„ç†å‰çš„å›¾
-  #supæŸ±çŠ¶å›¾(å‚ç›´)
-  png("/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/itemFrequencyPlot1.png", width = 5000, height = 3000)
-  par(cex.axis = 5)
-  itemFrequencyPlot(groceries)
+  #µ¼Èë·ÖÎöÊı¾İ
+  trans<- read.transactions('D:/R/temp/use/Relation.csv', 
+                               format='basket', 
+                               sep=',', 
+                               encoding = 'UTF-8');
+ 
+   #Éú³ÉÆµÊı¼¯,²¢Ğ´ÈëcsvÎÄ¼ş
+  fsets<-eclat(trans,parameter = list(support=0.05))
+  quality(fsets)=round(quality(fsets),digits=3)
+  write(fsets,
+        file='D:/R/temp/Relation/fstes.csv',
+        sep=',',
+        quote=TRUE)
+ 
+   # supÖù×´Í¼
+  supp <- 0.05
+  epsilon <- 0.1
+  c <- 0.1
+  n <- -2 * log(c)/ (supp * epsilon^2) 
+  trans.sample <- sample(trans, n, replace = TRUE)
+  png("D:/R/temp/Relation/fsetsSup.png")
+  itemFrequencyPlot(trans,
+		    support=0.05, 
+                    col = 'dark blue',
+                    main = 'ÖªÊ¶µãÆµÊıÍ³¼ÆÍ¼') 
+  dev.off()
+  png("d:/R/temp/Relation/fsetsLift.png")
+  itemFrequencyPlot(trans.sample, 
+                    population = trans,
+                    support = supp, 
+                    lift = TRUE,
+                    cex.names = 0.9,
+                    col='dark blue',
+                    horiz=TRUE, 
+                    main='ÌáÉı±ÈÂÊÍ³¼ÆÍ¼')
   dev.off()
   
-  #supæŸ±çŠ¶å›¾ï¼ˆæ°´å¹³ï¼Œå‰åï¼‰
-  png("/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/itemFrequencyPlot2.png")
-  itemFrequencyPlot(groceries,topN=10, horiz=T)
+  # É¾³ıµ¥¸öÖªÊ¶µãµÄÊÔ¾íÇé¿ö
+  basketSize<-size(trans)
+  trans.use <- trans[basketSize > 1]
+  
+  #¹ØÁª¹æÔò·ÖÎö
+  rules <- apriori(trans.use, 
+                  parameter = list(support = 0.006,
+                  confidence = 0.6,
+                  minlen = 2))
+  quality(rules)=round(quality(rules),digits=3)
+  rules<-subset(rules, support>0.01 & lift < 15)
+  
+  #Èı¸öÖµµÄ·Ö²¼Í¼
+  png("D:/R/temp/Relation/ScottPlot.png")
+  plot(rules,
+       control=list(jitter=2,col = rev(brewer.pal(9, "Blues"))),
+       shading = "lift")  
   dev.off()
   
-  #æ±‚é¢‘æ•°é›†
-  frequentsets=eclat(groceries,parameter=list(support=0.05,maxlen=10))
+  #É¾³ıÈßÓà¹æÔò
+  subset.matrix <- is.subset(rules, rules)
+  subset.matrix[lower.tri(subset.matrix, diag = T)] <- NA
+  redundant <- colSums(subset.matrix, na.rm = T) >= 1
+  rules.pruned <- rules[! redundant]
   
-  #åˆ é™¤å•çŸ¥è¯†ç‚¹å‡ºç°æƒ…å†µ
-  basketSize<-size(groceries) 
-  groceries_use <- groceries[basketSize > 1]
-  #è°ƒç”¨aprioriå‡½æ•°
-  groceryrules <- apriori(groceries_use, 
-                          parameter = list(support = 0.006,
-                                           confidence = 0.6,
-                                           minlen = 2))
-  #å¯¼å‡ºå…³è”æ•°æ®
-  write(groceryrules, 
-        file='/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/groceryrules.csv', 
+  #µ¼³ö¹ØÁª·ÖÎö½á¹û
+  write(rules.pruned,
+        file='D:/R/temp/Relation/rules.csv',
         sep=',',
         quote=TRUE,
         row.names=FALSE)
   
-  #sup/conf/liftä¸‰è€…çš„å…³ç³»å›¾
-  png("/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/ScottPlot.png")
-  plot(groceryrules,
-       control=list(jitter=2,
-       col = rev(brewer.pal(9, "Greens")[4:9])),
-       shading = "lift")  
+  #ÖªÊ¶µã¹ØÏµ¾ØÕóÍ¼
+  png("D:/R/temp/Relation/GroupedMatrix.png", width = 1000, height = 1500)
+  par(cex.axis = 7, font.axis=5)
+  plot(rules.pruned, 
+      method="grouped",     
+      control=list(col = rev(brewer.pal(9, "Blues"))),
+      main='ÖªÊ¶µã¹ØÏµ¾ØÕóÍ¼')  
   dev.off()
   
-  #çŸ¥è¯†ç‚¹å…³ç³»çŸ©é˜µå›¾(å­—ä½“å¤§å°æœ¬å®å®æ”¹ä¸æ¥)
-  png("/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/GroupedMatrix.png", width = 6000, height = 6000)
-  par(cex.axis = 7)
-  plot(groceryrules, 
-       method="grouped",     
-      control=list(col = rev(brewer.pal(9, "Greens"))))  
-  dev.off()
-  
-  #çŸ¥è¯†å…³è”ç½‘å›¾ï¼ˆç”±äºè¿™ä¸ªå›¾ç‰‡ç”Ÿæˆçš„æ•ˆç‡å¤ªä½ï¼Œæ‰€ä»¥ä¸è®¾ç½®å¤§å°ï¼‰
-  png("/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/Graph.png")
-  plot(groceryrules, 
-       measure="confidence", 
+  #ÖªÊ¶µã¹ØÁªÍøÍ¼
+  png("D:/R/temp/Relation/Graph.png", width = 1000, height = 1000)
+  plot(rules.pruned, 
+       measure="confidence",
        method="graph",
        control=list(type="items"),
-       shading = "lift")
+       shading = "lift",
+       main='ÖªÊ¶µã¹ØÁªÍøÍ¼')
   dev.off()
 }
