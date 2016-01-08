@@ -101,17 +101,17 @@
 							href="<c:url value='/TeacherTestServlet?method=loadGrade&subject=数学'/>"
 							target="main">数学</a></li>
 						<li><a
-							href="<c:url value='/TeacherTestServlet?method=loadGrade&subject=英语'/>"
+							href="<c:url value='/TeacherTestServlet?method=loadGrade&subject=英文'/>"
 							target="main">英语</a></li>
 					</ul></li>
 				<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>知识点分析<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="<c:url value='/RelationServlet?method=loadInfo&course=chinese'/>"
+						<li><a href="<c:url value='/RelationServlet?method=relation&course=语文'/>"
 							target="main">语文</a></li>
-						<li><a href="<c:url value='/RelationServlet?method=loadInfo&course=math'/>"
+						<li><a href="<c:url value='/RelationServlet?method=relation&course=数学'/>"
 							target="main">数学</a></li>
-						<li><a href="<c:url value='/RelationServlet?method=loadInfo&course=english'/>"
+						<li><a href="<c:url value='/RelationServlet?method=relation&course=英文'/>"
 							target="main">英语</a></li>
 					</ul></li>
 				<li><a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析</a></li>

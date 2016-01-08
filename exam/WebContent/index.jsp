@@ -33,9 +33,9 @@
 	<body> 
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-3">
+				<div class="col-xs-2">
 				</div>
-				<div class="col-xs-7 text-left welcome"><p>欢迎使用</p><p>试卷管理系统</p></div>
+				<div class="col-xs-10 text-left welcome"><p>欢迎使用</p><p>试卷管理系统</p></div>
 			</div>				
 			<div class="row main">
 				<div class="col-xs-6 text-right">
