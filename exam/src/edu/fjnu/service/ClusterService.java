@@ -160,7 +160,7 @@ public class ClusterService {
 	}
 	
 	/**
-	 * 根据学生水平（枚举类型）,年级，科目得到该层次学生ID列表
+	 * 根据学生水平,年级，科目得到该层次学生ID列表
 	 * @param grade
 	 * @param subject
 	 * @param sl
@@ -207,5 +207,65 @@ public class ClusterService {
 		default:
 			return null;
 		}	
+	}
+	
+	/**
+	 * 根据科目，年级，学生ID得到该学生水平
+	 * @param studentID
+	 * @param subject
+	 * @param grade
+	 * @return
+	 */
+	public String getLevelOfStudent(int studentID,String subject,String grade){
+		List<Testmain> testmainList = null;
+		int count = clusterDao.count(grade, subject);
+		int num = Math.round(count/4);//将总数划分为四分之一作间隔
+		testmainList = clusterDao.rangeOfIDs(grade, subject, 1, count);
+		int i;
+		for(i = 0;i < testmainList.size();i++){
+			if(testmainList.get(i).getStudent_memberId() == studentID){
+				break;
+			}
+		}
+		//没找到这个学生，可能是每参加过考试，就暂定他为差生
+		if(i == testmainList.size()){
+			return "bad";
+		}else{
+			if(i < num){
+				return "good";
+			}else if(i > count){
+				return "bad";
+			}else{
+				return "middle";
+			}
+		}
+	}
+	
+	/**
+	 * 通过年级，科目，学生ID得到所需水平知识点List（实际返回ClusterList,可取其keyword属性）
+	 * @param grade
+	 * @param subject
+	 * @param studentID
+	 * @return
+	 */
+	public List<Cluster> getKeywordListOfStudent(String grade,String subject,int studentID){
+		String level = getLevelOfStudent(studentID, subject, grade);
+		switch (level) {
+		case "good":
+			List<Cluster> goodClusterList = getKeywordsByLevel(grade, subject, "good");
+			return goodClusterList;
+		case "bad":
+			List<Cluster> badClusterList = getKeywordsByLevel(grade, subject, "bad");
+			return badClusterList;
+		case "middle":
+			List<Cluster> middle_goodClusterList = getKeywordsByLevel(grade, subject, "middle_good");
+			List<Cluster> middle_badClusterList = getKeywordsByLevel(grade, subject, "middle_bad");
+			for(int i = 0;i < middle_badClusterList.size();i++){
+				middle_goodClusterList.add(middle_badClusterList.get(i));
+			}
+			return middle_goodClusterList;
+		default:
+			return null;
+		}
 	}
 }

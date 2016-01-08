@@ -53,6 +53,16 @@ public class RelationService {
 	}
 
 	/**
+	 * 根据课程名、年级得到知识点关联列表
+	 * @param courseName
+	 * @param year
+	 * @return
+	 */
+	public List<List<String>> getKeywordList(String courseName, String year){
+		keywordList = doRelationByScope(courseName, year);
+		return keywordList;
+	}
+	/**
 	 * 获得关联分析后的有关联的所有知识点
 	 * 
 	 * @param courseName
@@ -60,7 +70,7 @@ public class RelationService {
 	 * @return 相关联的知识点的一维数组
 	 */
 	public String[] keywordArray(String courseName, String year) {
-		keywordList = doRelationByScope(courseName, year);
+		keywordList = getKeywordList(courseName, year);
 		List<String> tempList = new ArrayList<String>();// 用来存储去重的知识点
 
 		for (int i = 0; i < keywordList.size(); i++) {
@@ -79,7 +89,7 @@ public class RelationService {
 	 */
 	public Object[][] stvArray() {
 		int cnt = 0;// 用以计算要返回的stvArray的大小
-
+		
 		// 测试输出keywordList
 //		System.out.println("知识点列表keywordList：");
 //		for (int i = 0; i < keywordList.size(); i++) {
@@ -258,4 +268,5 @@ public class RelationService {
 	private List<String> getQuestionObjListByPaperId(VTestMain testmain) {
 		return getKeywordList(qDao.getKeywordByPaperId(testmain));
 	}
+	
 }

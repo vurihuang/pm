@@ -58,28 +58,6 @@ public class RelationshipService {
 		return jsonStr;
 	}
 
-	// 获取关联分析得到的结果的使用示例
-	public void getRelationship() {
-		RelationService rs = new RelationService();
-		String courseName = "语文";
-		String year = "三年级%";
-		// 标准关联分析的结果，格式为[知识点A,知识点B，sup,conf]
-		List<List<String>> standardList = rs.doRelationByScope(courseName, year);
-
-		// 关联分析后得到的所有有关联的知识点，前端绘制点的数组
-		String[] keywordArr = rs.keywordArray(courseName, year);
-
-		// 关联分析后得到的关联数组，格式为[source,target,value]，前端绘制线的数组
-		Object[][] stvArr = rs.stvArray();
-
-		// 判断结果是否为空
-		if (stvArr == null) {
-			// 如果为空，没有连线
-		} else {
-			// 把它们连起来
-		}
-	}
-
 	/**
 	 * 根据知识点列表生成关联分析文档
 	 * 
@@ -117,7 +95,7 @@ public class RelationshipService {
 		List<String> dealList = new ArrayList<String>();
 		List<List<String>> initial = new ArrayList<List<String>>();
 		initial.addAll(relation.getRelationListForRtool(courseName, year));
-//		System.out.println(initial);
+		// System.out.println(initial);
 		String temp;
 		for (int i = 0; i < initial.size(); i++) {
 			temp = initial.get(i).toString();
@@ -126,12 +104,12 @@ public class RelationshipService {
 			temp = temp.replace(" ", "");
 			dealList.add(temp);
 		}
-//		for (int i1 = 0; i1 < initial.size(); i1++) {
-//			System.out.println(initial.get(i1));
-//		}
-//		for (int i1 = 0; i1 < dealList.size(); i1++) {
-//			System.out.println(dealList.get(i1));
-//		}
+		// for (int i1 = 0; i1 < initial.size(); i1++) {
+		// System.out.println(initial.get(i1));
+		// }
+		// for (int i1 = 0; i1 < dealList.size(); i1++) {
+		// System.out.println(dealList.get(i1));
+		// }
 		return dealList;
 	}
 
@@ -164,10 +142,11 @@ public class RelationshipService {
 		RConnection rconn = new RConnection();
 
 		try {
-//			rconn.eval("source('" + System.getProperty("user.dir").replace("\\", "/")
-//					+ "/R/RScript/aprioriForJava.R')");
-//			rconn.eval("scourse(/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/RScript/aprioriForJava.R)");
-			rconn.eval("source('" 
+			// rconn.eval("source('" +
+			// System.getProperty("user.dir").replace("\\", "/")
+			// + "/R/RScript/aprioriForJava.R')");
+			// rconn.eval("scourse(/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/RScript/aprioriForJava.R)");
+			rconn.eval("source('"
 					+ "/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/RScript/aprioriForJava.R')");
 			rconn.eval("aprioriForJava()");
 		} catch (RserveException e) {
@@ -176,9 +155,9 @@ public class RelationshipService {
 		}
 	}
 
-//	public static void main(String[] args) throws RserveException {
-//		RelationshipService rs = new RelationshipService();
-//		rs.createRForRelastion("数学", "四年%");
-//
-//	}
+	// public static void main(String[] args) throws RserveException {
+	// RelationshipService rs = new RelationshipService();
+	// rs.createRForRelastion("数学", "四年%");
+	//
+	// }
 }
