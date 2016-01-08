@@ -19,6 +19,7 @@ import edu.fjnu.service.RelationService;
 import edu.fjnu.service.RelationshipService;
 import edu.fjnu.service.StudentTestService;
 import edu.fjnu.service.TeacherTestService;
+import edu.fjnu.util.RelationResult;
 
 /**
  * 处理关联分析模块
@@ -35,6 +36,7 @@ public class RelationServlet extends BaseServlet {
 	private TeacherTestService tts = new TeacherTestService();// 得到老师的教学信息
 	private ClusterService cluserService = new ClusterService();// 引入聚类service
 	private StudentTestService sts = new StudentTestService();// 为了得到学生所做过试卷的年级列表
+	private RelationResult rr = new RelationResult();// 知识点关联工具
 
 	/**
 	 * 处理关联分析
@@ -59,25 +61,30 @@ public class RelationServlet extends BaseServlet {
 		request.setAttribute("selectedGrade", grade);
 
 		if (grade != null) {
+			// 设置R图
+			setPicture(request, response);
 			// 调用R画出图，然后读取
-//			try {
-//				rsh.createRForRelastion(courseName, grade);
-//			} catch (RserveException e) {
-//				e.printStackTrace();
-//			}
-			String[] keywordArr = null;
-			Object[][] stvArr = null;
-			keywordArr = rs.keywordArray(courseName, grade);// 设置d3的点
-			stvArr = rs.stvArray();// 设置d3的连线关系
+			// try {
+			// rsh.createRForRelastion(courseName, grade);
+			// } catch (RserveException e) {
+			// e.printStackTrace();
+			// }
+			String course = request.getParameter("course");
+			System.out.println(course);
+			// 截取前面三个字符串，得到类似于（三年级）
+			String year = request.getParameter("grade").substring(0, 3);
+			System.out.println(year);
 
-			for (String keyword : keywordArr) {
-				System.out.println(keyword);
+			String[] keywordArr = rr.getKeywordArr(year, course);
+			for (String x : keywordArr) {
+				System.out.println(x);
 			}
-			System.out.println("------------------------");
-			for(int i=0; i<stvArr.length; i++){
-				for(int j=0; j<stvArr[i].length; j++){
-					System.out.println(stvArr[i][j]);
+			Object[][] stvArr = rr.getStvArr(year, course);
+			for (int i = 0; i < stvArr.length; i++) {
+				for (int j = 0; j < stvArr[i].length; j++) {
+					System.out.print(stvArr[i][j] + "\t");
 				}
+				System.out.println();
 			}
 			System.out.println("------------------------");
 			for (Object[] stv : stvArr) {
@@ -148,8 +155,7 @@ public class RelationServlet extends BaseServlet {
 			request.setAttribute("keywordArray", newKeywordArr);
 			request.setAttribute("edges", newStvArr);
 		}
-
-		return "f:/index/jsp/relation/relation-s.jsp";
+		return "f:/index/jsp/relation/relation.jsp";
 
 	}
 
@@ -184,4 +190,43 @@ public class RelationServlet extends BaseServlet {
 
 	}
 
+	/**
+	 * 根据科目和年级拼接5张R图路径并设置到jsp
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void setPicture(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String course = request.getParameter("course");
+		// 截取前面三个字符串，得到类似于（三年级）
+		String grade = request.getParameter("grade").substring(0, 3);
+
+		StringBuffer picturePath = new StringBuffer("relation/");
+
+		if (course.equals("语文")) {
+			picturePath.append("语文/").append(grade + "/");
+		} else if (course.equals("数学")) {
+			picturePath.append("数学/").append(grade + "/");
+		} else if (course.equals("英文")) {
+			// 英文只有三年级的数据
+			picturePath.append("英文/").append("三年级/");
+		} else {
+			System.out.println("course不正确或为空");
+		}
+
+		String fsetsLiftPath = picturePath.toString() + "fsetsLift.png";
+		String ScottPlotPath = picturePath.toString() + "ScottPlot.png";
+		String fsetsSupPath = picturePath.toString() + "fsetsSup.png";
+		String GraphPath = picturePath.toString() + "Graph.png";
+		String GroupedMatrixPath = picturePath.toString() + "GroupedMatrix.png";
+
+		request.setAttribute("img_fsetsLift", fsetsLiftPath);
+		request.setAttribute("img_ScottPlot", ScottPlotPath);
+		request.setAttribute("img_fsetsSup", fsetsSupPath);
+		request.setAttribute("img_Graph", GraphPath);
+		request.setAttribute("img_GroupedMatrix", GroupedMatrixPath);
+	}
 }
