@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>试卷管理分析系统(教师端)</title>
-	<!-- Bootstrap Core CSS -->
+    <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -35,16 +35,16 @@
 	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>"/>
 	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
 	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+  
 	<style type="text/css">
 		.sec{
 			position:absolute;
-			left:850px;
-			top:120px;
+			right:20%;
 		}
 	</style>
 </head>
 <body>
-	<div class="text-center" style="font-size:25px;margin-bottom:50px;">个人学习履历</div>
+	<div class="text-center" style="margin-bottom:50px;"><span style="font-size:25px;">个人学习履历</span>
 	<div class="sec">
 		<!-- 下拉选择框 -->
 		<form action="" method="get" class="form">
@@ -58,13 +58,14 @@
 			</select>
 		</form>
 	</div>
+	</div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->	
-	<div id="mainchinese" style="height:400px;width:80%"></div>	
-	<div id="mainmath" style="height:400px;width:80%"></div>	
-	<div id="mainenglish" style="height:400px;width:80%"></div>
-	<div id="prchinese" style="height:400px;width:80%"></div>
-	<div id="prmath" style="height:400px;width:80%"></div>
-	<div id="prenglish" style="height:400px;width:80%"></div>
+	<div id="mainchinese" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prchinese" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainmath" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prmath" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainenglish" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prenglish" style="height:400px;width:80%;margin:0 auto;"></div>
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">
@@ -732,7 +733,7 @@
             }
         );
 
-		//下拉选择框
+	//下拉选择框
 	$(document).ready(function(){		
 		$(".ui-select").selectWidget({
 			change       : function (changes) {
@@ -746,8 +747,22 @@
 		
 	});	
     </script>
+    
+    <%-- <!-- Bootstrap Core JavaScript -->
+    <script src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 
-	 <script src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<c:url value='/index/bower_components/raphael/raphael-min.js'/>"></script>
+    <script src="<c:url value='/index/bower_components/morrisjs/morris.min.js'/>"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<c:url value='/index/dist/js/sb-admin-2.js'/>"></script> --%>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.js'/>"></script>

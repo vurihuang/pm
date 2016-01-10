@@ -36,15 +36,21 @@
 	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
 	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
 	<style type="text/css">
-		 .sec{
+		.sec{
 			position:absolute;
-			left:850px;
-			top:130px;
-		} 
+			right:30%;
+			top:60px;
+		}
+		.secg{
+			position:absolute;
+			left:30%;
+			top:60px;
+		}
 	</style>
 </head>
 <body>
-		<div class="text-center" style="font-size:25px;margin-bottom:50px;">学生学习履历</div>
+	<div>
+	<div class="text-center" style="margin-bottom:110px;"><span style="font-size:25px;">个人学习履历</span>
 		<div class="sec">
 			<!-- 下拉选择框 -->
 			<form action="" method="get" class="form">
@@ -75,13 +81,14 @@
 			</form>
 		</div>
 	</div>
+	</div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->	
-	<div id="mainchinese" style="height:400px;width:80%"></div>	
-	<div id="mainmath" style="height:400px;width:80%"></div>	
-	<div id="mainenglish" style="height:400px;width:80%"></div>
-	<div id="prchinese" style="height:400px;width:80%"></div>
-	<div id="prmath" style="height:400px;width:80%"></div>
-	<div id="prenglish" style="height:400px;width:80%"></div>
+	<div id="mainchinese" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prchinese" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainmath" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prmath" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainenglish" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prenglish" style="height:400px;width:80%;margin:0 auto;"></div>
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">

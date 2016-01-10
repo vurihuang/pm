@@ -67,7 +67,7 @@
 					<ul class="nav nav-second-level">
 						<li>
 							<%-- <a href="<c:url value='/StudentServlet?method=allInfo&courseName=sum'/>" target="main">成长轨迹图</a> --%>
-							<a href="<c:url value='/index/jsp/grade/grade-s.jsp'/>" target="main">个人成长轨迹图</a>
+							<a href="<c:url value='/index/jsp/grade/grow-s.jsp'/>" target="main">个人成长轨迹图</a>
                         </li>
                         <li>
                             <%-- <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=chinese'/>" target="main">学习履历图</a> --%>
@@ -116,7 +116,7 @@
                         </ul>
                 </li>
                 <li>
-					<a href="#"><i class="glyphicon glyphicon-download"></i> 导出履历</a>
+					<a href="<c:url value='/index/jsp/util/download.jsp'/>" target="main"><i class="glyphicon glyphicon-download"></i> 导出履历</a>
                 </li>
             </ul>
 		</div>
