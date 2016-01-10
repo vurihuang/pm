@@ -66,16 +66,12 @@
 					<a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="<c:url value='/StudentServlet?method=allInfo&courseName=sum'/>" target="main">综合</a>
+							<%-- <a href="<c:url value='/StudentServlet?method=allInfo&courseName=sum'/>" target="main">成长轨迹图</a> --%>
+							<a href="<c:url value='/index/jsp/grade/grade-s.jsp'/>" target="main">个人成长轨迹图</a>
                         </li>
                         <li>
-                            <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=chinese'/>" target="main">语文</a>
-                        </li>
-						<li>
-							<a href="<c:url value='/StudentServlet?method=courseInfo&courseName=math'/>" target="main">数学</a>
-                        </li>
-                        <li>
-                            <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=english'/>" target="main">英语</a>
+                            <%-- <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=chinese'/>" target="main">学习履历图</a> --%>
+                        	<a href="<c:url value='/index/jsp/grade/grade-s.jsp'/>" target="main">个人学习履历图</a>
                         </li>
                     </ul>
                 </li>
@@ -83,13 +79,13 @@
 					<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 试卷分析<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=语文'/>" target="main">语文</a>
+								<a href="<c:url value='/StudentPaperServlet?method=loadGrade&subject=语文'/>" target="main">语文</a>
                             </li>
 							<li>
-                                <a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=数学'/>" target="main">数学</a>
+                                <a href="<c:url value='/StudentPaperServlet?method=loadGrade&subject=数学'/>" target="main">数学</a>
                             </li>
                             <li>
-                                <a href="<c:url value='/StudentTestServlet?method=loadGrade&subject=英语'/>" target="main">英语</a>
+                                <a href="<c:url value='/StudentPaperServlet?method=loadGrade&subject=英语'/>" target="main">英语</a>
                             </li>
                         </ul>
                 </li>                                                
@@ -106,7 +102,7 @@
 						</ul>
                 </li>
                 <li>
-					<a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析</a>
+					<a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
 								<a href="<c:url value='/ClusterServlet?method=load&subject=语文'/>" target="main">语文</a>
@@ -118,6 +114,9 @@
                                 <a href="<c:url value='/ClusterServlet?method=load&subject=英文'/>" target="main">英文</a>
                             </li>
                         </ul>
+                </li>
+                <li>
+					<a href="#"><i class="glyphicon glyphicon-download"></i> 导出履历</a>
                 </li>
             </ul>
 		</div>
