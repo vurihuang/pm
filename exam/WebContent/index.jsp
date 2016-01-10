@@ -33,15 +33,16 @@
 	<body> 
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-2">
-				</div>
-				<div class="col-xs-10 text-left welcome"><p>欢迎使用</p><p>试卷管理系统</p></div>
+				<!-- <div class="col-xs-2">
+				</div> -->
+				<div class="col-xs-12 text-center welcome"><p>试卷管理分析系统</p></div>
+
 			</div>				
 			<div class="row main">
-				<div class="col-xs-6 text-right">
+				<div class="col-sm-6 text-right">
 					<div><img src="<c:url value='/index/image/logo.jpg'/>" class="img-rounded img" width="100%" height="100%"></div>
 				</div>
-				<div class="col-xs-6 rdiv text-left">
+				<div class="col-sm-6 rdiv">
 					<div class="border">
 						<form action="<%=request.getContextPath() %>/CheckLoginServlet" method="post" name="loginform" class="form">
 							<input class="input" type="text" name="username" placeholder="账号"/>

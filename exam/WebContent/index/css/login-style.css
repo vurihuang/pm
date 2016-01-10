@@ -32,6 +32,11 @@ body :-ms-input-placeholder {
     color: #a9a9a9;
     font-weight: 300;
 }
+@media (max-width: 600px){
+	.img{
+		display:none;
+	}
+}
 .glyphicon{
 	font-size:100px;
 	position:relative;
@@ -42,20 +47,20 @@ body :-ms-input-placeholder {
 	color:black;
 }
 .welcome{
-	top:10px;
+	top:100px;
 	font-size:35px;
-	color:black;
+	color:#28BBE6;
 }
 .rdiv{
-	//width:320px;
-	//height:290px;
+	//width:50%;
+	//height:100%;
 	border-radius:20px;
 	//position:relative;
 	//left:20px;
 	//top:35px;
 }
 .main{
-	margin:30px auto;
+	margin:220px auto;
 }
 .img{
 	margin-top:30px;
@@ -64,9 +69,10 @@ body :-ms-input-placeholder {
 	border:1px solid rgba(169, 169, 169,1);
 	margin-top:20px;
 	margin-right:139px;
-	//width:400px;
-	//height:360px;
+	width:70%;
+	height:100%;
 	box-shadow:2px 2px 6px #333333;
+	margin:0 auto;
 }
 form{
     padding: 40px 0;
@@ -97,7 +103,7 @@ form .input:hover{
 }
 form .input:focus{
     background-color: white;
-    width: 300px;
+    width: 75%;
     color: #3498DB;
 }
 

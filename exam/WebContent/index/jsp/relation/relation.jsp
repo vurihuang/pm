@@ -78,9 +78,7 @@ body {
 			margin-bottom:100px;
 		} */
 .sec {
-	position: relative;
-	top: 60px;
-	left: -80px;
+	margin-top:40px;
 }
 
 svg:hover {
@@ -97,25 +95,24 @@ body {
 }
 
 .rel {
-	width: 1000px;
-	height: 680px;
+	//width: 1000px;
+	//height: 680px;
 	margin: 0px auto;
-	margin-left: -120px;
+	//margin-left: -120px;
 	text-align: center;
 }
 
-.p {
+/* .p {
 	font-size: 30px;
-}
+} */
 
 .imgd {
-	width: 550px;
+	//width: 550px;
 	height: 700px; //
 	border: 1px solid black;
-	margin: 10px 15px;
+	margin: 10px 0;
 	text-align: center;
 	font-size: 20px;
-	border: 3px solid black;
 	border-radius: 20px;
 }
 
@@ -123,7 +120,7 @@ body {
 	height: 700px;
 	text-align: center;
 	font-size: 20px;
-	border: 3px solid black;
+	border: 1px solid black;
 	border-radius: 20px;
 }
 
@@ -133,10 +130,12 @@ body {
 </head>
 
 <body>
-	<div class="rel col-md-9">
-		<span class="p">知识点关系图</span>
+	<div class="container">
+	<div class="row">
+	<div class="rel col-sm-9">
+		<span class="p" style="font-size:20px">知识点关系图</span>
 	</div>
-	<div class="sec col-md-3">
+	<div class="sec col-sm-3">
 		<!-- 年级下拉选择框 -->
 		<form action="" method="get" class="form">
 			<select name="drop1" class="ui-select" id="grade-select">
@@ -150,27 +149,30 @@ body {
 			</select>
 		</form>
 	</div>
-	<div class="imgd col-6 col-sm-6">
+	</div>
+	<div clss="row">
+	<div class="imgd col-sm-6 col-lg-6">
 		高频知识点绘图<img src="<c:url value='${img_fsetsLift}'/>"
 			width="100%" height="90%" class="img" />
 	</div>
-	<div class="imgd col-6 col-sm-6">
+	<div class="imgd col-sm-6 col-lg-6">
 		关联分析规则图<img src="<c:url value='${img_ScottPlot}' />" width="100%"
 			height="90%" class="img" />
 	</div>
-	<div class="imgdb col-12 col-sm-12">
+	<div class="imgdb col-sm-12 col-lg-12">
 		知识点频数分布图<img src="<c:url value='${img_fsetsSup}'/>"
 			width="100%" height="90%" class="img" />
 	</div>
-	<div class="imgd col-6 col-sm-6">
+	<div class="imgd col-sm-6 col-lg-6">
 		知识点关联结构网图<img src="<c:url value='${img_Graph}' />" width="100%"
 			height="90%" class="img" />
 	</div>
-	<div class="imgd col-6 col-sm-6">
+	<div class="imgd col-sm-6 col-lg-6">
 		支持-置信度矩阵分布图<img src="<c:url value='${img_GroupedMatrix}'/>" width="100%"
 			height="90%" class="img" />
 	</div>
-	
+	</div>
+	</div>
 	<script>
 	var nodes = [];
 	var edges = [];
@@ -181,7 +183,7 @@ body {
 	</c:forEach>
 	
 	<c:forEach items="${edges}" var="edge">
-		var edge2 = parseFloat(${edge[2]}) * 100;
+		var edge2 = parseFloat(${edge[2]}) * 150;
 		var jason = {
 			source: ${edge[0]},
 			target: ${edge[1]},
@@ -214,8 +216,21 @@ body {
 	//添加连线    
 	var svg_edges = svg.selectAll("line").data(edges).enter()
 		.append("line").style("stroke", "#ccc")
-		.style("stroke-width", 1);
-
+		.style("stroke", function(d){
+			if (d.imp == 1)
+			return "green";
+			else 
+				return "#ccc";
+			})
+			.style("stroke-width",function(d){
+				if (d.imp == 1)	
+					return 3;
+					else 
+					return 1;
+					
+				
+			})
+		
 	var color = d3.scale.category20();
 	
 
@@ -232,7 +247,7 @@ body {
 
 	.style("fill", function(d, i) {
 		if(d.imp == 1){
-			return "red";
+			return "green";
 		}
 		else {
 			return color(i);
@@ -277,7 +292,14 @@ body {
 	svg_nodes.on("mouseover", function(d, i) {
 		d3.select(this).style("fill", "red");
 		d3.select(this).style("r", "20");
-
+		var idx=d.index;
+		svg_texts.style("fill",function(d){
+			if (d.target.index == idx || d.source.index ==idx)
+				{
+				 return "red";
+				}
+			
+		});
 		var idx = d.index;
 		svg_edges.each(function(d) {
 			if (d.target.index == idx || d.source.index == idx) {
@@ -298,6 +320,7 @@ body {
 		}
 		else	{	
 			d3.select(this).style("r", "20");
+			d3.select(this).style("fill", "green");
 		}
 		var idx = d.index;
 		svg_edges.each(function(d) {
@@ -305,10 +328,13 @@ body {
 				if(d.imp == 0){
 					d3.select(this).style("stroke", "#ccc");
 					d3.select(this).style("stroke-width", 1);
-				}else{
-					d3.select(this).style("stroke", "red");
+				}
+				else
+					{
+					d3.select(this).style("stroke", "green");
 					d3.select(this).style("stroke-width", 3);
 				}	
+				
 			}
 		});
 
