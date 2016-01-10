@@ -92,9 +92,10 @@ public class imagUpdateService
 	public void updateRelationToDest( String course, String year)
 	{
 		FileTools.copyDirectory("D:/R/temp/Relation", 
-				System.getProperty("user.dir").replace("\\", "/")+"/WebContent/Relation/"
-				+course+"/"
-				+year.replace("%", "")+"/",
+								System.getProperty("user.dir").replace("\\", "/")
+								+"/WebContent/Relation/"
+								+course+"/"
+								+year.replace("%", "")+"/",
 				true);
 	}
 	public static void main( String[] args) throws RserveException

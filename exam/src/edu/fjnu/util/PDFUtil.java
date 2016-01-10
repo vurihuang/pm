@@ -251,6 +251,7 @@ public class PDFUtil
 												12, 
 												normal, 
 												black));
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPhrase(para); 
 				table.addCell(cell);  
 			}

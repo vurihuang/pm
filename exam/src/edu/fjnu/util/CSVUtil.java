@@ -125,6 +125,7 @@ public class CSVUtil
 			{
 				System.out.println(list.get(i)[j]);
 			}
+			System.out.println();
 		}
     }
 }

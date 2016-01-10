@@ -70,33 +70,16 @@ public class RelationServlet extends BaseServlet {
 			// e.printStackTrace();
 			// }
 			String course = request.getParameter("course");
-			System.out.println(course);
 			// 截取前面三个字符串，得到类似于（三年级）
 			String year = request.getParameter("grade").substring(0, 3);
-			System.out.println(year);
-
-			String[] keywordArr = rr.getKeywordArr(year, course);
-			for (String x : keywordArr) {
-				System.out.println(x);
-			}
+			
+			String[] keywordArr = rr.getKeywordArr(year, course);		
 			Object[][] stvArr = rr.getStvArr(year, course);
-			for (int i = 0; i < stvArr.length; i++) {
-				for (int j = 0; j < stvArr[i].length; j++) {
-					System.out.print(stvArr[i][j] + "\t");
-				}
-				System.out.println();
-			}
-			System.out.println("------------------------");
-			for (Object[] stv : stvArr) {
-				for (Object s : stv) {
-					System.out.print(s + ",");
-				}
-				System.out.println("");
-			}
 
 			// 定义两个转化后的二维数组，分别由keywordArr，stvArr转化。
 			String[][] newKeywordArr = new String[keywordArr.length][2];
 			Object[][] newStvArr = new Object[stvArr.length][4];
+			
 			// 存放可以高亮的知识点下标，供stvArr转化使用
 			List<Integer> sourceList = new ArrayList<Integer>();
 			// 存放知识点List
@@ -105,51 +88,57 @@ public class RelationServlet extends BaseServlet {
 				String studentID = (String) request.getSession().getAttribute("userID");
 				// 得到该学生所需知识点List
 				clusterList = cluserService.getKeywordListOfStudent(grade, courseName, Integer.parseInt(studentID));
-
 			}
-			// 转化keywordArr数组为带高亮参数的二维数组
-			for (int i = 0; i < keywordArr.length; i++) {
-				newKeywordArr[i][0] = keywordArr[i];
-				if (isStudent) {
-					int j;
-					for (j = 0; j < clusterList.size(); j++) {
-						if (clusterList.get(j).getName() == keywordArr[i]) {
-							newKeywordArr[i][1] = "1";
-							sourceList.add(i);
-							break;
+			//有关联网数据才能进入
+			if(keywordArr != null && stvArr != null){
+			
+				// 转化keywordArr数组为带高亮参数的二维数组
+				for (int i = 0; i < keywordArr.length; i++) {
+					newKeywordArr[i][0] = keywordArr[i];
+					if (isStudent) {
+						int j;
+						for (j = 0; j < clusterList.size(); j++) {
+							if (changeString(clusterList.get(j).getName()).equals(keywordArr[i])) {
+								newKeywordArr[i][1] = "1";
+								sourceList.add(i);
+								break;
+							}
 						}
-					}
-					if (j == clusterList.size()) {
+						if (j == clusterList.size()) {
+							newKeywordArr[i][1] = "0";
+						}
+					} else {
 						newKeywordArr[i][1] = "0";
 					}
-				} else {
-					newKeywordArr[i][1] = "0";
 				}
-			}
-			// 转化stvArr数组为带高亮参数的二维数组
-			for (int i = 0; i < stvArr.length; i++) {
-				newStvArr[i][0] = stvArr[i][0];
-				newStvArr[i][1] = stvArr[i][1];
-				newStvArr[i][2] = stvArr[i][2];
-				if (isStudent) {
-					int j;
-					for (j = 0; j < sourceList.size(); j++) {
-						if (sourceList.get(j) == stvArr[i][0]) {
-							newStvArr[i][3] = "1";
-							break;
+				// 转化stvArr数组为带高亮参数的二维数组
+				for (int i = 0; i < stvArr.length; i++) {
+					newStvArr[i][0] = stvArr[i][0];
+					newStvArr[i][1] = stvArr[i][1];
+					newStvArr[i][2] = stvArr[i][2];
+					if (isStudent) {
+						int j;
+						for (j = 0; j < sourceList.size(); j++) {
+							
+							if (sourceList.get(j) == stvArr[i][0] || sourceList.get(j) == stvArr[i][1]) {
+								newStvArr[i][3] = "1";
+								break;
+							}
 						}
-					}
-					if (j == sourceList.size()) {
+						if (j == sourceList.size()) {
+							newStvArr[i][3] = "0";
+						}
+					} else {
 						newStvArr[i][3] = "0";
 					}
-				} else {
-					newStvArr[i][3] = "0";
 				}
-			}
-			System.out.println("------------------------");
-			for (String[] newKeyword : newKeywordArr) {
-				System.out.print(newKeyword[0] + ",");
-				System.out.print(newKeyword[1]);
+			}else{//知识关联返回为空时，给其设定一个假数据。
+				newKeywordArr[0][0] = "没有可关联知识点";
+				newKeywordArr[0][1] = "0";
+				newStvArr[0][0] = 0;
+				newStvArr[0][1] = 0;
+				newStvArr[0][2] = "0";
+				newStvArr[0][3] = "0";
 			}
 
 			request.setAttribute("keywordArray", newKeywordArr);
@@ -228,5 +217,14 @@ public class RelationServlet extends BaseServlet {
 		request.setAttribute("img_fsetsSup", fsetsSupPath);
 		request.setAttribute("img_Graph", GraphPath);
 		request.setAttribute("img_GroupedMatrix", GroupedMatrixPath);
+	}
+	
+	public String changeString(String keyword){
+		if(keyword.contains(" ")){
+			String [] strArray = keyword.split(" ");
+			return strArray[1];
+		}else{
+			return keyword;
+		}
 	}
 }
