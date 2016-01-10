@@ -23,7 +23,7 @@ public class PaperService {
 	 * @throws SQLException
 	 */
 	public double[] getWrongArray() throws SQLException{
-		List<VQuestion> list = new ArrayList(questionDao.getWrong());//从数据库按顺序得到所有试卷的难度
+		List<VQuestion> list = new ArrayList<VQuestion>(questionDao.getWrong());//从数据库按顺序得到所有试卷的难度
 		double[] arrayWrong = new double[list.size()];
 		
 		for(int i=0; i<list.size(); i++){
@@ -39,7 +39,7 @@ public class PaperService {
 	 * @throws SQLException
 	 */
 	public double[] getRealScoreArray() throws SQLException{
-		List<VTestDetail> list = new ArrayList(questionDao.getScore());//从数据库按顺序得到所有试卷的成绩
+		List<VTestDetail> list = new ArrayList<VTestDetail>(questionDao.getScore());//从数据库按顺序得到所有试卷的成绩
 		double[] arrayScore = new double[list.size()];
 		
 		for(int i=0; i<list.size(); i++){
