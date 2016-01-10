@@ -89,6 +89,7 @@ div.select-block {
 ul.select-list {
 	cursor: pointer;
 	margin: 15px 0 7px;
+	background:white;
 }
 
 /* Scroll view */
