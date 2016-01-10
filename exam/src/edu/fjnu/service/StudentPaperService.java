@@ -18,7 +18,7 @@ import edu.fjnu.domain.VTestMain;
  * @author 丽标
  *
  */
-public class StudentTestService {
+public class StudentPaperService {
 
 	private StudentPaperDao std=new StudentPaperDao();
 	private StudentDao studentDao=new StudentDao();

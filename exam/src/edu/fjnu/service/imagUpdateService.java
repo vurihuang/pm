@@ -17,7 +17,7 @@ import edu.fjnu.util.FileTools;
  * @author li
  *
  */
-public class imagUpdateService 
+public class ImagUpdateService 
 {
 	
 	/**
@@ -69,7 +69,7 @@ public class imagUpdateService
 			throws RserveException
 	{
 		// 生成分析所需的csv文件(自己改目录)
-		imagUpdateService.createRelationListCSV(course, year);
+		ImagUpdateService.createRelationListCSV(course, year);
 		
 		// 启动Rserve(自己改目录)
 //		Runtime rtime = Runtime.getRuntime();
@@ -102,7 +102,7 @@ public class imagUpdateService
 	{
 //		System.out.println(FileTools.createDir("D:/R/temp/use"));
 //		System.out.println(FileTools.createDir("D:/R/temp/Relation"));
-		imagUpdateService imag = new imagUpdateService();
+		ImagUpdateService imag = new ImagUpdateService();
 //		imag.UpdateRelationImg("英语", "二年级%");
 //		imag.UpdateRelationImg("数学", "一年级%");
 //		imag.updateRelationToDest("数学", "一年级%");

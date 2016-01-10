@@ -17,8 +17,8 @@ import edu.fjnu.domain.VScope;
 import edu.fjnu.service.ClusterService;
 import edu.fjnu.service.RelationService;
 import edu.fjnu.service.RelationshipService;
-import edu.fjnu.service.StudentTestService;
-import edu.fjnu.service.TeacherTestService;
+import edu.fjnu.service.StudentPaperService;
+import edu.fjnu.service.TeacherPaperService;
 import edu.fjnu.util.RelationResult;
 
 /**
@@ -33,9 +33,9 @@ public class RelationServlet extends BaseServlet {
 	private boolean isStudent;// 判断当前是否为学生登录
 	private RelationService rs = new RelationService();// 用来处理关联分析模块的d3图以及表格数据
 	private RelationshipService rsh = new RelationshipService();// 用来处理R图数据及调用
-	private TeacherTestService tts = new TeacherTestService();// 得到老师的教学信息
+	private TeacherPaperService tts = new TeacherPaperService();// 得到老师的教学信息
 	private ClusterService cluserService = new ClusterService();// 引入聚类service
-	private StudentTestService sts = new StudentTestService();// 为了得到学生所做过试卷的年级列表
+	private StudentPaperService sts = new StudentPaperService();// 为了得到学生所做过试卷的年级列表
 	private RelationResult rr = new RelationResult();// 知识点关联工具
 
 	/**

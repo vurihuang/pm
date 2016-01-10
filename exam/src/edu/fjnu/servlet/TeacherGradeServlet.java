@@ -10,17 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Teacher;
-import edu.fjnu.service.TeacherService;
+import edu.fjnu.service.TeacherGradeService;
 
 /**
  * 教师端处理
  * @author vengeance
  *
  */
-@WebServlet("/TeacherServlet")
-public class TeacherServlet extends BaseServlet {
+@WebServlet("/TeacherGradeServlet")
+public class TeacherGradeServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	private TeacherService teacherService = new TeacherService();
+	private TeacherGradeService teacherService = new TeacherGradeService();
 	
 	/**
 	 * 老师登录后载入index页面的所有信息

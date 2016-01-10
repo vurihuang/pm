@@ -11,18 +11,18 @@ import javax.servlet.http.HttpSession;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Student;
-import edu.fjnu.service.StudentService;
-import edu.fjnu.service.TeacherService;
+import edu.fjnu.service.StudentGradeService;
+import edu.fjnu.service.TeacherGradeService;
 
 /**
  * 学生信息请求处理
  * @author vengeance
  *
  */
-@WebServlet("/StudentServlet")
-public class StudentServlet extends BaseServlet {
+@WebServlet("/StudentGradeServlet")
+public class StudentGradeServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	public StudentService studentService = new StudentService();//实例化学生service方法
+	public StudentGradeService studentService = new StudentGradeService();//实例化学生service方法
 
 	/**
 	 * 获取学生的基本信息并显示

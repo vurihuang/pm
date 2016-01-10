@@ -13,7 +13,7 @@ import edu.fjnu.util.CSVUtil;
 import edu.fjnu.util.ImagUtil;
 import edu.fjnu.util.PDFUtil;
 
-public class pdfUpdateService 
+public class PdfUpdateService 
 {
 	/**
 	 * 生成关联分析pdf
@@ -163,7 +163,7 @@ public class pdfUpdateService
 	
 	public static void main( String[] args) throws Exception
 	{
-		pdfUpdateService pdf = new pdfUpdateService();
+		PdfUpdateService pdf = new PdfUpdateService();
 //		pdf.updateRelationPDF("语文", "一年级%");
 //		pdf.updateRelationPDF("语文", "二年级%");
 //		pdf.updateRelationPDF("语文", "三年级%");

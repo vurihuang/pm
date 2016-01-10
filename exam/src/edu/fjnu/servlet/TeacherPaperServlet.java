@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.VQuestion;
-import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTestMain;
 import edu.fjnu.service.PaperService;
-import edu.fjnu.service.TeacherTestService;
+import edu.fjnu.service.TeacherPaperService;
 
-@WebServlet("/TeacherTestServlet")
-public class TeacherTestServlet extends BaseServlet {
+@WebServlet("/TeacherPaperServlet")
+public class TeacherPaperServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
-	private TeacherTestService tts = new TeacherTestService();
+	private TeacherPaperService tts = new TeacherPaperService();
 	private PaperService pservice = new PaperService();
 
 	/**
@@ -81,7 +80,7 @@ public class TeacherTestServlet extends BaseServlet {
 		// 将试卷题目Lits设置回去
 		request.setAttribute("vTestMainList", vTestMainList);
 
-		// 转发到p-chinese-s.jsp页面，不论选择语数英均在该页面显示，只是数据变了
-		return "f:/index/jsp/paper/p-chinese-t.jsp";
+		// 转发到paper-s.jsp页面，不论选择语数英均在该页面显示，只是数据变了
+		return "f:/index/jsp/paper/paper-t.jsp";
 	}
 }

@@ -20,7 +20,7 @@ import edu.fjnu.domain.VTestMain;
  * @author Administrator
  *
  */
-public class TeacherTestService {
+public class TeacherPaperService {
 	private StudentPaperDao studentTestDao=new StudentPaperDao();
 	private TeacherPaperDao teacherTestDao= new TeacherPaperDao();
 	private QuestionDao questionDao = new QuestionDao();

@@ -18,7 +18,7 @@ import edu.fjnu.domain.Teacher;
  * @author vengeance
  *
  */
-public class TeacherService {
+public class TeacherGradeService {
 	private TeacherDao teacherDao = new TeacherDao();
 	private SscoreDao sscoreDao = new SscoreDao();
 	

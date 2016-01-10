@@ -12,16 +12,16 @@ import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTestMain;
-import edu.fjnu.service.StudentTestService;
+import edu.fjnu.service.StudentPaperService;
 /**
  * 处理学生端试卷分析业务
  * @author zhangzhiyong
  *
  */
-@WebServlet("/StudentTestServlet")
-public class StudentTestServlet extends BaseServlet {
+@WebServlet("/StudentPaperServlet")
+public class StudentPaperServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	private StudentTestService sts = new StudentTestService();
+	private StudentPaperService sts = new StudentPaperService();
 	
 	/**
 	 * 加载学生端试卷分析模块所有信息（由于一切从选择年级下拉框开始，所以函数名叫加载年级）
@@ -67,6 +67,6 @@ public class StudentTestServlet extends BaseServlet {
 		request.setAttribute("vTestMainList", vTestMainList);
 		
 		//转发到p-chinese-s.jsp页面，不论选择语数英均在该页面显示，只是数据变了
-		return "f:/index/jsp/paper/p-chinese-s.jsp";
+		return "f:/index/jsp/paper/paper-s.jsp";
 	}
 }

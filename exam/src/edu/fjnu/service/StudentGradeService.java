@@ -16,7 +16,7 @@ import edu.fjnu.test.dao.Score;
  * @author vengeance
  *
  */
-public class StudentService {
+public class StudentGradeService {
 	private StudentDao studentDao = new StudentDao(); 
 	private SscoreDao sscoreDao = new SscoreDao();
 	/**
