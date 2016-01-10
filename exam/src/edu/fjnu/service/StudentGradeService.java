@@ -1,15 +1,11 @@
 package edu.fjnu.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 
 import edu.fjnu.dao.SscoreDao;
 import edu.fjnu.dao.StudentDao;
 import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Student;
-import edu.fjnu.test.dao.Score;
 
 /**
  * 处理学生业务信息

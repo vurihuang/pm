@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import org.apache.catalina.tribes.util.Arrays;
-
 import edu.fjnu.dao.SscoreDao;
 import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Sscore;

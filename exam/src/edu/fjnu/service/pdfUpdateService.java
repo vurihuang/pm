@@ -1,13 +1,9 @@
 package edu.fjnu.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import com.lowagie.text.Document;
 
-import edu.fjnu.dao.StudentDao;
 import edu.fjnu.domain.Student;
 import edu.fjnu.util.CSVUtil;
 import edu.fjnu.util.ImagUtil;
@@ -163,7 +159,7 @@ public class PdfUpdateService
 	
 	public static void main( String[] args) throws Exception
 	{
-		PdfUpdateService pdf = new PdfUpdateService();
+//		PdfUpdateService pdf = new PdfUpdateService();
 //		pdf.updateRelationPDF("语文", "一年级%");
 //		pdf.updateRelationPDF("语文", "二年级%");
 //		pdf.updateRelationPDF("语文", "三年级%");

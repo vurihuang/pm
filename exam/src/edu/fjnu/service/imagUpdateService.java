@@ -1,11 +1,9 @@
 package edu.fjnu.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.SendingContext.RunTime;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
@@ -102,7 +100,7 @@ public class ImagUpdateService
 	{
 //		System.out.println(FileTools.createDir("D:/R/temp/use"));
 //		System.out.println(FileTools.createDir("D:/R/temp/Relation"));
-		ImagUpdateService imag = new ImagUpdateService();
+//		ImagUpdateService imag = new ImagUpdateService();
 //		imag.UpdateRelationImg("英语", "二年级%");
 //		imag.UpdateRelationImg("数学", "一年级%");
 //		imag.updateRelationToDest("数学", "一年级%");

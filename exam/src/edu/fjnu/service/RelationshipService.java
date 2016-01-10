@@ -10,7 +10,6 @@ import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
 import edu.fjnu.util.CSVUtil;
-import edu.fjnu.util.FileTools;
 import net.sf.json.JSONObject;
 
 /**
@@ -121,13 +120,13 @@ public class RelationshipService {
 	public void createRelationListCSV(String courseName, String year) {
 
 		String path = "/Users/vengeance/Documents/workspaceMars/exam/WebContent/R/Rimag/"; // 在这里改文件路径
-		FileTools filetool = new FileTools();
+//		FileTools filetool = new FileTools();
 //		filetool.createFolder(path); //此处需要修改有问题
 		
-		CSVUtil csvtool = new CSVUtil();
+//		CSVUtil csvtool = new CSVUtil();
 		List<String> relationlist = dealRelationList(courseName, year);
 		File file = new File(path + "temp.csv");// 读取数据文件的路径
-		boolean isCSVSuccess = csvtool.exportCsv(file, relationlist);
+		boolean isCSVSuccess = CSVUtil.exportCsv(file, relationlist);
 		System.out.println(isCSVSuccess);
 	}
 

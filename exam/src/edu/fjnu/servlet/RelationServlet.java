@@ -9,13 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.rosuda.REngine.Rserve.RserveException;
-
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Cluster;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.service.ClusterService;
-import edu.fjnu.service.RelationService;
 import edu.fjnu.service.RelationshipService;
 import edu.fjnu.service.StudentPaperService;
 import edu.fjnu.service.TeacherPaperService;
@@ -31,7 +28,6 @@ import edu.fjnu.util.RelationResult;
 public class RelationServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private boolean isStudent;// 判断当前是否为学生登录
-	private RelationService rs = new RelationService();// 用来处理关联分析模块的d3图以及表格数据
 	private RelationshipService rsh = new RelationshipService();// 用来处理R图数据及调用
 	private TeacherPaperService tts = new TeacherPaperService();// 得到老师的教学信息
 	private ClusterService cluserService = new ClusterService();// 引入聚类service

@@ -5,8 +5,6 @@ import java.util.List;
 import edu.fjnu.dao.GradeDao;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
-import edu.fjnu.domain.Student;
-import edu.fjnu.domain.Teacher;
 
 /**
  * 获取学生成绩相关数据
