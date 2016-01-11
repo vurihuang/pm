@@ -259,13 +259,29 @@ public class ClusterService {
 			return badClusterList;
 		case "middle":
 			List<Cluster> middle_goodClusterList = getKeywordsByLevel(grade, subject, "middle_good");
-//			List<Cluster> middle_badClusterList = getKeywordsByLevel(grade, subject, "middle_bad");
-//			for(int i = 0;i < middle_badClusterList.size();i++){
-//				middle_goodClusterList.add(middle_badClusterList.get(i));
-//			}
+			List<Cluster> middle_badClusterList = getKeywordsByLevel(grade, subject, "middle_bad");
+			for(int i = 0;i < middle_badClusterList.size();i++){
+				middle_goodClusterList.add(middle_badClusterList.get(i));
+			}
 			return middle_goodClusterList;
 		default:
 			return null;
 		}
+	}
+	
+	/**
+	 * 添加cluster
+	 * @param cluster
+	 */
+	public void add(Cluster cluster,String level,String subject) {
+		clusterDao.add(cluster,level,subject);
+	}
+	
+	/**
+	 * 根据level和subject查询聚类List
+	 * @return
+	 */
+	public List<Cluster> findAll(String level,String subject) {
+		return clusterDao.findAll(level, subject);
 	}
 }

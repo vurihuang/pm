@@ -1,13 +1,9 @@
 package edu.fjnu.service;
 
-import java.util.ArrayList;
-
-
 import java.util.List;
 
 import edu.fjnu.dao.SscoreDao;
 import edu.fjnu.dao.TeacherDao;
-import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
 
