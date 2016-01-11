@@ -1,14 +1,14 @@
 package edu.fjnu.dao;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-
 import cn.itcast.jdbc.TxQueryRunner;
-import edu.fjnu.domain.Sscore;
+import edu.fjnu.domain.Cluster;
 import edu.fjnu.domain.Testmain;
 import edu.fjnu.domain.VScope;
 
@@ -192,5 +192,32 @@ public class ClusterDao {
 		}
 	}
 	
+	/**
+	 * 添加Cluster
+	 * @param book
+	 */
+	public void add(Cluster cluster,String level,String subject) {
+		String sql = "insert into cluster values(?,?,?,?,?,?,?)";
+		Object[] params = {null,cluster.getName(),cluster.getArea(),cluster.getyAxis(),cluster.getGradeNum(),level,subject};
+		try {
+			qr.update(sql,params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**
+	 * 根据level和subject查询聚类List
+	 * @return
+	 */
+	public List<Cluster> findAll(String level,String subject) {
+		String sql = "select * from cluster where `level`=? and `subject`=? order by id ASC";
+		Object[] params = {level,subject};
+		try {
+			return qr.query(sql, new BeanListHandler<Cluster>(Cluster.class),params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 }
