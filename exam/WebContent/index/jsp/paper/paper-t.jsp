@@ -54,22 +54,22 @@
 			width:240px;
 			height:150px;
 			border-radius:10px;
-			margin-left:50px;
+			margin-left:20%;
 			margin-top:50px;
 			margin-bottom:50px;
 			opacity:0.5;
-			float:left;
+			float:left; 
 		}
 		.vali{
 			background-color:#5cb85c;
 			width:240px;
 			height:150px;
 			border-radius:10px;
-			margin-left:10px;
+			margin-left:10%;
 			margin-top:50px;
 			margin-bottom:50px;
 			opacity:0.5;
-			float:left;
+			float:left; 
 		}
 		.reli{
 			background-color:#f0ad4e;
@@ -163,7 +163,7 @@
 </head>
 
 <body style="background-color: white">
-	<div class="wai">
+	<div>
 		<div class="div diff">
 			<div class="col-xs-3">
 				<i class="glyphicon glyphicon-edit p pp"></i>
@@ -189,7 +189,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 		<div class="div vali">
 			<div class="col-xs-3">
 				<i class="glyphicon glyphicon-tags p pp"></i>
@@ -204,7 +204,8 @@
 				<div class="p">未匹配合适试卷</div>
 			</div>
 		</div>
-		<div class="div reli">
+	</div>
+		<!-- <div class="div reli">
 			<div class="col-xs-3">
 				<i class="glyphicon glyphicon-eye-open p pp"></i>
 			</div>
@@ -216,7 +217,7 @@
 					</p>
 				</div>
 				<div class="p">真实反映学生水平</div>
-			</div>
+			</div> -->
 			<div id="container"></div>
 			<div class="info">
 				<!-- 试卷信息 -->
