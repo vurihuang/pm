@@ -5,176 +5,193 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>试卷管理分析系统(学生端)</title>
-
-<!-- Bootstrap Core CSS -->
-<link
-	href="<c:url value='/index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>"
-	rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link
-	href="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.css '/>"
-	rel="stylesheet">
-
-<!-- Timeline CSS -->
-<link href="<c:url value='/index/dist/css/timeline.css '/>"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="<c:url value='/index/dist/css/sb-admin-2.css'/>"
-	rel="stylesheet">
-
-<!-- Morris Charts CSS -->
-<link
-	href="<c:url value='/index/bower_components/morrisjs/morris.css'/>"
-	rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link
-	href="<c:url value='/index/bower_components/font-awesome/css/font-awesome.min.css'/>"
-	rel="stylesheet" type="text/css">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <title>试卷管理分析系统</title>
+    <!-- Bootstrap Core CSS -->
+	<link href="<c:url value='/index/bower_components/bootstrap/dist/css/bootstrap.min.css'/>" rel="stylesheet">
+	<!-- MetisMenu CSS -->
+	<link href="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.css '/>" rel="stylesheet">
+	<!-- Timeline CSS -->
+	<link href="<c:url value='/index/dist/css/timeline.css '/>" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="<c:url value='/index/dist/css/sb-admin-2.css'/>" rel="stylesheet">
+	<!-- Morris Charts CSS -->
+	<link href="<c:url value='/index/bower_components/morrisjs/morris.css'/>" rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link href="<c:url value='/index/bower_components/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<!-- jQuery -->
-<script
-	src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js '/>"></script>
-<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
-<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
-<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+	<!-- jQuery -->
+	<script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js '/>"></script>
+	<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
+	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
+	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
 <style>
-body {
-	background-color: white;
-}
-/* .title{
-			font-size:25px;
-			color:black;
-		}
-		tr:hover{
-			background-color:#eeeeee;
-		}
-		.table{
-			word-break:break-all; 
-			word-wrap:break-all;
-		}
-		td{
-			text-align:center;
-		}
-		.info{
-			width:900px;
-			margin-left:100px;
-			margin-bottom:100px;
-		} */
-.sec {
-	margin-top:40px;
-}
-
-svg:hover {
-	cursor: hand;
-}
-
-body {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.rel {
-	//width: 1000px;
-	//height: 680px;
-	margin: 0px auto;
-	//margin-left: -120px;
-	text-align: center;
-}
-
-/* .p {
-	font-size: 30px;
-} */
-
-.imgd {
-	//width: 550px;
-	height: 700px; //
-	border: 1px solid black;
-	margin: 10px 0;
-	text-align: center;
-	font-size: 20px;
-	border-radius: 20px;
-}
-
-.imgdb {
-	height: 700px;
-	text-align: center;
-	font-size: 20px;
-	border: 1px solid black;
-	border-radius: 20px;
-}
-
+	body{
+		background-color:white;
+	}
+	.title{
+		font-size:25px;
+		color:black;
+	}
+	tr:hover{
+		background-color:#eeeeee;
+	}
+	.table{
+		word-break:break-all; 
+		word-wrap:break-all;
+	}
+	td{
+		text-align:left;
+	}
+	.td1{
+		text-align:center;
+	}
+	.info{
+		width:900px;
+		margin-left:20px;
+		margin-bottom:100px;
+	}
+	.sec{
+		
+	} 	
+	svg:hover{
+		cursor: hand;
+	}
+	body{
+		-webkit-touch-callout: none;  
+		-webkit-user-select: none;  
+		-khtml-user-select: none;  
+		-moz-user-select: none;  
+		-ms-user-select: none;  
+		user-select: none; 
+	}
+	.rel{
+		/*width:800px;*/
+		/*height:580px;*/
+		margin:0px auto;
+		margin-left:-100px;
+		text-align:center;
+		/* border:1px solid black; */
+	}
+	.imgd{
+		height:400px;
+		/* border:3px solid black; */
+		border-radius:20px;
+		margin:10px 0px;
+		text-align:center;
+		font-size:20px;
+	}
+	.imgdb{
+		height:400px;
+		text-align:center;
+		font-size:20px;
+		border:1px solid black;
+		border-radius:20px;
+	}
+	.img{
+		/* display:none; */
+	}
+	.titlet{
+		text-align:center;
+		font-size:30px;
+		margin-bottom:20px;
+		font-family:微软雅黑;
+	}
 </style>
-
-<script src="<c:url value='/index/js/d3.js '/>" charset="utf-8"></script>
+	<script src="<c:url value='/index/js/d3.js '/>" charset="utf-8"></script>
 </head>
 
 <body>
 	<div class="container">
-	<div class="row">
-	<div class="rel col-sm-9">
-		<span class="p" style="font-size:20px">知识点关系图</span>
+		<div class="titlet">知识关联分析</div>
+		<div class="row">	
+			<div class="col-sm-9"></div>
+			<div class="sec col-sm-3">
+				<!-- 年级下拉选择框 -->
+				<form action="" method="get" class="form">
+					<select name="drop1" class="ui-select" id="grade-select">
+						<c:forEach items="${gradeList}" var="grade">
+							<option value="${grade}"
+								<c:if test="${grade eq selectedGrade}" >
+		  									selected='selected'
+		  						</c:if>
+		  					>
+								${grade}
+							</option>
+						</c:forEach>
+					</select>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="rel col-sm-12"><span style="font-size:20px">知识点关系网图</span></div>			
+		</div>
+		<div class="info">
+			<!-- 试卷信息 -->
+			<table class="table table-bordered">
+				<caption class="text-center title">知识点关联表</caption>
+				<thead>
+					<tr>
+						<th width="100px" class="text-center">知识点类型</th>
+						<th width="300px" class="text-center">知识点</th>
+						<th class="text-center">关系图</th>									
+					</tr>
+				</thead>
+				<tbody>
+					<tr>								
+						<td class="td1">前继知识点</td>
+						<td>数学广角,统计和复数</td>
+						<td>
+							<div id="bin" style="height:100px;width:100%;"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="td1">后续知识点</td>
+						<td>位置与方向,分数除法</td>
+						<td><div id="cir" style="height:100px;width:100%;"></div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div clss="row">
+			<div class="imgd col-sm-6 col-lg-6">
+				高频知识点绘图<img src="<c:url value='${img_fsetsLift}'/>"
+					width="100%" height="90%" class="img" />
+			</div>
+			<div class="imgd col-sm-6 col-lg-6">
+				关联分析规则图<img src="<c:url value='${img_ScottPlot}' />" width="100%"
+					height="90%" class="img" />
+			</div>
+			<div class="imgdb col-sm-12 col-lg-12">
+				知识点频数分布图<img src="<c:url value='${img_fsetsSup}'/>"
+					width="100%" height="90%" class="img" />
+			</div>
+			<div class="imgd col-sm-6 col-lg-6">
+				知识点关联结构网图<img src="<c:url value='${img_Graph}' />" width="100%"
+					height="90%" class="img" />
+			</div>
+			<div class="imgd col-sm-6 col-lg-6">
+				支持-置信度矩阵分布图<img src="<c:url value='${img_GroupedMatrix}'/>" width="100%"
+					height="90%" class="img" />
+			</div>
+		</div>
 	</div>
-	<div class="sec col-sm-3">
-		<!-- 年级下拉选择框 -->
-		<form action="" method="get" class="form">
-			<select name="drop1" class="ui-select" id="grade-select">
-				<c:forEach items="${gradeList}" var="grade">
-					<option value="${grade}"
-						<c:if test="${grade eq selectedGrade}" >
-  									selected='selected'
-  								</c:if>>
-						${grade}</option>
-				</c:forEach>
-			</select>
-		</form>
-	</div>
-	</div>
-	<div clss="row">
-	<div class="imgd col-sm-6 col-lg-6">
-		高频知识点绘图<img src="<c:url value='${img_fsetsLift}'/>"
-			width="100%" height="90%" class="img" />
-	</div>
-	<div class="imgd col-sm-6 col-lg-6">
-		关联分析规则图<img src="<c:url value='${img_ScottPlot}' />" width="100%"
-			height="90%" class="img" />
-	</div>
-	<div class="imgdb col-sm-12 col-lg-12">
-		知识点频数分布图<img src="<c:url value='${img_fsetsSup}'/>"
-			width="100%" height="90%" class="img" />
-	</div>
-	<div class="imgd col-sm-6 col-lg-6">
-		知识点关联结构网图<img src="<c:url value='${img_Graph}' />" width="100%"
-			height="90%" class="img" />
-	</div>
-	<div class="imgd col-sm-6 col-lg-6">
-		支持-置信度矩阵分布图<img src="<c:url value='${img_GroupedMatrix}'/>" width="100%"
-			height="90%" class="img" />
-	</div>
-	</div>
-	</div>
-	<script>
-	var nodes = [];
+	
+ <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+ <script type="text/javascript">      
+			 
+ 	var nodes = [];
 	var edges = [];
 	
 	<c:forEach items="${keywordArray}" var="keyword">
@@ -225,15 +242,10 @@ body {
 			.style("stroke-width",function(d){
 				if (d.imp == 1)	
 					return 3;
-					else 
+				else 
 					return 1;
-					
-				
 			})
-		
 	var color = d3.scale.category20();
-	
-
 	//添加节点      
 	var svg_nodes = svg.selectAll("circle").data(nodes).enter().append(
 		"circle").attr("r", function(d){
@@ -245,7 +257,7 @@ body {
 			}
 		})
 
-	.style("fill", function(d, i) {
+		.style("fill", function(d, i) {
 		if(d.imp == 1){
 			return "green";
 		}
@@ -354,28 +366,127 @@ body {
 			scrollHeight: 250
 		});
 	});
-	
-	</script>
-	
+	 // 饼图   路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie',
+			'echarts/chart/funnel'	// 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('bin')); 
+            
+            var option = {
+                title : {
+    				text: '',
+    				subtext: '',
+    				x:'center'
+				},
+			    tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+			    },
+				calculable : true,
+			    series : [
+			        {
+			            name:'题目分布情况',
+			            type:'pie',
+			            radius : '55%',
+			            center: ['50%', '60%'],
+			            data:[
+			                {value:59, name:'简单题'},
+			                {value:79, name:'中等题'},
+			                {value:18, name:'较难题'},
+			            ]
+			        }
+			    ]};
+			    // 为echarts对象加载数据 
+			    myChart.setOption(option); 
+	});
+
+ // 环图   路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie',
+			'echarts/chart/funnel'	// 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('cir')); 
+            
+            var option = {
+                tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+			    },
+				legend: {
+			        orient : 'vertical',
+			        x : 'left',
+			        data:['同对概率','同错概率']
+			    },
+				calculable : true,
+			    series : [
+			    {
+			     	name:'知识点相关情况',
+			        type:'pie',
+			        radius : ['50%', '70%'],
+			        itemStyle : {
+			      		normal : {
+			            	label : {
+			        	        show : false
+			                },
+			                labelLine : {
+			                    show : false
+	                    }
+	                },
+		            emphasis : {
+			            label : {
+		    	            show : true,
+		                    position : 'right',
+		                    textStyle : {
+		        	            fontSize : '20',
+		                        fontWeight : 'bold'
+		                    }
+		                }
+		            }
+		        },
+			    data:[
+			    	{value:335, name:'同对概率'},
+			        {value:310, name:'同错概率'},
+			    ]
+			}]
+		};
+    
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+    });
+    </script>  
 	<!-- /#wrapper -->
-
 	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
-
+	<script	src="<c:url value='/index/bower_components/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 	<!-- Metis Menu Plugin JavaScript -->
-	<script
-		src="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
-
+	<script src="<c:url value='/index/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
 	<!-- Morris Charts JavaScript -->
-	<script
-		src="<c:url value='/index/bower_components/raphael/raphael-min.js '/>"></script>
-	<script
-		src="<c:url value='/index/bower_components/morrisjs/morris.min.js'/>"></script>
-
+	<script src="<c:url value='/index/bower_components/raphael/raphael-min.js '/>"></script>
+	<script src="<c:url value='/index/bower_components/morrisjs/morris.min.js'/>"></script>
 	<!-- Custom Theme JavaScript -->
 	<script src="<c:url value='/index/dist/js/sb-admin-2.js'/>"></script>
 
 </body>
-
 </html>

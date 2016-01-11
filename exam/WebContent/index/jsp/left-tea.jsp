@@ -80,7 +80,7 @@
 					<ul class="nav nav-second-level">
 						<li>
 							<%-- <a href="<c:url value='/TeacherServlet?method=allInfo&courseName=sum'/>" target="main">综合</a> --%>
-							<a href="<c:url value='/index/jsp/grade/grow-t.jsp'/>" target="main">学生成长轨迹图</a>
+							<a href="<c:url value='/TeacherGrowServlet?method=loadStu'/>" target="main">学生成长轨迹图</a>
 						</li>
 						<li>
 							<%-- <a href="<c:url value='/TeacherServlet?method=courseInfo&courseName=chinese'/>" target="main">语文</a> --%>

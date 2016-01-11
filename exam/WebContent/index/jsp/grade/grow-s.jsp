@@ -42,6 +42,8 @@
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">
+    
+    
         // 语文   路径配置
         require.config({
             paths: {
@@ -50,239 +52,303 @@
         });
         
         // 使用
-        require(
-            [
-                'echarts',
-                'echarts/chart/line',
-				'echarts/chart/bar'// 使用柱状图就加载bar模块，按需加载
-            ],
-            function (ec) {
-                // 基于准备好的dom，初始化echarts图表
-                var myChart = ec.init(document.getElementById('mainchinese')); 
-                
-                var option = {
-                    title : {
-        text: '语文',
-        subtext: ''
-    },
-    tooltip : {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['学生PR']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            //mark : {show: true},
-            //dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
-            restore : {show: true},
-            //saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['一年级上','一年级下','二年级上','二年级下','三年级上','三年级下','四年级上','四年级下','五年级上','五年级下','六年级上','六年级下']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} '
-            }
-        }
-    ],
-    series : [
-        {
-            name:'学生PR',
-            type:'line',
-            data:[81, 51, 75, 63, 92, 83, 70, 71, 88, 75, 60, 55, 77, 79],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            }
-        }
-    ]
-                };
-        
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-            }
-        );
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+			'echarts/chart/bar'// 使用柱状图就加载bar模块，按需加载
+        ],
+		 function (ec) {
+		
+							// 基于准备好的dom，初始化echarts图表
+								var myChart = ec.init(document
+										.getElementById('mainchinese'));
+			var option = {
+									
+							
+							title : {
+										text : '语文',
+										subtext : ''
+									},
+							tooltip : {
+								trigger : 'axis'
+							},
+							legend : {
+								data : [ '学生PR' ]
+							},
+							toolbox : {
+								show : true,
+								feature : {
+									//mark : {show: true},
+									//dataView : {show: true, readOnly: false},
+									magicType : {
+										show : true,
+										type : [ 'line', 'bar' ]
+									},
+									restore : {
+										show : true
+									},
+								//saveAsImage : {show: true}
+								}
+							},
+							calculable : true,
+							xAxis : [ 
+							          {
+										type : 'category',
+										boundaryGap : false,
+										data : [ '一年级上', '一年级下', '二年级上', '二年级下',
+												'三年级上', '三年级下', '四年级上', '四年级下', '五年级上',
+												'五年级下', '六年级上' ]
+									  } 
+							        ],
+							
+							
+							yAxis : [ {
+										type : 'value',
+										axisLabel : {
+											formatter : '{value} '
+										}
+									} ],
+							series : [ {
+										name : '学生PR',
+										type : 'line',
+										data : [ 81, 51, 75, 63, 92, 83, 70, 71, 88,
+												75, 60, 55, 77 ],
+										markPoint : {
+											data : [ {
+												type : 'max',
+												name : '最大值'
+											}, {
+												type : 'min',
+												name : '最小值'
+											} ]
+										},
+										markLine : {
+											data : [ {
+														type : 'average',
+														name : '平均值'
+													} ]
+												   }
+										} ]
+						 	
+						};
+			//为语文折线图赋值
+			var value0 = [];
+			var value1 = [];
+			
+			<c:forEach items="${chineseList}" var="studentPr">
+				value0.push("${studentPr.classyear}");
+			</c:forEach>
+			<c:forEach items="${chineseList}" var="studentPr">
+				value1.push("${studentPr.avgPR}");
+			</c:forEach>
+						
+			option['xAxis'][0]['data'] = value0;
+			option['series'][0]['data']= value1;
+		
+			// 为echarts对象加载数据 
+			myChart.setOption(option);																	
+		});
+    
 
+					
 		// 数学   路径配置
-        require.config({
-            paths: {
-                echarts: 'http://echarts.baidu.com/build/dist'
-            }
-        });
-        
-        // 使用
-        require(
-            [
-                'echarts',
-                'echarts/chart/line',
-				'echarts/chart/bar'// 使用柱状图就加载bar模块，按需加载
-            ],
-            function (ec) {
-                // 基于准备好的dom，初始化echarts图表
-                var myChart = ec.init(document.getElementById('mainmath')); 
-                
-                var option = {
-                    title : {
-        text: '数学',
-        subtext: ''
-    },
-    tooltip : {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['学生PR']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            //mark : {show: true},
-            //dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
-            restore : {show: true},
-            //saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['一年级上','一年级下','二年级上','二年级下','三年级上','三年级下','四年级上','四年级下','五年级上','五年级下','六年级上','六年级下']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} '
-            }
-        }
-    ],
-    series : [
-        {
-            name:'学生PR',
-            type:'line',
-            data:[81, 50, 75, 63, 96, 83, 70, 57, 88, 75, 90, 55, 77, 79],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            }
-        }
-    ]
-                };
-        
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-            }
-        );
+		require.config({
+			paths : {
+				echarts : 'http://echarts.baidu.com/build/dist'
+			}
+		});
 
-		// 英语   路径配置
-        require.config({
-            paths: {
-                echarts: 'http://echarts.baidu.com/build/dist'
-            }
-        });
-        
-        // 使用
-        require(
-            [
-                'echarts',
-                'echarts/chart/line',
+		// 使用
+		require([ 'echarts', 'echarts/chart/line',
 				'echarts/chart/bar'// 使用柱状图就加载bar模块，按需加载
-            ],
-            function (ec) {
-                // 基于准备好的dom，初始化echarts图表
-                var myChart = ec.init(document.getElementById('mainenglish')); 
-                
-                var option = {
-                    title : {
-        text: '英语',
-        subtext: ''
-    },
-    tooltip : {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['学生PR']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            //mark : {show: true},
-            //dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
-            restore : {show: true},
-            //saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['一年级上','一年级下','二年级上','二年级下','三年级上','三年级下','四年级上','四年级下','五年级上','五年级下','六年级上','六年级下']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} '
-            }
-        }
-    ],
-    series : [
-        {
-            name:'学生PR',
-            type:'line',
-            data:[81, 51, 75, 63, 92, 83, 70, 71, 88, 75, 60, 55, 77, 79],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            }
-        }
-    ]
-                };
-        
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-            }
-        );
+		], function(ec) {
+			// 基于准备好的dom，初始化echarts图表
+			var myChart = ec.init(document
+					.getElementById('mainmath'));
 
-    </script>
+			var option = {
+				title : {
+					text : '数学',
+					subtext : ''
+				},
+				tooltip : {
+					trigger : 'axis'
+				},
+				legend : {
+					data : [ '学生PR' ]
+				},
+				toolbox : {
+					show : true,
+					feature : {
+						//mark : {show: true},
+						//dataView : {show: true, readOnly: false},
+						magicType : {
+							show : true,
+							type : [ 'line', 'bar' ]
+						},
+						restore : {
+							show : true
+						},
+					//saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				xAxis : [ {
+					type : 'category',
+					boundaryGap : false,
+					data : [ '一年级上', '一年级下', '二年级上', '二年级下',
+							'三年级上', '三年级下', '四年级上', '四年级下', '五年级上',
+							'五年级下', '六年级上', '六年级下' ]
+				} ],
+				yAxis : [ {
+					type : 'value',
+					axisLabel : {
+						formatter : '{value} '
+					}
+				} ],
+				series : [ {
+					name : '学生PR',
+					type : 'line',
+					data : [ 81, 50, 75, 63, 96, 83, 70, 57, 88,
+							75, 90, 55, 77, 79 ],
+					markPoint : {
+						data : [ {
+							type : 'max',
+							name : '最大值'
+						}, {
+							type : 'min',
+							name : '最小值'
+						} ]
+					},
+					markLine : {
+						data : [ {
+							type : 'average',
+							name : '平均值'
+						} ]
+					}
+				} ]
+			};
+			//为图赋值
+			var value2 = [];
+			var value3 = [];
+			<c:forEach items="${mathList}" var="studentPr">
+				value2.push("${studentPr.classyear}");
+			</c:forEach>
+			<c:forEach items="${mathList}" var="studentPr">
+				value3.push("${studentPr.avgPR}");
+			</c:forEach>
+						
+			option['xAxis'][0]['data'] = value2;
+			option['series'][0]['data']= value3;
+
+			// 为echarts对象加载数据 
+			myChart.setOption(option);
+		});
+
+	// 英语   路径配置
+	require.config({
+		paths : {
+			echarts : 'http://echarts.baidu.com/build/dist'
+		}
+	});
+
+	// 使用
+	require([ 'echarts', 'echarts/chart/line',
+			'echarts/chart/bar'// 使用柱状图就加载bar模块，按需加载
+	], function(ec) {
+		// 基于准备好的dom，初始化echarts图表
+		var myChart = ec.init(document
+				.getElementById('mainenglish'));
+
+		var option = {
+			title : {
+				text : '英语',
+				subtext : ''
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			legend : {
+				data : [ '学生PR' ]
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					//mark : {show: true},
+					//dataView : {show: true, readOnly: false},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+				//saveAsImage : {show: true}
+				}
+			},
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				boundaryGap : false,
+				data : [ '一年级上', '一年级下', '二年级上', '二年级下',
+						'三年级上', '三年级下', '四年级上', '四年级下', '五年级上',
+						'五年级下', '六年级上', '六年级下' ]
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value} '
+				}
+			} ],
+			series : [ {
+				name : '学生PR',
+				type : 'line',
+				data : [ 81, 51, 75, 63, 92, 83, 70, 71, 88,
+						75, 60, 55, 77, 79 ],
+				markPoint : {
+					data : [ {
+						type : 'max',
+						name : '最大值'
+					}, {
+						type : 'min',
+						name : '最小值'
+					} ]
+				},
+				markLine : {
+					data : [ {
+						type : 'average',
+						name : '平均值'
+					} ]
+				}
+			} ]
+		};
+		var value4 = [];
+		var value5 = [];
+		<c:forEach items="${englishList}" var="studentPr">
+			value4.push("${studentPr.classyear}");
+		</c:forEach>
+		<c:forEach items="${englishList}" var="studentPr">
+			value5.push("${studentPr.avgPR}");
+		</c:forEach>
+				
+		option['xAxis'][0]['data'] = value4;
+		option['series'][0]['data']= value5;
+
+		// 为echarts对象加载数据 
+		myChart.setOption(option);
+	});
+</script>
+	<%-- <c:forEach items="${chineseList}" var="studentPr">
+		<div>
+			<span>年级</span>
+			<span>${studentPr.classyear}</span>
+			<span>pr</span>
+			<span>${studentPr.avgPR}</span>
+			
+		</div>
+	</c:forEach> --%>
+	
 
 	<script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
 	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>

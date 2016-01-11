@@ -48,16 +48,16 @@
 		<div class="sec">
 			<!-- 下拉选择框 -->
 			<form action="" method="get" class="form">
-				<select name="drop1" class="ui-select">
-					<option value="1">张智勇</option>
-					<option value="2">杨晨曦</option>
-					<option value="3">周琪伟</option>
-					<option selected value="4">黄徐震</option>
-					<option value="5">黄海波</option>
-					<option value="6">黎芷研</option>
-					<option value="7">陈江东</option>
-					<option value="8">林灵凡</option>
-					<option value="9">沈丽标</option>
+				<select name="drop1" class="ui-select" id="stu-select">
+					<c:forEach items="${stuList}" var="stu">
+					<option value="${stu}"
+						 <c:if test="${stu eq selectStu}" >
+							selected='selected'
+						</c:if> 
+					>
+						${stu}
+					</option>
+				</c:forEach>
 				</select>
 			</form>
 		</div>
@@ -144,6 +144,19 @@
         }
     ]
                 };
+              //为语文折线图赋值
+    			var value0 = [];
+    			var value1 = [];
+    			
+    			<c:forEach items="${chineseList}" var="studentPr">
+    				value0.push("${studentPr.classyear}");
+    			</c:forEach>
+    			<c:forEach items="${chineseList}" var="studentPr">
+    				value1.push("${studentPr.avgPR}");
+    			</c:forEach>
+    						
+    			option['xAxis'][0]['data'] = value0;
+    			option['series'][0]['data']= value1;
         
                 // 为echarts对象加载数据 
                 myChart.setOption(option); 
@@ -224,6 +237,18 @@
         }
     ]
                 };
+              //为图赋值
+    			var value2 = [];
+    			var value3 = [];
+    			<c:forEach items="${mathList}" var="studentPr">
+    				value2.push("${studentPr.classyear}");
+    			</c:forEach>
+    			<c:forEach items="${mathList}" var="studentPr">
+    				value3.push("${studentPr.avgPR}");
+    			</c:forEach>
+    						
+    			option['xAxis'][0]['data'] = value2;
+    			option['series'][0]['data']= value3;
         
                 // 为echarts对象加载数据 
                 myChart.setOption(option); 
@@ -304,6 +329,17 @@
         }
     ]
                 };
+                var value4 = [];
+        		var value5 = [];
+        		<c:forEach items="${englishList}" var="studentPr">
+        			value4.push("${studentPr.classyear}");
+        		</c:forEach>
+        		<c:forEach items="${englishList}" var="studentPr">
+        			value5.push("${studentPr.avgPR}");
+        		</c:forEach>
+        				
+        		option['xAxis'][0]['data'] = value4;
+        		option['series'][0]['data']= value5;
         
                 // 为echarts对象加载数据 
                 myChart.setOption(option); 
@@ -311,16 +347,19 @@
         );
 
 		//下拉选择框
-	$(document).ready(function(){		
-		$(".ui-select").selectWidget({
-			change       : function (changes) {
-				return changes;
+	$(document).ready(
+	 	function(){		
+			$("#stu-select").selectWidget(
+			{
+				change: function (changes) {
+				stu=$("#stu-select").val();
+				location.href = "<c:url value='/TeacherGrowServlet?method=loadStuPr&stuName='/>"+stu;
 			},
-			effect       : "slide",
-			keyControl   : true,
-			speed        : 200,
-			scrollHeight : 250
-		});
+				effect       : "slide",
+				keyControl   : true,
+				speed        : 200,
+				scrollHeight : 250
+			});
 		
 	});	
     </script>
