@@ -34,18 +34,19 @@ public class TeacherPaperServlet extends BaseServlet {
 	 */
 	public String loadGrade(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-
-		String teacherID = (String) request.getSession().getAttribute("userID");
 		// 通过教师ID得到他所有的年级列表
-		List<String> gradeList = tts.getGradeList(Integer.parseInt(teacherID));
+		String teacherID = (String) request.getSession().getAttribute("userID");
 		// 得到下拉框选择的年级名
-		String selectGrade = request.getParameter("grade");
+		List<String> gradeList = tts.getGradeList(Integer.parseInt(teacherID));
 		// 得到下拉框选择的试卷ID
-		String selectTest = request.getParameter("testID");
+		String selectGrade = request.getParameter("grade");
 		// 得到选择的科目（该参数来自直接选择科目或者选择下拉框后继续将科目的值传过来,以实现不同科目跳转）
+		String selectTest = request.getParameter("testID");
 		String subject = request.getParameter("subject");
+		
 		List<Integer> studentIDList = null;// 存放学生ID列表
 		List<VTestMain> vTestMainList = null;// 存放试卷列表（主要取试卷ID）
+		
 		if (selectGrade != null) {// 有选择年级
 			// 通过teacherID、courseName、grade得到studentIDList
 			studentIDList = tts.getStudentId(Integer.parseInt(teacherID), subject, selectGrade);
@@ -80,7 +81,7 @@ public class TeacherPaperServlet extends BaseServlet {
 		// 将试卷题目Lits设置回去
 		request.setAttribute("vTestMainList", vTestMainList);
 
-		// 转发到paper-s.jsp页面，不论选择语数英均在该页面显示，只是数据变了
+		// 转发到paper-t.jsp页面，不论选择语数英均在该页面显示，只是数据变了
 		return "f:/index/jsp/paper/paper-t.jsp";
 	}
 }

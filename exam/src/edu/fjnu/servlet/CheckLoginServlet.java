@@ -11,12 +11,11 @@ import javax.servlet.http.HttpSession;
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
-import edu.fjnu.service.StudentGradeService;
-import edu.fjnu.service.TeacherGradeService;
+import edu.fjnu.service.StudentInfoService;
+import edu.fjnu.service.TeacherInfoService;
 
 /**
  * 验证登录信息
- * 判断输入权限是学生还是老师
  * @author vengeance
  *
  */
@@ -39,21 +38,21 @@ public class CheckLoginServlet extends BaseServlet {
 		
 		if(permission.equals("student")){//如果是学生
 			Student student = new Student();
-			StudentGradeService stuService = new StudentGradeService();
+			StudentInfoService stuService = new StudentInfoService();
 			
 			student.setStudentID(userID);
 			student.setSpassword(password);
 			
 			if(stuService.checkInfo(student)){//验证学生登录信息是否正确，如果正确，将登录信息保存在session中
 				session.setAttribute("userID", student.getStudentID());
-				request.getRequestDispatcher("/StudentGradeServlet?method=stuInfo")
+				request.getRequestDispatcher("/StudentInfoServlet?method=stuInfo")
 				.forward(request, response);//调用处理学生信息的servlet显示学生主页面
 			}else{//如果登录失败
 				request.getRequestDispatcher("/error.jsp").forward(request, response);;
 			}
 		}else if(permission.equals("teacher")){//如果是老师
 			Teacher teacher = new Teacher();
-			TeacherGradeService teaService = new TeacherGradeService();
+			TeacherInfoService teaService = new TeacherInfoService();
 			
 			teacher.setTeacherID(userID);
 			teacher.setTpassword(password);
@@ -61,7 +60,7 @@ public class CheckLoginServlet extends BaseServlet {
 			if(teaService.checkInfo(teacher)){//验证老师登录信息是否正确，如果正确，将登录信息保存在session中
 				session.setAttribute("userID", userID);
 			
-				request.getRequestDispatcher("/TeacherGradeServlet?method=teaLoadInfo")
+				request.getRequestDispatcher("/TeacherInfoServlet?method=teaLoadInfo")
 				.forward(request, response);//调用处理老师信息的servlet显示老师主页面
 			}else{//如果登录失败
 				request.getRequestDispatcher("/error.jsp").forward(request, response);

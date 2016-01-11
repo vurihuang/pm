@@ -28,7 +28,7 @@ import edu.fjnu.util.RelationResult;
 public class RelationServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private boolean isStudent;// 判断当前是否为学生登录
-	private RelationshipService rsh = new RelationshipService();// 用来处理R图数据及调用
+//	private RelationshipService rsh = new RelationshipService();// 用来处理R图数据及调用
 	private TeacherPaperService tts = new TeacherPaperService();// 得到老师的教学信息
 	private ClusterService cluserService = new ClusterService();// 引入聚类service
 	private StudentPaperService sts = new StudentPaperService();// 为了得到学生所做过试卷的年级列表
