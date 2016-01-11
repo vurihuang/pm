@@ -32,6 +32,19 @@ public class Cluster {
 	public void setGradeNum(int gradeNum) {
 		this.gradeNum = gradeNum;
 	}
+	
+	
+	public Cluster(String name, int area, int yAxis, int gradeNum) {
+		super();
+		this.name = name;
+		this.area = area;
+		this.yAxis = yAxis;
+		this.gradeNum = gradeNum;
+	}
+	
+	public Cluster(){
+		
+	}
 	@Override
 	public String toString() {
 		return "Cluster [name=" + name + ", area=" + area + ", yAxis=" + yAxis
