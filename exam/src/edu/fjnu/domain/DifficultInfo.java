@@ -7,15 +7,15 @@ package edu.fjnu.domain;
  *
  */
 public class DifficultInfo {
-	private int difficultLevel; // 难度系数
+	private int difficultyLevel; // 难度系数
 	private int questionCount; // 出现次数
 
-	public int getDifficultLevel() {
-		return difficultLevel;
+	public int getDifficultyLevel() {
+		return difficultyLevel;
 	}
 
-	public void setDifficultLevel(int difficultLevel) {
-		this.difficultLevel = difficultLevel;
+	public void setDifficultyLevel(int difficultyLevel) {
+		this.difficultyLevel = difficultyLevel;
 	}
 
 	public int getQuestionCount() {
@@ -28,7 +28,7 @@ public class DifficultInfo {
 
 	@Override
 	public String toString() {
-		return "DifficultInfo [difficultLevel=" + difficultLevel + ", questionCount=" + questionCount + "]";
+		return "DifficultInfo [difficultyLevel=" + difficultyLevel + ", questionCount=" + questionCount + "]";
 	}
 
 }
