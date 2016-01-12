@@ -3,7 +3,10 @@ package edu.fjnu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fjnu.dao.KeywordDao;
 import edu.fjnu.dao.QuestionDao;
+import edu.fjnu.domain.DifficultInfo;
+import edu.fjnu.domain.Keyword;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestMain;
 import edu.fjnu.util.RelationAnalyse;
@@ -17,8 +20,45 @@ import edu.fjnu.util.RelationAnalyse;
 public class RelationService {
 	QuestionDao qDao = new QuestionDao();
 	RelationAnalyse ra = new RelationAnalyse();// 关联分析处理工具
+	KeywordDao keywordDao = new KeywordDao();// 得到知识点信息
 	List<List<String>> keywordList = null;// 知识点列表
 	String[] keywordArr = null;// 存储关联分析的知识点，用来描点
+
+	/**
+	 * 根据知识点的名称得到这个知识点的相关信息(做对做错次数,相关题目难中易题数分布)
+	 * 
+	 * @param keyword
+	 * @return 知识点对象
+	 */
+	public Keyword getKeywordInfoByName(Keyword keyword) {
+		keyword = keywordDao.getKeywordInfo(keyword);
+		List<DifficultInfo> diffList = new ArrayList<DifficultInfo>();// 存储知识点相关题目难中易题数分布
+		diffList = keywordDao.getKeyDiffInfo(keyword);// 得到相关题目难中易题数分布
+
+		for (int i = 0; i < diffList.size(); i++) {
+			switch (diffList.get(i).getDifficultyLevel()) {
+			case 1: {
+				keyword.setEasyCount(diffList.get(i).getQuestionCount());
+				break;
+			}
+			case 3: {
+				keyword.setMiddleCount(diffList.get(i).getQuestionCount());
+				break;
+			}
+			case 5: {
+				keyword.setHardCount(diffList.get(i).getQuestionCount());
+				break;
+			}
+			default:
+				keyword.setEasyCount(0);
+				keyword.setMiddleCount(0);
+				keyword.setHardCount(0);
+				break;
+			}
+		}
+		System.out.println(keyword);// TEST
+		return keyword;
+	}
 
 	/**
 	 * 得到没有关联分析的知识点列表，用于传递给R绘制的数据
@@ -34,7 +74,6 @@ public class RelationService {
 
 		return tempKeywordList;
 	}
-
 
 	/**
 	 * 得到没有关联分析过的知识点列表
