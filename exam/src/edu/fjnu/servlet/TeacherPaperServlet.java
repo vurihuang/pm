@@ -14,6 +14,7 @@ import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VTestMain;
 import edu.fjnu.service.PaperService;
 import edu.fjnu.service.TeacherPaperService;
+import edu.fjnu.util.DoubleFormat;
 
 @WebServlet("/TeacherPaperServlet")
 public class TeacherPaperServlet extends BaseServlet {
@@ -21,6 +22,7 @@ public class TeacherPaperServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private TeacherPaperService tts = new TeacherPaperService();
 	private PaperService pservice = new PaperService();
+	private DoubleFormat df = new DoubleFormat();
 
 	/**
 	 * 加载教师端试卷分析模块所有信息（由于一切从选择年级下拉框开始，所以函数名叫加载年级）
@@ -43,10 +45,10 @@ public class TeacherPaperServlet extends BaseServlet {
 		// 得到选择的科目（该参数来自直接选择科目或者选择下拉框后继续将科目的值传过来,以实现不同科目跳转）
 		String selectTest = request.getParameter("testID");
 		String subject = request.getParameter("subject");
-		
+
 		List<Integer> studentIDList = null;// 存放学生ID列表
 		List<VTestMain> vTestMainList = null;// 存放试卷列表（主要取试卷ID）
-		
+
 		if (selectGrade != null) {// 有选择年级
 			// 通过teacherID、courseName、grade得到studentIDList
 			studentIDList = tts.getStudentId(Integer.parseInt(teacherID), subject, selectGrade);
@@ -62,12 +64,31 @@ public class TeacherPaperServlet extends BaseServlet {
 			request.setAttribute("vQuestionList", vQuestionList);
 			// 通过试卷ID得到知识点和相应的错误率list并设置回去
 			List<VQuestion> vQuestionKeywordList = tts.getWrongRate(Integer.parseInt(selectTest));
-			double hardrate = (tts.getHardRateById(Integer.parseInt(selectTest)).getWrong()) / 24;
-			double believerate = 1 - (pservice.getStdByTestId(Integer.parseInt(selectTest))) / 60;
+			double hardrate = df.getDoubleFormat(((tts.getHardRateById(Integer.parseInt(selectTest)).getWrong()) / 24));
+			double believerate = df.getDoubleFormat(1 - (pservice.getStdByTestId(Integer.parseInt(selectTest))) / 60);
+			String hardString = "";
+			String believeString = "";
+			if (hardrate < 0.4) {
+				hardString = "难度一般";
+			} else if (hardrate > 0.4 && hardrate < 0.7) {
+				hardString = "难度中等";
+			} else {
+				hardString = "难度较难";
+			}
+
+			if (believerate < 0.4) {
+				believeString = "可信度一般";
+			} else if (believerate > 0.4 && believerate < 0.7) {
+				believeString = "比较可信";
+			} else {
+				believeString = "可信度较强";
+			}
 
 			request.setAttribute("vQuestionKeywordList", vQuestionKeywordList);
 			request.setAttribute("hardrate", hardrate);
 			request.setAttribute("believerate", believerate);
+			request.setAttribute("hardString", hardString);
+			request.setAttribute("believeString", believeString);
 		}
 
 		// 将年级List设置回去供下拉框显示
