@@ -176,16 +176,7 @@
 					</p>
 				</div>
 				<div class="p">
-					<div class="p">难度一般</div>
-					<%-- <c:choose>
-							<c:when test="${hardrate } > 0.7">
-								<c:out value="难度较高"></c:out>
-							</c:when>
-							<c:when test="${hardrate } < 0.7 && ${hardrate } > 0.4">难度中等</c:when>
-							<c:when test="${hardrate } >= 0 && ${hardrate } < 0.4">
-								<c:out value="难度较低">未选择试卷</c:out>
-							</c:when>
-						</c:choose> --%>
+					<div class="p"><c:out value="${hardString}">未选择试卷</c:out></div>
 				</div>
 			</div>
 		</div>
@@ -198,10 +189,10 @@
 				<div class="huge p">
 					信度：
 					<p>
-						<c:out value="0">0</c:out>
+						<c:out value="${believerate}">0</c:out>
 					</p>
 				</div>
-				<div class="p">未匹配合适试卷</div>
+				<div class="p"><c:out value="${believeString}">未选择试卷</c:out></div>
 			</div>
 		</div>
 	</div>
@@ -245,7 +236,7 @@
 								</td>
 								<td class="td3">${vQuestion.num}</td>
 								<td class="td3">${vQuestion.successNum}</td>
-								<td class="td3">${vQuestion.rate}</td>
+								<td class="td3">${vQuestion.rate}%</td>
 							</tr>
 						</c:forEach>
 					</tbody>

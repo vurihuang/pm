@@ -438,7 +438,7 @@
 				legend: {
 			        orient : 'vertical',
 			        x : 'left',
-			        data:['同对概率','同错概率']
+			        data:['同对情况','同错情况']
 			    },
 				calculable : true,
 			    series : [
@@ -467,8 +467,8 @@
 		            }
 		        },
 			    data:[
-			    	{value:335, name:'同对概率'},
-			        {value:310, name:'同错概率'},
+			    	{value:114, name:'同对情况'},
+			        {value:415, name:'同错情况'},
 			    ]
 			}]
 		};

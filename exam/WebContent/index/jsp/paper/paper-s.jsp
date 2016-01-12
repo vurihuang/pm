@@ -147,7 +147,7 @@
 						</td>
 						<td>${vQuestion.num}</td>
 						<td>${vQuestion.successNum}</td>
-						<td>${vQuestion.rate * 100}%</td>
+						<td>${vQuestion.rate}%</td>
 						<!--  错误率扩大100倍-->
 						<td>${vQuestion.stustatus}</td>
 					</tr>
