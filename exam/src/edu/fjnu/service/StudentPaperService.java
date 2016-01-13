@@ -74,7 +74,7 @@ public class StudentPaperService {
 		List<VQuestion> tmpList = std.searchWrongRate(scope);
 
 		for (int i = 0; i < tmpList.size(); i++) {
-			tmpList.get(i).setWrong(df.getDoubleFormat(tmpList.get(i).getWrong()));
+			tmpList.get(i).setWrong(df.getDoubleFormat(tmpList.get(i).getWrong()*100));
 		}
 		
 		return tmpList;
