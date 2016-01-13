@@ -124,7 +124,7 @@ public class RelationResult {
 		try {
 //			rulesData = CSVUtil.importCsv(System.getProperty("user.dir").replace("\\", "/") + "/relation/" + course
 //					+ "/" + year + "/rules.csv");
-			rulesData = CSVUtil.importCsv("/Users/vengeance/Desktop/relation/" + course + "/" + year + "/rules.csv");
+			rulesData = CSVUtil.importCsv("/Users/vengeance/Documents/workspaceMars/exam/WebContent/relation/" + course + "/" + year + "/rules.csv");
 		} catch (FileNotFoundException e) {
 			System.err.println("路径文件不存在！");
 			return null;

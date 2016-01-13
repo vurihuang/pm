@@ -57,7 +57,15 @@ public class PDFUtil
 	public static Font ChineseFron() throws DocumentException, IOException
 	{
 		BaseFont bfSong = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", false);
-		Font fontSong = new Font(bfSong, 10, Font.NORMAL);
+		Font fontSong = new Font(bfSong, 10, Font.BOLD);
+		
+		return fontSong;
+	}
+	
+	public static Font ChineseFron( int size) throws DocumentException, IOException
+	{
+		BaseFont bfSong = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", false);
+		Font fontSong = new Font(bfSong, size, Font.BOLD);
 		
 		return fontSong;
 	}
@@ -155,11 +163,27 @@ public class PDFUtil
 	public void InsertParagh( Document doc, String text) throws Exception
 	{
 		Paragraph par = new Paragraph();
-		par.add(convertChunkByChinese(text, 12, normal, black));
+		par.add(convertChunkByChinese(text, 15, normal, black));
 		par.setFirstLineIndent(setting);
 		doc.add(par);
 	}
 	
+	/**
+	 * 模块标题设计
+	 * @param doc
+	 * @param text
+	 * @throws DocumentException
+	 * @throws Exception
+	 */
+	public void InsertModuleTitle( Document doc, String text) 
+						throws DocumentException, Exception
+	{
+		Paragraph enter = new Paragraph("\n");	// 回车
+		doc.add(enter);
+		Paragraph title = new Paragraph(convertParToChinese(text, 30, bold, black));
+		title.setAlignment(Element.ALIGN_CENTER);
+		doc.add(title);
+	}
 	/**
 	 * 插入章节标题
 	 * @param doc
@@ -169,7 +193,7 @@ public class PDFUtil
 	public void InsertTitle(Document doc, String text) throws Exception
 	{
 		Paragraph parFront = new Paragraph("\n\n");
-		Paragraph title = new Paragraph(convertParToChinese(text, 18, bold, black));
+		Paragraph title = new Paragraph(convertParToChinese(text, 24, bold, black));
 		Paragraph parBcak = new Paragraph("\n");
 		doc.add(parFront);
 		doc.add(title);
@@ -178,8 +202,7 @@ public class PDFUtil
 	
 	public void InsertSubhead(Document doc, String text) throws Exception
 	{
-		Paragraph title = new Paragraph(convertParToChinese(text, 13, bold, black));
-		title.setFirstLineIndent(setting);
+		Paragraph title = new Paragraph(convertParToChinese(text, 18, bold, black));
 		doc.add(title);
 	}
 	
@@ -218,29 +241,15 @@ public class PDFUtil
 	 */
 	
 	// , List<String> list, Color color
-	public void InsertTable( Document doc,float[] widths, List<String[]> list) 
+	public void InsertTable( Document doc,float[] widths, float totalwidth,
+							List<String[]> list, 
+							int textSize, int front, Color color) 
 			throws Exception
 	{
-		
-		doc.add(new Paragraph("\n"));
 		PdfPTable table = new PdfPTable(widths.length);
-		table.setTotalWidth(320);
+		table.setTotalWidth(totalwidth);
 		table.setWidths(widths);
-		for( int i=0; i<list.get(0).length; i++)
-		{
-			PdfPCell cell = new PdfPCell();
-			Paragraph para = new Paragraph(
-									convertChunkByChinese((list.get(0)[i].replace("\"", "")
-															+"\n").toString(), 
-														16, 
-														bold, 
-														black));
-			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			cell.setFixedHeight(40);
-			cell.setPhrase(para);
-			table.addCell(cell);
-		}
-		for( int i=1; i<list.size(); i++)
+		for( int i=0; i<list.size(); i++)
 		{
 			for( int j=0; j<list.get(i).length; j++)
 			{
@@ -248,9 +257,9 @@ public class PDFUtil
 				Paragraph para = new Paragraph(
 										convertChunkByChinese(
 												list.get(i)[j].replace("\"", ""), 
-												12, 
-												normal, 
-												black));
+												textSize, 
+												front, 
+												color));
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPhrase(para); 
 				table.addCell(cell);  
