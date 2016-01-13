@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Cluster;
+import edu.fjnu.domain.Keyword;
+import edu.fjnu.domain.KeywordTable;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.service.ClusterService;
-import edu.fjnu.service.RelationshipService;
+import edu.fjnu.service.RelationService;
 import edu.fjnu.service.StudentPaperService;
 import edu.fjnu.service.TeacherPaperService;
+import edu.fjnu.util.DoubleFormat;
 import edu.fjnu.util.RelationResult;
 
 /**
@@ -36,6 +38,7 @@ public class RelationServlet extends BaseServlet {
 	private ClusterService cluserService = new ClusterService();// 引入聚类service
 	private StudentPaperService sts = new StudentPaperService();// 为了得到学生所做过试卷的年级列表
 	private RelationResult rr = new RelationResult();// 知识点关联工具
+	private RelationService rs = new RelationService();
 	
 	private String[][] staticNewKeywordArr;
 	private Object[][] staticNewStvArr;
@@ -308,6 +311,75 @@ public class RelationServlet extends BaseServlet {
 		}
 		
 		return "f:/index/jsp/relation/relation.jsp";
+	}
+	
+	public void getKeywordDetail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String keyName = request.getParameter("keywordName");
+		int index = 0;	
+		List<Integer> targetList = new ArrayList<Integer>();
+		List<KeywordTable> KeywordTableList = new ArrayList<KeywordTable>();
+		//遍历知识点数组找出所需知识点的索引位置
+		for(int i = 0;i < staticNewKeywordArr.length;i++){
+			if(staticNewKeywordArr[i][0].equals(keyName)){
+				index = i;
+				break;
+			}
+		}
+		//遍历知识点连线数组找出源头为所需索引的目标知识点索引位置，并装进targetList
+		for(int j = 0;j < staticNewStvArr.length;j++){
+			if((Integer)staticNewStvArr[j][0] == index){
+				int target = (Integer)staticNewStvArr[j][1];
+				targetList.add(target);
+			}
+		}
+		//将前继知识点转换成知识点关联表模型装进KeywordTableList
+		Keyword sKeyword = new Keyword();
+		sKeyword.setKeyName(keyName);
+		Keyword sourceKeyword = rs.getKeywordInfoByName(sKeyword);
+		KeywordTable sKeywordTable = new KeywordTable();
+		sKeywordTable.setKeywordType("前继知识点");
+		sKeywordTable.setKeywordName(sourceKeyword.getKeyName());
+		sKeywordTable.setEasyCount(sourceKeyword.getEasyCount());
+		sKeywordTable.setMiddleCount(sourceKeyword.getMiddleCount());
+		sKeywordTable.setHardCount(sourceKeyword.getHardCount());	
+		sKeywordTable.setRightRate(0);
+		sKeywordTable.setWrongRate(0);
+		
+		KeywordTableList.add(sKeywordTable);
+		
+		//遍历后继知识点并转换成知识点关联表模型装进KeywordTableList
+		for (Integer targetIndex : targetList) {
+			String targetName = staticNewKeywordArr[targetIndex][0];
+			
+			Keyword tKeyword = new Keyword();
+			tKeyword.setKeyName(targetName);
+			Keyword targetKeyword = rs.getKeywordInfoByName(tKeyword);
+			KeywordTable tKeywordTable = new KeywordTable();
+			tKeywordTable.setKeywordType("后序知识点");
+			tKeywordTable.setKeywordName(targetKeyword.getKeyName());
+			tKeywordTable.setEasyCount(targetKeyword.getEasyCount());
+			tKeywordTable.setMiddleCount(targetKeyword.getMiddleCount());
+			tKeywordTable.setHardCount(targetKeyword.getHardCount());
+			double sourceRightRate = (double)sourceKeyword.getRightCount() / 
+					(sourceKeyword.getRightCount() + sourceKeyword.getWrongCount());
+			double targetRightRate = (double)targetKeyword.getRightCount() / 
+					(targetKeyword.getRightCount() + targetKeyword.getWrongCount());
+			double sourceWrongRate = (double)sourceKeyword.getWrongCount() / 
+					(sourceKeyword.getRightCount() + sourceKeyword.getWrongCount());
+			double targetWrongRate = (double)targetKeyword.getWrongCount() / 
+					(targetKeyword.getRightCount() + targetKeyword.getWrongCount());
+			double rightRate = sourceRightRate * targetRightRate;
+			double wrongRate = sourceWrongRate * targetWrongRate;
+			DoubleFormat doubleFormat = new DoubleFormat();
+			tKeywordTable.setRightRate(doubleFormat.getDoubleFormat(rightRate));
+			tKeywordTable.setWrongRate(doubleFormat.getDoubleFormat(wrongRate));
+			
+			KeywordTableList.add(tKeywordTable);
+		}
+
+		//将KeywordTableList转成json并传回后台
+		response.getWriter().print(JSONArray.fromObject(KeywordTableList));
 	}
 }
 

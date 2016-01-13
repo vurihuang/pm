@@ -50,18 +50,22 @@ public class StudentGrowServlet extends BaseServlet {
 
 	public String loadGrade(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("come here");
 		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
-		String classYear = request.getParameter("classyear");
-
+//		String classYear = request.getParameter("");
+		String classYear = "三年级（上）";
 		List<GradeInfo> chineseGradeBefList = new ArrayList<GradeInfo>();
 		List<GradeInfo> chineseGradeAftList = new ArrayList<GradeInfo>();
 		List<GradeInfo> chineseGradeCutList = new ArrayList<GradeInfo>();
+		List<GradeInfo> chineseGradeHighList = new ArrayList<GradeInfo>();
 		List<GradeInfo> mathGradeBefList = new ArrayList<GradeInfo>();
 		List<GradeInfo> mathGradeAftList = new ArrayList<GradeInfo>();
 		List<GradeInfo> mathGradeCutList = new ArrayList<GradeInfo>();
+		List<GradeInfo> mathGradeHighList = new ArrayList<GradeInfo>();
 		List<GradeInfo> englishGradeBefList = new ArrayList<GradeInfo>();
 		List<GradeInfo> englishGradeAftList = new ArrayList<GradeInfo>();
 		List<GradeInfo> englishGradeCutList = new ArrayList<GradeInfo>();
+		List<GradeInfo> englishGradeHighList = new ArrayList<GradeInfo>();
 
 		List<GradeInfo> chineseGradeAndPr = new ArrayList<GradeInfo>();
 		List<GradeInfo> mathGradeAndPr = new ArrayList<GradeInfo>();
@@ -70,12 +74,15 @@ public class StudentGrowServlet extends BaseServlet {
 		chineseGradeBefList = gradeInfoService.getGradeBef(stuName, "语文", classYear);
 		chineseGradeAftList = gradeInfoService.getGradeAft(stuName, "语文", classYear);
 		chineseGradeCutList = gradeInfoService.getGradeCut(stuName, "语文", classYear);
+		chineseGradeHighList = gradeInfoService.getGradeHigh(stuName, "语文", classYear);
 		mathGradeBefList = gradeInfoService.getGradeBef(stuName, "数学", classYear);
 		mathGradeAftList = gradeInfoService.getGradeAft(stuName, "数学", classYear);
 		mathGradeCutList = gradeInfoService.getGradeCut(stuName, "数学", classYear);
+		mathGradeHighList = gradeInfoService.getGradeHigh(stuName, "数学", classYear);
 		englishGradeBefList = gradeInfoService.getGradeBef(stuName, "英文", classYear);
 		englishGradeAftList = gradeInfoService.getGradeAft(stuName, "英文", classYear);
 		englishGradeCutList = gradeInfoService.getGradeCut(stuName, "英文", classYear);
+		englishGradeHighList = gradeInfoService.getGradeHigh(stuName, "英文", classYear);
 
 		chineseGradeAndPr = gradeInfoService.getGradePr(stuName, "语文", classYear);
 		mathGradeAndPr = gradeInfoService.getGradePr(stuName, "数学", classYear);
@@ -84,17 +91,33 @@ public class StudentGrowServlet extends BaseServlet {
 		request.setAttribute("chineseGradeBefList", chineseGradeBefList);
 		request.setAttribute("chineseGradeAftList", chineseGradeAftList);
 		request.setAttribute("chineseGradeCutList", chineseGradeCutList);
+		request.setAttribute("chineseGradeHighList", chineseGradeHighList);
+		
+		System.out.println("chineseGradeBefList" + chineseGradeBefList);
+		System.out.println("chineseGradeAftList" + chineseGradeAftList);
+		System.out.println("chineseGradeCutList" + chineseGradeCutList);
+		System.out.println("chineseGradeHighList" + chineseGradeHighList);
+		
 		request.setAttribute("mathGradeBefList", mathGradeBefList);
 		request.setAttribute("mathGradeAftList", mathGradeAftList);
 		request.setAttribute("mathGradeCutList", mathGradeCutList);
+		request.setAttribute("mathGradeHighList", mathGradeHighList);
+
+		
 		request.setAttribute("englishGradeBefList", englishGradeBefList);
 		request.setAttribute("englishGradeAftList", englishGradeAftList);
 		request.setAttribute("englishGradeCutList", englishGradeCutList);
-		request.setAttribute("englishGradeCutList", englishGradeCutList);
+		request.setAttribute("englishGradeHighList", englishGradeHighList);
 
-		request.setAttribute("chineseGradeAndPr", chineseGradeAndPr);
-		request.setAttribute("mathGradeAndPr", mathGradeAndPr);
-		request.setAttribute("englishGradeAndPr", englishGradeAndPr);
+		request.setAttribute("chineseGradeAndPrList", chineseGradeAndPr);
+		request.setAttribute("mathGradeAndPrList", mathGradeAndPr);
+		request.setAttribute("englishGradeAndPrList", englishGradeAndPr);
+		
+		System.out.println("chineseGradeAndPrList" + chineseGradeAndPr);
+		System.out.println("mathGradeAndPrList" + mathGradeAndPr);
+		System.out.println("englishGradeAndPrList" + englishGradeAndPr);
+		
+		
 
 		return "f:/index/jsp/grade/grade-s.jsp";
 	}
