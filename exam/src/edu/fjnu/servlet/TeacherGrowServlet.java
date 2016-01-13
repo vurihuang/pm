@@ -54,7 +54,9 @@ public class TeacherGrowServlet extends BaseServlet {
 		List<StudentPr> mathList=new ArrayList<StudentPr>();   //数学的StudentPr值列表
 		List<StudentPr> englishList=new ArrayList<StudentPr>();   //英语的StudentPr值列表
 		
+		
 		chineseList=gs.getStudentPrs(stuName, "语文");
+		System.out.println(chineseList);
 		mathList=gs.getStudentPrs(stuName, "数学");
 		englishList=gs.getStudentPrs(stuName, "英文");
 		

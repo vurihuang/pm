@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import cn.itcast.servlet.BaseServlet;
 import edu.fjnu.domain.Cluster;
 import edu.fjnu.domain.VScope;
@@ -34,6 +36,11 @@ public class RelationServlet extends BaseServlet {
 	private ClusterService cluserService = new ClusterService();// 引入聚类service
 	private StudentPaperService sts = new StudentPaperService();// 为了得到学生所做过试卷的年级列表
 	private RelationResult rr = new RelationResult();// 知识点关联工具
+	
+	private String[][] staticNewKeywordArr;
+	private Object[][] staticNewStvArr;
+	private String staticCourse;
+	private String staticGrade;
 
 	/**
 	 * 处理关联分析
@@ -53,9 +60,11 @@ public class RelationServlet extends BaseServlet {
 		courseName = request.getParameter("course");
 		// 把选择的科目设置回去以供下拉框传值（另一种做法是直接把course设为session域）
 		request.setAttribute("selectedCourse", courseName);
+		staticCourse = courseName;
 		grade = request.getParameter("grade");// 得到下拉框选择的年级
 		// 把选择的年级设置回去以供下拉框显示选中哪个年纪
 		request.setAttribute("selectedGrade", grade);
+		staticGrade = grade;
 
 		if (grade != null) {
 			// 设置R图
@@ -80,7 +89,7 @@ public class RelationServlet extends BaseServlet {
 			if (keywordArr != null && stvArr != null) {
 
 				// 定义两个转化后的二维数组，分别由keywordArr，stvArr转化。
-				newKeywordArr = new String[keywordArr.length][2];
+				newKeywordArr = new String[keywordArr.length][3];
 				newStvArr = new Object[stvArr.length][4];
 
 				// 存放可以高亮的知识点下标，供stvArr转化使用
@@ -98,6 +107,7 @@ public class RelationServlet extends BaseServlet {
 					// 转化keywordArr数组为带高亮参数的二维数组
 					for (int i = 0; i < keywordArr.length; i++) {
 						newKeywordArr[i][0] = keywordArr[i];
+						newKeywordArr[i][2] = "0";
 						if (isStudent) {
 							int j;
 							for (j = 0; j < clusterList.size(); j++) {
@@ -146,6 +156,9 @@ public class RelationServlet extends BaseServlet {
 				newStvArr[0][3] = 0;
 			}
 
+			staticNewKeywordArr = newKeywordArr;
+			staticNewStvArr = newStvArr;
+			
 			request.setAttribute("keywordArray", newKeywordArr);
 			request.setAttribute("edges", newStvArr);
 		}
@@ -194,9 +207,9 @@ public class RelationServlet extends BaseServlet {
 	 */
 	private void setPicture(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String course = request.getParameter("course");
+		String course = staticCourse;
 		// 截取前面三个字符串，得到类似于（三年级）
-		String grade = request.getParameter("grade").substring(0, 3);
+		String grade = staticGrade.substring(0, 3);
 
 		StringBuffer picturePath = new StringBuffer("relation/");
 
@@ -232,4 +245,69 @@ public class RelationServlet extends BaseServlet {
 			return keyword;
 		}
 	}
+	
+	public void testDemo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("course: " + request.getParameter("course"));
+		System.out.println("grade: " + request.getParameter("grade"));
+		System.out.println("keyword: " + request.getParameter("keyword"));
+
+		
+//		Cluster p1 = new Cluster("zhangSan", 20, 1,3);
+//		Cluster p2 = new Cluster("liSi", 30, 2,3);
+//		List<Cluster> list = new ArrayList<Cluster>();
+//		list.add(p1);
+//		list.add(p2);
+//
+//		JSONObject jo = new JSONObject();
+//		jo.put("joa", JSONArray.fromObject(list));
+//		jo.put("job", "abc");
+//		response.getWriter().print(jo.toString());
+		
+
+	}
+	
+	/**
+	 * 搜索知识点
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String search(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	
+		String keyword = request.getParameter("keyword");
+		
+		for (int i = 0; i < staticNewKeywordArr.length; i++) {
+			//如果之前已经被标记为搜索知识点，则清空标记
+			if(staticNewKeywordArr[i][2].equals("1")){
+				staticNewKeywordArr[i][2] = "0";
+			}
+			//如果该知识点包含搜索字符串，标记为搜索知识点
+			if(staticNewKeywordArr[i][0].contains(keyword)){
+				staticNewKeywordArr[i][2] = "1";
+			}
+		}
+		
+		// 加载下拉框年级信息
+		loadInfo(request, response);
+		if(staticGrade != null){
+			// 设置R图
+			setPicture(request, response);
+		}
+		
+		//设置年级学科信息，用于页面其他地方需要
+		request.setAttribute("selectedCourse", staticCourse);
+		request.setAttribute("selectedGrade", staticGrade);
+		//如果staticGrade为不为空，表示没有选择年级，也就没有相关知识网
+		if(staticGrade != null){
+			request.setAttribute("keywordArray", staticNewKeywordArr);
+			request.setAttribute("edges", staticNewStvArr);
+		}
+		
+		return "f:/index/jsp/relation/relation.jsp";
+	}
 }
+
