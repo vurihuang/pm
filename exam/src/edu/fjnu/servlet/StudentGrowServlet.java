@@ -16,7 +16,7 @@ import edu.fjnu.service.GradeInfoService;
 import edu.fjnu.service.GrowService;
 
 /**
- * 处理学生端成长轨迹图的业务
+ * 处理学生端的成绩分析
  */
 @WebServlet("/StudentGrowServlet")
 public class StudentGrowServlet extends BaseServlet {
@@ -24,6 +24,15 @@ public class StudentGrowServlet extends BaseServlet {
 	GradeInfoService gradeInfoService = new GradeInfoService();
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 加载学生成长轨迹图
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public String loadPr(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
@@ -36,24 +45,45 @@ public class StudentGrowServlet extends BaseServlet {
 		mathList = gs.getStudentPrs(stuName, "数学");
 		englishList = gs.getStudentPrs(stuName, "英文");
 
-		// 测试
-		/*
-		 * for (StudentPr studentPr : englishList) {
-		 * System.out.println(studentPr.getClassyear()+"  "
-		 * +studentPr.getAvgPR()); }
-		 */
 		request.setAttribute("chineseList", chineseList);// 把语文的StudentPr值列表传到jsp界面
 		request.setAttribute("mathList", mathList);// 把数学的StudentPr值列表传到jsp界面
 		request.setAttribute("englishList", englishList); // 把英文的StudentPr值列表传到jsp界面
 		return "f:/index/jsp/grade/grow-s.jsp";
 	}
 
+	/**
+	 * 根据学生姓名加载学过的年级
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String loadStuYear(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
+		List<StudentPr> stuYearList = gradeInfoService.getStudiedYearListByName(stuName);
+		request.setAttribute("stuYearList", stuYearList);
+
+		return "f:/index/jsp/grade/grade-s.jsp";
+	}
+
+	/**
+	 * 加载学生履历图
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public String loadGrade(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("come here");
 		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
-//		String classYear = request.getParameter("");
-		String classYear = "三年级（上）";
+		String classYear = request.getParameter("classyear");
+		List<StudentPr> stuYearList = gradeInfoService.getStudiedYearListByName(stuName);
+
 		List<GradeInfo> chineseGradeBefList = new ArrayList<GradeInfo>();
 		List<GradeInfo> chineseGradeAftList = new ArrayList<GradeInfo>();
 		List<GradeInfo> chineseGradeCutList = new ArrayList<GradeInfo>();
@@ -92,18 +122,12 @@ public class StudentGrowServlet extends BaseServlet {
 		request.setAttribute("chineseGradeAftList", chineseGradeAftList);
 		request.setAttribute("chineseGradeCutList", chineseGradeCutList);
 		request.setAttribute("chineseGradeHighList", chineseGradeHighList);
-		
-		System.out.println("chineseGradeBefList" + chineseGradeBefList);
-		System.out.println("chineseGradeAftList" + chineseGradeAftList);
-		System.out.println("chineseGradeCutList" + chineseGradeCutList);
-		System.out.println("chineseGradeHighList" + chineseGradeHighList);
-		
+
 		request.setAttribute("mathGradeBefList", mathGradeBefList);
 		request.setAttribute("mathGradeAftList", mathGradeAftList);
 		request.setAttribute("mathGradeCutList", mathGradeCutList);
 		request.setAttribute("mathGradeHighList", mathGradeHighList);
 
-		
 		request.setAttribute("englishGradeBefList", englishGradeBefList);
 		request.setAttribute("englishGradeAftList", englishGradeAftList);
 		request.setAttribute("englishGradeCutList", englishGradeCutList);
@@ -112,12 +136,8 @@ public class StudentGrowServlet extends BaseServlet {
 		request.setAttribute("chineseGradeAndPrList", chineseGradeAndPr);
 		request.setAttribute("mathGradeAndPrList", mathGradeAndPr);
 		request.setAttribute("englishGradeAndPrList", englishGradeAndPr);
-		
-		System.out.println("chineseGradeAndPrList" + chineseGradeAndPr);
-		System.out.println("mathGradeAndPrList" + mathGradeAndPr);
-		System.out.println("englishGradeAndPrList" + englishGradeAndPr);
-		
-		
+
+		request.setAttribute("stuYearList", stuYearList);
 
 		return "f:/index/jsp/grade/grade-s.jsp";
 	}
