@@ -37,6 +37,7 @@
 	<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
 	<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
 <style>
+
 	body{
 		background-color:white;
 	}
@@ -108,6 +109,10 @@
 		margin-bottom:20px;
 		font-family:微软雅黑;
 	}
+	.btn,.form-control{
+	height:40px;
+}
+
 </style>
 	<script src="<c:url value='/index/js/d3.js '/>" charset="utf-8"></script>
 </head>
@@ -116,8 +121,8 @@
 	<div class="container">
 		<div class="titlet">知识关联分析</div>
 		<div class="row">	
-			<div class="col-sm-9"></div>
-			<div class="sec col-sm-3">
+			<!-- <div class="col-sm-9"></div> -->
+			<div class="sec col-sm-9">
 				<!-- 年级下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select" id="grade-select">
@@ -133,12 +138,19 @@
 					</select>
 				</form>
 			</div>
+			<div class="input-group custom-search-form col-sm-3" style="width:200px;">
+				<input type="text" id="searchText" class="form-control" placeholder="搜索知识点...">
+				<span class="input-group-btn">
+				<button id="searchButton" class="btn btn-default" type="button">
+			    		<i class="fa fa-search"></i>
+				</button>
+				</span>
+	        </div>
 		</div>
 		<div class="row">
-			<div class="rel col-sm-12"><span style="font-size:20px">知识点关系网图</span></div>			
+			<div class="rel col-sm-12"><span style="font-size:20px"></span></div>			
 		</div>
 		<div class="info">
-			<!-- 试卷信息 -->
 			<table class="table table-bordered">
 				<caption class="text-center title">知识点关联表</caption>
 				<thead>
@@ -186,6 +198,7 @@
 					height="90%" class="img" />
 			</div>
 		</div>
+
 	</div>
 	
  <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
@@ -195,7 +208,11 @@
 	var edges = [];
 	
 	<c:forEach items="${keywordArray}" var="keyword">
-		var node = {name:"${keyword[0]}",imp:parseInt(${keyword[1]})};
+		var node = {
+				name : "${keyword[0]}",
+				imp : parseInt(${keyword[1]}),
+ 				beSearched : "${keyword[2]}" 
+		};
 		nodes.push(node); 
 	</c:forEach>
 	
@@ -205,7 +222,8 @@
 			source: ${edge[0]},
 			target: ${edge[1]},
 			value: edge2,
-			imp: ${edge[3]}
+			imp: ${edge[3]
+			}
 		};
 		edges.push(jason);
 	</c:forEach> 
@@ -249,8 +267,11 @@
 	//添加节点      
 	var svg_nodes = svg.selectAll("circle").data(nodes).enter().append(
 		"circle").attr("r", function(d){
-			if(d.imp == 1){
+			if(d.beSearched == 1){
 				return 20;
+			}
+			else if(d.imp == 1){
+				return 15;
 			}
 			else{
 				return 10;
@@ -258,7 +279,10 @@
 		})
 
 		.style("fill", function(d, i) {
-		if(d.imp == 1){
+		if(d.beSearched == 1){
+			return "red";
+		}
+		else if(d.imp == 1){
 			return "green";
 		}
 		else {
@@ -304,14 +328,7 @@
 	svg_nodes.on("mouseover", function(d, i) {
 		d3.select(this).style("fill", "red");
 		d3.select(this).style("r", "20");
-		var idx=d.index;
-		svg_texts.style("fill",function(d){
-			if (d.target.index == idx || d.source.index ==idx)
-				{
-				 return "red";
-				}
-			
-		});
+
 		var idx = d.index;
 		svg_edges.each(function(d) {
 			if (d.target.index == idx || d.source.index == idx) {
@@ -330,10 +347,14 @@
 		if(d.imp == 0){
 			d3.select(this).style("r", "10");
 		}
-		else	{	
-			d3.select(this).style("r", "20");
-			d3.select(this).style("fill", "green");
+ 		if(d.beSearched == 1){
+ 			d3.select(this).style("r", "20");
+			d3.select(this).style("fill", "red");
 		}
+		else	{	
+			d3.select(this).style("r", "15");
+			d3.select(this).style("fill", "green");
+		} 
 		var idx = d.index;
 		svg_edges.each(function(d) {
 			if (d.target.index == idx || d.source.index == idx) {
@@ -354,6 +375,12 @@
 	//下拉选择框
 	$(document).ready(
 		function() {
+			//搜索按钮事件
+			$("#searchButton").bind("click", function () {
+				var keyword = $("#searchText").val();
+				location.href = "<c:url value='/RelationServlet?method=search&keyword='/>" + keyword;
+			});
+			
 			$("#grade-select").selectWidget({
 				change: function(changes) {
 				var grade = $("#grade-select").val();
@@ -467,8 +494,8 @@
 		            }
 		        },
 			    data:[
-			    	{value:114, name:'同对情况'},
-			        {value:415, name:'同错情况'},
+			    	{value:25, name:'同对情况'},
+			        {value:30, name:'同错情况'},
 			    ]
 			}]
 		};

@@ -97,7 +97,7 @@
         trigger: 'axis'
     },
     legend: {
-        data:['学生PR']
+        data:['学生各阶段学习PR值']
     },
     toolbox: {
         show : true,
@@ -127,7 +127,7 @@
     ],
     series : [
         {
-            name:'学生PR',
+            name:'学生各阶段学习PR值',
             type:'line',
             data:[81, 51, 75, 63, 92, 83, 70, 71, 88, 75, 60, 55, 77, 79],
             markPoint : {
@@ -190,7 +190,7 @@
         trigger: 'axis'
     },
     legend: {
-        data:['学生PR']
+        data:['学生各阶段学习PR值']
     },
     toolbox: {
         show : true,
@@ -220,7 +220,7 @@
     ],
     series : [
         {
-            name:'学生PR',
+            name:'学生各阶段学习PR值',
             type:'line',
             data:[81, 50, 75, 63, 96, 83, 70, 57, 88, 75, 90, 55, 77, 79],
             markPoint : {
@@ -282,7 +282,7 @@
         trigger: 'axis'
     },
     legend: {
-        data:['学生PR']
+        data:['学生各阶段学习PR值']
     },
     toolbox: {
         show : true,
@@ -312,7 +312,7 @@
     ],
     series : [
         {
-            name:'学生PR',
+            name:'学生各阶段学习PR值',
             type:'line',
             data:[81, 51, 75, 63, 92, 83, 70, 71, 88, 75, 60, 55, 77, 79],
             markPoint : {
