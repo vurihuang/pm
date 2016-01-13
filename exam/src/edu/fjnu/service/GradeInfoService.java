@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.fjnu.dao.GradeInfoDao;
+import edu.fjnu.dao.StudentDao;
 import edu.fjnu.domain.GradeInfo;
+import edu.fjnu.domain.StudentPr;
 
 public class GradeInfoService {
 	GradeInfoDao gradeInfoDao = new GradeInfoDao();
+	StudentDao studentDao = new StudentDao();
 	private static final int LEN = 10;
+
+	/**
+	 * 指定学生姓名得到学过的年级列表
+	 * 
+	 * @param stuName
+	 * @return 年级列表
+	 */
+	public List<StudentPr> getStudiedYearListByName(String stuName) {
+		return studentDao.getStudentListByName(stuName);
+	}
 
 	public List<GradeInfo> getGradeBef(String stuName, String courseName, String classYear) {
 		List<GradeInfo> gradeBefList = new ArrayList<GradeInfo>();
@@ -63,12 +76,12 @@ public class GradeInfoService {
 
 		return tmpCutList;
 	}
-	
-	public List<GradeInfo> getGradeHigh(String stuName, String courseName, String classYear){
+
+	public List<GradeInfo> getGradeHigh(String stuName, String courseName, String classYear) {
 		List<GradeInfo> tmpBefList = getGradeBef(stuName, courseName, classYear);
 		List<GradeInfo> tmpAftList = getGradeAft(stuName, courseName, classYear);
 		List<GradeInfo> tmpHighList = getCreateObjList();
-		
+
 		for (int i = 0; i < LEN; i++) {
 			if (tmpBefList.get(i).getScore() > tmpAftList.get(i).getScore()) {
 				tmpHighList.get(i).setScore(tmpAftList.get(i).getScore());
@@ -76,7 +89,7 @@ public class GradeInfoService {
 				tmpHighList.get(i).setScore(tmpBefList.get(i).getScore());
 			}
 		}
-		
+
 		return tmpHighList;
 	}
 
@@ -94,8 +107,6 @@ public class GradeInfoService {
 
 		return tmpList;
 	}
-	
-	
 
 	private List<GradeInfo> getCreateObjList() {
 		List<GradeInfo> setTmpList = new ArrayList<GradeInfo>();
