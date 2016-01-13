@@ -71,7 +71,7 @@
                         </li>
                         <li>
                             <%-- <a href="<c:url value='/StudentServlet?method=courseInfo&courseName=chinese'/>" target="main">学习履历图</a> --%>
-                        	<a href="<c:url value='/index/jsp/grade/grade-s.jsp'/>" target="main">个人学习履历图</a>
+                        	<a href="<c:url value='/StudentGrowServlet?method=loadStuYear'/>" target="main">个人学习履历图</a>
                         </li>
                     </ul>
                 </li>

@@ -72,19 +72,17 @@
 						<p class="text-left">
 							学科：<span>${sessionScope.course }</span>
 						</p>
-						<%-- <p class="text-left">班级：<span>${sessionScope.tclass }</span></p> --%>
 					</div> <!-- /功能 -->
 				</li>
 				<li><a href="#"><i class="fa fa-dashboard fa-fw"></i> 成绩分析<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<%-- <a href="<c:url value='/TeacherServlet?method=allInfo&courseName=sum'/>" target="main">综合</a> --%>
-							<a href="<c:url value='/TeacherGrowServlet?method=loadStu'/>" target="main">学生成长轨迹图</a>
+							<a href="<c:url value='/TeacherGrowServlet?method=loadGrowStu'/>" target="main">学生成长轨迹图</a>
 						</li>
 						<li>
 							<%-- <a href="<c:url value='/TeacherServlet?method=courseInfo&courseName=chinese'/>" target="main">语文</a> --%>
-							<a href="<c:url value='/index/jsp/grade/grade-t.jsp'/>" target="main">学生学习履历图</a>
+							<a href="<c:url value='/TeacherGrowServlet?method=loadGradeStu'/>" target="main">学生学习履历图</a>
 						</li>
 					</ul>
 				</li>
