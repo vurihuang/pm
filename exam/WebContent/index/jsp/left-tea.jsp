@@ -111,7 +111,20 @@
 						<li><a href="<c:url value='/RelationServlet?method=relation&course=英文'/>"
 							target="main">英语</a></li>
 					</ul></li>
-				<li><a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析</a></li>
+				 <li>
+					<a href="#"><i class="fa fa-files-o fa-fw"></i> 聚类分析<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="<c:url value='/ClusterServlet?method=load&subject=语文'/>" target="main">语文</a>
+                            </li>
+							<li>
+                                <a href="<c:url value='/ClusterServlet?method=load&subject=数学'/>" target="main">数学</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value='/ClusterServlet?method=load&subject=英文'/>" target="main">英文</a>
+                            </li>
+                        </ul>
+                </li>
 			</ul>
 		</div>
 	</div>

@@ -59,9 +59,9 @@
 		text-align:center;
 	}
 	.info{
-		width:900px;
-		margin-left:20px;
-		margin-bottom:100px;
+		//width:100%;
+		//margin-left:20px;
+		//margin-bottom:100px;
 	}
 	.sec{
 		
@@ -114,16 +114,20 @@
 }
 
 </style>
+	<script src="<c:url value='/index/js/echarts.min.js'/>"></script>
 	<script src="<c:url value='/index/js/d3.js '/>" charset="utf-8"></script>
+	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+	
 </head>
 
 <body>
+						
 	<div class="container">
 		<div class="titlet">知识关联分析</div>
 		<div class="row">	
 			<!-- <div class="col-sm-9"></div> -->
 			<div class="sec col-sm-9">
-				<!-- 年级下拉选择框 -->
+<!-- 年级下拉选择框 -->
 				<form action="" method="get" class="form">
 					<select name="drop1" class="ui-select" id="grade-select">
 						<c:forEach items="${gradeList}" var="grade">
@@ -138,6 +142,7 @@
 					</select>
 				</form>
 			</div>
+<!-- 搜索按钮 -->
 			<div class="input-group custom-search-form col-sm-3" style="width:200px;">
 				<input type="text" id="searchText" class="form-control" placeholder="搜索知识点...">
 				<span class="input-group-btn">
@@ -146,36 +151,42 @@
 				</button>
 				</span>
 	        </div>
+	        
 		</div>
+		
+<!-- 知识关联网 -->		
 		<div class="row">
 			<div class="rel col-sm-12"><span style="font-size:20px"></span></div>			
 		</div>
-		<div class="info">
-			<table class="table table-bordered">
+<!-- 知识关联表 -->
+		<div class="row">
+		<div class="info col-md-4">
+			<table class="table table-bordered" id="keywordTable">
 				<caption class="text-center title">知识点关联表</caption>
 				<thead>
 					<tr>
 						<th width="100px" class="text-center">知识点类型</th>
-						<th width="300px" class="text-center">知识点</th>
-						<th class="text-center">关系图</th>									
+						<th width="" class="text-center">知识点名称</th>									
 					</tr>
 				</thead>
-				<tbody>
-					<tr>								
+				<tbody id="keywordTbody">
+  					<tr>								
 						<td class="td1">前继知识点</td>
 						<td>数学广角,统计和复数</td>
-						<td>
-							<div id="bin" style="height:100px;width:100%;"></div>
-						</td>
 					</tr>
 					<tr>
 						<td class="td1">后续知识点</td>
 						<td>位置与方向,分数除法</td>
-						<td><div id="cir" style="height:100px;width:100%;"></div></td>
-					</tr>
+					</tr> 
 				</tbody>
 			</table>
 		</div>
+<!-- 饼图和长条图 -->
+				
+			<div class="col-md-4 text-center" style="font-size:20px">sadw<div id='bin' style="height:150px;width:100%;"></div></div>
+			<div class="col-md-4 text-center" style="font-size:20px">dswc<div id="tright" style="width:100%;height:150px"></div></div>
+		</div>
+<!-- R图 -->		
 		<div clss="row">
 			<div class="imgd col-sm-6 col-lg-6">
 				高频知识点绘图<img src="<c:url value='${img_fsetsLift}'/>"
@@ -200,10 +211,17 @@
 		</div>
 
 	</div>
-	
- <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
- <script type="text/javascript">      
-			 
+ 
+ <script type="text/javascript"> 
+var easyCount;
+var middleCount;
+var hardCount;
+
+var keywordNameList = [];
+var rightRateList = [];
+var wrongRateList = [];
+
+//知识关联网图数据json数据
  	var nodes = [];
 	var edges = [];
 	
@@ -279,7 +297,7 @@
 		})
 
 		.style("fill", function(d, i) {
-		if(d.beSearched == 1){
+		if(d.beSearched == 1){		
 			return "red";
 		}
 		else if(d.imp == 1){
@@ -337,17 +355,70 @@
 
 			}
 		});
+		var dx= d.name;
+	    svg_texts.each(function(d){
+	    if(d.name==dx){
+	    d3.select(this)
+	    .style("fill","red");
+	     d3.select(this)
+	    .style("font-size",20)    
+	    }
+	  });
+
+		
+ 		var keywordName = d.name;
+		//请求加载知识点关联表信息
+		$.ajax({
+	                type: "post",
+	                data:{  
+	                    method : "getKeywordDetail",  
+	                    keywordName : keywordName
+	           		}, 
+	                url: "<c:url value='/RelationServlet'/>",
+	                dataType: "json",
+	                success: function (json) {
+ 	                		$("#keywordTable tbody tr").remove();
+ 	                		keywordNameList = [];
+ 	                		rightRateList = [];
+ 	                		wrongRateList = [];
+	                    for (var i = 0; i < json.length; i++) {	
+ 		                    	var html; 	
+		                    	if(i == 0){
+		                    		html =  "<tr><td class='td1'>" + json[i]['keywordType'] + "</td><td>" + json[i]['keywordName']  + "</tr>";
+		                    	}else{
+		                    		html = "<tr><td class='td1'>" + json[i]['keywordType'] + "</td><td>" + json[i]['keywordName']  + "</tr>";
+		                    	}
+		                    	$("#keywordTbody").append(html); 
+  		                    	if(i == 0){
+		                    		easyCount =  json[i]['easyCount'];
+		                    		middleCount =  json[i]['middleCount'];
+		                    		hardCount =  json[i]['hardCount'];
+		                    	}else{
+		                    		keywordNameList.push(json[i]['keywordName']);
+		             			var rightRate = parseFloat(json[i]['rightRate']) * -1;
+		                    		var wrongRate = parseFloat(json[i]['wrongRate']);
+		                    		rightRateList.push(rightRate);
+		                    		wrongRateList.push(wrongRate);
+		                    	}     		                    	
+	                    }
+	                    pic();
+	                }, 
+	                error: function () {
+	                    alert("加载失败");
+	                }
+	    }); 
+		
 	})
 	svg_nodes.on("mouseout", function(d, i) {
 		if(d.imp == 0){
 			d3.select(this).style("fill", function() {
 				return color(i);
 			})
-		};
+		}
 		if(d.imp == 0){
 			d3.select(this).style("r", "10");
 		}
- 		if(d.beSearched == 1){
+		else if(d.beSearched == 1){
  			d3.select(this).style("r", "20");
 			d3.select(this).style("fill", "red");
 		}
@@ -370,9 +441,18 @@
 				
 			}
 		});
+		var dx= d.name;
+	    svg_texts.each(function(d){
+	    if(d.name==dx){
+	    d3.select(this)
+	    .style("fill","black");
+	     d3.select(this)
+	    .style("font-size",14)    
+	    }
+	  });
 
 	});
-	//下拉选择框
+//下拉选择框
 	$(document).ready(
 		function() {
 			//搜索按钮事件
@@ -393,116 +473,118 @@
 			scrollHeight: 250
 		});
 	});
-	 // 饼图   路径配置
-    require.config({
-        paths: {
-            echarts: 'http://echarts.baidu.com/build/dist'
-        }
-    });
-    
-    // 使用
-    require(
-        [
-            'echarts',
-            'echarts/chart/pie',
-			'echarts/chart/funnel'	// 使用柱状图就加载bar模块，按需加载
-        ],
-        function (ec) {
-            // 基于准备好的dom，初始化echarts图表
-            var myChart = ec.init(document.getElementById('bin')); 
-            
-            var option = {
-                title : {
-    				text: '',
-    				subtext: '',
-    				x:'center'
-				},
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-				calculable : true,
-			    series : [
-			        {
-			            name:'题目分布情况',
-			            type:'pie',
-			            radius : '55%',
-			            center: ['50%', '60%'],
-			            data:[
-			                {value:59, name:'简单题'},
-			                {value:79, name:'中等题'},
-			                {value:18, name:'较难题'},
-			            ]
-			        }
-			    ]};
-			    // 为echarts对象加载数据 
-			    myChart.setOption(option); 
-	});
+		
+ //饼图横条图json数据
+	function pic(){
+//饼图   路径配置
+		 require.config({
+		     paths: {
+		         echarts: 'http://echarts.baidu.com/build/dist'
+		     }
+		 });
+		 
+		 // 使用
+		 require(
+		     [
+		         'echarts',
+		         'echarts/chart/pie',
+					'echarts/chart/funnel'	// 使用柱状图就加载bar模块，按需加载
+		     ],
+		     function (ec) {
+		         // 基于准备好的dom，初始化echarts图表
+		         var myChart = ec.init(document.getElementById('bin')); 
+		         
+		         var option = {
+		             title : {
+		 				text: '',
+		 				subtext: '',
+		 				x:'center'
+						},
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{a} <br/>{b} : {c} ({d}%)"
+					    },
+						calculable : true,
+					    series : [
+					        {
+					            name:'题目分布情况',
+					            type:'pie',
+					            radius : '55%',
+					            center: ['50%', '60%'],
+					            data:[
+					                {value:easyCount, name:'简单题'},
+					                {value:middleCount, name:'中等题'},
+					                {value:hardCount, name:'较难题'},
+					            ]	        		
+					        }
+					    ]};
+					    // 为echarts对象加载数据 
+					    myChart.setOption(option); 
+			});
+		
+// 左右柱形图
+		    var myChart = echarts.init(document.getElementById('tright'));
 
- // 环图   路径配置
-    require.config({
-        paths: {
-            echarts: 'http://echarts.baidu.com/build/dist'
-        }
-    });
-    
-    // 使用
-    require(
-        [
-            'echarts',
-            'echarts/chart/pie',
-			'echarts/chart/funnel'	// 使用柱状图就加载bar模块，按需加载
-        ],
-        function (ec) {
-            // 基于准备好的dom，初始化echarts图表
-            var myChart = ec.init(document.getElementById('cir')); 
-            
-            var option = {
-                tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-				legend: {
-			        orient : 'vertical',
-			        x : 'left',
-			        data:['同对情况','同错情况']
-			    },
-				calculable : true,
-			    series : [
-			    {
-			     	name:'知识点相关情况',
-			        type:'pie',
-			        radius : ['50%', '70%'],
-			        itemStyle : {
-			      		normal : {
-			            	label : {
-			        	        show : false
-			                },
-			                labelLine : {
-			                    show : false
-	                    }
-	                },
-		            emphasis : {
-			            label : {
-		    	            show : true,
-		                    position : 'right',
-		                    textStyle : {
-		        	            fontSize : '20',
-		                        fontWeight : 'bold'
-		                    }
-		                }
-		            }
-		        },
-			    data:[
-			    	{value:25, name:'同对情况'},
-			        {value:30, name:'同错情况'},
-			    ]
-			}]
+		    // 指定图表的配置项和数据
+		    var option = {
+		tooltip : {
+		    trigger: 'axis',
+		    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		    }
+		},
+		legend: {
+		    data:['正确概率','错误概率']
+		},
+		grid: {
+		    left: '3%',
+		    right: '4%',
+		    bottom: '3%',
+		    containLabel: true
+		},
+		xAxis : [
+		    {
+		        type : 'value'
+		    }
+		],
+		yAxis : [
+		    {
+		        type : 'category',
+		        axisTick : {show: false},
+		        data : keywordNameList
+		    }
+		],
+		series : [
+		          {
+		              name:'错误概率',
+		              type:'bar',
+		              stack: '总量',
+		              itemStyle: {
+		                  normal: {
+		                      label : {show: true}
+		                  }
+		              },
+		              data:wrongRateList
+		          },
+		          {
+		              name:'正确概率',
+		              type:'bar',
+		              stack: '总量',
+		              itemStyle: {normal: {
+		                  label : {show: true, position: 'left'},
+		                  color : '#009933'
+		              }},
+		              data:rightRateList
+		          }
+		      ]
 		};
-    
-        // 为echarts对象加载数据 
-        myChart.setOption(option); 
-    });
+
+		    // 使用刚指定的配置项和数据显示图表。
+		    myChart.setOption(option);
+		
+	} 
+	
+	
     </script>  
 	<!-- /#wrapper -->
 	<!-- Bootstrap Core JavaScript -->

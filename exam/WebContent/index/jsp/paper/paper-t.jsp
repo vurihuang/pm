@@ -134,7 +134,7 @@
 			font-size:20px;
 			margin-bottom:10px;
 		}
-		.sec1{
+		/*.sec1{
 			position:absolute;
 			left:770px;
 			top:260px;
@@ -143,7 +143,7 @@
 			position:absolute;
 			left:950px;
 			top:260px;
-		}
+		}*/
 		.dropdown-menu{
 			width:730px;
 			//text-align:center;
@@ -157,7 +157,8 @@
 			background-color:#eeeeee
 		}
 		#container{
-			width: 750px; 
+			width: 900px; 
+			margin:20px auto;
 		}
 	</style>
 </head>
@@ -195,6 +196,45 @@
 				<div class="p"><c:out value="${believeString}">未选择试卷</c:out></div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+	<div class="col-xs-6">
+		<div class="row">
+			<div class="col-xs-5"></div>
+			<div class="sec1 col-xs-7">
+				<div class="divp">选择年级</div>
+				<!-- 年级下拉选择框 -->
+				<form action="" method="get" class="form">
+					<select name="drop" class="ui-select" id="grade-select">
+						<c:forEach items="${gradeList}" var="grade">
+							<option value="${grade}"
+								<c:if test="${grade eq selectGrade}" >selected='selected'</c:if>
+		  					>
+							${grade}
+							</option>
+						</c:forEach>
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="sec2 col-xs-6">
+		<div class="divp">选择试卷</div>
+		<!-- 试卷下拉选择框 -->
+		<form action="" method="get" class="form">
+			<select name="drop" class="ui-select" id="test-select">
+				<c:forEach items="${vTestMainList}" var="vTestMain">
+					<option value="${vTestMain.pk_test_main_ID}"
+						<c:if test="${vTestMain.pk_test_main_ID eq selectTest}" >selected='selected'
+  						</c:if>
+  					>
+					${vTestMain.pk_test_main_ID}
+					</option>
+				</c:forEach>
+			</select>
+		</form>
+	</div>
 	</div>
 		<!-- <div class="div reli">
 			<div class="col-xs-3">
@@ -244,40 +284,6 @@
 		</div>
 	</div>
 	
-	<div class="sec1">
-		<div class="divp">选择年级</div>
-		<!-- 年级下拉选择框 -->
-		<form action="" method="get" class="form">
-			<select name="drop" class="ui-select" id="grade-select">
-				<c:forEach items="${gradeList}" var="grade">
-					<option value="${grade}"
-						<c:if test="${grade eq selectGrade}" >selected='selected'</c:if>
-  					>
-					${grade}
-					</option>
-				</c:forEach>
-			</select>
-		</form>
-	</div>
-
-
-	<div class="sec2">
-		<div class="divp">选择试卷</div>
-		<!-- 试卷下拉选择框 -->
-		<form action="" method="get" class="form">
-			<select name="drop" class="ui-select" id="test-select">
-				<c:forEach items="${vTestMainList}" var="vTestMain">
-					<option value="${vTestMain.pk_test_main_ID}"
-						<c:if test="${vTestMain.pk_test_main_ID eq selectTest}" >selected='selected'
-  						</c:if>
-  					>
-					${vTestMain.pk_test_main_ID}
-					</option>
-				</c:forEach>
-			</select>
-		</form>
-	</div>
-
 	<script>
 		//下拉选择框
 		$(document).ready(

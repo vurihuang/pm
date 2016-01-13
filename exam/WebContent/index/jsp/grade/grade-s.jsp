@@ -69,6 +69,12 @@
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">
+    
+    var chineseBefData = [60, 70, 85, 78, 86, 83, 77, 66, 55, 44];
+    var chineseAftData = [80, 74, 81, 90, 73, 80, 88, 77, 90, 88];
+    
+    var chineseGradeAndPrData = [[21.5,20.34],[32.5,33.33],[45,40.89],[57.5,60.78],[80.8,75.79],[75,80.45]];
+    
         // 语文   路径配置
         require.config({
             paths: {
@@ -127,17 +133,18 @@
 							max : 100
 						}
 					],
+					
 					series : [
 						{
 							name:'前测',
 							type:'line',
-							data:[60, 70, 85, 78, 86, 83, 77, 66, 55, 44]
+							data:chineseBefData
 						},
 						{		//前测折线图
 							name:'后测',
 							type:'line',
 							symbol:'none',							
-							data:[80, 74, 81, 90, 73, 80, 88, 77, 90, 88]
+							data:chineseAftData
 						},
 						{		//关于差距柱状图
 							name:'前测2',
@@ -168,6 +175,30 @@
                 myChart.setOption(option); 
             }
         );
+//为语文前后侧图赋值
+chineseBefData = [];
+chineseAftData = [];
+<c:forEach items="${chineseGradeBefList}" var="chineseGradeBef">
+ 	<c:choose>
+	<c:when test="${chineseGradeBef.score eq 0}">
+	chineseBefData.push("");
+	</c:when>
+	<c:otherwise>
+	chineseBefData.push(${chineseGradeBef.score});
+	</c:otherwise>
+	</c:choose> 
+</c:forEach>
+
+<c:forEach items="${chineseGradeAftList}" var="chineseGradeAft">
+	<c:choose>
+		<c:when test="${chineseGradeAft.score eq 0}">
+			chineseAftData.push("");
+		</c:when>
+		<c:otherwise>
+			chineseAftData.push(${chineseGradeAft.score});
+		</c:otherwise>
+	</c:choose> 
+</c:forEach>
 
 		// 数学   路径配置
         require.config({
@@ -444,12 +475,12 @@
             }
         }
     ],
+ 
     series : [
         {
             name:'成绩-PR',
             type:'scatter',
-            data: [[21.5,20.34],[32.5,33.33],[45,40.89],[57.5,60.78],[80.8,75.79],[75,80.45]
-            ],
+            data: chineseGradeAndPrData,
             markPoint : {
                 data : [
                     {type : 'max', name: '最大值'},
@@ -689,6 +720,15 @@
 		});
 		
 	});	
+	
+	chineseGradeAndPrData = [];
+	<c:forEach items="${chineseGradeAndPrList}" var="chineseGradeAndPr">
+		var tempData = [];
+		tempData.push(${chineseGradeAndPr.score});
+		tempData.push(${chineseGradeAndPr.pr});
+		chineseGradeAndPrData.push(tempData);
+	</c:forEach>
+	
     </script>
     
     <%-- <!-- Bootstrap Core JavaScript -->

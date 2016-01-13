@@ -43,14 +43,13 @@
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript">
     
-    
+
         // 语文   路径配置
         require.config({
             paths: {
                 echarts: 'http://echarts.baidu.com/build/dist'
             }
         });
-        
         // 使用
     require(
         [
@@ -135,7 +134,6 @@
 			//为语文折线图赋值
 			var value0 = [];
 			var value1 = [];
-			
 			<c:forEach items="${chineseList}" var="studentPr">
 				value0.push("${studentPr.classyear}");
 			</c:forEach>

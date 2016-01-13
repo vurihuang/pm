@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
 <body>
-
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="height:680px"></div>
     <!-- ECharts单文件引入 -->
@@ -265,6 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 myChart.setOption(option); 
             }
         );
+        
     </script>
 </body>
 </html>
