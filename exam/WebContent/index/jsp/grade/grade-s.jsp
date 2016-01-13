@@ -45,7 +45,7 @@
 </head>
 <body>
 	<div class="text-center" style="margin-bottom:50px;"><span style="font-size:25px;">个人学习履历</span>
-	<div class="sec">
+	<div class="sec text-left">
 		<!-- 下拉选择框 -->
 		<form action="" method="get" class="form">
 			<select name="drop1" class="ui-select">
@@ -105,22 +105,19 @@
 					toolbox: {
 						show : true,
 						feature : {
-							//mark : {show: true},
-							//dataView : {show: true, readOnly: false},
 							magicType : {show: true, type: ['line', 'bar']},
 							restore : {show: true},
-							//saveAsImage : {show: true}
 						}
 					},
 					legend: {
-						data:['后测', '前测'],
+						data:['前测', '后测'],
 						selectedMode:false
 					},
 					xAxis : [
 						{
 							type : 'category',
 							//x轴
-							data : ['2015-10-15','2015-10-21','2015-10-27','2015-11-2','2015-11-8','2015-11-14','2015-11-20']
+							data : ['T1','T2','T3','T4','S1','T5','T6','T7','T8','S2']
 						}
 					],
 					yAxis : [
@@ -132,23 +129,15 @@
 					],
 					series : [
 						{
-							name:'后测',
-							type:'line',
-							data:[80, 74, 81, 90, 73, 80, 88]
-						},
-						{		//前测折线图
 							name:'前测',
 							type:'line',
-							symbol:'none',
-							itemStyle:{
-								normal:{
-								  lineStyle: {
-									width:1,
-									type:'dashed'
-								  }
-								}
-							},
-							data:[60, 70, 85, 78, 86, 83, 77]
+							data:[60, 70, 85, 78, 86, 83, 77, 66, 55, 44]
+						},
+						{		//前测折线图
+							name:'后测',
+							type:'line',
+							symbol:'none',							
+							data:[80, 74, 81, 90, 73, 80, 88, 77, 90, 88]
 						},
 						{		//关于差距柱状图
 							name:'前测2',
@@ -164,20 +153,13 @@
 								}
 							},
 							//柱状图起始高度(前后测比较的小的值)
-							data:[60, 70, 81, 78, 73, 80, 77]
+							data:[60, 70, 81, 78, 73, 80, 77, 66, 55, 44]
 						},
 						{		//差距柱状图
 							name:'变化',
 							type:'bar',
 							stack: '1',
-							data:[
-							  20, 4, 
-							  {value : 4, itemStyle:{ normal:{color:'red'}}},
-							  12,
-							  {value : 13, itemStyle:{ normal:{color:'red'}}},
-							  {value : 3, itemStyle:{ normal:{color:'red'}}},
-							  11
-							]
+							data:[20, 4, 4, 12, 13, 3, 11, 11, 35, 44]
 						}
 					]
                 };
@@ -223,21 +205,18 @@
 					toolbox: {
 						show : true,
 						feature : {
-							mark : {show: true},
-							dataView : {show: true, readOnly: false},
 							magicType : {show: true, type: ['line', 'bar']},
-							restore : {show: true},
-							saveAsImage : {show: true}
+							restore : {show: true}
 						}
 					},
 					legend: {
-						data:['后测', '前测'],
+						data:['前测', '后测'],
 						selectedMode:false
 					},
 					xAxis : [
 						{
 							type : 'category',
-							data : ['2015-10-15','2015-10-21','2015-10-27','2015-11-2','2015-11-8','2015-11-14','2015-11-20']
+							data : ['T1','T2','T3','T4','S1','T5','T6','T7','T8','S2']
 						}
 					],
 					yAxis : [
@@ -249,23 +228,15 @@
 					],
 					series : [
 						{
-							name:'后测',
-							type:'line',
-							data:[80, 74, 81, 90, 73, 80, 88]
-						},
-						{		//前测折线图
 							name:'前测',
 							type:'line',
+							data:[60, 70, 85, 78, 86, 83, 77, 66, 55, 44]
+						},
+						{		//前测折线图
+							name:'后测',
+							type:'line',
 							symbol:'none',
-							itemStyle:{
-								normal:{
-								  lineStyle: {
-									width:1,
-									type:'dashed'
-								  }
-								}
-							},
-							data:[60, 70, 85, 78, 86, 83, 77]
+							data:[80, 74, 81, 90, 73, 80, 88, 77, 90, 88]
 						},
 						{		//关于差距柱状图
 							name:'前测2',
@@ -281,20 +252,13 @@
 								}
 							},
 							//柱状图起始高度(前后测比较的小的值)
-							data:[60, 70, 81, 78, 73, 80, 77]
+							data:[60, 70, 81, 78, 73, 80, 77, 66, 55, 44]
 						},
 						{		//差距柱状图
 							name:'变化',
 							type:'bar',
 							stack: '1',
-							data:[
-							  20, 4, 
-							  {value : 4, itemStyle:{ normal:{color:'red'}}},
-							  12,
-							  {value : 13, itemStyle:{ normal:{color:'red'}}},
-							  {value : 3, itemStyle:{ normal:{color:'red'}}},
-							  11
-							]
+							data:[20, 4, 4, 12, 13, 3, 11, 11, 35, 44]
 						}
 					]
                 };
@@ -340,21 +304,18 @@
 					toolbox: {
 						show : true,
 						feature : {
-							mark : {show: true},
-							dataView : {show: true, readOnly: false},
 							magicType : {show: true, type: ['line', 'bar']},
 							restore : {show: true},
-							saveAsImage : {show: true}
 						}
 					},
 					legend: {
-						data:['后测', '前测'],
+						data:['前测', '后测'],
 						selectedMode:false
 					},
 					xAxis : [
 						{
 							type : 'category',
-							data : ['2015-10-15','2015-10-21','2015-10-27','2015-11-2','2015-11-8','2015-11-14','2015-11-20']
+							data : ['T1','T2','T3','T4','S1','T5','T6','T7','T8','S2']
 						}
 					],
 					yAxis : [
@@ -366,23 +327,15 @@
 					],
 					series : [
 						{
-							name:'后测',
-							type:'line',
-							data:[80, 74, 81, 90, 73, 80, 88]
-						},
-						{		//前测折线图
 							name:'前测',
 							type:'line',
+							data:[60, 70, 85, 78, 86, 83, 77, 66, 55, 44]
+						},
+						{		//前测折线图
+							name:'后测',
+							type:'line',
 							symbol:'none',
-							itemStyle:{
-								normal:{
-								  lineStyle: {
-									width:1,
-									type:'dashed'
-								  }
-								}
-							},
-							data:[60, 70, 85, 78, 86, 83, 77]
+							data:[80, 74, 81, 90, 73, 80, 88, 77, 90, 88]
 						},
 						{		//关于差距柱状图
 							name:'前测2',
@@ -398,20 +351,13 @@
 								}
 							},
 							//柱状图起始高度(前后测比较的小的值)
-							data:[60, 70, 81, 78, 73, 80, 77]
+							data:[60, 70, 81, 78, 73, 80, 77, 66, 55, 44]
 						},
 						{		//差距柱状图
 							name:'变化',
 							type:'bar',
 							stack: '1',
-							data:[
-							  20, 4, 
-							  {value : 4, itemStyle:{ normal:{color:'red'}}},
-							  12,
-							  {value : 13, itemStyle:{ normal:{color:'red'}}},
-							  {value : 3, itemStyle:{ normal:{color:'red'}}},
-							  11
-							]
+							data:[20, 4, 4, 12, 13, 3, 11, 11, 35, 44]
 						}
 					]
                 };
@@ -468,7 +414,7 @@
         }
     },
     legend: {
-        data:['学生']
+        data:['成绩-PR']
     },
     toolbox: {
         show : true,
@@ -500,10 +446,9 @@
     ],
     series : [
         {
-            name:'学生',
+            name:'成绩-PR',
             type:'scatter',
-            data: [[63.2, 51.6], [67.5, 59.0], [59.5, 49.2], [57.0, 63.0], [55.8, 53.6],                
-                [76.5, 71.8], [64.4, 55.5], [60.7, 48.6], [74.0, 66.4], [63.8, 67.3]
+            data: [[21.5,20.34],[32.5,33.33],[45,40.89],[57.5,60.78],[80.8,75.79],[75,80.45]
             ],
             markPoint : {
                 data : [
@@ -572,7 +517,7 @@
         }
     },
     legend: {
-        data:['学生']
+        data:['成绩-PR']
     },
     toolbox: {
         show : true,
@@ -604,10 +549,9 @@
     ],
     series : [
         {
-            name:'学生',
+            name:'成绩-PR',
             type:'scatter',
-            data: [[63.2, 51.6], [67.5, 59.0], [59.5, 49.2], [57.0, 63.0], [55.8, 53.6],                
-                [76.5, 71.8], [64.4, 55.5], [60.7, 48.6], [74.0, 66.4], [63.8, 67.3]
+            data: [[21.5,20.34],[32.5,33.33],[45,40.89],[57.5,60.78],[80.8,75.79],[75,80.45]
             ],
             markPoint : {
                 data : [
@@ -676,7 +620,7 @@
         }
     },
     legend: {
-        data:['学生']
+        data:['成绩-PR']
     },
     toolbox: {
         show : true,
@@ -708,10 +652,9 @@
     ],
     series : [
         {
-            name:'学生',
+            name:'成绩-PR',
             type:'scatter',
-            data: [[63.2, 51.6], [67.5, 59.0], [59.5, 49.2], [57.0, 63.0], [55.8, 53.6],                
-                [76.5, 71.8], [64.4, 55.5], [60.7, 48.6], [74.0, 66.4], [63.8, 67.3]
+            data: [[21.5,20.34],[32.5,33.33],[45,40.89],[57.5,60.78],[80.8,75.79],[75,80.45]
             ],
             markPoint : {
                 data : [

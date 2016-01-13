@@ -45,7 +45,7 @@
 <body>
 	<div>
 	<div class="text-center" style="margin-bottom:50px;"><span style="font-size:25px;">学生个人成长轨迹</span>
-		<div class="sec">
+		<div class="sec text-left">
 			<!-- 下拉选择框 -->
 			<form action="" method="get" class="form">
 				<select name="drop1" class="ui-select" id="stu-select">
