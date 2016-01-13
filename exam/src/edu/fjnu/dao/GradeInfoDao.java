@@ -64,6 +64,14 @@ public class GradeInfoDao {
 		return gradeAftList;
 	}
 
+	/**
+	 * 根据范围得到成绩和PR的关系
+	 * 
+	 * @param stuName
+	 * @param courseName
+	 * @param classYear
+	 * @return 履历信息对象
+	 */
 	public List<GradeInfo> getGradeAndPr(String stuName, String courseName, String classYear) {
 		List<GradeInfo> gradePrList = new ArrayList<GradeInfo>();
 		Object[] params = { stuName, classYear, courseName };
