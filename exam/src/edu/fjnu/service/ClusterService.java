@@ -40,53 +40,77 @@ public class ClusterService {
 		List<Cluster> sixDownList = getKeywordsByLevel("六年级（下）", subject, studentLevel);
 		
 		//遍历每个学期聚类实体，为其所属学期赋值（用于图表归类），并以此添加到一个最终要返回的List
-		for(Cluster cluster : oneUpList){
-			cluster.setGradeNum(1);
-			allList.add(cluster);
+		if(oneUpList != null){
+			for(Cluster cluster : oneUpList){
+				cluster.setGradeNum(1);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : oneDownList){
-			cluster.setGradeNum(2);
-			allList.add(cluster);
+		if(oneDownList != null){
+			for(Cluster cluster : oneDownList){
+				cluster.setGradeNum(2);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : twoUpList){
-			cluster.setGradeNum(3);
-			allList.add(cluster);
+		if(twoUpList != null){
+			for(Cluster cluster : twoUpList){
+				cluster.setGradeNum(3);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : twoDwonList){
-			cluster.setGradeNum(4);
-			allList.add(cluster);
+		if(twoDwonList != null){
+			for(Cluster cluster : twoDwonList){
+				cluster.setGradeNum(4);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : threeUpList){
-			cluster.setGradeNum(5);
-			allList.add(cluster);
+		if(threeUpList != null){
+			for(Cluster cluster : threeUpList){
+				cluster.setGradeNum(5);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : threeDownList){
-			cluster.setGradeNum(6);
-			allList.add(cluster);
+		if(threeDownList != null){
+			for(Cluster cluster : threeDownList){
+				cluster.setGradeNum(6);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : fourUpList){
-			cluster.setGradeNum(7);
-			allList.add(cluster);
+		if(fourUpList != null){
+			for(Cluster cluster : fourUpList){
+				cluster.setGradeNum(7);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : fourDownList){
-			cluster.setGradeNum(8);
-			allList.add(cluster);
+		if(fourDownList != null){
+			for(Cluster cluster : fourDownList){
+				cluster.setGradeNum(8);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : fiveUpList){
-			cluster.setGradeNum(9);
-			allList.add(cluster);
+		if(fiveUpList != null){
+			for(Cluster cluster : fiveUpList){
+				cluster.setGradeNum(9);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : fiveDownList){
-			cluster.setGradeNum(10);
-			allList.add(cluster);
+		if(fiveDownList != null){
+			for(Cluster cluster : fiveDownList){
+				cluster.setGradeNum(10);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : sixUpList){
-			cluster.setGradeNum(11);
-			allList.add(cluster);
+		if(sixUpList != null){
+			for(Cluster cluster : sixUpList){
+				cluster.setGradeNum(11);
+				allList.add(cluster);
+			}
 		}
-		for(Cluster cluster : sixDownList){
-			cluster.setGradeNum(12);
-			allList.add(cluster);
+		if(sixDownList != null){
+			for(Cluster cluster : sixDownList){
+				cluster.setGradeNum(12);
+				allList.add(cluster);
+			}
 		}
 		
 		return allList;
@@ -102,6 +126,10 @@ public class ClusterService {
 	 */
 	public List<Cluster> getKeywordsByLevel(String grade,String subject,String studentLevel){
 		ArrayList<Integer> idList = getIDsBylevel(grade, subject,studentLevel);
+		//如果该年级查不到学生idList，返空，不再执行
+		if(idList.size() == 0){
+			return null;
+		}
 		List<VScope> vScopeList = null;
 		List<Cluster> clusterList = new ArrayList<Cluster>();
 		int y = 0;

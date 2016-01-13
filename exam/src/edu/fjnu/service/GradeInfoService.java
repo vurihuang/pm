@@ -49,9 +49,9 @@ public class GradeInfoService {
 	}
 
 	public List<GradeInfo> getGradeCut(String stuName, String courseName, String classYear) {
-		List<GradeInfo> tmpBefList = getGradeAft(stuName, courseName, classYear);
+		List<GradeInfo> tmpBefList = getGradeBef(stuName, courseName, classYear);
 		List<GradeInfo> tmpAftList = getGradeAft(stuName, courseName, classYear);
-		List<GradeInfo> tmpCutList = new ArrayList<GradeInfo>();
+		List<GradeInfo> tmpCutList = getCreateObjList();
 
 		for (int i = 0; i < LEN; i++) {
 			if (tmpBefList.get(i).getScore() > tmpAftList.get(i).getScore()) {
@@ -62,6 +62,22 @@ public class GradeInfoService {
 		}
 
 		return tmpCutList;
+	}
+	
+	public List<GradeInfo> getGradeHigh(String stuName, String courseName, String classYear){
+		List<GradeInfo> tmpBefList = getGradeBef(stuName, courseName, classYear);
+		List<GradeInfo> tmpAftList = getGradeAft(stuName, courseName, classYear);
+		List<GradeInfo> tmpHighList = getCreateObjList();
+		
+		for (int i = 0; i < LEN; i++) {
+			if (tmpBefList.get(i).getScore() > tmpAftList.get(i).getScore()) {
+				tmpHighList.get(i).setScore(tmpAftList.get(i).getScore());
+			} else {
+				tmpHighList.get(i).setScore(tmpBefList.get(i).getScore());
+			}
+		}
+		
+		return tmpHighList;
 	}
 
 	public List<GradeInfo> getGradePr(String stuName, String courseName, String classYear) {
@@ -78,6 +94,8 @@ public class GradeInfoService {
 
 		return tmpList;
 	}
+	
+	
 
 	private List<GradeInfo> getCreateObjList() {
 		List<GradeInfo> setTmpList = new ArrayList<GradeInfo>();

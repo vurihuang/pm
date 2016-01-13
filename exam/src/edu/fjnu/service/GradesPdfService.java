@@ -153,16 +153,16 @@ public class GradesPdfService
 						throws SQLException
 	{
 		List<String[]> preScoreTable = new ArrayList< String[]>();
-		String[] prScoreMes = new String[2];
+		String[] preScoreMes = new String[3];
 		GradeService sgs = new GradeService();
 		List<Grade> grades = sgs.getPreGrade(stuName, scope+"（上）", subject);
 		grades.addAll(sgs.getPreGrade(stuName, scope+"（下）", subject));
 		for( int i=0; i<grades.size(); i++)
 		{
-			
-			prScoreMes[0] = grades.get(i).getProgress();
-			prScoreMes[1] = String.valueOf(grades.get(i).getScore());
-			preScoreTable.add(prScoreMes);
+			preScoreMes[0] = grades.get(i).getProgress();
+			preScoreMes[1] = grades.get(i).getExamtype();
+			preScoreMes[2] = String.valueOf(grades.get(i).getScore());
+			preScoreTable.add(preScoreMes);
 		}
 		return preScoreTable;
 	}
@@ -182,17 +182,15 @@ public class GradesPdfService
 						throws SQLException
 	{
 		List<String[]> lastScoreTable = new ArrayList< String[]>();
-		String[] lastScoreMes = new String[2];
+		String[] lastScoreMes = new String[3];
 		GradeService sgs = new GradeService();
 		List<Grade> grades = sgs.getLatGrade(stuName, scope+"（上）", subject);
 		grades.addAll(sgs.getLatGrade(stuName, scope+"（下）", subject));
 		for( int i=0; i<grades.size(); i++)
 		{
-			if( "后测" == grades.get(i).getExamtype())
-			{
-				lastScoreMes[0] = grades.get(i).getProgress();
-				lastScoreMes[1] = String.valueOf(grades .get(i).getScore());
-			}
+			lastScoreMes[0] = grades.get(i).getProgress();
+			lastScoreMes[1] = grades.get(i).getExamtype();
+			lastScoreMes[2] = String.valueOf(grades.get(i).getScore());
 			lastScoreTable.add(lastScoreMes);
 		}
 		return lastScoreTable;
@@ -204,11 +202,25 @@ public class GradesPdfService
 //		GradeService gs = new GradeService();
 //		System.out.println(gs.getPreGrade("陈梦熙", "二年级（下）", "数学").toString());
 		GradesPdfService gps = new GradesPdfService();
-//		System.out.println(gps.getLastScore("陈梦熙", "二年级", "英语"));
-//		for( int i=0; i<gps.getLastScore("陈梦熙", "二年级","语文").size(); i++)
-//		{
-			System.out.println(gps.getLastScore("陈梦熙", "二年级","数学").get(0)[0]);
-			
-//		}
+		GradeService sgs = new GradeService();
+		List<Grade> grades = sgs.getPreGrade("陈梦熙", "二年级"+"（下）", "数学");
+		System.out.println();
+		System.out.println(grades);
+		System.out.println(grades.get(0).getScore());
+		
+		System.out.println();
+		System.out.println(gps.getPreScore("陈梦熙", "二年级", "数学"));
+		List<String[]> str = gps.getPreScore("陈梦熙", "二年级", "数学");
+		
+		System.out.println();
+		System.out.println();
+		for( int i=0; i<str.size(); i++)
+		{
+			for( int j=0; j<str.get(i).length; j++)
+			{
+				
+				System.out.println(str.get(i)[j]);
+			}
+		}
 	}
 }
