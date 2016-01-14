@@ -25,10 +25,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
-<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
-<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
-<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
 <style type="text/css">
 .sec {
 	position: absolute;
@@ -42,53 +38,61 @@
 	top: 60px;
 }
 </style>
+
+<script src="<c:url value='/index/bower_components/jquery/dist/jquery.min.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/index/css/drop-down.css'/>" />
+<script src="<c:url value='/index/js/jquery-ui.min.js'/>"></script>
+<script src="<c:url value='/index/js/select-widget-min.js'/>"></script>
+
+
 </head>
+
 <body>
-	<div>
-		<div class="text-center" style="margin-bottom: 110px;">
-			<span style="font-size: 25px;">学生个人学习履历</span>
-			<div class="sec text-left">
-				<!-- 下拉选择框 -->
-				<form action="" method="get" class="form">
-					<select name="drop1" class="ui-select" id="stu-select">
-						<c:forEach items="${stuList}" var="stu">
-							<option value="${stu}"
-								<c:if test="${stu eq selectStu}" >
-							selected='selected'
-						</c:if>>
-								${stu}</option>
-						</c:forEach>
-					</select>
-				</form>
-			</div>
-			<div class="secg text-left">
-				<!-- 下拉选择框 -->
-				<form action="" method="get" class="form">
-					<select name="drop1" class="ui-select" id="stu-select">
-						<c:forEach items="${stuYearList}" var="stu">
-							<option value="${stu}"
-								<c:if test="${stu eq selectStu}" >
-							selected='selected'
-						</c:if>>
-								${stu}</option>
-						</c:forEach>
-					</select>
-				</form>
-			</div>
-		</div>
+
+<div>
+<div class="text-center" style="margin-bottom: 110px;">
+	<span style="font-size: 25px;">学生个人学习履历</span>
+	<div class="sec text-left">
+		<!-- 学生下拉选择框 -->
+		<form action="" method="get" class="form">
+			<select name="drop1" class="ui-select" id="stu-select">
+				<c:forEach items="${stuList}" var="stu">
+					<option value="${stu}"
+						<c:if test="${stu eq selectedStu}" >
+					selected='selected'
+				</c:if>>
+						${stu}</option>
+				</c:forEach>
+			</select>
+		</form>
 	</div>
-	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-	<div id="mainchinese"
-		style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<div id="prchinese" style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<div id="mainmath" style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<div id="prmath" style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<div id="mainenglish"
-		style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<div id="prenglish" style="height: 400px; width: 80%; margin: 0 auto;"></div>
-	<!-- ECharts单文件引入 -->
-	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-	<script type="text/javascript">
+	<div class="secg text-left">
+		<!-- 年级下拉选择框 -->
+		<form action="" method="get" class="form">
+			<select name="drop1" class="ui-select" id="grade-select">
+				<c:forEach items="${stuYearList}" var="stuYear">
+					<option value="${stuYear.classyear}"
+						<c:if test="${stuYear.classyear eq selectedGrade}" >
+					selected='selected'
+				</c:if>>
+						${stuYear.classyear}</option>
+				</c:forEach>
+			</select>
+		</form>
+	</div>
+</div>
+</div>
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->	
+	<div id="mainchinese" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prchinese" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainmath" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prmath" style="height:400px;width:80%;margin:0 auto;"></div>	
+	<div id="mainenglish" style="height:400px;width:80%;margin:0 auto;"></div>
+	<div id="prenglish" style="height:400px;width:80%;margin:0 auto;"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
     
     // 语文前测数据
     var chineseBefData = [60, 70, 85, 78, 86, 83, 77, 66, 55, 44];
@@ -730,19 +734,7 @@
             }
         );
 
-	//下拉选择框
-	$(document).ready(function(){		
-		$(".ui-select").selectWidget({
-			change       : function (changes) {
-				return changes;
-			},
-			effect       : "slide",
-			keyControl   : true,
-			speed        : 200,
-			scrollHeight : 250
-		});
-		
-	});	
+	
 	//为语文前后侧图赋值
 	chineseBefData = [];// 设置语文前测为空
 	chineseAftData = [];// 设置语文后测为空
@@ -869,6 +861,36 @@
 		englishGradeAndPrData.push(tempData);
 	</c:forEach>
 	
+    </script>
+    
+    
+    <script>
+	//下拉选择框
+	$(document).ready(function(){		
+		$("#stu-select").selectWidget({
+			change       : function (changes) {
+				var stu = $("#stu-select").val();
+				location.href = "<c:url value='/TeacherGrowServlet?method=loadGradeInfo&stu='/>"+stu;
+			},
+			effect       : "slide",
+			keyControl   : true,
+			speed        : 200,
+			scrollHeight : 250
+		});
+		
+		$("#grade-select").selectWidget({
+			change       : function (changes) {
+				var stu = "${selectedStu}";
+				var grade = $("#grade-select").val();
+				location.href = "<c:url value='/TeacherGrowServlet?method=loadGradeInfo&stu='/>" + stu + "&grade=" + grade; 
+			},
+			effect       : "slide",
+			keyControl   : true,
+			speed        : 200,
+			scrollHeight : 250
+		});
+		
+	});
     </script>
 
 	<!-- Bootstrap Core JavaScript -->

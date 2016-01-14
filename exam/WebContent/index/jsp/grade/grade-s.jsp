@@ -39,14 +39,14 @@
 	</style>
 </head>
 <body>
-	<div class="text-center" style="margin-bottom:50px;"><span style="font-size:25px;">个人学习履历</span>
+ 	<div class="text-center" style="margin-bottom:50px;"><span style="font-size:25px;">个人学习履历</span>
 	<div class="sec text-left">
 		<!-- 下拉选择框 -->
 			<form action="" method="get" class="form">
 				<select name="drop1" class="ui-select" id="stu-select">
 					<c:forEach items="${stuYearList}" var="stuYear">
 						<option value="${stuYear.classyear}"
-							<c:if test="${stuYear.classyear eq classyear}" >
+							<c:if test="${stuYear.classyear eq selectedGrade}" >
 						selected='selected'
 					</c:if>>
 							${stuYear.classyear}</option>
@@ -54,7 +54,7 @@
 				</select>
 			</form>
 	</div>
-	</div>
+	</div> 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->	
 	<div id="mainchinese" style="height:400px;width:80%;margin:0 auto;"></div>
 	<div id="prchinese" style="height:400px;width:80%;margin:0 auto;"></div>	

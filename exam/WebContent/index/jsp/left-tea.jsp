@@ -82,7 +82,7 @@
 						</li>
 						<li>
 							<%-- <a href="<c:url value='/TeacherServlet?method=courseInfo&courseName=chinese'/>" target="main">语文</a> --%>
-							<a href="<c:url value='/TeacherGrowServlet?method=loadGradeStu'/>" target="main">学生学习履历图</a>
+							<a href="<c:url value='/TeacherGrowServlet?method=loadGradeInfo'/>" target="main">学生学习履历图</a>
 						</li>
 					</ul>
 				</li>
