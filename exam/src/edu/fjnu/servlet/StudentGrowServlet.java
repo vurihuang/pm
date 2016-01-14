@@ -82,6 +82,7 @@ public class StudentGrowServlet extends BaseServlet {
 			throws ServletException, IOException {
 		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
 		String classYear = request.getParameter("classyear");
+		request.setAttribute("selectedGrade", classYear);
 		List<StudentPr> stuYearList = gradeInfoService.getStudiedYearListByName(stuName);
 
 		List<GradeInfo> chineseGradeBefList = new ArrayList<GradeInfo>();

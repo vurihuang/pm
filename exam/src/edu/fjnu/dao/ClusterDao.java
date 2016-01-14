@@ -211,8 +211,29 @@ public class ClusterDao {
 	 * @return
 	 */
 	public List<Cluster> findAll(String level,String subject) {
-		String sql = "select * from cluster where `level`=? and `subject`=? order by id ASC";
+		String sql = "select * from cluster where level=? and subject=? order by id ASC";
 		Object[] params = {level,subject};
+		try {
+			return qr.query(sql, new BeanListHandler<Cluster>(Cluster.class),params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**
+	 * 查询聚类list
+	 * @param level
+	 * @param subject
+	 * @param gradeName
+	 * @return
+	 */
+	public List<Cluster> findByScope( String level, String subject, int gradeNum)
+	{
+		String sql = "select * "
+				+ "from cluster "
+				+ "where level=? and subject=? and gradeNum=? "
+				+ "order by id asc";
+		Object[] params = {level,subject, gradeNum};
 		try {
 			return qr.query(sql, new BeanListHandler<Cluster>(Cluster.class),params);
 		} catch (SQLException e) {

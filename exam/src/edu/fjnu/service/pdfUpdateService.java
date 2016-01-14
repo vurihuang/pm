@@ -96,22 +96,19 @@ public class PdfUpdateService
 		String [] subject = new String[]{"语文", "数学", "英语"};
 		for( int i=0; i<subject.length; i++)
 		{
-			tools.InsertTitle(pdf, "1."+(i+1) +"	"+ subject[i]);
-			tools.InsertSubhead(pdf, "2."+(i+1) + ".1	试卷具体分析报告");
+			tools.InsertTitle(pdf, "2."+(i+1) +"	"+ subject[i]);
+			
+			
+			
+			tools.InsertSubhead(pdf, "2."+(i+1) + ".1 	试题错误率统计");
 			pdf.add(para);
-			String[] tableHeader = new String[]{"试卷名称","难度","信度"};
+			String[] tableHeader = new String[]{"知识点", "错误率"};
 			List<String[]> tableHeader1 = new ArrayList<String[]>();
 			tableHeader1.add(tableHeader);
-			tools.InsertTable(pdf, new float[]{40,40,20}, 100, tableHeader1, 20, Font.BOLD, Color.BLACK);
-			pdf.add(para);
-			
-			
-			tools.InsertSubhead(pdf, "1."+(i+1) + ".2 	试题错误率统计");
-			pdf.add(para);
-			tableHeader = new String[]{"题目", "错误率"};
-			tableHeader1.clear();
-			tableHeader1.add(tableHeader);
 			tools.InsertTable(pdf, new float[]{70,20}, 100, tableHeader1, 20, Font.BOLD, Color.BLACK);
+			TestPdfService tps = new TestPdfService();
+			List<String[]> point = tps.getWrongList(Integer.valueOf(stu.getStudentID()), scope, subject[i]);
+			tools.InsertTable(pdf, new float[]{70,20}, 100, point, 13, Font.NORMAL, Color.BLACK);
 			pdf.add(para);
 			pdf.newPage();
 		}
@@ -129,6 +126,23 @@ public class PdfUpdateService
 	 */
 	public static void RelationAnalasisForAll(Student stu, String scope, Document pdf ) throws DocumentException, Exception 
 	{
+		
+		// 修改年级乙方万一
+		String[] nj = new String[]{"一年级","二年级","三年级","四年级","五年级","六年级"};
+		if( true == scope.contains(nj[0])){
+			scope = "一年级";
+		}else if(true == scope.contains(nj[1])){
+			scope = "二年级";
+		}else if( true == scope.contains(nj[2])){
+			scope = "三年级";
+		}else if( true == scope.contains(nj[3])){
+			scope = "四年级";
+		}else if( true == scope.contains(nj[4])){
+			scope = "五年级";
+		}else{
+			scope = "六年级";
+		}
+		
 		Paragraph para = new Paragraph("\n");
 		PDFUtil tools = new PDFUtil();
 		tools.InsertModuleTitle(pdf, "3 	知识点关联分析报告");
@@ -254,19 +268,7 @@ public class PdfUpdateService
 	 */
 	public static void ClusterAnalasisForAll(Student stu, String scope, Document pdf ) throws DocumentException, Exception 
 	{
-		Paragraph para = new Paragraph("\n");
-		PDFUtil tools = new PDFUtil();
-		tools.InsertModuleTitle(pdf, "4 	知识点聚类分析报告");
-	
-	}
-	/**
-	 * 报告完整版
-	 * @param stu
-	 * @param scope
-	 * @throws Exception
-	 */
-	public void PdfForAll( Student stu, String scope) throws Exception
-	{
+		
 		// 修改年级乙方万一
 		String[] nj = new String[]{"一年级","二年级","三年级","四年级","五年级","六年级"};
 		if( true == scope.contains(nj[0])){
@@ -282,6 +284,38 @@ public class PdfUpdateService
 		}else{
 			scope = "六年级";
 		}
+		Paragraph para = new Paragraph("\n");
+		PDFUtil tools = new PDFUtil();
+		tools.InsertModuleTitle(pdf, "4  	知识点聚类分析报告");
+		String [] subject = new String[]{"语文", "数学", "英语"};
+		for( int i=0; i<subject.length; i++)
+		{
+			tools.InsertTitle(pdf, "4."+(i+1) +"	"+ subject[i]);
+			tools.InsertSubhead(pdf, "4."+(i+1) + ".1	 知识点常模");
+			pdf.add(para);
+			String[] TableHeader = new String[]{scope+"(上)",scope+"下"};
+			List<String[]> tableHeader = new ArrayList<String[]>();
+			tableHeader.add(TableHeader);
+			tools.InsertTable(pdf, new float[]{50,50}, 100, tableHeader, 20, Font.BOLD, Color.BLACK);
+			TableHeader = new String[]{"知识点","错误次数","知识点","错误次数"};
+			tableHeader.clear();
+			tableHeader.add(TableHeader);
+			tools.InsertTable(pdf, new float[]{35,15,35,15}, 100, tableHeader, 16, Font.BOLD, Color.BLACK);
+			ClusterPdfService cps = new ClusterPdfService();
+			List<String[]> cluster = cps.getClusterMatrix( Integer.valueOf(stu.getStudentID()), scope, subject[i]);
+			tools.InsertTable(pdf, new float[]{35,15,35,15}, 100, cluster, 12, Font.NORMAL, Color.BLACK);
+			pdf.add(para);
+		}
+	}
+	/**
+	 * 报告完整版
+	 * @param stu
+	 * @param scope
+	 * @throws Exception
+	 */
+	public void PdfForAll( Student stu, String scope) throws Exception
+	{
+
 		
 		PDFUtil pdftool = new PDFUtil();
 		Document pdf = pdftool.createDocument(System.getProperty("user.dir").replace("\\", "/")
@@ -297,6 +331,8 @@ public class PdfUpdateService
 		
 		PdfUpdateService.GreadeAnalasisForAll(stu, scope, pdf);
 		PdfUpdateService.TestAnalasisForAll(stu, scope, pdf);
+		PdfUpdateService.RelationAnalasisForAll(stu, scope, pdf);
+		PdfUpdateService.ClusterAnalasisForAll(stu, scope, pdf);
 		
 		pdf.close();
 	}

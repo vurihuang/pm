@@ -74,7 +74,8 @@ public class TeacherGrowServlet extends BaseServlet {
 	 */
 	public String loadStuGradeList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String stuName = (String) request.getSession().getAttribute("sname");// 得到学生的名字
+		String stuName = request.getParameter("stu");// 得到学生的名字
+		request.setAttribute("selectedStu", stuName);
 		String teacherId = (String) request.getSession().getAttribute("userID"); // 得到教师id
 		List<String> stuList = tgs.getStudent(teacherId); // 调用dao得到学生名字的list
 		request.getSession().setAttribute("stuList", stuList); // 把这个list返回给jsp的下拉框
@@ -125,61 +126,79 @@ public class TeacherGrowServlet extends BaseServlet {
 	 */
 	public String loadGradeInfo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String stuName = request.getParameter("stuName");
-		String classYear = request.getParameter("classyear");
+		System.out.println("come here");
+		String teacherId = (String) request.getSession().getAttribute("userID"); // 得到
+		String stuName = request.getParameter("stu");
+		String classYear = request.getParameter("grade");
 
-		List<GradeInfo> chineseGradeBefList = new ArrayList<GradeInfo>();// 语文前测
-		List<GradeInfo> chineseGradeAftList = new ArrayList<GradeInfo>();// 语文后测
-		List<GradeInfo> chineseGradeCutList = new ArrayList<GradeInfo>();// 语文前后测分差
-		List<GradeInfo> chineseGradeHighList = new ArrayList<GradeInfo>();// 语文前后测分差起始位置
-		List<GradeInfo> mathGradeBefList = new ArrayList<GradeInfo>();
-		List<GradeInfo> mathGradeAftList = new ArrayList<GradeInfo>();
-		List<GradeInfo> mathGradeCutList = new ArrayList<GradeInfo>();
-		List<GradeInfo> mathGradeHighList = new ArrayList<GradeInfo>();
-		List<GradeInfo> englishGradeBefList = new ArrayList<GradeInfo>();
-		List<GradeInfo> englishGradeAftList = new ArrayList<GradeInfo>();
-		List<GradeInfo> englishGradeCutList = new ArrayList<GradeInfo>();
-		List<GradeInfo> englishGradeHighList = new ArrayList<GradeInfo>();
-
-		List<GradeInfo> chineseGradeAndPr = new ArrayList<GradeInfo>();// 语文成绩与PR值关系分布数据
-		List<GradeInfo> mathGradeAndPr = new ArrayList<GradeInfo>();
-		List<GradeInfo> englishGradeAndPr = new ArrayList<GradeInfo>();
-
-		chineseGradeBefList = gradeInfoService.getGradeBef(stuName, "语文", classYear);
-		chineseGradeAftList = gradeInfoService.getGradeAft(stuName, "语文", classYear);
-		chineseGradeCutList = gradeInfoService.getGradeCut(stuName, "语文", classYear);
-		chineseGradeHighList = gradeInfoService.getGradeHigh(stuName, "语文", classYear);
-		mathGradeBefList = gradeInfoService.getGradeBef(stuName, "数学", classYear);
-		mathGradeAftList = gradeInfoService.getGradeAft(stuName, "数学", classYear);
-		mathGradeCutList = gradeInfoService.getGradeCut(stuName, "数学", classYear);
-		mathGradeHighList = gradeInfoService.getGradeHigh(stuName, "数学", classYear);
-		englishGradeBefList = gradeInfoService.getGradeBef(stuName, "英文", classYear);
-		englishGradeAftList = gradeInfoService.getGradeAft(stuName, "英文", classYear);
-		englishGradeCutList = gradeInfoService.getGradeCut(stuName, "英文", classYear);
-		englishGradeHighList = gradeInfoService.getGradeHigh(stuName, "英文", classYear);
-
-		chineseGradeAndPr = gradeInfoService.getGradePr(stuName, "语文", classYear);
-		mathGradeAndPr = gradeInfoService.getGradePr(stuName, "数学", classYear);
-		englishGradeAndPr = gradeInfoService.getGradePr(stuName, "英文", classYear);
-
-		request.setAttribute("chineseGradeBefList", chineseGradeBefList);
-		request.setAttribute("chineseGradeAftList", chineseGradeAftList);
-		request.setAttribute("chineseGradeCutList", chineseGradeCutList);
-		request.setAttribute("chineseGradeHighList", chineseGradeHighList);
-
-		request.setAttribute("mathGradeBefList", mathGradeBefList);
-		request.setAttribute("mathGradeAftList", mathGradeAftList);
-		request.setAttribute("mathGradeCutList", mathGradeCutList);
-		request.setAttribute("mathGradeHighList", mathGradeHighList);
-
-		request.setAttribute("englishGradeBefList", englishGradeBefList);
-		request.setAttribute("englishGradeAftList", englishGradeAftList);
-		request.setAttribute("englishGradeCutList", englishGradeCutList);
-		request.setAttribute("englishGradeHighList", englishGradeHighList);
-
-		request.setAttribute("chineseGradeAndPrList", chineseGradeAndPr);
-		request.setAttribute("mathGradeAndPrList", mathGradeAndPr);
-		request.setAttribute("englishGradeAndPrList", englishGradeAndPr);
+		
+		List<String> stuList = tgs.getStudent(teacherId); // 调用dao得到学生名字的list
+		request.setAttribute("stuList", stuList); // 把这个list返回给jsp的下拉框
+		System.out.println(stuList);
+		if(stuName != null){//如果有选择学生
+			System.out.println("选择了学生");
+			//加载年级下拉框
+			List<StudentPr> stuYearList = gradeInfoService.getStudiedYearListByName(stuName);
+			request.setAttribute("stuYearList", stuYearList);
+		}
+		request.setAttribute("selectedStu", stuName);
+		request.setAttribute("selectedGrade", classYear);
+		
+		if(stuName != null && classYear != null){//如果学生年级都有选择
+			System.out.println("选择了年级");
+			List<GradeInfo> chineseGradeBefList = new ArrayList<GradeInfo>();// 语文前测
+			List<GradeInfo> chineseGradeAftList = new ArrayList<GradeInfo>();// 语文后测
+			List<GradeInfo> chineseGradeCutList = new ArrayList<GradeInfo>();// 语文前后测分差
+			List<GradeInfo> chineseGradeHighList = new ArrayList<GradeInfo>();// 语文前后测分差起始位置
+			List<GradeInfo> mathGradeBefList = new ArrayList<GradeInfo>();
+			List<GradeInfo> mathGradeAftList = new ArrayList<GradeInfo>();
+			List<GradeInfo> mathGradeCutList = new ArrayList<GradeInfo>();
+			List<GradeInfo> mathGradeHighList = new ArrayList<GradeInfo>();
+			List<GradeInfo> englishGradeBefList = new ArrayList<GradeInfo>();
+			List<GradeInfo> englishGradeAftList = new ArrayList<GradeInfo>();
+			List<GradeInfo> englishGradeCutList = new ArrayList<GradeInfo>();
+			List<GradeInfo> englishGradeHighList = new ArrayList<GradeInfo>();
+	
+			List<GradeInfo> chineseGradeAndPr = new ArrayList<GradeInfo>();// 语文成绩与PR值关系分布数据
+			List<GradeInfo> mathGradeAndPr = new ArrayList<GradeInfo>();
+			List<GradeInfo> englishGradeAndPr = new ArrayList<GradeInfo>();
+	
+			chineseGradeBefList = gradeInfoService.getGradeBef(stuName, "语文", classYear);
+			chineseGradeAftList = gradeInfoService.getGradeAft(stuName, "语文", classYear);
+			chineseGradeCutList = gradeInfoService.getGradeCut(stuName, "语文", classYear);
+			chineseGradeHighList = gradeInfoService.getGradeHigh(stuName, "语文", classYear);
+			mathGradeBefList = gradeInfoService.getGradeBef(stuName, "数学", classYear);
+			mathGradeAftList = gradeInfoService.getGradeAft(stuName, "数学", classYear);
+			mathGradeCutList = gradeInfoService.getGradeCut(stuName, "数学", classYear);
+			mathGradeHighList = gradeInfoService.getGradeHigh(stuName, "数学", classYear);
+			englishGradeBefList = gradeInfoService.getGradeBef(stuName, "英文", classYear);
+			englishGradeAftList = gradeInfoService.getGradeAft(stuName, "英文", classYear);
+			englishGradeCutList = gradeInfoService.getGradeCut(stuName, "英文", classYear);
+			englishGradeHighList = gradeInfoService.getGradeHigh(stuName, "英文", classYear);
+	
+			chineseGradeAndPr = gradeInfoService.getGradePr(stuName, "语文", classYear);
+			mathGradeAndPr = gradeInfoService.getGradePr(stuName, "数学", classYear);
+			englishGradeAndPr = gradeInfoService.getGradePr(stuName, "英文", classYear);
+	
+			request.setAttribute("chineseGradeBefList", chineseGradeBefList);
+			request.setAttribute("chineseGradeAftList", chineseGradeAftList);
+			request.setAttribute("chineseGradeCutList", chineseGradeCutList);
+			request.setAttribute("chineseGradeHighList", chineseGradeHighList);
+	
+			request.setAttribute("mathGradeBefList", mathGradeBefList);
+			request.setAttribute("mathGradeAftList", mathGradeAftList);
+			request.setAttribute("mathGradeCutList", mathGradeCutList);
+			request.setAttribute("mathGradeHighList", mathGradeHighList);
+	
+			request.setAttribute("englishGradeBefList", englishGradeBefList);
+			request.setAttribute("englishGradeAftList", englishGradeAftList);
+			request.setAttribute("englishGradeCutList", englishGradeCutList);
+			request.setAttribute("englishGradeHighList", englishGradeHighList);
+	
+			request.setAttribute("chineseGradeAndPrList", chineseGradeAndPr);
+			request.setAttribute("mathGradeAndPrList", mathGradeAndPr);
+			request.setAttribute("englishGradeAndPrList", englishGradeAndPr);
+		}
 
 		return "f:/index/jsp/grade/grade-t.jsp";
 	}
