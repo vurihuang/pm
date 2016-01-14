@@ -116,7 +116,7 @@
                         </ul>
                 </li>
                 <li>
-					<a href="<c:url value='/index/jsp/util/download.jsp'/>" target="main"><i class="glyphicon glyphicon-download"></i> 导出履历</a>
+					<a href="<c:url value='/PDFServlet?method=loadGrades'/>" target="main"><i class="glyphicon glyphicon-download"></i> 导出履历</a>
                 </li>
             </ul>
 		</div>

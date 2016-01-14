@@ -33,6 +33,7 @@ public class TestPdfService
 			tr.add(testScope[i]);
 		}
 		
+		
 		testScope = new String[tr.size()];
 		for( int i=0; i<testScope.length; i++)
 		{
@@ -46,11 +47,13 @@ public class TestPdfService
 			vq.addAll(sps.getKeywordAndWrongByScope(testScope[i]));
 		}
 		
-		String[] temp = new String[2];
+//		String[] temp = new String[2];
 		for( int i=1; i<vq.size(); i++)
 		{
+			String[] temp = new String[2];
 			temp[0] = vq.get(i).getKeyword();
-			temp[1] = String.valueOf(vq.get(i).getRate());
+//			temp[1] = String.valueOf(vq.get(i).getRate());
+			temp[1] = String.valueOf(vq.get(i).getWrong());//这里是错误率
 			wrongList.add(temp);
 		}
 		

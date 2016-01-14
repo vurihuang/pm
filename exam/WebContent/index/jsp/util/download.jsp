@@ -56,38 +56,71 @@
 
 	<style type="text/css">
 		.form{
-			width:200px;
+			width:170px;
 			margin:50px auto;
 		}
 		.but{
 			margin:0 auto;
 		}
+		.btn{
+			width:100px;
+		}
+		#show{
+			margin:0 auto;
+			text-align:center;
+		}
 	</style>
+	<script>
+	 function f(){
+         $("#show").text("正在导出...");                    	               
+
+		$.ajax({
+               type: "post",
+               data:{  
+                   method : "downloadPDF",  
+                   mygrade : $("#grade-select").val()
+          		}, 
+               url: "<c:url value='/PDFServlet'/>",
+               dataType: "json",
+               success: function (json) {
+                $("#show").text(json['showgrade']);                    	               
+               }, 
+               error: function () {
+                   alert("加载失败");
+               }
+       	}) 
+	 };
+	</script>
 </head>
 
 <body>
 		<div class="sec">
 			<!-- 下拉选择框 -->
 			<form action="" method="get" class="form">
-				<select name="drop1" class="ui-select">
-					<option value="1">一年级</option>
-					<option value="2">二年级</option>
-					<option value="3">三年级</option>
-					<option selected value="4">四年级</option>
-					<option value="5">五年级</option>
-					<option value="6">六年级</option>
+				<select name="drop1" class="ui-select" id="grade-select">
+					<c:forEach items="${gradeList}" var="grade">
+						<option value="${grade.name}"
+							<c:if test="${grade.name eq selectedGrade}" >
+						selected='selected'
+					</c:if>>
+							${grade.name}</option>
+					</c:forEach>
 				</select>
 			</form>
 		</div>
 		<div class="but text-center">
-			<button type="button" class="btn btn-info">导出</button>
+			<button type="button" class="btn btn-info" id="myButton" onclick="f();">导出</button>
+		</div>
+		<div id="show">
+		
 		</div>
 	<script type="text/javascript">
+	var grade;
 		//下拉选择框
 		$(document).ready(function(){		
 			$(".ui-select").selectWidget({
 				change       : function (changes) {
-					return changes;
+					grade = $("#grade-select").val();
 				},
 				effect       : "slide",
 				keyControl   : true,
@@ -96,6 +129,12 @@
 			});
 			
 		});
+		
+ 
+        
+ 
+ 
+
 	</script>
 	<!-- /#wrapper -->
 

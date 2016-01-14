@@ -223,8 +223,7 @@ public class PDFUtil
 		centrePar.setAlignment(Element.ALIGN_CENTER);
 		Paragraph par = new Paragraph("\n\n\n\n\n\n\n\n\n\n\n\n");
 		doc.add(par);
-		util.InsertImg(doc, System.getProperty("user.dir").replace("\\", "/")
-												+"/WebContent/imag/"
+		util.InsertImg(doc, "/Users/vengeance/Documents/workspaceMars/exam/WebContent/imag/"
 												+"学立方logo.png");
 		doc.add(centrePar);
 		Paragraph subPar = convertParToChinese(other, 20, normal, black);

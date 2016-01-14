@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
-import edu.fjnu.service.StudentService;
-import edu.fjnu.service.TeacherService;
+import edu.fjnu.service.StudentInfoService;
+import edu.fjnu.service.TeacherInfoService;
 
 /**
  * Servlet implementation class TestLoginServlet
@@ -25,7 +25,7 @@ public class TestLoginServlet extends HttpServlet {
 		String userID = req.getParameter("userID");
 			
 		if(userID.substring(0, 1).equals("1")){
-			StudentService stuService = new StudentService();
+			StudentInfoService stuService = new StudentInfoService();
 			Student student = new Student();
 			student.setStudentID(req.getParameter("userID"));
 			student.setSpassword(req.getParameter("password"));
@@ -37,7 +37,7 @@ public class TestLoginServlet extends HttpServlet {
 			}
 			
 		}else if(userID.substring(0, 1).equals("2")){
-			TeacherService teaService = new TeacherService();
+			TeacherInfoService teaService = new TeacherInfoService();
 			Teacher teacher = new Teacher();
 			teacher.setTeacherID(req.getParameter("userID"));
 			teacher.setTpassword(req.getParameter("password"));

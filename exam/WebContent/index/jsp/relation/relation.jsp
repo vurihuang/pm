@@ -183,13 +183,13 @@
 		</div>
 <!-- 饼图和长条图 -->
 				
-			<div class="col-md-4 text-center" style="font-size:20px">sadw<div id='bin' style="height:150px;width:100%;"></div></div>
-			<div class="col-md-4 text-center" style="font-size:20px">dswc<div id="tright" style="width:100%;height:150px"></div></div>
+			<div class="col-md-4 text-center" style="font-size:20px">前继知识点难度比例<div id='bin' style="height:150px;width:100%;"></div></div>
+			<div class="col-md-4 text-center" style="font-size:20px">后续知识点<div id="tright" style="width:100%;height:150px"></div></div>
 		</div>
 <!-- R图 -->		
 		<div clss="row">
 			<div class="imgd col-sm-6 col-lg-6">
-				高频知识点绘图<img src="<c:url value='${img_fsetsLift}'/>"
+				提升比率统计图<img src="<c:url value='${img_fsetsLift}'/>"
 					width="100%" height="90%" class="img" />
 			</div>
 			<div class="imgd col-sm-6 col-lg-6">

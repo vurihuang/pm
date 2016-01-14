@@ -6,19 +6,18 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.MapHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.junit.Test;
 
-import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
-import edu.fjnu.domain.Testmain;
+import edu.fjnu.dao.GradeInfoDao;
+import edu.fjnu.domain.GradeInfo;
 import edu.fjnu.domain.VGrandientScope;
 import edu.fjnu.domain.VMember;
 import edu.fjnu.domain.VQuestion;
 import edu.fjnu.domain.VScope;
 import edu.fjnu.domain.VTestDetail;
 import edu.fjnu.domain.VTestMain;
+import edu.fjnu.service.GradeInfoService;
 
 public class TestUpeoeDao {
 	QueryRunner qr = new TxQueryRunner();
@@ -29,6 +28,7 @@ public class TestUpeoeDao {
 	VTestMain testmain = new VTestMain();
 	VTestDetail testdetail = new VTestDetail();
 	String sql = "";
+	GradeInfoDao gradeInfoDao = new GradeInfoDao();
 
 	@Test
 	public void searchGrandient() throws SQLException {
@@ -86,20 +86,40 @@ public class TestUpeoeDao {
 				+ "(select memberid from t_member where name like '陈子凡') "
 				+ "and  grandient_grandientId in(select DISTINCT "
 				+ "t_grandient.grandientId as `grandientId` from t_grandient,"
-				+ "t_grandient_t_scope,t_scope as `chapter`,"
-				+ "t_scope as `unit`,"
-				+ "t_scope as `grade` "
+				+ "t_grandient_t_scope,t_scope as `chapter`," + "t_scope as `unit`," + "t_scope as `grade` "
 				+ "where  t_grandient.grandientId=t_grandient_t_scope.t_grandient_grandientId "
 				+ "and t_grandient_t_scope.scopes_pk_scope_id=chapter.pk_scope_id "
 				+ "and chapter.fk_parent_id=unit.pk_scope_id and unit.fk_parent_id=grade.pk_scope_id "
 				+ "and grade.name like '初二（上）%')";
-//		String sub = "语文";
-//		sql ="select * from t_testmain where student_memberId = '2' and subject='语文' and realscore != 0";
-//		List list = qr.query(sql, new BeanListHandler<VTestMain>(VTestMain.class));
-//		for(int i=0; i<list.size(); i++){
-//			System.out.println(list.get(i));
-//		}
-//		System.out.println(sql);
+		// String sub = "语文";
+		// sql ="select * from t_testmain where student_memberId = '2' and
+		// subject='语文' and realscore != 0";
+		// List list = qr.query(sql, new
+		// BeanListHandler<VTestMain>(VTestMain.class));
+		// for(int i=0; i<list.size(); i++){
+		// System.out.println(list.get(i));
+		// }
+		// System.out.println(sql);
 		System.out.println(qr.query(sql, new BeanListHandler<VTestMain>(VTestMain.class)));
+	}
+
+	@Test
+	public void test1() {
+		String stuName = "zhangjunyi";
+		String courseName = "语";
+		String classYear = "三年级（上）";
+		// System.out.println(gradeInfoDao.getGradeBefByScope(stuName,
+		// courseName, classYear));
+		// System.out.println(gradeInfoDao.getGradeAftByScope(stuName,
+		// courseName, classYear));
+		GradeInfoService gradeInfoService = new GradeInfoService();
+//		List<GradeInfo> gradeBefList = gradeInfoService.getGradeBef(stuName, courseName, classYear);
+//		List<GradeInfo> gradeAftList = gradeInfoService.getGradeAft(stuName, courseName, classYear);
+		List<GradeInfo> gradeAndPrtList = gradeInfoService.getGradePr(stuName, courseName, classYear);
+
+
+		for (int i = 0; i < gradeAndPrtList.size(); i++) {
+			System.out.println(gradeAndPrtList.get(i));
+		}
 	}
 }

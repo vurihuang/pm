@@ -52,7 +52,7 @@
 <div>
 <div class="text-center" style="margin-bottom: 110px;">
 	<span style="font-size: 25px;">学生个人学习履历</span>
-	<div class="sec text-left">
+	<div class="secg text-left">
 		<!-- 学生下拉选择框 -->
 		<form action="" method="get" class="form">
 			<select name="drop1" class="ui-select" id="stu-select">
@@ -66,7 +66,7 @@
 			</select>
 		</form>
 	</div>
-	<div class="secg text-left">
+	<div class="sec text-left">
 		<!-- 年级下拉选择框 -->
 		<form action="" method="get" class="form">
 			<select name="drop1" class="ui-select" id="grade-select">

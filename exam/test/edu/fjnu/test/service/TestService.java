@@ -11,15 +11,14 @@ import org.junit.Test;
 
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
-import edu.fjnu.dao.GradeDao;
 import edu.fjnu.dao.TeacherDao;
 import edu.fjnu.domain.Scourse;
 import edu.fjnu.domain.Sscore;
 import edu.fjnu.domain.Stcourse;
 import edu.fjnu.domain.Student;
 import edu.fjnu.domain.Teacher;
-import edu.fjnu.service.StudentService;
-import edu.fjnu.service.TeacherService;
+import edu.fjnu.service.StudentInfoService;
+import edu.fjnu.service.TeacherInfoService;
 import edu.fjnu.test.dao.Score;
 
 public class TestService {
@@ -27,15 +26,15 @@ public class TestService {
 	Teacher teacher = new Teacher();
 	Student student = new Student();
 	
-	TeacherService teacherService = new TeacherService();
-	GradeDao gradeImpl = new GradeDao();
+	TeacherInfoService teacherService = new TeacherInfoService();
+//	GradeDao gradeImpl = new GradeDao();
 	
 	@Test
 	public void testStudentService(){
 		Student student = new Student();
 		student.setSname("admin");
 		student.setSpassword("admin");
-		StudentService stuService = new StudentService();
+		StudentInfoService stuService = new StudentInfoService();
 		stuService.checkInfo(student);
 	}
 	
@@ -60,7 +59,7 @@ public class TestService {
 		stu.setSpassword("student");
 //		StudentDaoImpl stuImpl = new StudentDaoImpl();
 //		System.out.println(stuImpl.checkInfo(stu));
-		StudentService stuService = new StudentService();
+		StudentInfoService stuService = new StudentInfoService();
 		if(stuService.checkInfo(stu)){
 			System.out.println("成功");
 		}else{
@@ -141,7 +140,7 @@ public class TestService {
 		
 		Teacher teacher = new Teacher();
 		teacher.setTeacherID("01");
-		TeacherService teacherService = new TeacherService();
+		TeacherInfoService teacherService = new TeacherInfoService();
 		System.out.println(teacherService.teacherInfo(teacher));
 	}
 	@Test
@@ -232,10 +231,10 @@ public class TestService {
 	
 	@Test
 	public void getMaxList(){
-		GradeDao daoImpl = new GradeDao();
+//		GradeDao daoImpl = new GradeDao();
 		Scourse scourse = new Scourse();
 		scourse.setCourseID("30101");
-		System.out.println(daoImpl.getMaxScoreList(scourse));
+//		System.out.println(daoImpl.getMaxScoreList(scourse));
 	}
 	@Test
 	public void stuInfo(){
