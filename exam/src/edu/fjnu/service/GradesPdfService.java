@@ -26,7 +26,7 @@ public class GradesPdfService
 		double englishAvgScore = 0;
 		double sumAvgScore     = 0;
 		GradeService sgs = new GradeService();
-		List<Grade> grades = new ArrayList<>();
+		List<Grade> grades = new ArrayList<Grade>();
 		
 		// 平均分
 		grades = sgs.getPreGrade(stuName, scope+"（上）", "语文");
@@ -90,7 +90,7 @@ public class GradesPdfService
 		double englishAvgScore = 0;
 		double sumAvgScore     = 0;
 		GradeService sgs = new GradeService();
-		List<Grade> grades = new ArrayList<>();
+		List<Grade> grades = new ArrayList<Grade>();
 		
 		// 平均分
 		grades = sgs.getLatGrade(stuName, scope+"（上）", "语文");

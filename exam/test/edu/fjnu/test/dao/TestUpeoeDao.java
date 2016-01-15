@@ -122,4 +122,9 @@ public class TestUpeoeDao {
 			System.out.println(gradeAndPrtList.get(i));
 		}
 	}
+
+	@Test
+	public void test2(){
+		System.out.print("what do you mean");
+	}
 }
